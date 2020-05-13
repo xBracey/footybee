@@ -1,0 +1,20 @@
+version: "3"
+volumes:
+  node_modules:
+services:
+  mysql:
+    image: mysql:5.7
+    env_file: .env
+    ports:
+      - "33060:3306"
+
+  api:
+    build:
+      context: ./
+      dockerfile: ./dockerfile
+    env_file: .env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules/
+    ports:
+      - "8000:8000"
