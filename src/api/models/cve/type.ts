@@ -1,8 +1,15 @@
 import { validateString, validateDate } from "../../lib/validation";
 
+export enum Severity {
+  LOW = "LOW",
+  MEDIUM = "MEDIUM",
+  HIGH = "HIGH",
+  CRITICAL = "CRITICAL",
+}
+
 export default interface ICVE {
   id: string;
-  severity: string;
+  severity: Severity;
   description: string;
   publishedDate: Date;
 }

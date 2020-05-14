@@ -1,6 +1,7 @@
 import { models } from "../models";
-import ICVE from "../models/cve/type";
+import ICVE, { Severity } from "../models/cve/type";
 import CVE from "../models/cve";
+import { Op } from "sequelize";
 
 interface ICVEResponse {
   cve: CVE | null;
@@ -28,4 +29,33 @@ export const addCVEs = async (cvesData: ICVE[]): Promise<ICVEsResponse> => {
   } catch (error) {
     return { error, cves: null };
   }
+};
+
+export const getCVEs = async (
+  year: number,
+  severity: Severity
+): Promise<ICVEsResponse> => {
+  const cves = await models.CVE.findAll({
+    where: {
+      severity,
+      publishedDate: {
+        [Op.lt]: new Date(`${year + 1}-01-01T00:00:00`),
+        [Op.gt]: new Date(`${year}-01-01T00:00:00`),
+      },
+    },
+  });
+  return { cves };
+};
+
+export const searchCVEs = async (
+  searchString: string
+): Promise<ICVEsResponse> => {
+  const cves = await models.CVE.findAll({
+    where: {
+      id: {
+        [Op.like]: `%${searchString}%`,
+      },
+    },
+  });
+  return { cves };
 };
