@@ -1,4 +1,4 @@
-import { validateString, validateEmail, validateDate } from "./validation";
+import { validateString, validateNumber, validateDate } from "./validation";
 
 describe("Test validateString", () => {
   it("Valid (required)", async done => {
@@ -26,27 +26,27 @@ describe("Test validateString", () => {
   });
 });
 
-describe("Test validateEmail", () => {
+describe("Test validateNumber", () => {
   it("Valid (required)", async done => {
-    const validEmail = validateEmail("Test@test.com", true);
+    const validEmail = validateNumber(12, true);
     expect(validEmail).toBe(true);
     done();
   });
 
   it("Not Valid (required)", async done => {
-    const validEmail = validateEmail("Test", true);
+    const validEmail = validateNumber(null, true);
     expect(validEmail).toBe(false);
     done();
   });
 
   it("Valid (not required)", async done => {
-    const validEmail = validateEmail(null, false);
+    const validEmail = validateNumber(null, false);
     expect(validEmail).toBe(true);
     done();
   });
 
   it("Not Valid (not required)", async done => {
-    const validEmail = validateEmail("Test", false);
+    const validEmail = validateNumber("Test", false);
     expect(validEmail).toBe(false);
     done();
   });

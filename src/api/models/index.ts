@@ -7,7 +7,7 @@ const sequelize = new Sequelize(
   process.env.MYSQL_USER,
   process.env.MYSQL_PASSWORD,
   process.env.NODE_ENV === "test"
-    ? { dialect: "sqlite", storage: "./test_database.sqlite" }
+    ? { dialect: "sqlite", storage: "./test_database.sqlite", logging: false }
     : { dialect: "mysql", host: "mysql" }
 );
 

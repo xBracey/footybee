@@ -37,8 +37,6 @@ const convertRawData = (): ICVE[] => {
     };
   });
 
-  console.log(CVEConverted.length);
-
   return CVEConverted;
 };
 

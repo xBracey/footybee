@@ -1,4 +1,8 @@
-import { validateString, validateDate } from "../../lib/validation";
+import {
+  validateString,
+  validateDate,
+  validateNumber,
+} from "../../lib/validation";
 
 export enum Severity {
   LOW = "LOW",
@@ -14,6 +18,11 @@ export default interface ICVE {
   publishedDate: Date;
 }
 
+export interface IGetCVE {
+  severity: Severity;
+  year: number;
+}
+
 export const isValidCVE = (data: any): data is ICVE => {
   if (!data || typeof data !== "object") {
     return false;
@@ -27,4 +36,14 @@ export const isValidCVE = (data: any): data is ICVE => {
     validateString(description, true) &&
     validateDate(publishedDate, true)
   );
+};
+
+export const isValidGetCVE = (data: any): data is IGetCVE => {
+  if (!data || typeof data !== "object") {
+    return false;
+  }
+
+  const { severity, year } = data;
+
+  return validateString(severity, true) && validateNumber(year, true);
 };

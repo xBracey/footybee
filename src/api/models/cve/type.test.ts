@@ -1,4 +1,4 @@
-import { isValidCVE } from "./type";
+import { isValidCVE, isValidGetCVE } from "./type";
 
 describe("Test isValidCVE", () => {
   it("Valid", async done => {
@@ -25,7 +25,35 @@ describe("Test isValidCVE", () => {
   });
 
   it("Not Object", async done => {
-    const validCVE = isValidCVE("Tom");
+    const validCVE = isValidCVE("CVE-TEST-1");
+
+    expect(validCVE).toBe(false);
+    done();
+  });
+});
+
+describe("Test isValidGetCVE", () => {
+  it("Valid", async done => {
+    const validCVE = isValidGetCVE({
+      severity: "HIGH",
+      year: 2020,
+    });
+    expect(validCVE).toBe(true);
+    done();
+  });
+
+  it("Not Valid", async done => {
+    const validCVE = isValidGetCVE({
+      severity: "HIGH",
+      year: null,
+    });
+
+    expect(validCVE).toBe(false);
+    done();
+  });
+
+  it("Not Object", async done => {
+    const validCVE = isValidGetCVE("Tom");
 
     expect(validCVE).toBe(false);
     done();
