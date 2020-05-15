@@ -1,7 +1,15 @@
 import React from "react";
+import { Header, Head } from "../components";
+import { Background, GlobalStyle } from "../lib/constants";
 
 const IndexPage = () => {
-  return <div>{"Hi"}</div>;
+  return (
+    <Background>
+      <GlobalStyle />
+      <Head title={"Dashboard"} />
+      <Header />
+    </Background>
+  );
 };
 
 export default IndexPage;
