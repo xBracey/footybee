@@ -7,6 +7,7 @@ export const COLORS = {
   DISABLED: "#B0B4B6",
   WHITE: "#FFFFFF",
   LIGHT_BLUE: "#79BAC1",
+  DARK_BLUE: "#084651",
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -46,13 +47,16 @@ export const Background = styled.div`
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
-  padding: 10px;
 `;
 
 export const Container = styled.div`
   width: calc(100% - 50px);
   max-width: 1500px;
   padding: 0px 25px;
+`;
+
+export const MainFilterContainer = styled.div`
+  display: flex;
 `;
 
 export const mobileMixin = rules => css`

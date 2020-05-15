@@ -1,11 +1,23 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { SearchContainer, SearchIcon, SearchInput } from "./Search.styled";
+import {
+  SearchContainer,
+  SearchIcon,
+  SearchInput,
+  SearchOuterContainer,
+} from "./Search.styled";
 import icon from "../../assets/search.svg";
 import { useFocus } from "../../lib/useFocus";
+import ICVE from "../../../api/models/cve/type";
 
-const Search = () => {
+interface ISearchProps {
+  setSearchResults: (searchResults: ICVE[]) => void;
+}
+
+const Search = ({ setSearchResults }: ISearchProps) => {
   const [inputRef, setInputFocus] = useFocus();
   const [searchString, setSearchString] = useState("");
+  const [searchHistory, setSearchHistory] = useState([]);
+  const [isFocused, setIsFocused] = useState(false);
 
   const onSearch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -15,9 +27,14 @@ const Search = () => {
         method: "GET",
       });
 
-      const responseJSON = await response.json();
+      const responseJSON: ICVE[] = await response.json();
 
-      console.log(responseJSON);
+      if (response.ok) {
+        setSearchResults(responseJSON);
+      }
+
+      setSearchHistory([...searchHistory, searchString]);
+      setSearchString("");
     }
   };
 
@@ -26,16 +43,20 @@ const Search = () => {
   };
 
   return (
-    <SearchContainer onClick={setInputFocus}>
-      <SearchIcon src={icon} />
-      <form onSubmit={onSearch}>
-        <SearchInput
-          ref={inputRef}
-          value={searchString}
-          onChange={onChangeText}
-        />
-      </form>
-    </SearchContainer>
+    <SearchOuterContainer>
+      <SearchContainer focused={isFocused} onClick={setInputFocus}>
+        <SearchIcon src={icon} />
+        <form onSubmit={onSearch}>
+          <SearchInput
+            ref={inputRef}
+            value={searchString}
+            onChange={onChangeText}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          />
+        </form>
+      </SearchContainer>
+    </SearchOuterContainer>
   );
 };
 

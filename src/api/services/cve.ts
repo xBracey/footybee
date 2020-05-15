@@ -47,13 +47,11 @@ export const getCVEs = async (
   return { cves };
 };
 
-export const searchCVEs = async (
-  searchString: string
-): Promise<ICVEsResponse> => {
+export const searchCVEs = async (search: string): Promise<ICVEsResponse> => {
   const cves = await models.CVE.findAll({
     where: {
       id: {
-        [Op.like]: `%${searchString}%`,
+        [Op.like]: `%${search}%`,
       },
     },
   });
