@@ -35,7 +35,7 @@ describe("Test isValidCVE", () => {
 describe("Test isValidGetCVE", () => {
   it("Valid", async done => {
     const validCVE = isValidGetCVE({
-      severity: "HIGH",
+      severity: ["HIGH"],
       year: 2020,
     });
     expect(validCVE).toBe(true);
@@ -44,7 +44,7 @@ describe("Test isValidGetCVE", () => {
 
   it("Not Valid", async done => {
     const validCVE = isValidGetCVE({
-      severity: "HIGH",
+      severity: ["HIGH"],
       year: null,
     });
 

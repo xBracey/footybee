@@ -23,3 +23,12 @@ export const validateNumber = (data: number, required: boolean) => {
     return (!!data && typeof data === "number") || !data;
   }
 };
+
+export const validateStringArray = (data: string[]) => {
+  return (
+    typeof data === "object" &&
+    !!data &&
+    !!data.length &&
+    data.every(dataString => validateString(dataString, true))
+  );
+};

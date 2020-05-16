@@ -8,7 +8,7 @@ describe("Test get CVE endpoint", () => {
     const response = await request
       .post("/api/cve")
       .send({
-        severity: "MEDIUM",
+        severity: ["MEDIUM"],
         year: 2018,
       })
       .set("Accept", "application/json");

@@ -77,7 +77,7 @@ describe("Add CVEs", () => {
 
 describe("Get CVEs", () => {
   it("Valid year and severity", async done => {
-    const { cves } = await getCVEs(2023, Severity.MEDIUM);
+    const { cves } = await getCVEs(2023, [Severity.MEDIUM]);
 
     expect(cves.length).toEqual(2);
     done();

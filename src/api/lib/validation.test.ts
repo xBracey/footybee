@@ -1,4 +1,9 @@
-import { validateString, validateNumber, validateDate } from "./validation";
+import {
+  validateString,
+  validateNumber,
+  validateDate,
+  validateStringArray,
+} from "./validation";
 
 describe("Test validateString", () => {
   it("Valid (required)", async done => {
@@ -73,6 +78,20 @@ describe("Test validateDate", () => {
 
   it("Not Valid (not required)", async done => {
     const validEmail = validateDate("Test", false);
+    expect(validEmail).toBe(false);
+    done();
+  });
+});
+
+describe("Test validateStringArray", () => {
+  it("Valid", async done => {
+    const validEmail = validateStringArray(["2020-01-01T00:00:00"]);
+    expect(validEmail).toBe(true);
+    done();
+  });
+
+  it("Not Valid ", async done => {
+    const validEmail = validateStringArray([]);
     expect(validEmail).toBe(false);
     done();
   });

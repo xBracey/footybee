@@ -33,11 +33,13 @@ export const addCVEs = async (cvesData: ICVE[]): Promise<ICVEsResponse> => {
 
 export const getCVEs = async (
   year: number,
-  severity: Severity
+  severity: Severity[]
 ): Promise<ICVEsResponse> => {
   const cves = await models.CVE.findAll({
     where: {
-      severity,
+      severity: {
+        [Op.in]: severity,
+      },
       publishedDate: {
         [Op.lt]: new Date(`${year + 1}-01-01T00:00:00`),
         [Op.gt]: new Date(`${year}-01-01T00:00:00`),

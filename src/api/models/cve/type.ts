@@ -2,6 +2,7 @@ import {
   validateString,
   validateDate,
   validateNumber,
+  validateStringArray,
 } from "../../lib/validation";
 
 export enum Severity {
@@ -19,7 +20,7 @@ export default interface ICVE {
 }
 
 export interface IGetCVE {
-  severity: Severity;
+  severity: Severity[];
   year: number;
 }
 
@@ -45,5 +46,5 @@ export const isValidGetCVE = (data: any): data is IGetCVE => {
 
   const { severity, year } = data;
 
-  return validateString(severity, true) && validateNumber(year, true);
+  return validateStringArray(severity, true) && validateNumber(year, true);
 };
