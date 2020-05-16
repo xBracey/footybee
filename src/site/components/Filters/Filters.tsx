@@ -36,15 +36,30 @@ const Filters = ({ filter, setGraphResults }: IFiltersProps) => {
     }
   };
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
     if (yearValue && severitiesValue.length) {
-      const year = yearValue.value;
-      const severities = severitiesValue.map(
+      const year = parseInt(yearValue.value);
+      const severity = severitiesValue.map(
         severitiesSingleValue => severitiesSingleValue.value
       );
 
-      console.log(year, severities);
+      const response = await fetch(`/api/cve`, {
+        method: "POST",
+        body: JSON.stringify({
+          year,
+          severity,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const responseJSON: ICVE[] = await response.json();
+
+      if (response.ok) {
+        setGraphResults(responseJSON);
+      }
     }
   };
 

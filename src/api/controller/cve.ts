@@ -11,6 +11,8 @@ export const getController = async ({
   year,
   severity,
 }: IGetCVE): Promise<IControllerResponse> => {
+  console.log({ year, severity });
+
   if (!isValidGetCVE({ year, severity })) {
     return { status: 400, error: "Invalid parameters" };
   }

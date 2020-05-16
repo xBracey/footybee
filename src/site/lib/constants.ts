@@ -8,6 +8,8 @@ export const COLORS = {
   WHITE: "#FFFFFF",
   LIGHT_BLUE: "#79BAC1",
   DARK_BLUE: "#084651",
+  PURPLE: "#512B58",
+  RED: "#FF0000",
 };
 
 export const GlobalStyle = createGlobalStyle`

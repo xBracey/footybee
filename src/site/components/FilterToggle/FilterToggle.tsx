@@ -13,6 +13,10 @@ interface IFilterToggleProps {
 
 const FilterToggle = ({ setFilter, filter }: IFilterToggleProps) => {
   const onChecked = (event: ChangeEvent<HTMLInputElement>) => {
+    setTimeout(() => {
+      window.dispatchEvent(new Event("resize"));
+    }, 600);
+
     setFilter(event.target.checked);
   };
 

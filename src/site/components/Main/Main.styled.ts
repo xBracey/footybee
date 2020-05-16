@@ -8,7 +8,7 @@ interface IMainContainer {
 
 export const MainContainer = styled.div<IMainContainer>`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   background-color: ${COLORS.WHITE};
   height: calc(100vh - 100px);
   width: ${props =>

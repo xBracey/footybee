@@ -1,6 +1,7 @@
 import React from "react";
 import { MainContainer } from "./Main.styled";
 import ICVE from "../../../api/models/cve/type";
+import { SearchResults, GraphResults } from "..";
 
 interface IMainProps {
   searchResults: ICVE[];
@@ -9,7 +10,10 @@ interface IMainProps {
 }
 
 const Main = ({ searchResults, graphResults, filter }: IMainProps) => (
-  <MainContainer filter={filter}></MainContainer>
+  <MainContainer filter={filter}>
+    <SearchResults searchResults={searchResults} />
+    <GraphResults graphResults={graphResults} />
+  </MainContainer>
 );
 
 export default Main;

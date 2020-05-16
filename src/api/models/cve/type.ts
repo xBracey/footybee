@@ -46,5 +46,5 @@ export const isValidGetCVE = (data: any): data is IGetCVE => {
 
   const { severity, year } = data;
 
-  return validateStringArray(severity, true) && validateNumber(year, true);
+  return validateStringArray(severity) && validateNumber(year, true);
 };
