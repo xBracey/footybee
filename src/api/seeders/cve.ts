@@ -1,10 +1,7 @@
 import { addCVEs } from "./../services/cve";
-import convertRawData from "../lib/convertRawData";
 
 const seedCVEs = async () => {
-  const CVEData = convertRawData();
-
-  await addCVEs(CVEData);
+  await addCVEs([]);
 };
 
 export default seedCVEs;
