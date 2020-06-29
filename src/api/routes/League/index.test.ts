@@ -4,11 +4,15 @@ import app from "../../";
 
 const request = supertest(app);
 
-describe("Test create {{camelCase name}} endpoint", () => {
-  it("Valid {{camelCase name}}", async done => {
+describe("Test create league endpoint", () => {
+  it("Valid league", async done => {
     const response = await request
-      .post("/{{camelCase name}}/create")
-      .send({})
+      .post("/api/league/create")
+      .send({
+        leagueName: "Test League 10",
+        displayName: "Tom's League",
+        password: "1234",
+      })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(200);
@@ -16,20 +20,24 @@ describe("Test create {{camelCase name}} endpoint", () => {
     done();
   });
 
-  it("Duplicate {{camelCase name}}", async done => {
+  it("Duplicate league", async done => {
     const response = await request
-      .post("/{{camelCase name}}/create")
-      .send()
+      .post("/api/league/create")
+      .send({
+        leagueName: "Test League 1",
+        displayName: "Tom's League",
+        password: "1234",
+      })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(409);
-    expect(response.body.error).toBe("{{camelCase name}} name already exists");
+    expect(response.body.error).toBe("League Name already exists");
     done();
   });
 
   it("Invalid body", async done => {
     const response = await request
-      .post("/{{camelCase name}}/create")
+      .post("/api/league/create")
       .send({ fefefe: "htrht" })
       .set("Accept", "application/json");
 
@@ -40,7 +48,7 @@ describe("Test create {{camelCase name}} endpoint", () => {
 
   it("No body", async done => {
     const response = await request
-      .post("/{{camelCase name}}/create")
+      .post("/api/league/create")
       .send()
       .set("Accept", "application/json");
 
@@ -51,7 +59,7 @@ describe("Test create {{camelCase name}} endpoint", () => {
 
   it("No object", async done => {
     const response = await request
-      .post("/{{camelCase name}}/create")
+      .post("/api/league/create")
       .send("Test")
       .set("Accept", "application/json");
 
@@ -61,11 +69,24 @@ describe("Test create {{camelCase name}} endpoint", () => {
   });
 });
 
-describe("Test bulk create {{camelCase name}} endpoint", () => {
-  it("Valid {{camelCase name}}s", async done => {
+describe("Test bulk create league endpoint", () => {
+  it("Valid leagues", async done => {
     const response = await request
-      .post("/{{camelCase name}}/bulk-create")
-      .send()
+      .post("/api/league/bulk-create")
+      .send({
+        leagues: [
+          {
+            leagueName: "Test League 11",
+            displayName: "Tom's League",
+            password: "1234",
+          },
+          {
+            leagueName: "Test League 12",
+            displayName: "Tom's League",
+            password: "1234",
+          },
+        ],
+      })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(200);
@@ -73,10 +94,23 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
     done();
   });
 
-  it("Duplicate {{camelCase name}}", async done => {
+  it("Duplicate league", async done => {
     const response = await request
-      .post("/{{camelCase name}}/bulk-create")
-      .send()
+      .post("/api/league/bulk-create")
+      .send({
+        leagues: [
+          {
+            leagueName: "Test League 1",
+            displayName: "Tom's League",
+            password: "1234",
+          },
+          {
+            leagueName: "Test League 2",
+            displayName: "Tom's League",
+            password: "1234",
+          },
+        ],
+      })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(409);
@@ -86,8 +120,10 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
 
   it("Invalid body", async done => {
     const response = await request
-      .post("/{{camelCase name}}/bulk-create")
-      .send([{ fefefe: "fefefefe" }])
+      .post("/api/league/bulk-create")
+      .send({
+        leagues: [{ fefefe: "fefefefe" }],
+      })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(400);
@@ -97,8 +133,10 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
 
   it("Invalid array", async done => {
     const response = await request
-      .post("/{{camelCase name}}/bulk-create")
-      .send([])
+      .post("/api/league/bulk-create")
+      .send({
+        leagues: [],
+      })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(400);
@@ -108,7 +146,7 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
 
   it("Wrong Data type", async done => {
     const response = await request
-      .post("/{{camelCase name}}/bulk-create")
+      .post("/api/league/bulk-create")
       .send({ fefe: "fefef" })
       .set("Accept", "application/json");
 
@@ -118,24 +156,23 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
   });
 });
 
-describe("Test delete {{camelCase name}} endpoint", () => {
-  it("Valid {{camelCase name}} name", async done => {
-    const response = await request.delete("/{{camelCase name}}/test");
+describe("Test delete league endpoint", () => {
+  it("Valid league name", async done => {
+    const component = `/api/league/${encodeURIComponent(
+      "Test League Delete 2"
+    )}`;
+
+    const response = await request.delete(component);
 
     expect(response.status).toBe(200);
-    expect(response.body.message).toBe(
-      "{{camelCase name}} successfully deleted"
-    );
     done();
   });
 
-  it("Invalid {{camelCase name}} name", async done => {
-    const response = await request.delete(
-      "/{{camelCase name}}/fewfewfewfewfew"
-    );
+  it("Invalid league name", async done => {
+    const response = await request.delete("/api/league/fewfewfewfewfew");
 
     expect(response.status).toBe(400);
-    expect(response.body.error).toBe("{{camelCase name}} does not exist");
+    expect(response.body.error).toBe("League Name does not exist");
     done();
   });
 });

@@ -6,15 +6,15 @@
   "license": "MIT",
   "scripts": {
     "start": "docker-compose up",
-    "build-site": "gatsby build",
-    "develop-site": "gatsby develop -H 0.0.0.0",
-    "serve-site": "http-server -p 8000 -P http://localhost:3000 ./public",
-    "start-api": "babel-node ./src/api/index.ts --extensions \".ts,.tsx\"",
-    "develop-api": "nodemon --exec babel-node ./src/api/index.ts --extensions \".ts,.tsx\"",
-    "develop": "concurrently \"npm run develop-site\" \"npm run develop-api\"",
-    "serve": "npm run build-site && concurrently \"npm run serve-site\" \"npm run start-api\"",
+    "build:site": "gatsby build",
+    "develop:site": "gatsby develop -H 0.0.0.0",
+    "serve:site": "http-server -p 8000 -P http://localhost:3000 ./public",
+    "start:api": "babel-node ./src/api/index.ts --extensions \".ts,.tsx\"",
+    "develop:api": "nodemon --exec babel-node ./src/api/index.ts --extensions \".ts,.tsx\"",
+    "develop": "concurrently \"npm run develop:site\" \"npm run develop:api\"",
+    "serve": "npm run build:site && concurrently \"npm run serve:site\" \"npm run start:api\"",
     "test": "jest --collectCoverage",
-    "test-watch": "jest --collectCoverage --watch"
+    "test:watch": "jest --collectCoverage --watch"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",

@@ -1,7 +1,7 @@
-import seedCVEs from "./cve";
+import leagueSeed from "./league";
 
 const seedData = async () => {
-  await seedCVEs();
+  await leagueSeed();
 };
 
 export default seedData;

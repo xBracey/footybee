@@ -2,11 +2,10 @@ import {
 	add{{pascalCase name}},
 	add{{pascalCase name}}s,
 	delete{{pascalCase name}},
-} from "../../database/services";
-import {{camelCase name}}, { is{{pascalCase name}} } from "../../database/models/{{camelCase name}}/type";
-import controllerResponse from "./type";
-import StatusError from "../../lib/error";
-import { checkBody, validateArrayTypeCheck } from "../../lib/validation";
+} from "../services";
+import I{{pascalCase name}}, { isValid{{pascalCase name}} } from "../models/{{pascalCase name}}/type";
+import controllerResponse from "./controller";
+import { StatusError, checkBody, validateArrayTypeCheck } from "@lib";
 
 const handleError = (error: StatusError): controllerResponse => {
 	const { status, code } = error;
@@ -28,9 +27,9 @@ const handleError = (error: StatusError): controllerResponse => {
 };
 
 export const createController = async (
-	body: {{camelCase name}}
+	body: I{{pascalCase name}}
 ): Promise<controllerResponse> => {
-	if (!is{{pascalCase name}}(body)) {
+	if (!isValid{{pascalCase name}}(body)) {
 		return { status: 400, error: "Invalid parameters" };
 	}
 
@@ -44,12 +43,12 @@ export const createController = async (
 };
 
 export const bulkCreateController = async (body: {
-	{{camelCase name}}s: {{camelCase name}}[];
+	{{camelCase name}}s: I{{pascalCase name}}[];
 }): Promise<controllerResponse> => {
 	if (
 		!checkBody(body) ||
 		!body.{{camelCase name}}s ||
-		!validateArrayTypeCheck(body.{{camelCase name}}s, is{{pascalCase name}})
+		!validateArrayTypeCheck(body.{{camelCase name}}s, isValid{{pascalCase name}})
 	) {
 		return { status: 400, error: "Invalid parameters" };
 	}
@@ -63,14 +62,8 @@ export const bulkCreateController = async (body: {
 	return handleError(error);
 };
 
-export const deleteController = async (body: {
-	id: string;
-}): Promise<controllerResponse> => {
-	if (!checkBody(body) || !body.id) {
-		return { status: 400, error: "Invalid parameters" };
-	}
-
-	const { error, {{camelCase name}} } = await delete{{pascalCase name}}(body.id);
+export const deleteController = async (id: string): Promise<controllerResponse> => {
+	const { error, {{camelCase name}} } = await delete{{pascalCase name}}(id);
 
 	if (!error) {
 		return { status: 200, response: {{camelCase name}} };

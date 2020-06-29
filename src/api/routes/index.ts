@@ -1,3 +1,1 @@
-import cve from "./cve";
-
-export { cve };
+export * from "./League";
