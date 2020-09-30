@@ -58,7 +58,7 @@ describe("Add {{camelCase name}}", () => {
 			id: "Test {{pascalCase name}} 3",
 		});
 
-		const name = {{camelCase name}}.get("", { plain: true });
+		const name = {{camelCase name}}.get("id", { plain: true });
 
 		expect(name).toEqual("Test {{pascalCase name}} 3");
 		done();
@@ -106,7 +106,7 @@ describe("Add {{camelCase name}}s", () => {
 
 describe("Delete {{camelCase name}}", () => {
 	it("Valid {{camelCase name}} name", async done => {
-		const { error } = await delete{{pascalCase name}}("Test {{pascalCase name}} Delete");
+		const { error } = await delete{{pascalCase name}}("Test {{pascalCase name}} Delete 1");
 
 		expect(error).toBeUndefined();
 		done();

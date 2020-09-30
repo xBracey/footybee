@@ -11,14 +11,8 @@ const handleError = (error: StatusError): controllerResponse => {
       return { status, error: error.message };
     case 1:
       return { status, error: "League Name already exists" };
-    case 2:
-      return { status, error: error.message };
     case 3:
-      return { status, error: error.message };
-    case 4:
       return { status, error: "League Name does not exist" };
-    case 5:
-      return { status, error: error.message };
   }
 };
 

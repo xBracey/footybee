@@ -44,25 +44,16 @@ export class StatusError extends Error {
 
   handleValidationError(error: Error) {
     switch (error.message) {
-      case "A channel or a device needs to be set for a message":
-        this.status = 422;
-        this.message = error.message;
-        this.code = 3;
-        break;
       case "Primary Key not found when deleting entity":
         this.status = 400;
         this.message = error.message;
-        this.code = 4;
+        this.code = 3;
         break;
       case "Username or password is incorrect":
         this.status = 400;
         this.message = error.message;
-        this.code = 5;
+        this.code = 4;
         break;
-      case "Primary Key not found when getting entity":
-        this.status = 400;
-        this.message = error.message;
-        this.code = 6;
     }
   }
 }

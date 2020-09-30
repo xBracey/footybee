@@ -9,7 +9,10 @@ const {{camelCase name}}Seed = async () => {
 			id: "Test {{pascalCase name}} 2",
 		},
 		{
-			id: "Test {{pascalCase name}} Delete",
+			id: "Test {{pascalCase name}} Delete 1",
+		},
+		{
+			id: "Test {{pascalCase name}} Delete 2",
 		},
 	];
 
