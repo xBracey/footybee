@@ -10,9 +10,9 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@components": ["src/site/components/index"],
-      "@theme": ["src/site/theme/index"],
-      "@lib": ["src/lib/index"]
+      "components": ["src/site/components/index"],
+      "theme": ["src/site/theme/index"],
+      "lib": ["src/lib/index"]
     }
   },
   "exclude": ["node_modules/**", ".vscode/.templates/*.ts"]

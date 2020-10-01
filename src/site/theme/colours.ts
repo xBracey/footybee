@@ -1,0 +1,16 @@
+export const colours = {
+  black: "#000000",
+  blue100: "#677398",
+  blue200: "#454D66",
+  blue300: "#33394C",
+  green100: "#00F2B9",
+  green200: "#009975",
+  green300: "#007257",
+  grey100: "#E2E2E2",
+  grey200: "#777777",
+  grey300: "#444444",
+  white: "#FFFFFF",
+  yellow100: "#E2E195",
+  yellow200: " #D9D872",
+  yellow300: "#C3C234",
+};
