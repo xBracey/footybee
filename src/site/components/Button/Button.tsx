@@ -1,8 +1,16 @@
-import React from "react";
-import { ButtonContainer } from "./Button.styled";
+import React, { MouseEvent } from "react";
+import { ButtonOuterContainer, ButtonContainer } from "./Button.styled";
 
-interface IButton {}
+interface IButton {
+  onClick: (event: MouseEvent) => void;
+  text: string;
+  buttonType: string;
+}
 
-export const Button = ({}: IButton) => (
-  <ButtonContainer>Hello World</ButtonContainer>
+export const Button = ({ onClick, text, buttonType }: IButton) => (
+  <ButtonOuterContainer>
+    <ButtonContainer buttonType={buttonType} onClick={onClick}>
+      {text}
+    </ButtonContainer>
+  </ButtonOuterContainer>
 );

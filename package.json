@@ -58,6 +58,9 @@
     "sqlite3": "^4.2.0",
     "styled-components": "^5.1.0",
     "supertest": "^4.0.2",
+    "typeface-poppins": "^0.0.72",
+    "typeface-roboto": "^0.0.75",
+    "typeface-salsa": "^0.0.72",
     "typescript": "^3.8.3",
     "validator": "^13.0.0"
   },
