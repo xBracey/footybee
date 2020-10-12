@@ -1,7 +1,7 @@
 import { addLeague, addLeagues, deleteLeague } from "../services";
 import ILeague, { isValidLeague } from "../models/League/type";
 import controllerResponse from "./controller";
-import { StatusError, checkBody, validateArrayTypeCheck } from "@lib";
+import { StatusError, checkBody, validateArrayTypeCheck } from "lib";
 
 const handleError = (error: StatusError): controllerResponse => {
   const { status, code } = error;
