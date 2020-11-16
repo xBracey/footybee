@@ -30,7 +30,7 @@ export const ButtonContainer = styled.div<IButtonContainer>`
     }};
   color: ${colours.white};
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 15px;
   cursor: pointer;
   transition: all 0.2s;
   user-select: none;

@@ -6,8 +6,14 @@ module.exports = {
     reactDocgen: "react-docgen-typescript",
   },
   webpackFinal: async config => {
+    // modify storybook's file-loader rule to avoid conflicts with your inline svg
+    const fileLoaderRule = config.module.rules.find(rule =>
+      rule.test.test(".svg")
+    );
+    fileLoaderRule.exclude = /\.inline.svg$/;
+
     config.module.rules.push({
-      test: /\.svg$/,
+      test: /\.inline.svg$/,
       issuer: {
         test: /\.(js|ts)x?$/,
       },

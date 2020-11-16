@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
   "prettier.semi": true,
-  "blueprint.templatesPath": ["./.vscode/.templates"]
+  "blueprint.templatesPath": ["./.vscode/.templates"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

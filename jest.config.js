@@ -11,8 +11,9 @@ module.exports = {
     "!src/api/index.ts",
   ],
   moduleNameMapper: {
-    "@components": "<rootDir>/src/site/components/index",
-    "@theme": "<rootDir>/src/site/theme/index",
-    "@lib": "<rootDir>/src/lib/index",
+    "components": "<rootDir>/src/site/components/index",
+    "theme": "<rootDir>/src/site/theme/index",
+    "lib": "<rootDir>/src/lib/index",
+    "assets": "<rootDir>/src/assets/index",
   },
 };
