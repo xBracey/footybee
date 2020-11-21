@@ -1,4 +1,4 @@
-import { validateType, validateBoolean } from "@lib";
+import { validateType, validateBoolean } from "lib";
 
 export default interface IUser {
   username: string;

@@ -1,5 +1,5 @@
 import { models } from "../config";
-import IUser from "../models/user/type";
+import IUser from "../models/User/type";
 import { StatusError } from "../../lib";
 import { User } from "../models";
 import { ValidationError } from "sequelize";
