@@ -19,7 +19,6 @@
       "components": ["src/site/components/index"],
       "theme": ["src/site/theme/index"],
       "lib": ["src/lib/index"],
-      "assets": ["src/site/assets/index"],
       "templates": ["src/site/templates/index"]
     },
     "downlevelIteration": true
