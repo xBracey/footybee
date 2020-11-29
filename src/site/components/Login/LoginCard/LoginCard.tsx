@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import Link from "next/link";
 import React from "react";
 import { TextInput } from "../../Input";
 import {
@@ -37,12 +37,12 @@ export const LoginCard = ({
           type="password"
           placeholder="Password"
         />
-        <Link to="/">
+        <Link href="/">
           <CardLink>Forgot Password?</CardLink>
         </Link>
       </CardMain>
       <CardFooter>
-        <Link to="/">
+        <Link href="/">
           <CardLink>Don't have an account? Sign Up</CardLink>
         </Link>
       </CardFooter>

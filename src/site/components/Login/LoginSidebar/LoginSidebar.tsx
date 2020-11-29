@@ -10,7 +10,7 @@ import {
   SidebarMenuContainer,
   SidebarMenu,
 } from "./LoginSidebar.styled";
-import { Link } from "gatsby";
+import Link from "next/link";
 
 export interface ISidebarInfo {
   SVG: FC;
@@ -36,7 +36,7 @@ export const LoginSidebar = ({ sidebarInfo, sidebarMenu }: ILoginSidebar) => {
       <PredictorText>Euro 2020 Football Predictor</PredictorText>
       <SidebarInfoContainer>
         {sidebarInfo.map(info => (
-          <SidebarInfo>
+          <SidebarInfo key={info.text}>
             <info.SVG />
             <SidebarInfoText>{info.text}</SidebarInfoText>
           </SidebarInfo>
@@ -44,7 +44,7 @@ export const LoginSidebar = ({ sidebarInfo, sidebarMenu }: ILoginSidebar) => {
       </SidebarInfoContainer>
       <SidebarMenuContainer>
         {sidebarMenu.map(menu => (
-          <Link to={menu.link}>
+          <Link href={menu.link} key={menu.text}>
             <SidebarMenu>{menu.text}</SidebarMenu>
           </Link>
         ))}

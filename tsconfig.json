@@ -10,12 +10,42 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "assets": ["src/site/assets/index"],
-      "components": ["src/site/components/index"],
-      "theme": ["src/site/theme/index"],
-      "lib": ["src/lib/index"],
-      "templates": ["src/site/templates/index"]
-    }
+      "assets": [
+        "src/site/assets/index"
+      ],
+      "components": [
+        "src/site/components/index"
+      ],
+      "theme": [
+        "src/site/theme/index"
+      ],
+      "lib": [
+        "src/lib/index"
+      ],
+      "templates": [
+        "src/site/templates/index"
+      ]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "module": "esnext",
+    "isolatedModules": true
   },
-  "exclude": ["node_modules/**", ".vscode/.templates/*.ts"]
+  "exclude": [
+    "node_modules/**",
+    ".vscode/.templates/*.ts"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
