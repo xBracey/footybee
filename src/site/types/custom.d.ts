@@ -1,6 +1,4 @@
-import { FC } from "react";
-
 declare module "*.svg" {
-  const content: FC;
+  const content: any;
   export default content;
 }

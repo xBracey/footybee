@@ -22,6 +22,21 @@ const sidebarInfo = [
   },
 ];
 
+const sidebarMenu = [
+  {
+    text: "About",
+    link: "/",
+  },
+  {
+    text: "T&Cs",
+    link: "/",
+  },
+  {
+    text: "Privacy",
+    link: "/",
+  },
+];
+
 story.add("LoginSidebar Component", () => (
-  <LoginSidebar sidebarInfo={sidebarInfo} />
+  <LoginSidebar sidebarInfo={sidebarInfo} sidebarMenu={sidebarMenu} />
 ));

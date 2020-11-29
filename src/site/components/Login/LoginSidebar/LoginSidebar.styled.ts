@@ -41,3 +41,15 @@ export const SidebarInfo = styled.div`
 export const SidebarInfoText = styled.p`
   margin: 0 0 0 20px;
 `;
+
+export const SidebarMenuContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+`;
+
+export const SidebarMenu = styled.p`
+  margin: 0 auto;
+  text-decoration: underline;
+  cursor: pointer;
+`;

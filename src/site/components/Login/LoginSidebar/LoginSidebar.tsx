@@ -7,18 +7,27 @@ import {
   SidebarInfo,
   SidebarInfoText,
   SidebarInfoContainer,
+  SidebarMenuContainer,
+  SidebarMenu,
 } from "./LoginSidebar.styled";
+import { Link } from "gatsby";
 
 interface ISidebarInfo {
   SVG: FC;
   text: string;
 }
 
-interface ILoginSidebar {
-  sidebarInfo: ISidebarInfo[];
+interface ISidebarMenu {
+  text: string;
+  link: string;
 }
 
-export const LoginSidebar = ({ sidebarInfo }: ILoginSidebar) => {
+interface ILoginSidebar {
+  sidebarInfo: ISidebarInfo[];
+  sidebarMenu: ISidebarMenu[];
+}
+
+export const LoginSidebar = ({ sidebarInfo, sidebarMenu }: ILoginSidebar) => {
   return (
     <LoginSidebarContainer>
       <LogoContainer>
@@ -33,6 +42,13 @@ export const LoginSidebar = ({ sidebarInfo }: ILoginSidebar) => {
           </SidebarInfo>
         ))}
       </SidebarInfoContainer>
+      <SidebarMenuContainer>
+        {sidebarMenu.map(menu => (
+          <Link to={menu.link}>
+            <SidebarMenu>{menu.text}</SidebarMenu>
+          </Link>
+        ))}
+      </SidebarMenuContainer>
     </LoginSidebarContainer>
   );
 };

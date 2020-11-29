@@ -25,6 +25,10 @@ module.exports = {
       "node_modules",
     ];
 
+    config.resolve.alias = {
+      gatsby: path.resolve(__dirname, "gatsbyLinkMock.js"),
+    };
+
     return config;
   },
 };
