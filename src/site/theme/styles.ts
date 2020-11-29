@@ -26,5 +26,4 @@ export const GlobalStyles = createGlobalStyle`
     p,a,div {
         font-size: ${fonts.size.medium}
     }
-
 `;

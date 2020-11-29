@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colours } from "theme";
 
 export const LoginSidebarContainer = styled.div`
-  width: 400px;
+  width: 30%;
   background-color: ${colours.yellow200};
   padding: 50px;
   min-height: calc(100vh - 100px);
@@ -17,6 +17,7 @@ export const LogoContainer = styled.div`
 
 export const PredictorText = styled.h2`
   margin: 10px;
+  text-align: center;
 `;
 
 export const SidebarInfoContainer = styled.div`
@@ -52,4 +53,5 @@ export const SidebarMenu = styled.p`
   margin: 0 auto;
   text-decoration: underline;
   cursor: pointer;
+  color: ${colours.black};
 `;

@@ -1,3 +1,5 @@
+import "typeface-poppins";
+import "typeface-roboto";
 import React, { Fragment } from "react";
 import { GlobalStyles } from "theme";
 

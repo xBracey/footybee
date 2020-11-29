@@ -17,3 +17,16 @@ story.add("TextInput Component w placeholder", () => {
     <TextInput setText={setText} text={text} placeholder="Enter Username" />
   );
 });
+
+story.add("TextInput Component as password", () => {
+  const [text, setText] = useState("");
+
+  return (
+    <TextInput
+      setText={setText}
+      text={text}
+      placeholder="Enter Username"
+      type={"password"}
+    />
+  );
+});

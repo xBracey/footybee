@@ -13,7 +13,8 @@
       "components": ["src/site/components/index"],
       "theme": ["src/site/theme/index"],
       "lib": ["src/lib/index"],
-      "assets": ["src/site/assets/index"]
+      "assets": ["src/site/assets/index"],
+      "templates": ["src/site/templates/index"]
     }
   },
   "exclude": ["node_modules/**", ".vscode/.templates/*.ts"]

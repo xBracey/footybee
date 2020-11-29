@@ -12,12 +12,12 @@ import {
 } from "./LoginSidebar.styled";
 import { Link } from "gatsby";
 
-interface ISidebarInfo {
+export interface ISidebarInfo {
   SVG: FC;
   text: string;
 }
 
-interface ISidebarMenu {
+export interface ISidebarMenu {
   text: string;
   link: string;
 }

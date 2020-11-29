@@ -15,7 +15,8 @@
     "serve": "npm run build:site && concurrently \"npm run serve:site\" \"npm run start:api\"",
     "test": "jest --collectCoverage",
     "test:watch": "jest --collectCoverage --watch",
-    "storybook": "start-storybook -p 9000"
+    "storybook": "start-storybook -p 9000",
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "@storybook/react": "^6.0.22",

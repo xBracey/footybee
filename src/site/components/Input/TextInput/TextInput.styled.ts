@@ -9,7 +9,7 @@ export const Input = styled.input`
   background-color: ${colours.grey100};
   border: none;
   display: block;
-  padding: 10px 15px;
+  padding: 15px 20px;
   border-radius: 10px;
   font-size: ${fonts.size.medium};
   color: ${colours.black};
