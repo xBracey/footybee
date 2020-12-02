@@ -1,6 +1,9 @@
 process.env.NODE_ENV = "test";
+const { pathsToModuleNameMapper } = require("ts-jest/utils");
+const { compilerOptions } = require("./tsconfig.test");
 
 module.exports = {
+  preset: "ts-jest",
   testEnvironment: "node",
   testPathIgnorePatterns: ["/node_modules/", "/.*.vscode.*/", "/.*.cache.*/"],
   globalSetup: "./tests/jest.setup.ts",
@@ -10,10 +13,13 @@ module.exports = {
     "!src/api/seeders/*.ts",
     "!src/api/index.ts",
   ],
-  moduleNameMapper: {
-    "components": "<rootDir>/src/site/components/index",
-    "theme": "<rootDir>/src/site/theme/index",
-    "lib": "<rootDir>/src/lib/index",
-    "assets": "<rootDir>/src/assets/index",
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: "<rootDir>/",
+  }),
+  moduleFileExtensions: ["ts", "js"],
+  globals: {
+    "ts-jest": {
+      tsconfig: "tsconfig.test.json",
+    },
   },
 };

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist",
+    "target": "ES6",
+    "baseUrl": "./",
+    "paths": {
+      "assets": ["src/site/assets/index"],
+      "components": ["src/site/components/index"],
+      "theme": ["src/site/theme/index"],
+      "lib": ["src/lib/index"],
+      "templates": ["src/site/templates/index"]
+    },
+    "allowJs": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules/**", ".vscode/.templates/*.ts"],
+  "include": ["**/*.ts", "**/*.tsx"]
+}
