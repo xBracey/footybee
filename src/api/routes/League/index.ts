@@ -3,7 +3,7 @@ import {
   createController,
   bulkCreateController,
   deleteController,
-} from "../../controllers";
+} from "../../controllers/league";
 
 export const League = Router();
 

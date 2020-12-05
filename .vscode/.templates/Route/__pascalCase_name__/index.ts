@@ -3,11 +3,11 @@ import {
   createController,
   bulkCreateController,
   deleteController,
-} from "../../controllers";
+} from "../../controllers/{{camelCase name}}";
 
-export const {{camelCase name}} = Router();
+export const {{pascalCase name}} = Router();
 
-{{camelCase name}}.post("/create", async (req, res) => {
+{{pascalCase name}}.post("/create", async (req, res) => {
   const { status, error, response } = await createController(req.body);
 
   return error
@@ -15,7 +15,7 @@ export const {{camelCase name}} = Router();
     : res.status(status).send(response);
 });
 
-{{camelCase name}}.post("/bulk-create", async (req, res) => {
+{{pascalCase name}}.post("/bulk-create", async (req, res) => {
   const { status, error, response } = await bulkCreateController(req.body);
 
   return error
@@ -23,7 +23,7 @@ export const {{camelCase name}} = Router();
     : res.status(status).send(response);
 });
 
-{{camelCase name}}.delete("/:id", async (req, res) => {
+{{pascalCase name}}.delete("/:id", async (req, res) => {
   const { status, error, response } = await deleteController(req.params.id);
 
   return error

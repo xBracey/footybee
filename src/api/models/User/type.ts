@@ -4,8 +4,8 @@ export default interface IUser {
   username: string;
   password: string;
   email: string;
-  verified: boolean;
-  admin: boolean;
+  verified?: boolean;
+  admin?: boolean;
 }
 
 export const isValidUser = (data: any): data is IUser => {
@@ -19,7 +19,7 @@ export const isValidUser = (data: any): data is IUser => {
     validateType(username, "string", true) &&
     validateType(password, "string", true) &&
     validateType(email, "string", true) &&
-    validateBoolean(verified, true) &&
-    validateBoolean(admin, true)
+    validateBoolean(verified, false) &&
+    validateBoolean(admin, false)
   );
 };
