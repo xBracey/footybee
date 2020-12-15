@@ -1,7 +1,10 @@
-import { addUser, addUsers, deleteUser } from "../services";
+import bcrypt from "bcrypt";
+import { addUser, deleteUser, loginUser } from "../services";
 import IUser, { isValidUser } from "../models/User/type";
 import controllerResponse from "./controller";
-import { StatusError, checkBody, validateArrayTypeCheck } from "lib";
+import { StatusError } from "lib";
+
+const saltRounds = 10;
 
 const handleError = (error: StatusError): controllerResponse => {
   const { status, code } = error;
@@ -29,30 +32,12 @@ export const createController = async (
     return { status: 400, error: "Invalid parameters" };
   }
 
-  const { error, user } = await addUser(body);
+  const password = await bcrypt.hash(body.password, saltRounds);
+
+  const { error, user } = await addUser({ ...body, password });
 
   if (!error) {
     return { status: 200, response: user };
-  }
-
-  return handleError(error);
-};
-
-export const bulkCreateController = async (body: {
-  users: IUser[];
-}): Promise<controllerResponse> => {
-  if (
-    !checkBody(body) ||
-    !body.users ||
-    !validateArrayTypeCheck(body.users, isValidUser)
-  ) {
-    return { status: 400, error: "Invalid parameters" };
-  }
-
-  const { error, users } = await addUsers(body.users);
-
-  if (!error) {
-    return { status: 200, response: users };
   }
 
   return handleError(error);
@@ -62,6 +47,21 @@ export const deleteController = async (
   username: string
 ): Promise<controllerResponse> => {
   const { error, user } = await deleteUser(username);
+
+  if (!error) {
+    return { status: 200, response: user };
+  }
+
+  return handleError(error);
+};
+
+export const loginController = async (
+  username: string,
+  password: string
+): Promise<controllerResponse> => {
+  const passwordHash = await bcrypt.hash(password, saltRounds);
+
+  const { error, user } = await loginUser(username, passwordHash);
 
   if (!error) {
     return { status: 200, response: user };

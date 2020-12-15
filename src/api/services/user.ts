@@ -14,7 +14,7 @@ interface IUsersResponse {
   users: User[] | null;
 }
 
-const addUser = async (userData: IUser): Promise<IUserResponse> => {
+export const addUser = async (userData: IUser): Promise<IUserResponse> => {
   try {
     const user = await models.User.create(userData);
     return { user };
@@ -23,16 +23,7 @@ const addUser = async (userData: IUser): Promise<IUserResponse> => {
   }
 };
 
-const addUsers = async (usersData: IUser[]): Promise<IUsersResponse> => {
-  try {
-    const users = await models.User.bulkCreate(usersData);
-    return { users };
-  } catch (error) {
-    return { error: new StatusError(error), users: null };
-  }
-};
-
-const getUser = async (username: string): Promise<IUserResponse> => {
+export const getUser = async (username: string): Promise<IUserResponse> => {
   const user = await models.User.findOne({
     where: {
       username,
@@ -41,7 +32,9 @@ const getUser = async (username: string): Promise<IUserResponse> => {
   return { user };
 };
 
-const getUsers = async (usernames: string[]): Promise<IUsersResponse> => {
+export const getUsers = async (
+  usernames: string[]
+): Promise<IUsersResponse> => {
   const users = await models.User.findAll({
     where: {
       username: usernames,
@@ -50,12 +43,12 @@ const getUsers = async (usernames: string[]): Promise<IUsersResponse> => {
   return { users };
 };
 
-const getAllUsers = async (): Promise<IUsersResponse> => {
+export const getAllUsers = async (): Promise<IUsersResponse> => {
   const users = await models.User.findAll();
   return { users };
 };
 
-const deleteUser = async (username: string): Promise<IUserResponse> => {
+export const deleteUser = async (username: string): Promise<IUserResponse> => {
   const user = await models.User.destroy({
     where: {
       username,
@@ -69,4 +62,20 @@ const deleteUser = async (username: string): Promise<IUserResponse> => {
   return user ? { user: null } : { error, user: null };
 };
 
-export { addUser, addUsers, getUser, getUsers, getAllUsers, deleteUser };
+export const loginUser = async (
+  username: string,
+  password: string
+): Promise<IUserResponse> => {
+  const user = await models.User.findOne({
+    where: {
+      username,
+      password,
+    },
+  });
+
+  const error = new StatusError(
+    new ValidationError("Username or password is incorrect")
+  );
+
+  return user ? { user: null } : { error, user: null };
+};
