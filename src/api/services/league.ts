@@ -14,7 +14,9 @@ interface ILeaguesResponse {
   leagues: League[] | null;
 }
 
-const addLeague = async (leagueData: ILeague): Promise<ILeagueResponse> => {
+export const addLeague = async (
+  leagueData: ILeague
+): Promise<ILeagueResponse> => {
   try {
     const league = await models.League.create(leagueData);
     return { league };
@@ -23,7 +25,7 @@ const addLeague = async (leagueData: ILeague): Promise<ILeagueResponse> => {
   }
 };
 
-const addLeagues = async (
+export const addLeagues = async (
   leaguesData: ILeague[]
 ): Promise<ILeaguesResponse> => {
   try {
@@ -34,7 +36,9 @@ const addLeagues = async (
   }
 };
 
-const getLeague = async (leagueName: string): Promise<ILeagueResponse> => {
+export const getLeague = async (
+  leagueName: string
+): Promise<ILeagueResponse> => {
   const league = await models.League.findOne({
     where: {
       leagueName,
@@ -43,7 +47,9 @@ const getLeague = async (leagueName: string): Promise<ILeagueResponse> => {
   return { league };
 };
 
-const getLeagues = async (leagueNames: string[]): Promise<ILeaguesResponse> => {
+export const getLeagues = async (
+  leagueNames: string[]
+): Promise<ILeaguesResponse> => {
   const leagues = await models.League.findAll({
     where: {
       leagueName: leagueNames,
@@ -52,12 +58,14 @@ const getLeagues = async (leagueNames: string[]): Promise<ILeaguesResponse> => {
   return { leagues };
 };
 
-const getAllLeagues = async (): Promise<ILeaguesResponse> => {
+export const getAllLeagues = async (): Promise<ILeaguesResponse> => {
   const leagues = await models.League.findAll();
   return { leagues };
 };
 
-const deleteLeague = async (leagueName: string): Promise<ILeagueResponse> => {
+export const deleteLeague = async (
+  leagueName: string
+): Promise<ILeagueResponse> => {
   const league = await models.League.destroy({
     where: {
       leagueName,
@@ -69,13 +77,4 @@ const deleteLeague = async (leagueName: string): Promise<ILeagueResponse> => {
   );
 
   return league ? { league: null } : { error, league: null };
-};
-
-export {
-  addLeague,
-  addLeagues,
-  getLeague,
-  getLeagues,
-  getAllLeagues,
-  deleteLeague,
 };

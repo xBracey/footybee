@@ -1,5 +1,10 @@
 import { Router } from "express";
-import { createController, deleteController } from "../../controllers/user";
+import passport from "passport";
+import {
+  createController,
+  deleteController,
+  loginController,
+} from "../../controllers/user";
 
 export const User = Router();
 
@@ -19,4 +24,12 @@ User.delete("/:username", async (req, res) => {
   return error
     ? res.status(status).send({ error })
     : res.status(status).send(response);
+});
+
+User.post("/login", (req, res, next) => {
+  passport.authenticate("local", (req, response, error) => {
+    return !response
+      ? res.status(302).send({ error })
+      : res.status(200).send(response);
+  })(req, res, next);
 });

@@ -100,3 +100,25 @@ describe("Test delete user endpoint", () => {
     done();
   });
 });
+
+describe("Test login endpoint", () => {
+  it("Valid login", async done => {
+    const response = await request
+      .post("/api/user/login")
+      .send({ username: "Test User 1", password: "password" })
+      .set("Accept", "application/json");
+
+    expect(response.status).toBe(200);
+    done();
+  });
+
+  it("Invalid login", async done => {
+    const response = await request
+      .post("/api/user/login")
+      .send({ username: "Test User 1", password: "passwordInvalid" })
+      .set("Accept", "application/json");
+
+    expect(response.status).toBe(302);
+    done();
+  });
+});

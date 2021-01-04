@@ -2,9 +2,7 @@ import bcrypt from "bcrypt";
 import { addUser, deleteUser, loginUser } from "../services";
 import IUser, { isValidUser } from "../models/User/type";
 import controllerResponse from "./controller";
-import { StatusError } from "lib";
-
-const saltRounds = 10;
+import { saltRounds, StatusError } from "lib";
 
 const handleError = (error: StatusError): controllerResponse => {
   const { status, code } = error;
@@ -59,9 +57,7 @@ export const loginController = async (
   username: string,
   password: string
 ): Promise<controllerResponse> => {
-  const passwordHash = await bcrypt.hash(password, saltRounds);
-
-  const { error, user } = await loginUser(username, passwordHash);
+  const { error, user } = await loginUser(username, password);
 
   if (!error) {
     return { status: 200, response: user };
