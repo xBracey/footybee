@@ -7,7 +7,7 @@ const request = supertest(app);
 describe("Test create league endpoint", () => {
   it("Valid league", async done => {
     const response = await request
-      .post("/api/league/create")
+      .post("/league/create")
       .send({
         leagueName: "Test League 10",
         displayName: "Tom's League",
@@ -22,7 +22,7 @@ describe("Test create league endpoint", () => {
 
   it("Duplicate league", async done => {
     const response = await request
-      .post("/api/league/create")
+      .post("/league/create")
       .send({
         leagueName: "Test League 1",
         displayName: "Tom's League",
@@ -37,7 +37,7 @@ describe("Test create league endpoint", () => {
 
   it("Invalid body", async done => {
     const response = await request
-      .post("/api/league/create")
+      .post("/league/create")
       .send({ fefefe: "htrht" })
       .set("Accept", "application/json");
 
@@ -48,7 +48,7 @@ describe("Test create league endpoint", () => {
 
   it("No body", async done => {
     const response = await request
-      .post("/api/league/create")
+      .post("/league/create")
       .send()
       .set("Accept", "application/json");
 
@@ -59,7 +59,7 @@ describe("Test create league endpoint", () => {
 
   it("No object", async done => {
     const response = await request
-      .post("/api/league/create")
+      .post("/league/create")
       .send("Test")
       .set("Accept", "application/json");
 
@@ -72,7 +72,7 @@ describe("Test create league endpoint", () => {
 describe("Test bulk create league endpoint", () => {
   it("Valid leagues", async done => {
     const response = await request
-      .post("/api/league/bulk-create")
+      .post("/league/bulk-create")
       .send({
         leagues: [
           {
@@ -96,7 +96,7 @@ describe("Test bulk create league endpoint", () => {
 
   it("Duplicate league", async done => {
     const response = await request
-      .post("/api/league/bulk-create")
+      .post("/league/bulk-create")
       .send({
         leagues: [
           {
@@ -120,7 +120,7 @@ describe("Test bulk create league endpoint", () => {
 
   it("Invalid body", async done => {
     const response = await request
-      .post("/api/league/bulk-create")
+      .post("/league/bulk-create")
       .send({
         leagues: [{ fefefe: "fefefefe" }],
       })
@@ -133,7 +133,7 @@ describe("Test bulk create league endpoint", () => {
 
   it("Invalid array", async done => {
     const response = await request
-      .post("/api/league/bulk-create")
+      .post("/league/bulk-create")
       .send({
         leagues: [],
       })
@@ -146,7 +146,7 @@ describe("Test bulk create league endpoint", () => {
 
   it("Wrong Data type", async done => {
     const response = await request
-      .post("/api/league/bulk-create")
+      .post("/league/bulk-create")
       .send({ fefe: "fefef" })
       .set("Accept", "application/json");
 
@@ -158,9 +158,7 @@ describe("Test bulk create league endpoint", () => {
 
 describe("Test delete league endpoint", () => {
   it("Valid league name", async done => {
-    const component = `/api/league/${encodeURIComponent(
-      "Test League Delete 2"
-    )}`;
+    const component = `/league/${encodeURIComponent("Test League Delete 2")}`;
 
     const response = await request.delete(component);
 
@@ -169,7 +167,7 @@ describe("Test delete league endpoint", () => {
   });
 
   it("Invalid league name", async done => {
-    const response = await request.delete("/api/league/fewfewfewfewfew");
+    const response = await request.delete("/league/fewfewfewfewfew");
 
     expect(response.status).toBe(400);
     expect(response.body.error).toBe("League Name does not exist");

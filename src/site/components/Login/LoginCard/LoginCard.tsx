@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { Button } from "../../Button";
 import { TextInput } from "../../Input";
 import {
   CardFooter,
@@ -14,6 +15,7 @@ interface ILoginCard {
   setUsername: (username: string) => void;
   password: string;
   setPassword: (username: string) => void;
+  onSubmit: () => void;
 }
 
 export const LoginCard = ({
@@ -21,6 +23,7 @@ export const LoginCard = ({
   setUsername,
   password,
   setPassword,
+  onSubmit,
 }: ILoginCard) => {
   return (
     <LoginCardContainer>
@@ -37,6 +40,7 @@ export const LoginCard = ({
           type="password"
           placeholder="Password"
         />
+        <Button text="Submit" onClick={onSubmit} buttonType={"blue"} />
         <Link href="/">
           <CardLink>Forgot Password?</CardLink>
         </Link>

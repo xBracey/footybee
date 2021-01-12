@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "baseUrl": "../",
+    "paths": {
+      "assets": ["src/site/assets/index"],
+      "data": ["src/site/data/index"],
+      "components": ["src/site/components/index"],
+      "theme": ["src/site/theme/index"],
+      "lib": ["src/site/lib/index"],
+      "templates": ["src/site/templates/index"],
+      "redux/actions": ["src/site/redux/actions/index"],
+      "redux/reducers": ["src/site/redux/reducers/index"],
+      "redux/requests": ["src/site/redux/requests/index"],
+      "redux/selectors": ["src/site/redux/selectors/index"],
+      "redux/store": ["src/site/redux/store"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "module": "CommonJS",
+    "isolatedModules": true,
+    "typeRoots": ["./src/types", "./node_modules/@types"]
+  },
+  "exclude": ["node_modules/**", ".vscode/.templates/*.ts", ".storybook/*"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}

@@ -1,7 +1,7 @@
 import { models } from "../config";
 import ILeague from "../models/League/type";
 import { League } from "../models";
-import { StatusError } from "../../lib";
+import { StatusError } from "../lib";
 import { ValidationError } from "sequelize";
 
 interface ILeagueResponse {

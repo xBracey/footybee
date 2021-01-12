@@ -20,4 +20,8 @@ module.exports = {
 
     return config;
   },
+
+  publicRuntimeConfig: {
+    NODE_ENV: process.env.NODE_ENV,
+  },
 };

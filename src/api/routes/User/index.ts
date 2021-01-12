@@ -3,7 +3,7 @@ import passport from "passport";
 import {
   createController,
   deleteController,
-  loginController,
+  getController,
 } from "../../controllers/user";
 
 export const User = Router();
@@ -33,3 +33,15 @@ User.post("/login", (req, res, next) => {
       : res.status(200).send(response);
   })(req, res, next);
 });
+
+User.get(
+  "/",
+  passport.authenticate("bearer", { session: false }),
+  async (req, res) => {
+    const { status, error, response } = await getController(req.user);
+
+    return error
+      ? res.status(status).send({ error })
+      : res.status(status).send(response);
+  }
+);

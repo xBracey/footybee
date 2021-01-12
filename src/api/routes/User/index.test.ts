@@ -7,7 +7,7 @@ const request = supertest(app);
 describe("Test create user endpoint", () => {
   it("Valid user", async done => {
     const response = await request
-      .post("/api/user/register")
+      .post("/user/register")
       .send({
         username: "Test User Register 1",
         password: "password",
@@ -22,7 +22,7 @@ describe("Test create user endpoint", () => {
 
   it("Duplicate username", async done => {
     const response = await request
-      .post("/api/user/register")
+      .post("/user/register")
       .send({
         username: "Test User Register 1",
         password: "password",
@@ -37,7 +37,7 @@ describe("Test create user endpoint", () => {
 
   it("Duplicate email", async done => {
     const response = await request
-      .post("/api/user/register")
+      .post("/user/register")
       .send({
         username: "Test User Register 3",
         password: "password",
@@ -52,7 +52,7 @@ describe("Test create user endpoint", () => {
 
   it("Invalid body", async done => {
     const response = await request
-      .post("/api/user/register")
+      .post("/user/register")
       .send({ fefefe: "htrht" })
       .set("Accept", "application/json");
 
@@ -63,7 +63,7 @@ describe("Test create user endpoint", () => {
 
   it("No body", async done => {
     const response = await request
-      .post("/api/user/register")
+      .post("/user/register")
       .send()
       .set("Accept", "application/json");
 
@@ -74,7 +74,7 @@ describe("Test create user endpoint", () => {
 
   it("No object", async done => {
     const response = await request
-      .post("/api/user/register")
+      .post("/user/register")
       .send("Test")
       .set("Accept", "application/json");
 
@@ -84,16 +84,33 @@ describe("Test create user endpoint", () => {
   });
 });
 
-describe("Test delete user endpoint", () => {
+describe("Test get user endpoint", () => {
   it("Valid user name", async done => {
-    const response = await request.delete("/api/user/Test User Register 1");
+    const response = await request.get("/user/Test User Register 1");
 
     expect(response.status).toBe(200);
     done();
   });
 
   it("Invalid user name", async done => {
-    const response = await request.delete("/api/user/fewfewfewfewfew");
+    const response = await request.get("/user/fewfewfewfewfew");
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBe("Username does not exist");
+    done();
+  });
+});
+
+describe("Test delete user endpoint", () => {
+  it("Valid user name", async done => {
+    const response = await request.delete("/user/Test User Register 1");
+
+    expect(response.status).toBe(200);
+    done();
+  });
+
+  it("Invalid user name", async done => {
+    const response = await request.delete("/user/fewfewfewfewfew");
 
     expect(response.status).toBe(400);
     expect(response.body.error).toBe("Username does not exist");
@@ -104,7 +121,7 @@ describe("Test delete user endpoint", () => {
 describe("Test login endpoint", () => {
   it("Valid login", async done => {
     const response = await request
-      .post("/api/user/login")
+      .post("/user/login")
       .send({ username: "Test User 1", password: "password" })
       .set("Accept", "application/json");
 
@@ -114,8 +131,18 @@ describe("Test login endpoint", () => {
 
   it("Invalid login", async done => {
     const response = await request
-      .post("/api/user/login")
+      .post("/user/login")
       .send({ username: "Test User 1", password: "passwordInvalid" })
+      .set("Accept", "application/json");
+
+    expect(response.status).toBe(302);
+    done();
+  });
+
+  it("Invalid login bad user", async done => {
+    const response = await request
+      .post("/user/login")
+      .send({ username: "Test User 123", password: "password" })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(302);

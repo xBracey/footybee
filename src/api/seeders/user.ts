@@ -30,6 +30,13 @@ const userSeed = async () => {
       verified: false,
       admin: true,
     },
+    {
+      username: "test",
+      password: "test",
+      email: "test@test.test",
+      verified: false,
+      admin: true,
+    },
   ];
 
   await addUsers(users);

@@ -54,6 +54,11 @@ export class StatusError extends Error {
         this.message = error.message;
         this.code = 4;
         break;
+      case "Primary Key not found when getting entity":
+        this.status = 400;
+        this.message = error.message;
+        this.code = 5;
+        break;
     }
   }
 }

@@ -38,6 +38,7 @@ export const ButtonContainer = styled.div<IButtonContainer>`
 
   &:hover {
     margin-top: 3px;
+    margin-bottom: -3px;
     box-shadow: 0px 4px 0px 0px
       ${props => {
         switch (props.buttonType) {
@@ -51,6 +52,7 @@ export const ButtonContainer = styled.div<IButtonContainer>`
 
   &:active {
     margin-top: 7px;
+    margin-bottom: -7px;
     box-shadow: 0px 0px 0px 0px;
   }
 `;

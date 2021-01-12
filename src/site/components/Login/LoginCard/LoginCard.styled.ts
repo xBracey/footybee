@@ -48,11 +48,18 @@ export const CardHeader = styled.h1`
 `;
 
 export const CardLink = styled.div`
-  margin: 20px 0 0 0;
+  margin: 12px 0 -8px 0;
   color: ${colours.blue200};
   font-size: ${fonts.size.header3};
   cursor: pointer;
   text-decoration: underline;
+  transition: all 0.3s;
+  padding: 8px;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: ${colours.grey100};
+  }
 `;
 
 export const CardFooter = styled.div`
@@ -66,5 +73,9 @@ export const CardFooter = styled.div`
   ${CardLink} {
     color: ${colours.white};
     margin: 0;
+
+    &:hover {
+      background-color: ${colours.blue100};
+    }
   }
 `;

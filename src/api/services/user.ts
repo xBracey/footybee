@@ -1,6 +1,6 @@
 import { models } from "../config";
 import IUser from "../models/User/type";
-import { saltRounds, StatusError } from "../../lib";
+import { saltRounds, StatusError } from "../lib";
 import { User } from "../models";
 import { ValidationError } from "sequelize";
 import bcrypt from "bcrypt";
@@ -48,7 +48,12 @@ export const getUser = async (username: string): Promise<IUserResponse> => {
       username,
     },
   });
-  return { user };
+
+  const error = new StatusError(
+    new ValidationError("Primary Key not found when getting entity")
+  );
+
+  return user ? { user } : { error, user: null };
 };
 
 export const getUsers = async (

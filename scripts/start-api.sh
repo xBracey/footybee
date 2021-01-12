@@ -1,4 +1,4 @@
-yarn
+yarn install --prod
 
 if [ $NODE_ENV == "development" ]; then
     yarn develop

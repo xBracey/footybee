@@ -10,9 +10,9 @@ sequelize.sync({ force }).then(async () => {
     await seedData();
   }
 
-  if (process.env.NODE_ENV !== "test") {
-    app.listen(port);
-  }
+  // if (process.env.NODE_ENV !== "test") {
+  //   app.listen(port);
+  // }
 });
 
 export default app;

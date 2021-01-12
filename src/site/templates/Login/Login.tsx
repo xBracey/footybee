@@ -14,6 +14,7 @@ interface ILogin {
   setPassword: (username: string) => void;
   sidebarInfo: ISidebarInfo[];
   sidebarMenu: ISidebarMenu[];
+  onSubmit: () => void;
 }
 
 export const LoginPage = ({
@@ -23,6 +24,7 @@ export const LoginPage = ({
   setPassword,
   sidebarInfo,
   sidebarMenu,
+  onSubmit,
 }: ILogin) => (
   <LoginContainer>
     <LoginSidebar sidebarInfo={sidebarInfo} sidebarMenu={sidebarMenu} />
@@ -32,6 +34,7 @@ export const LoginPage = ({
         setUsername={setUsername}
         password={password}
         setPassword={setPassword}
+        onSubmit={onSubmit}
       />
     </LoginCardContainer>
   </LoginContainer>

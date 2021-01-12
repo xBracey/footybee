@@ -1,4 +1,4 @@
-import { validateType } from "lib";
+import { validateType } from "../../lib";
 
 export default interface ILeague {
   leagueName: string;
