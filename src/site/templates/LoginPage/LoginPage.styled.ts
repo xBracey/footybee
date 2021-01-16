@@ -5,7 +5,7 @@ import {
 import styled from "styled-components";
 import { colours } from "theme";
 
-export const LoginContainer = styled.div`
+export const LoginPageContainer = styled.div`
   display: flex;
 `;
 

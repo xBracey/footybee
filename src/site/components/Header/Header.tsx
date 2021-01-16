@@ -6,6 +6,7 @@ import {
   SingleMenu,
   SingleMenuIcon,
   Logo,
+  SingleMenuContainer,
 } from "./Header.styled";
 import { icons } from "assets";
 
@@ -22,15 +23,19 @@ export interface IHeader {
 export const Header = ({ menu }: IHeader) => {
   const menuComponent = menu.map(singleMenu =>
     singleMenu.text ? (
-      <SingleMenu key={singleMenu.link}>
-        <Link href={singleMenu.link}>{singleMenu.text}</Link>
-      </SingleMenu>
-    ) : (
-      <SingleMenuIcon key={singleMenu.link}>
-        <Link href={singleMenu.link}>
-          <singleMenu.SVG />
+      <SingleMenuContainer key={singleMenu.link}>
+        <Link href={singleMenu.link} key={singleMenu.link}>
+          <SingleMenu key={singleMenu.link}>{singleMenu.text}</SingleMenu>
         </Link>
-      </SingleMenuIcon>
+      </SingleMenuContainer>
+    ) : (
+      <SingleMenuContainer key={singleMenu.link}>
+        <Link href={singleMenu.link} key={singleMenu.link}>
+          <SingleMenuIcon>
+            <singleMenu.SVG />
+          </SingleMenuIcon>
+        </Link>
+      </SingleMenuContainer>
     )
   );
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Page } from "../Page";
-import { HomeContainer } from "./Home.styled";
+import { HomePageContainer } from "./HomePage.styled";
 
 interface IHomePage {
   username: string;
@@ -9,7 +9,7 @@ interface IHomePage {
 export const HomePage = ({ username }: IHomePage) => {
   return (
     <Page title="Home" isLoggedIn loading={!username}>
-      <HomeContainer>{`Hello ${username}`}</HomeContainer>
+      <HomePageContainer>{`Hello ${username}`}</HomePageContainer>
     </Page>
   );
 };

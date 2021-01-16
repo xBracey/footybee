@@ -19,9 +19,11 @@ export interface IFooter {
 
 export const Footer = ({ footerMenuLeft, footerMenuRight }: IFooter) => {
   const mapFooterMenu = (singleMenu: IFooterMenu) => (
-    <SingleFooterMenu>
-      <Link href={singleMenu.link}>{singleMenu.text}</Link>
-    </SingleFooterMenu>
+    <div key={singleMenu.link}>
+      <Link href={singleMenu.link}>
+        <SingleFooterMenu>{singleMenu.text}</SingleFooterMenu>
+      </Link>
+    </div>
   );
 
   return (

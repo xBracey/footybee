@@ -12,18 +12,25 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     h1 {
-        font-size: ${fonts.size.header1}
+        font-size: ${fonts.size.header1};
+        margin: 32px 0;
     }
 
     h2 {
-        font-size: ${fonts.size.header2}
+        font-size: ${fonts.size.header2};
+        margin: 24px 0;
     }
 
     h3 {
-        font-size: ${fonts.size.header3}
+        font-size: ${fonts.size.header3};
+        margin: 16px 0;
+    }
+
+    p {
+        margin: 8px 0;
     }
 
     p,a,div {
-        font-size: ${fonts.size.medium}
+        font-size: ${fonts.size.medium};
     }
 `;

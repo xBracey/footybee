@@ -17,18 +17,19 @@ export const HeaderContainer = styled.div`
   width: calc(100% - 32px);
 `;
 
-export const SingleMenu = styled.div`
+export const SingleMenuContainer = styled.div`
   flex: 1;
+`;
+
+export const SingleMenu = styled.div`
   text-align: center;
   cursor: pointer;
   border-radius: 4px;
   padding: 16px 8px;
 
-  a {
-    color: ${colours.white};
-    text-decoration: none;
-    font-size: ${fonts.size.large};
-  }
+  color: ${colours.white};
+  text-decoration: none;
+  font-size: ${fonts.size.large};
 
   &:hover {
     background-color: ${colours.blue100};
@@ -37,9 +38,7 @@ export const SingleMenu = styled.div`
   &:active {
     background-color: ${colours.white};
 
-    a {
-      color: ${colours.blue200};
-    }
+    color: ${colours.blue200};
   }
 `;
 

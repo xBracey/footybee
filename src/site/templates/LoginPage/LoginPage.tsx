@@ -5,7 +5,7 @@ import {
   LoginCard,
   LoginSidebar,
 } from "components";
-import { LoginContainer, LoginCardContainer } from "./Login.styled";
+import { LoginPageContainer, LoginCardContainer } from "./LoginPage.styled";
 
 interface ILogin {
   username: string;
@@ -26,7 +26,7 @@ export const LoginPage = ({
   sidebarMenu,
   onSubmit,
 }: ILogin) => (
-  <LoginContainer>
+  <LoginPageContainer>
     <LoginSidebar sidebarInfo={sidebarInfo} sidebarMenu={sidebarMenu} />
     <LoginCardContainer>
       <LoginCard
@@ -37,5 +37,5 @@ export const LoginPage = ({
         onSubmit={onSubmit}
       />
     </LoginCardContainer>
-  </LoginContainer>
+  </LoginPageContainer>
 );

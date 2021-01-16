@@ -31,3 +31,18 @@ export const headerData = (isAdmin: boolean): IHeader["menu"] => {
       ]
     : menu;
 };
+
+export const aboutHeaderData: IHeader["menu"] = [
+  {
+    text: "About",
+    link: "/about",
+  },
+  {
+    text: "Terms",
+    link: "/terms",
+  },
+  {
+    text: "Privacy Policy",
+    link: "/privacy",
+  },
+];
