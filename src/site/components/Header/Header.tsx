@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import {
+  HeaderOuterContainer,
   HeaderContainer,
   SingleMenu,
   SingleMenuIcon,
@@ -34,13 +35,15 @@ export const Header = ({ menu }: IHeader) => {
   );
 
   return (
-    <HeaderContainer>
-      <Logo>
-        <Link href="/">
-          <icons.headerLogo />
-        </Link>
-      </Logo>
-      {menuComponent}
-    </HeaderContainer>
+    <HeaderOuterContainer>
+      <HeaderContainer>
+        <Logo>
+          <Link href="/">
+            <icons.headerLogo />
+          </Link>
+        </Logo>
+        {menuComponent}
+      </HeaderContainer>
+    </HeaderOuterContainer>
   );
 };

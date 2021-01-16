@@ -1,20 +1,34 @@
 import styled from "styled-components";
-import { colours } from "theme";
+import { colours, fonts } from "theme";
+
+export const HeaderOuterContainer = styled.div`
+  background-color: ${colours.blue200};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const HeaderContainer = styled.div`
-  background-color: ${colours.blue200};
   padding: 16px;
   display: flex;
   align-items: center;
+  height: 98px;
+  max-width: calc(1000px - 32px);
+  width: calc(100% - 32px);
 `;
 
 export const SingleMenu = styled.div`
-  color: ${colours.white};
   flex: 1;
   text-align: center;
   cursor: pointer;
   border-radius: 4px;
   padding: 16px 8px;
+
+  a {
+    color: ${colours.white};
+    text-decoration: none;
+    font-size: ${fonts.size.large};
+  }
 
   &:hover {
     background-color: ${colours.blue100};
@@ -22,7 +36,10 @@ export const SingleMenu = styled.div`
 
   &:active {
     background-color: ${colours.white};
-    color: ${colours.blue200};
+
+    a {
+      color: ${colours.blue200};
+    }
   }
 `;
 
@@ -53,11 +70,10 @@ export const SingleMenuIcon = styled.div`
 `;
 
 export const Logo = styled.div`
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 80px;
   cursor: pointer;
-  margin: 0 16px 0 0;
-  padding: 8px;
+  margin: 0 256px 0 0;
 
   path {
     fill: ${colours.white};

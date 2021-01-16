@@ -16,7 +16,7 @@ export const headerData = (isAdmin: boolean): IHeader["menu"] => {
       link: "/results",
     },
     {
-      link: "/account",
+      link: "/logout",
       SVG: icons.account,
     },
   ];

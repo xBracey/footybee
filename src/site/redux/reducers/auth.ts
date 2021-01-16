@@ -17,7 +17,7 @@ export const authTypes = {
  * AUTH REDUCERS - START
  */
 
-const resetAuth = (state, { data }) => ({
+const resetAuth = state => ({
   token: null,
 });
 

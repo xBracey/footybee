@@ -5,11 +5,20 @@ interface IFooterMenu {
   alignment: string;
 }
 
-export const FooterContainer = styled.div`
+export const FooterOuterContainer = styled.div`
   background-color: ${colours.yellow200};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const FooterContainer = styled.div`
   padding: 16px;
   display: flex;
   align-items: center;
+  height: 38px;
+  max-width: calc(1000px - 32px);
+  width: calc(100% - 32px);
 `;
 
 export const FooterMenu = styled.div<IFooterMenu>`
@@ -27,12 +36,20 @@ export const SingleFooterMenu = styled.div`
   padding: 6px 12px;
   margin: 0 4px;
 
+  a {
+    color: ${colours.black};
+    text-decoration: none;
+  }
+
   &:hover {
     background-color: ${colours.yellow300};
   }
 
   &:active {
     background-color: ${colours.black};
-    color: ${colours.yellow300};
+
+    a {
+      color: ${colours.yellow300};
+    }
   }
 `;

@@ -1,6 +1,5 @@
 import React from "react";
-import { Fragment } from "react";
 
-const Link = props => <Fragment {...props} />;
+const Link = props => <a {...props} />;
 
 export default Link;

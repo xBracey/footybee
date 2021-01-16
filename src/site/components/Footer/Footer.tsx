@@ -1,6 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { FooterContainer, FooterMenu, SingleFooterMenu } from "./Footer.styled";
+import {
+  FooterOuterContainer,
+  FooterContainer,
+  FooterMenu,
+  SingleFooterMenu,
+} from "./Footer.styled";
 
 interface IFooterMenu {
   link: string;
@@ -20,13 +25,15 @@ export const Footer = ({ footerMenuLeft, footerMenuRight }: IFooter) => {
   );
 
   return (
-    <FooterContainer>
-      <FooterMenu alignment="flex-start">
-        {footerMenuLeft.map(mapFooterMenu)}
-      </FooterMenu>
-      <FooterMenu alignment="flex-end">
-        {footerMenuRight.map(mapFooterMenu)}
-      </FooterMenu>
-    </FooterContainer>
+    <FooterOuterContainer>
+      <FooterContainer>
+        <FooterMenu alignment="flex-start">
+          {footerMenuLeft.map(mapFooterMenu)}
+        </FooterMenu>
+        <FooterMenu alignment="flex-end">
+          {footerMenuRight.map(mapFooterMenu)}
+        </FooterMenu>
+      </FooterContainer>
+    </FooterOuterContainer>
   );
 };

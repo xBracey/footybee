@@ -2,11 +2,13 @@ import { IAction, IReducers } from "../types";
 
 export interface IUser {
   username: string;
+  admin: boolean;
   loading: boolean;
 }
 
 const initialState: IUser = {
   username: null,
+  admin: null,
   loading: false,
 };
 
@@ -22,9 +24,9 @@ export const userTypes = {
 const loadingUser = state => ({ ...state, loading: true });
 
 const fetchedUser = (state, { data }) => {
-  const { username } = data;
+  const { username, admin } = data;
 
-  return { ...state, username, loading: false };
+  return { ...state, username, admin, loading: false };
 };
 
 /**
