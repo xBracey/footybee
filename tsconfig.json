@@ -13,6 +13,7 @@
       "assets": ["src/site/assets/index"],
       "data": ["src/site/data/index"],
       "components": ["src/site/components/index"],
+      "components/*": ["src/site/components/*"],
       "theme": ["src/site/theme/index"],
       "lib": ["src/site/lib/index"],
       "templates": ["src/site/templates/index"],

@@ -26,7 +26,7 @@ module.exports = {
     ];
 
     config.resolve.alias = {
-      gatsby: path.resolve(__dirname, "gatsbyLinkMock.js"),
+      "next/link": path.resolve(__dirname, "nextLinkMock.js"),
     };
 
     return config;
