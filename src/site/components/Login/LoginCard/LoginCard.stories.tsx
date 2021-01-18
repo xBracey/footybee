@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LoginCard } from "./LoginCard";
 import { storiesOf } from "@storybook/react";
 
-const story = storiesOf("Components/LoginCard", module);
+const story = storiesOf("Components/Login/LoginCard", module);
 
 story.add("LoginCard Component", () => {
   const [username, setUsername] = useState("");

@@ -26,6 +26,10 @@ export const FooterMenu = styled.div<IFooterMenu>`
   align-items: center;
   flex: 1;
   justify-content: ${props => props.alignment};
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const SingleFooterMenu = styled.div`
@@ -35,11 +39,7 @@ export const SingleFooterMenu = styled.div`
   border-radius: 4px;
   padding: 6px 12px;
   margin: 0 4px;
-
-  a {
-    color: ${colours.black};
-    text-decoration: none;
-  }
+  color: ${colours.black};
 
   &:hover {
     background-color: ${colours.yellow300};
@@ -48,8 +48,6 @@ export const SingleFooterMenu = styled.div`
   &:active {
     background-color: ${colours.black};
 
-    a {
-      color: ${colours.yellow300};
-    }
+    color: ${colours.yellow300};
   }
 `;
