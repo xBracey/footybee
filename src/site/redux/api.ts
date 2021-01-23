@@ -26,7 +26,7 @@ export const apiRequest = async (
     return {
       data: response.data,
       time: new Date(response.headers.date),
-      error: null,
+      error: false,
       message: successMessage,
     };
   } catch (err) {

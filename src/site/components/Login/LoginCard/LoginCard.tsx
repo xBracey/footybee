@@ -8,6 +8,7 @@ import {
   CardLink,
   LoginCardContainer,
   CardMain,
+  ForgotPasswordContainer,
 } from "./LoginCard.styled";
 
 interface ILoginCard {
@@ -40,13 +41,15 @@ export const LoginCard = ({
           type="password"
           placeholder="Password"
         />
-        <Button text="Submit" onClick={onSubmit} buttonType={"blue"} />
-        <Link href="/">
-          <CardLink>Forgot Password?</CardLink>
-        </Link>
+        <ForgotPasswordContainer>
+          <Link href="/">
+            <CardLink>Forgot Password?</CardLink>
+          </Link>
+          <Button text="Submit" onClick={onSubmit} buttonType={"blue"} />
+        </ForgotPasswordContainer>
       </CardMain>
       <CardFooter>
-        <Link href="/">
+        <Link href="/register">
           <CardLink>Don't have an account? Sign Up</CardLink>
         </Link>
       </CardFooter>

@@ -5,6 +5,7 @@ import trophy from "./trophy.inline.svg";
 import headerLogo from "./headerLogo.inline.svg";
 import account from "./account.inline.svg";
 import football from "./football.inline.svg";
+import back from "./back.inline.svg";
 
 export const icons = {
   logo,
@@ -14,4 +15,5 @@ export const icons = {
   headerLogo,
   account,
   football,
+  back,
 };

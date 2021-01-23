@@ -15,3 +15,20 @@ export const loginUser = async (
 
 export const fetchUser = async (state: IRootState): Promise<IAPIResponse> =>
   authorisedRequest(state, "/user");
+
+export const registerUser = async (
+  username: string,
+  password: string
+): Promise<IAPIResponse> => {
+  const data = { username, password };
+
+  const successMessage = "User has been successfully registered";
+
+  const response = await apiRequest(
+    "/user/register",
+    { method: "POST", data },
+    successMessage
+  );
+
+  return response;
+};

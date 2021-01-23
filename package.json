@@ -16,6 +16,8 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@storybook/addon-actions": "^6.1.14",
+    "@storybook/addon-knobs": "^6.1.14",
     "@storybook/react": "^6.0.22",
     "@svgr/webpack": "^5.4.0",
     "@types/bcrypt": "^3.0.0",

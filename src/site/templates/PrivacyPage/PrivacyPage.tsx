@@ -8,7 +8,7 @@ export const PrivacyPage = () => {
     <Page
       title="Privacy"
       aboutPages
-      isLoggedIn={true}
+      isLoggedIn={false}
       backgroundColour={colours.green200}
     >
       <PrivacyPageContainer>

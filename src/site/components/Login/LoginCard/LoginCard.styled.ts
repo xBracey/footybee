@@ -1,3 +1,7 @@
+import {
+  ButtonContainer,
+  ButtonOuterContainer,
+} from "components/Button/Button.styled";
 import styled from "styled-components";
 import { colours, fonts } from "theme";
 import {
@@ -8,7 +12,9 @@ import {
 export const LoginCardContainer = styled.div`
   background-color: ${colours.white};
   width: 550px;
+  border-radius: 6px;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  position: relative;
 
   ${TextInputContainer} {
     margin: 10px 0;
@@ -48,13 +54,14 @@ export const CardHeader = styled.h1`
 `;
 
 export const CardLink = styled.div`
-  margin: 12px 0 -8px 0;
+  margin: 12px 0;
   color: ${colours.blue200};
-  font-size: ${fonts.size.header3};
+  font-size: ${fonts.size.large};
   cursor: pointer;
   text-decoration: underline;
   transition: all 0.3s;
   padding: 8px;
+  margin: 0 -8px;
   border-radius: 8px;
 
   &:hover {
@@ -76,6 +83,23 @@ export const CardFooter = styled.div`
 
     &:hover {
       background-color: ${colours.blue100};
+    }
+  }
+`;
+
+export const ForgotPasswordContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 0 8px 0;
+
+  ${ButtonOuterContainer} {
+    padding: 0;
+
+    ${ButtonContainer} {
+      margin: 0;
+      font-size: ${fonts.size.large};
     }
   }
 `;

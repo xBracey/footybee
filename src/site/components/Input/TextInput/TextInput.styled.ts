@@ -14,7 +14,7 @@ export const Input = styled.input`
   font-size: ${fonts.size.medium};
   color: ${colours.black};
   font-family: ${fonts.family.roboto};
-  border: 2px solid ${colours.grey300};
+  border: 3px solid ${colours.grey300};
   transition: all 0.3s;
 
   &::placeholder {

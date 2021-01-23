@@ -1,10 +1,12 @@
 import { IAction, IReducers } from "../types";
 
 export interface IMessage {
+  error: boolean;
   message: string;
 }
 
 const initialState: IMessage = {
+  error: null,
   message: null,
 };
 
@@ -17,8 +19,9 @@ export const messageTypes = {
  * MESSAGE REDUCERS - START
  */
 
-const setMessage = (state, { message }) => ({
+const setMessage = (state, { error, message }) => ({
   ...state,
+  error,
   message,
 });
 

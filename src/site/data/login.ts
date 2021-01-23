@@ -21,15 +21,15 @@ export const loginData = {
   sidebarMenu: [
     {
       text: "About",
-      link: "/",
+      link: "/about",
     },
     {
       text: "T&Cs",
-      link: "/",
+      link: "/terms",
     },
     {
       text: "Privacy",
-      link: "/",
+      link: "/privacy",
     },
   ],
 };
