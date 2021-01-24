@@ -4,7 +4,7 @@ import { loginData } from "data";
 import { AppDispatch } from "redux/store";
 import { useDispatch, useSelector } from "react-redux";
 // import { tryRegisterUser } from "redux/actions";
-import { IRootState } from "redux/reducers";
+import { IRootState, types } from "redux/reducers";
 import Router from "next/router";
 import { tryRegisterUser } from "redux/actions";
 
@@ -18,17 +18,16 @@ const Register = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
-  const auth = useSelector((state: IRootState) => state.auth);
-
   const onSubmit = () => {
-    dispatch(tryRegisterUser(username, password));
+    dispatch(tryRegisterUser(username, password, email)).then(({ data }) => {
+      if (!data.error) {
+        setTimeout(() => {
+          dispatch({ type: types.message.MESSAGE_RESET_MESSAGE });
+          Router.push("/");
+        }, 2000);
+      }
+    });
   };
-
-  useEffect(() => {
-    if (auth.token) {
-      Router.push("/");
-    }
-  }, [auth.token]);
 
   return (
     <RegisterPage

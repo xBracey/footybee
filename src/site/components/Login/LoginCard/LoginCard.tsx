@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { isMandatory, validateInputs } from "lib";
 import { Button } from "../../Button";
 import { TextInput } from "../../Input";
 import {
@@ -10,6 +11,8 @@ import {
   CardMain,
   ForgotPasswordContainer,
 } from "./LoginCard.styled";
+
+let hasBlurred = [false, false];
 
 interface ILoginCard {
   username: string;
@@ -26,6 +29,34 @@ export const LoginCard = ({
   setPassword,
   onSubmit,
 }: ILoginCard) => {
+  useEffect(() => {
+    hasBlurred = [false, false];
+  }, []);
+
+  const [validation, setValidation] = useState({
+    errorMessages: ["", ""],
+    isDisabled: true,
+  });
+
+  const onBlurHandler = (index: number) => {
+    hasBlurred[index] = true;
+
+    const newValidation = validateInputs([
+      {
+        value: username,
+        hasBlurred: hasBlurred[0],
+        validation: [isMandatory],
+      },
+      {
+        value: password,
+        hasBlurred: hasBlurred[1],
+        validation: [isMandatory],
+      },
+    ]);
+
+    setValidation(newValidation);
+  };
+
   return (
     <LoginCardContainer>
       <CardMain>
@@ -34,18 +65,27 @@ export const LoginCard = ({
           text={username}
           setText={setUsername}
           placeholder="Username"
+          error={validation.errorMessages[0]}
+          onBlurHandler={() => onBlurHandler(0)}
         />
         <TextInput
           text={password}
           setText={setPassword}
           type="password"
           placeholder="Password"
+          error={validation.errorMessages[1]}
+          onBlurHandler={() => onBlurHandler(1)}
         />
         <ForgotPasswordContainer>
           <Link href="/">
             <CardLink>Forgot Password?</CardLink>
           </Link>
-          <Button text="Submit" onClick={onSubmit} buttonType={"blue"} />
+          <Button
+            text="Submit"
+            onClick={onSubmit}
+            buttonType={"blue"}
+            isDisabled={validation.isDisabled}
+          />
         </ForgotPasswordContainer>
       </CardMain>
       <CardFooter>

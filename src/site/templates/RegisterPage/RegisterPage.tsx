@@ -5,6 +5,7 @@ import {
   LoginSidebar,
 } from "components";
 import React from "react";
+import { Message } from "../Message";
 import {
   RegisterCardContainer,
   RegisterPageContainer,
@@ -37,20 +38,23 @@ export const RegisterPage = ({
   sidebarMenu,
   onSubmit,
 }: IRegisterPage) => (
-  <RegisterPageContainer>
-    <LoginSidebar sidebarInfo={sidebarInfo} sidebarMenu={sidebarMenu} />
-    <RegisterCardContainer>
-      <RegisterCard
-        username={username}
-        setUsername={setUsername}
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        confirmPassword={confirmPassword}
-        setConfirmPassword={setConfirmPassword}
-        onSubmit={onSubmit}
-      />
-    </RegisterCardContainer>
-  </RegisterPageContainer>
+  <>
+    <RegisterPageContainer>
+      <LoginSidebar sidebarInfo={sidebarInfo} sidebarMenu={sidebarMenu} />
+      <RegisterCardContainer>
+        <RegisterCard
+          username={username}
+          setUsername={setUsername}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          confirmPassword={confirmPassword}
+          setConfirmPassword={setConfirmPassword}
+          onSubmit={onSubmit}
+        />
+      </RegisterCardContainer>
+    </RegisterPageContainer>
+    <Message />
+  </>
 );

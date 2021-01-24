@@ -43,12 +43,13 @@ export const getUser = (): ThunkResult<any> => {
 
 export const tryRegisterUser = (
   username: string,
-  password: string
+  password: string,
+  email: string
 ): ThunkResult<any> => {
   return dispatch => {
     dispatch({ type: types.user.USER_LOADING_USER });
 
-    return registerUser(username, password).then(response =>
+    return registerUser(username, password, email).then(response =>
       dispatch({
         type: types.message.MESSAGE_SET_MESSAGE,
         data: response,

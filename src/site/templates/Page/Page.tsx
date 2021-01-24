@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { IRootState } from "redux/reducers";
 import { useLoggedIn } from "lib";
 import { colours } from "theme";
+import { Message } from "../Message";
 
 interface IPage {
   children: ReactNode;
@@ -39,6 +40,7 @@ export const Page = ({
     <div>
       <Header menu={aboutPages ? aboutHeaderData : headerData(user.admin)} />
       <Head title={`FootyBee - ${title}`} />
+      <Message />
       <PageOuterContainer backgroundColour={backgroundColour}>
         <PageInnerContainer>{childrenComponent}</PageInnerContainer>
       </PageOuterContainer>

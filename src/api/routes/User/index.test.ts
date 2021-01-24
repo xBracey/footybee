@@ -1,8 +1,8 @@
 import supertest from "supertest";
+import { testAuthorisedRequest } from "../../lib";
+import { testApp } from "../../";
 
-import app from "../../";
-
-const request = supertest(app);
+const request = supertest(testApp);
 
 describe("Test create user endpoint", () => {
   it("Valid user", async done => {
@@ -86,17 +86,10 @@ describe("Test create user endpoint", () => {
 
 describe("Test get user endpoint", () => {
   it("Valid user name", async done => {
-    const response = await request.get("/user/Test User Register 1");
+    const response = await testAuthorisedRequest("/user");
 
     expect(response.status).toBe(200);
-    done();
-  });
-
-  it("Invalid user name", async done => {
-    const response = await request.get("/user/fewfewfewfewfew");
-
-    expect(response.status).toBe(400);
-    expect(response.body.error).toBe("Username does not exist");
+    expect(response.body.username).toBe("test");
     done();
   });
 });
@@ -135,7 +128,7 @@ describe("Test login endpoint", () => {
       .send({ username: "Test User 1", password: "passwordInvalid" })
       .set("Accept", "application/json");
 
-    expect(response.status).toBe(302);
+    expect(response.status).toBe(401);
     done();
   });
 
@@ -145,7 +138,7 @@ describe("Test login endpoint", () => {
       .send({ username: "Test User 123", password: "password" })
       .set("Accept", "application/json");
 
-    expect(response.status).toBe(302);
+    expect(response.status).toBe(401);
     done();
   });
 });

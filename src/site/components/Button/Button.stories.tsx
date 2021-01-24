@@ -11,3 +11,12 @@ story.add("Button Component Green", () => (
 story.add("Button Component Blue", () => (
   <Button onClick={() => {}} buttonType={"blue"} text={"Test Button"} />
 ));
+
+story.add("Button Component Blue isDisabled", () => (
+  <Button
+    onClick={() => {}}
+    buttonType={"blue"}
+    text={"Test Button"}
+    isDisabled
+  />
+));

@@ -1,5 +1,17 @@
-import React, { ChangeEvent } from "react";
-import { Input, TextInputContainer } from "./TextInput.styled";
+import React, {
+  ChangeEvent,
+  FocusEvent,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import {
+  Input,
+  TextInputOuterContainer,
+  TextInputContainer,
+  TextInputError,
+} from "./TextInput.styled";
 
 interface ITextInput {
   text: string;
@@ -7,6 +19,8 @@ interface ITextInput {
   placeholder?: string;
   id?: string;
   type?: string;
+  error?: string;
+  onBlurHandler?: (event: FocusEvent) => void;
 }
 
 export const TextInput = ({
@@ -15,22 +29,35 @@ export const TextInput = ({
   placeholder,
   id,
   type,
+  error,
+  onBlurHandler,
 }: ITextInput) => {
+  const errorMessageRef: RefObject<HTMLDivElement> = useRef();
+  const [errorHeight, setErrorHeight] = useState(0);
+
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
 
+  useEffect(() => {
+    setErrorHeight(errorMessageRef.current.clientHeight);
+  }, [error]);
+
   return (
-    <TextInputContainer>
-      <div>
+    <TextInputOuterContainer>
+      <TextInputContainer errorHeight={error ? errorHeight : 0}>
+        <TextInputError isVisible={!!error} ref={errorMessageRef}>
+          {error}
+        </TextInputError>
         <Input
           onChange={onChange}
           value={text}
           type={type ?? "text"}
           placeholder={placeholder}
           id={id}
+          onBlur={onBlurHandler}
         />
-      </div>
-    </TextInputContainer>
+      </TextInputContainer>
+    </TextInputOuterContainer>
   );
 };

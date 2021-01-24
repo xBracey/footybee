@@ -6,6 +6,7 @@ import {
   LoginSidebar,
 } from "components";
 import { LoginPageContainer, LoginCardContainer } from "./LoginPage.styled";
+import { Message } from "../Message";
 
 interface ILogin {
   username: string;
@@ -26,16 +27,19 @@ export const LoginPage = ({
   sidebarMenu,
   onSubmit,
 }: ILogin) => (
-  <LoginPageContainer>
-    <LoginSidebar sidebarInfo={sidebarInfo} sidebarMenu={sidebarMenu} />
-    <LoginCardContainer>
-      <LoginCard
-        username={username}
-        setUsername={setUsername}
-        password={password}
-        setPassword={setPassword}
-        onSubmit={onSubmit}
-      />
-    </LoginCardContainer>
-  </LoginPageContainer>
+  <>
+    <LoginPageContainer>
+      <LoginSidebar sidebarInfo={sidebarInfo} sidebarMenu={sidebarMenu} />
+      <LoginCardContainer>
+        <LoginCard
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+          onSubmit={onSubmit}
+        />
+      </LoginCardContainer>
+    </LoginPageContainer>
+    <Message />
+  </>
 );

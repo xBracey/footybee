@@ -4,10 +4,7 @@ import {
 } from "components/Button/Button.styled";
 import styled from "styled-components";
 import { colours, fonts } from "theme";
-import {
-  Input,
-  TextInputContainer,
-} from "../../Input/TextInput/TextInput.styled";
+import { TextInputOuterContainer } from "../../Input/TextInput/TextInput.styled";
 
 export const LoginCardContainer = styled.div`
   background-color: ${colours.white};
@@ -16,17 +13,9 @@ export const LoginCardContainer = styled.div`
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   position: relative;
 
-  ${TextInputContainer} {
+  ${TextInputOuterContainer} {
     margin: 10px 0;
     width: 100%;
-
-    div {
-      width: calc(100% - 44px);
-    }
-
-    ${Input} {
-      width: 100%;
-    }
   }
 `;
 

@@ -28,9 +28,7 @@ User.delete("/:username", async (req, res) => {
 
 User.post("/login", (req, res, next) => {
   passport.authenticate("local", (req, response, error) => {
-    return !response
-      ? res.status(302).send({ error })
-      : res.status(200).send(response);
+    return !response ? res.status(401).send() : res.status(200).send(response);
   })(req, res, next);
 });
 

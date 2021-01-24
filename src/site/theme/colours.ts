@@ -14,4 +14,7 @@ export const colours = {
   yellow100: "#E2E195",
   yellow200: " #D9D872",
   yellow300: "#C3C234",
+
+  successGreen: "#4e9a06",
+  errorRed: "#ef2929",
 };

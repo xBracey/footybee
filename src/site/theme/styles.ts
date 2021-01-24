@@ -1,5 +1,10 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+import { colours } from "./colours";
 import { fonts } from "./fonts";
+
+interface IStorybookWrapper {
+  width?: number;
+}
 
 export const GlobalStyles = createGlobalStyle`
     body {
@@ -33,4 +38,11 @@ export const GlobalStyles = createGlobalStyle`
     p,a,div {
         font-size: ${fonts.size.medium};
     }
+`;
+
+export const StorybookWrapper = styled.div<IStorybookWrapper>`
+  background-color: ${colours.grey100};
+  padding: 16px;
+  width: ${props => props.width ?? 600}px;
+  display: flex;
 `;

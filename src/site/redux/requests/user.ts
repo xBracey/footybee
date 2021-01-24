@@ -8,7 +8,14 @@ export const loginUser = async (
 ): Promise<IAPIResponse> => {
   const data = { username, password };
 
-  const response = await apiRequest("/user/login", { method: "POST", data });
+  const errorMessage = "Username or password is incorrect.";
+
+  const response = await apiRequest(
+    "/user/login",
+    { method: "POST", data },
+    null,
+    errorMessage
+  );
 
   return response;
 };
@@ -18,9 +25,10 @@ export const fetchUser = async (state: IRootState): Promise<IAPIResponse> =>
 
 export const registerUser = async (
   username: string,
-  password: string
+  password: string,
+  email: string
 ): Promise<IAPIResponse> => {
-  const data = { username, password };
+  const data = { username, password, email };
 
   const successMessage = "User has been successfully registered";
 

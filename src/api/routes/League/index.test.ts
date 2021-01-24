@@ -1,8 +1,8 @@
 import supertest from "supertest";
 
-import app from "../../";
+import { testApp } from "../../";
 
-const request = supertest(app);
+const request = supertest(testApp);
 
 describe("Test create league endpoint", () => {
   it("Valid league", async done => {

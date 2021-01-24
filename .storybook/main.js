@@ -28,6 +28,7 @@ module.exports = {
 
     config.resolve.alias = {
       "next/link": path.resolve(__dirname, "nextLinkMock.js"),
+      redux$: path.resolve(__dirname, "reduxMock.js"),
     };
 
     return config;

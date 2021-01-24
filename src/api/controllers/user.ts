@@ -1,8 +1,7 @@
-import bcrypt from "bcrypt";
-import { addUser, deleteUser, getUser, loginUser } from "../services";
+import { addUser, deleteUser, getUser } from "../services";
 import IUser, { isValidUser } from "../models/User/type";
 import controllerResponse from "./controller";
-import { saltRounds, StatusError } from "../lib";
+import { StatusError } from "../lib";
 
 const handleError = (error: StatusError): controllerResponse => {
   const { status, code } = error;
@@ -14,8 +13,6 @@ const handleError = (error: StatusError): controllerResponse => {
       return { status, error: "Username or email already exists" };
     case 3:
       return { status, error: "Username does not exist" };
-    case 5:
-      return { status, error: "Username does not exist" };
   }
 };
 
@@ -26,9 +23,7 @@ export const createController = async (
     return { status: 400, error: "Invalid parameters" };
   }
 
-  const password = await bcrypt.hash(body.password, saltRounds);
-
-  const { error, user } = await addUser({ ...body, password });
+  const { error, user } = await addUser(body);
 
   if (!error) {
     return { status: 200, response: user };
@@ -49,27 +44,10 @@ export const deleteController = async (
   return handleError(error);
 };
 
-export const loginController = async (
-  username: string,
-  password: string
-): Promise<controllerResponse> => {
-  const { error, user } = await loginUser(username, password);
-
-  if (!error) {
-    return { status: 200, response: user };
-  }
-
-  return handleError(error);
-};
-
 export const getController = async (
   username: string
 ): Promise<controllerResponse> => {
-  const { error, user } = await getUser(username);
+  const { user } = await getUser(username);
 
-  if (!error) {
-    return { status: 200, response: user };
-  }
-
-  return handleError(error);
+  return { status: 200, response: user };
 };

@@ -56,4 +56,17 @@ export const SidebarMenu = styled.p`
   text-decoration: underline;
   cursor: pointer;
   color: ${colours.black};
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin: -4px;
+
+  &:hover {
+    background-color: ${colours.yellow300};
+  }
+
+  &:active {
+    background-color: ${colours.black};
+
+    color: ${colours.yellow300};
+  }
 `;

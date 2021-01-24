@@ -5,3 +5,4 @@ export * from "./AboutPage";
 export * from "./TermsPage";
 export * from "./PrivacyPage";
 export * from "./RegisterPage";
+export * from "./Message";
