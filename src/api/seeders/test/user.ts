@@ -1,4 +1,4 @@
-import { addUsers } from "../services";
+import { addUsers } from "../../services";
 
 const userSeed = async () => {
   const users = [

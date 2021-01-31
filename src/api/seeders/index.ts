@@ -1,13 +1,7 @@
-import leagueSeed from "./league";
-import playerSeed from "./player";
-import teamSeed from "./team";
-import userSeed from "./user";
+import testSeed from "./test";
+import realSeed from "./real";
 
-const seedData = async () => {
-  await leagueSeed();
-  await userSeed();
-  await teamSeed();
-  await playerSeed();
-};
+const seedData = async () =>
+  process.env.NODE_ENV === "test" ? testSeed() : realSeed();
 
 export default seedData;

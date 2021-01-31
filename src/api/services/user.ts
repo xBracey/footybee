@@ -42,6 +42,17 @@ export const addUsers = async (usersData: IUser[]): Promise<IUsersResponse> => {
   }
 };
 
+export const addUsersSeed = async (
+  usersData: IUser[]
+): Promise<IUsersResponse> => {
+  try {
+    const users = await models.User.bulkCreate(usersData);
+    return { users };
+  } catch (error) {
+    return { error: new StatusError(error), users: null };
+  }
+};
+
 export const getUser = async (username: string): Promise<IUserResponse> => {
   const user = await models.User.findOne({
     where: {

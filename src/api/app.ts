@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { League, User } from "./routes";
+import { League, User, Player, Team } from "./routes";
 import passport from "./passport";
 import bodyParser from "body-parser";
 import expressSession from "express-session";
@@ -24,5 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/league", League);
 app.use("/user", User);
+app.use("/player", Player);
+app.use("/team", Team);
 
 export default app;

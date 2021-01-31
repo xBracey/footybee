@@ -5,7 +5,7 @@ import {
 } from "../services";
 import I{{pascalCase name}}, { isValid{{pascalCase name}} } from "../models/{{pascalCase name}}/type";
 import controllerResponse from "./controller";
-import { StatusError, checkBody, validateArrayTypeCheck } from "lib";
+import { StatusError, checkBody, validateArrayTypeCheck } from "../lib";
 
 const handleError = (error: StatusError): controllerResponse => {
 	const { status, code } = error;

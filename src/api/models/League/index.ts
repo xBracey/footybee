@@ -8,7 +8,7 @@ import {
 } from "sequelize-typescript";
 
 @Table
-export class League extends Model<League> {
+export class League extends Model {
   @PrimaryKey
   @Column(DataType.STRING)
   leagueName: string;

@@ -1,4 +1,4 @@
-import { addPlayers } from "../services";
+import { addPlayers } from "../../services";
 
 const playerSeed = async () => {
   const players = [

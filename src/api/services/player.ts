@@ -64,6 +64,8 @@ const deletePlayer = async (name: string): Promise<IPlayerResponse> => {
     },
   });
 
+  console.log(player, name);
+
   const error = new StatusError(
     new ValidationError("Primary Key not found when deleting entity")
   );

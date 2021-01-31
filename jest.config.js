@@ -10,7 +10,8 @@ module.exports = {
   globalTeardown: "./tests/jest.teardown.ts",
   collectCoverageFrom: [
     "src/api/**/*.{ts,tsx}",
-    "!src/api/seeders/*.ts",
+    "!src/api/passport/**/*",
+    "!src/api/seeders/**/*.ts",
     "!src/api/index.ts",
   ],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {

@@ -1,4 +1,4 @@
-import { addTeams } from "../services";
+import { addTeams } from "../../services";
 
 const teamSeed = async () => {
   const teams = [

@@ -1,13 +1,13 @@
 import supertest from "supertest";
 
-import app from "../../";
+import { testApp } from "../../";
 
-const request = supertest(app);
+const request = supertest(testApp);
 
 describe("Test create {{camelCase name}} endpoint", () => {
   it("Valid {{camelCase name}}", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/create")
+      .post("/{{camelCase name}}/create")
       .send({})
       .set("Accept", "application/json");
 
@@ -18,7 +18,7 @@ describe("Test create {{camelCase name}} endpoint", () => {
 
   it("Duplicate {{camelCase name}}", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/create")
+      .post("/{{camelCase name}}/create")
       .send()
       .set("Accept", "application/json");
 
@@ -29,7 +29,7 @@ describe("Test create {{camelCase name}} endpoint", () => {
 
   it("Invalid body", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/create")
+      .post("/{{camelCase name}}/create")
       .send({ fefefe: "htrht" })
       .set("Accept", "application/json");
 
@@ -40,7 +40,7 @@ describe("Test create {{camelCase name}} endpoint", () => {
 
   it("No body", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/create")
+      .post("/{{camelCase name}}/create")
       .send()
       .set("Accept", "application/json");
 
@@ -51,7 +51,7 @@ describe("Test create {{camelCase name}} endpoint", () => {
 
   it("No object", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/create")
+      .post("/{{camelCase name}}/create")
       .send("Test")
       .set("Accept", "application/json");
 
@@ -64,7 +64,7 @@ describe("Test create {{camelCase name}} endpoint", () => {
 describe("Test bulk create {{camelCase name}} endpoint", () => {
   it("Valid {{camelCase name}}s", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/bulk-create")
+      .post("/{{camelCase name}}/bulk-create")
       .send()
       .set("Accept", "application/json");
 
@@ -75,7 +75,7 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
 
   it("Duplicate {{camelCase name}}", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/bulk-create")
+      .post("/{{camelCase name}}/bulk-create")
       .send()
       .set("Accept", "application/json");
 
@@ -86,7 +86,7 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
 
   it("Invalid body", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/bulk-create")
+      .post("/{{camelCase name}}/bulk-create")
       .send([{ fefefe: "fefefefe" }])
       .set("Accept", "application/json");
 
@@ -97,7 +97,7 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
 
   it("Invalid array", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/bulk-create")
+      .post("/{{camelCase name}}/bulk-create")
       .send([])
       .set("Accept", "application/json");
 
@@ -108,7 +108,7 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
 
   it("Wrong Data type", async done => {
     const response = await request
-      .post("/api/{{camelCase name}}/bulk-create")
+      .post("/{{camelCase name}}/bulk-create")
       .send({ fefe: "fefef" })
       .set("Accept", "application/json");
 
@@ -120,18 +120,15 @@ describe("Test bulk create {{camelCase name}} endpoint", () => {
 
 describe("Test delete {{camelCase name}} endpoint", () => {
   it("Valid {{camelCase name}} name", async done => {
-    const response = await request.delete("/api/{{camelCase name}}/test");
+    const response = await request.delete("/{{camelCase name}}/test");
 
     expect(response.status).toBe(200);
-    expect(response.body.message).toBe(
-      "{{camelCase name}} successfully deleted"
-    );
     done();
   });
 
   it("Invalid {{camelCase name}} name", async done => {
     const response = await request.delete(
-      "/api/{{camelCase name}}/fewfewfewfewfew"
+      "/{{camelCase name}}/fewfewfewfewfew"
     );
 
     expect(response.status).toBe(400);
