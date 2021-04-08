@@ -5,8 +5,10 @@ import {
   Model,
   PrimaryKey,
   HasMany,
+  ForeignKey,
+  BelongsTo,
 } from "sequelize-typescript";
-import { Player } from "..";
+import { Player, Group } from "..";
 
 @Table
 export class Team extends Model {
@@ -16,4 +18,11 @@ export class Team extends Model {
 
   @HasMany(() => Player)
   players: Player[];
+
+  @ForeignKey(() => Group)
+  @Column
+  groupLetter: string;
+
+  @BelongsTo(() => Group)
+  group: Group;
 }

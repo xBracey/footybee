@@ -1,4 +1,4 @@
-import { League, User, Player, Team } from "../models";
+import { League, User, Player, Team, Group } from "../models";
 import { Sequelize } from "sequelize-typescript";
 
 /* istanbul ignore next */
@@ -16,6 +16,7 @@ const models = {
   User,
   Player,
   Team,
+  Group,
 };
 
 sequelize.addModels(Object.values(models));

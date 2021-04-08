@@ -56,6 +56,7 @@ describe("Add player", () => {
   it("Valid player", async done => {
     const { player } = await addPlayer({
       name: "Test Player 3",
+      teamName: "Test Team 1",
     });
 
     const name = player.get("name", { plain: true });
@@ -67,6 +68,7 @@ describe("Add player", () => {
   it("Duplicate player name", async done => {
     const { error } = await addPlayer({
       name: "Test Player 1",
+      teamName: "Test Team 1",
     });
 
     expect(error.message).toEqual("Primary Key duplicate");
@@ -79,9 +81,11 @@ describe("Add players", () => {
     const { players } = await addPlayers([
       {
         name: "Test Player 4",
+        teamName: "Test Team 1",
       },
       {
         name: "Test Player 5",
+        teamName: "Test Team 1",
       },
     ]);
 
@@ -93,9 +97,11 @@ describe("Add players", () => {
     const { error } = await addPlayers([
       {
         name: "Test Player 1",
+        teamName: "Test Team 1",
       },
       {
         name: "Test Player 2",
+        teamName: "Test Team 1",
       },
     ]);
 

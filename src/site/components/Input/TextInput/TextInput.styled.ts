@@ -15,8 +15,8 @@ export const TextInputOuterContainer = styled.div`
 export const TextInputContainer = styled.div<ITextInputContainer>`
   position: relative;
   transition: all 0.5s;
-  padding-bottom: ${props => props.errorHeight ?? 0}px;
   flex: 1;
+  padding-bottom: 40px;
 `;
 
 export const Input = styled.input`

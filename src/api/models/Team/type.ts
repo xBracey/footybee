@@ -2,6 +2,7 @@ import { validateType } from "../../lib";
 
 export default interface ITeam {
   name: string;
+  groupLetter: string;
 }
 
 export const isValidTeam = (data: any): data is ITeam => {
@@ -9,7 +10,10 @@ export const isValidTeam = (data: any): data is ITeam => {
     return false;
   }
 
-  const { name } = data;
+  const { name, groupLetter } = data;
 
-  return validateType(name, "string", true);
+  return (
+    validateType(name, "string", true) &&
+    validateType(groupLetter, "string", true)
+  );
 };

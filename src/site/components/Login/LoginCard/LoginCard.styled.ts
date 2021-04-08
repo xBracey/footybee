@@ -14,12 +14,11 @@ export const LoginCardContainer = styled.div`
   position: relative;
 
   ${TextInputOuterContainer} {
-    margin: 10px 0;
     width: 100%;
   }
 `;
 
-export const CardMain = styled.div`
+export const CardMain = styled.form`
   padding: 40px 75px;
   width: calc(100% - 150px);
   display: flex;
@@ -36,7 +35,7 @@ export const CardSplitter = styled.div`
 `;
 
 export const CardHeader = styled.h1`
-  margin: 5px 0 15px 0;
+  margin: 5px 0 30px 0;
   color: ${colours.blue200};
   font-size: ${fonts.size.header1};
   font-weight: 600;
@@ -81,7 +80,7 @@ export const ForgotPasswordContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 24px 0 8px 0;
+  padding: 0 0 5px 0;
 
   ${ButtonOuterContainer} {
     padding: 0;
@@ -91,4 +90,8 @@ export const ForgotPasswordContainer = styled.div`
       font-size: ${fonts.size.large};
     }
   }
+`;
+
+export const DummySubmit = styled.input`
+  display: none;
 `;

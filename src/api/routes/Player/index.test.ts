@@ -10,6 +10,7 @@ describe("Test create player endpoint", () => {
       .post("/player/create")
       .send({
         name: "Test Player New 1",
+        teamName: "Test Team 1",
       })
       .set("Accept", "application/json");
 
@@ -23,6 +24,7 @@ describe("Test create player endpoint", () => {
       .post("/player/create")
       .send({
         name: "Test Player 1",
+        teamName: "Test Team 1",
       })
       .set("Accept", "application/json");
 

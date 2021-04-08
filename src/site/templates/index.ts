@@ -6,3 +6,4 @@ export * from "./TermsPage";
 export * from "./PrivacyPage";
 export * from "./RegisterPage";
 export * from "./Message";
+export * from "./Admin";

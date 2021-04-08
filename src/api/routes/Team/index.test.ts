@@ -10,6 +10,7 @@ describe("Test create team endpoint", () => {
       .post("/team/create")
       .send({
         name: "Test New 1",
+        groupLetter: "Test Group 1",
       })
       .set("Accept", "application/json");
 
@@ -23,6 +24,7 @@ describe("Test create team endpoint", () => {
       .post("/team/create")
       .send({
         name: "Test Team 1",
+        groupLetter: "Test Group 1",
       })
       .set("Accept", "application/json");
 

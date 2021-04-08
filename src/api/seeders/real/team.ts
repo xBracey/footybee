@@ -4,99 +4,99 @@ const teamSeed = async () => {
   const teams = [
     {
       name: "Turkey",
-      //      groupNumber: "A"
+      groupLetter: "A",
     },
     {
       name: "Italy",
-      //      groupNumber: "A"
+      groupLetter: "A",
     },
     {
       name: "Wales",
-      //      groupNumber: "A"
+      groupLetter: "A",
     },
     {
       name: "Switzerland",
-      //      groupNumber: "A"
+      groupLetter: "A",
     },
     {
       name: "Denmark",
-      //      groupNumber: "B"
+      groupLetter: "B",
     },
     {
       name: "Finland",
-      //      groupNumber: "B"
+      groupLetter: "B",
     },
     {
       name: "Belgium",
-      //      groupNumber: "B"
+      groupLetter: "B",
     },
     {
       name: "Russia",
-      //      groupNumber: "B"
+      groupLetter: "B",
     },
     {
       name: "Netherlands",
-      //      groupNumber: "C"
+      groupLetter: "C",
     },
     {
       name: "Ukraine",
-      //      groupNumber: "C"
+      groupLetter: "C",
     },
     {
       name: "Austria",
-      //      groupNumber: "C"
+      groupLetter: "C",
     },
     {
       name: "Kosovo",
-      //      groupNumber: "C"
+      groupLetter: "C",
     },
     {
       name: "England",
-      //      groupNumber: "D"
+      groupLetter: "D",
     },
     {
       name: "Croatia",
-      //      groupNumber: "D"
+      groupLetter: "D",
     },
     {
       name: "Norway",
-      //      groupNumber: "D"
+      groupLetter: "D",
     },
     {
       name: "Czech Republic",
-      //      groupNumber: "D"
+      groupLetter: "D",
     },
     {
       name: "Spain",
-      //      groupNumber: "E"
+      groupLetter: "E",
     },
     {
       name: "Sweden",
-      //      groupNumber: "E"
+      groupLetter: "E",
     },
     {
       name: "Poland",
-      //      groupNumber: "E"
+      groupLetter: "E",
     },
     {
       name: "Republic of Ireland",
-      //      groupNumber: "E"
+      groupLetter: "E",
     },
     {
       name: "Iceland",
-      //      groupNumber: "F"
+      groupLetter: "F",
     },
     {
       name: "Portugal",
-      //      groupNumber: "F"
+      groupLetter: "F",
     },
     {
       name: "France",
-      //      groupNumber: "F"
+      groupLetter: "F",
     },
     {
       name: "Germany",
-      //      groupNumber: "F"
+      groupLetter: "F",
     },
   ];
 

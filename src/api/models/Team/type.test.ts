@@ -4,6 +4,7 @@ describe("Test isValidteam", () => {
   it("Valid", async done => {
     const validTeam = isValidTeam({
       name: "test",
+      groupLetter: "a",
     });
     expect(validTeam).toBe(true);
     done();

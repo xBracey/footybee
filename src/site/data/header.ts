@@ -25,12 +25,27 @@ export const headerData = (isAdmin: boolean): IHeader["menu"] => {
     ? [
         {
           text: "Admin",
-          link: "/admin",
+          link: "/admin/groups",
         },
         ...menu,
       ]
     : menu;
 };
+
+export const adminHeaderData: IHeader["menu"] = [
+  {
+    text: "Groups",
+    link: "/admin/groups",
+  },
+  {
+    text: "Teams",
+    link: "/admin/teams",
+  },
+  {
+    text: "Players",
+    link: "/admin/players",
+  },
+];
 
 export const aboutHeaderData: IHeader["menu"] = [
   {

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Footer, Head, Header, Loading } from "components";
 import { PageOuterContainer, PageInnerContainer } from "./Page.styled";
-import { aboutHeaderData, footerData, headerData } from "data";
+import { aboutHeaderData, adminHeaderData, footerData, headerData } from "data";
 import { useSelector } from "react-redux";
 import { IRootState } from "redux/reducers";
 import { useLoggedIn } from "lib";
@@ -15,6 +15,7 @@ interface IPage {
   backgroundColour?: string;
   loading?: boolean;
   aboutPages?: boolean;
+  adminPages?: boolean;
 }
 
 export const Page = ({
@@ -24,6 +25,7 @@ export const Page = ({
   backgroundColour = colours.white,
   loading,
   aboutPages,
+  adminPages,
 }: IPage) => {
   const auth = useSelector((state: IRootState) => state.auth);
   const user = useSelector((state: IRootState) => state.user);
@@ -34,11 +36,19 @@ export const Page = ({
 
   const footerComponent = auth.token ? <Footer {...footerData} /> : null;
 
+  let menu = headerData(user.admin);
+
+  if (aboutPages) {
+    menu = aboutHeaderData;
+  } else if (adminPages) {
+    menu = adminHeaderData;
+  }
+
   return isLoggedIn && !auth.token ? (
     <Loading />
   ) : (
     <div>
-      <Header menu={aboutPages ? aboutHeaderData : headerData(user.admin)} />
+      <Header menu={menu} />
       <Head title={`FootyBee - ${title}`} />
       <Message />
       <PageOuterContainer backgroundColour={backgroundColour}>

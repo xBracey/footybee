@@ -53,6 +53,7 @@ describe("Add team", () => {
   it("Valid team", async done => {
     const { team } = await addTeam({
       name: "Test Team 3",
+      groupLetter: "Test Group 1",
     });
 
     const name = team.get("name", { plain: true });
@@ -64,6 +65,7 @@ describe("Add team", () => {
   it("Duplicate team name", async done => {
     const { error } = await addTeam({
       name: "Test Team 1",
+      groupLetter: "Test Group 1",
     });
 
     expect(error.message).toEqual("Primary Key duplicate");
@@ -76,9 +78,11 @@ describe("Add teams", () => {
     const { teams } = await addTeams([
       {
         name: "Test Team 4",
+        groupLetter: "Test Group 1",
       },
       {
         name: "Test Team 5",
+        groupLetter: "Test Group 1",
       },
     ]);
 
@@ -90,9 +94,11 @@ describe("Add teams", () => {
     const { error } = await addTeams([
       {
         name: "Test Team 1",
+        groupLetter: "Test Group 1",
       },
       {
         name: "Test Team 2",
+        groupLetter: "Test Group 1",
       },
     ]);
 

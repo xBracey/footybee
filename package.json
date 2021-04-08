@@ -10,8 +10,7 @@
     "develop": "nodemon --watch \"src/api/**\" --ext \"ts,json\" --exec \"ts-node -r tsconfig-paths/register server NODE_ENV=development\"",
     "serve": "ts-node -r tsconfig-paths/register server NODE_ENV=production",
     "test": "jest --collectCoverage",
-    "test:watch": "jest --collectCoverage --watch",
-    "test:watchAll": "jest --collectCoverage --watchAll",
+    "test:watch": "jest --collectCoverage --watchAll",
     "storybook": "start-storybook -p 9000",
     "clean": "gatsby clean"
   },

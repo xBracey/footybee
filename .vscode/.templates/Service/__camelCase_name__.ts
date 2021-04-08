@@ -1,6 +1,6 @@
 import { models } from "../config";
-import I{{pascalCase name}} from "../models/{{camelCase name}}/type";
-import { StatusError } from "../../lib";
+import I{{pascalCase name}} from "../models/{{pascalCase name}}/type";
+import { StatusError } from "../lib";
 import { {{pascalCase name}} } from "../models";
 import { ValidationError } from "sequelize";
 
@@ -38,7 +38,7 @@ const get{{pascalCase name}} = async (id: number): Promise<I{{pascalCase name}}R
 			id,
 		},
     });
-    return {{camelCase name}};
+    return { {{camelCase name}} };
 };
 
 const get{{pascalCase name}}s = async (ids: number[]): Promise<I{{pascalCase name}}sResponse> => {

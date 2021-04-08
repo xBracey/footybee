@@ -10,6 +10,7 @@ import {
   LoginCardContainer,
   CardMain,
   ForgotPasswordContainer,
+  DummySubmit,
 } from "./LoginCard.styled";
 
 let hasBlurred = [false, false];
@@ -59,7 +60,12 @@ export const LoginCard = ({
 
   return (
     <LoginCardContainer>
-      <CardMain>
+      <CardMain
+        onSubmit={event => {
+          event.preventDefault();
+          if (!validation.isDisabled) onSubmit();
+        }}
+      >
         <CardHeader>Log in</CardHeader>
         <TextInput
           text={username}
@@ -76,6 +82,7 @@ export const LoginCard = ({
           error={validation.errorMessages[1]}
           onBlurHandler={() => onBlurHandler(1)}
         />
+        <DummySubmit type="submit" />
         <ForgotPasswordContainer>
           <Link href="/">
             <CardLink>Forgot Password?</CardLink>
