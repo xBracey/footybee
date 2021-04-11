@@ -1,4 +1,10 @@
-import { addGroup, addGroups, deleteGroup } from "../services";
+import {
+  addGroup,
+  addGroups,
+  deleteGroup,
+  getAllGroups,
+  getGroups,
+} from "../services";
 import IGroup, { isValidGroup } from "../models/Group/type";
 import controllerResponse from "./controller";
 import { StatusError, checkBody, validateArrayTypeCheck } from "../lib";
@@ -62,4 +68,10 @@ export const deleteController = async (
   }
 
   return handleError(error);
+};
+
+export const bulkGetController = async (): Promise<controllerResponse> => {
+  const { groups } = await getAllGroups();
+
+  return { status: 200, response: groups };
 };

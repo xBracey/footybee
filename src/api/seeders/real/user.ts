@@ -13,7 +13,7 @@ const userSeed = async () => {
     {
       username: "xBracey2",
       password: "$2b$10$9Z.cV.rYcefrux//LpzfIuGK38r.UaQBXzbt.rD0WDuPWRmgzMwu2",
-      email: "tommy-brace-22@hotmail.com",
+      email: "tommy-brace-22+test1@hotmail.com",
       name: "Thomas Brace",
       verified: true,
       admin: false,

@@ -8,6 +8,9 @@ import football from "./football.inline.svg";
 import back from "./back.inline.svg";
 import error from "./error.inline.svg";
 import success from "./success.inline.svg";
+import sort from "./sort.inline.svg";
+import sortUp from "./sort-up.inline.svg";
+import sortDown from "./sort-down.inline.svg";
 
 export const icons = {
   logo,
@@ -20,4 +23,7 @@ export const icons = {
   back,
   error,
   success,
+  sort,
+  sortUp,
+  sortDown,
 };

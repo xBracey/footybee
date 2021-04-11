@@ -158,3 +158,13 @@ describe("Test delete group endpoint", () => {
     done();
   });
 });
+
+describe("Test get all groups endpoint", () => {
+  it("Valid", async done => {
+    const response = await request.get("/group");
+
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBeGreaterThan(2);
+    done();
+  });
+});

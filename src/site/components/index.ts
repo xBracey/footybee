@@ -6,3 +6,4 @@ export * from "./Footer";
 export * from "./Loading";
 export * from "./Head";
 export * from "./Modal";
+export * from "./Table";
