@@ -85,3 +85,13 @@ describe("Test delete team endpoint", () => {
     done();
   });
 });
+
+describe("Test get all teams endpoint", () => {
+  it("Valid", async done => {
+    const response = await request.get("/team");
+
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBeGreaterThan(2);
+    done();
+  });
+});

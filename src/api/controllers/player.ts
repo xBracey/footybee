@@ -1,4 +1,9 @@
-import { addPlayer, addPlayers, deletePlayer } from "../services";
+import {
+  addPlayer,
+  addPlayers,
+  deletePlayer,
+  getAllPlayers,
+} from "../services";
 import IPlayer, { isValidPlayer } from "../models/Player/type";
 import controllerResponse from "./controller";
 import { StatusError, checkBody, validateArrayTypeCheck } from "../lib";
@@ -46,4 +51,10 @@ export const deleteController = async (
   }
 
   return handleError(error);
+};
+
+export const bulkGetController = async (): Promise<controllerResponse> => {
+  const { players } = await getAllPlayers();
+
+  return { status: 200, response: players };
 };

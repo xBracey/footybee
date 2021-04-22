@@ -5,13 +5,11 @@ interface IGroup {
 }
 
 export interface IGroups {
-  id: string;
   loading: boolean;
   groups: IGroup[];
 }
 
 const initialState: IGroups = {
-  id: null,
   loading: false,
   groups: [],
 };

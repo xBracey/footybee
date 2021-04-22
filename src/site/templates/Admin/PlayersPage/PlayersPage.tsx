@@ -1,42 +1,46 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGroups } from "redux/actions";
+import { getPlayers } from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { Page } from "../../Page";
 import { AdminTable } from "components";
-import { GroupsPageContainer } from "./GroupsPage.styled";
+import { PlayersPageContainer } from "./PlayersPage.styled";
 import { colours } from "theme";
 
-export const GroupsPage = () => {
+export const PlayersPage = () => {
   const dispatch: AppDispatch = useDispatch();
 
-  const groups = useSelector((state: IRootState) => state.groups);
+  const players = useSelector((state: IRootState) => state.players);
 
   useEffect(() => {
-    dispatch(getGroups());
+    dispatch(getPlayers());
   }, []);
 
   return (
     <Page
-      title="Groups"
+      title="Players"
       isLoggedIn={true}
       adminPages
       backgroundColour={colours.green200}
     >
-      <GroupsPageContainer>
+      <PlayersPageContainer>
         <AdminTable
-          data={groups.groups}
+          data={players.players}
           headers={[
             {
-              Header: "Group Letter",
-              accessor: "letter",
+              Header: "Team Name",
+              accessor: "teamName",
+            },
+            {
+              Header: "Player Name",
+              accessor: "name",
             },
           ]}
-          url={"/admin/groups"}
-          primaryKey="letter"
+          url={"/admin/players"}
+          primaryKey="name"
         />
-      </GroupsPageContainer>
+      </PlayersPageContainer>
     </Page>
   );
 };
