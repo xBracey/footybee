@@ -1,4 +1,4 @@
-import { addTeam, deleteTeam, getAllTeams } from "../services";
+import { addTeam, deleteTeam, getAllTeams, getTeam } from "../services";
 import ITeam, { isValidTeam } from "../models/Team/type";
 import controllerResponse from "./controller";
 import { StatusError } from "../lib";
@@ -50,4 +50,12 @@ export const bulkGetController = async (): Promise<controllerResponse> => {
   const { teams } = await getAllTeams();
 
   return { status: 200, response: teams };
+};
+
+export const getController = async (
+  name: string
+): Promise<controllerResponse> => {
+  const { team } = await getTeam(name);
+
+  return { status: 200, response: team };
 };

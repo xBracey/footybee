@@ -2,6 +2,7 @@ import { IAction, IReducers } from "../types";
 
 interface ITeam {
   groupLetter: string;
+  name: string;
 }
 
 export interface ITeams {
@@ -16,6 +17,7 @@ const initialState: ITeams = {
 
 export const teamsTypes = {
   TEAMS_FETCHED_TEAMS: "fetchedTeams",
+  TEAMS_FETCHED_TEAM: "fetchedTeam",
   TEAMS_LOADING_TEAMS: "loadingTeams",
 };
 
@@ -24,6 +26,12 @@ export const teamsTypes = {
  */
 
 const loadingTeams = state => ({ ...state, loading: true });
+
+const fetchedTeam = (state, { data }) => {
+  const teams = [data];
+
+  return { ...state, loading: false, teams };
+};
 
 const fetchedTeams = (state, { data }) => {
   return { ...state, loading: false, teams: data };
@@ -35,6 +43,7 @@ const fetchedTeams = (state, { data }) => {
 
 const reducers: IReducers<ITeams> = {
   fetchedTeams,
+  fetchedTeam,
   loadingTeams,
 };
 

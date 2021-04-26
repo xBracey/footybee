@@ -3,6 +3,7 @@ import {
   bulkGetController,
   createController,
   deleteController,
+  getController,
 } from "../../controllers/team";
 
 export const Team = Router();
@@ -25,6 +26,14 @@ Team.delete("/:name", async (req, res) => {
 
 Team.get("/", async (req, res) => {
   const { status, error, response } = await bulkGetController();
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});
+
+Team.get("/:name", async (req, res) => {
+  const { status, error, response } = await getController(req.params.name);
 
   return error
     ? res.status(status).send({ error })

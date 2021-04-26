@@ -4,9 +4,10 @@ import { getGroups } from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { Page } from "../../Page";
-import { AdminTable } from "components";
-import { GroupsPageContainer } from "./GroupsPage.styled";
+import { AdminTable, Button } from "components";
+import { AddButtonContainer, PageContainer } from "../styles";
 import { colours } from "theme";
+import Link from "next/link";
 
 export const GroupsPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -24,7 +25,7 @@ export const GroupsPage = () => {
       adminPages
       backgroundColour={colours.green200}
     >
-      <GroupsPageContainer>
+      <PageContainer>
         <AdminTable
           data={groups.groups}
           headers={[
@@ -36,7 +37,12 @@ export const GroupsPage = () => {
           url={"/admin/groups"}
           primaryKey="letter"
         />
-      </GroupsPageContainer>
+        <AddButtonContainer>
+          <Link href="/admin/groups/add">
+            <Button text="Add Group" onClick={() => {}} buttonType={"blue"} />
+          </Link>
+        </AddButtonContainer>
+      </PageContainer>
     </Page>
   );
 };

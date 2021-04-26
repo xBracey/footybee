@@ -21,6 +21,7 @@ interface ITextInput {
   type?: string;
   error?: string;
   onBlurHandler?: (event: FocusEvent) => void;
+  isDisabled?: boolean;
 }
 
 export const TextInput = ({
@@ -31,12 +32,13 @@ export const TextInput = ({
   type,
   error,
   onBlurHandler,
+  isDisabled,
 }: ITextInput) => {
   const errorMessageRef: RefObject<HTMLDivElement> = useRef();
   const [errorHeight, setErrorHeight] = useState(0);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
+    if (!isDisabled) setText(event.target.value);
   };
 
   useEffect(() => {
@@ -56,6 +58,7 @@ export const TextInput = ({
           placeholder={placeholder}
           id={id}
           onBlur={onBlurHandler}
+          isDisabled={isDisabled}
         />
       </TextInputContainer>
     </TextInputOuterContainer>

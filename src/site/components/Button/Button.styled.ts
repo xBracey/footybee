@@ -17,6 +17,8 @@ const ButtonContainerPsuedo = css`
       switch (props.buttonType) {
         case "blue":
           return colours.blue200;
+        case "red":
+          return colours.red200;
         default:
           return colours.green200;
       }
@@ -26,6 +28,8 @@ const ButtonContainerPsuedo = css`
         switch (props.buttonType) {
           case "blue":
             return colours.blue200;
+          case "red":
+            return colours.red200;
           default:
             return colours.green200;
         }
@@ -46,6 +50,8 @@ export const ButtonContainer = styled.div<IButtonContainer>`
     switch (props.buttonType) {
       case "blue":
         return colours.blue200;
+      case "red":
+        return colours.red200;
       default:
         return colours.green200;
     }
@@ -60,9 +66,15 @@ export const ButtonContainer = styled.div<IButtonContainer>`
   font-weight: 500;
   border: 4px solid
     ${props => {
+      if (props.isDisabled) {
+        return colours.grey300;
+      }
+
       switch (props.buttonType) {
         case "blue":
           return colours.blue300;
+        case "red":
+          return colours.red300;
         default:
           return colours.green300;
       }

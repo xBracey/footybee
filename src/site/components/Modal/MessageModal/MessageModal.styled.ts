@@ -29,6 +29,6 @@ export const MessageContainer = styled.div`
 export const MessageModalOuterContainer = styled.span<IError>`
   ${BaseModalInnerContainer} {
     border: 4px solid
-      ${props => (props.error ? colours.errorRed : colours.successGreen)};
+      ${props => (props.error ? colours.red200 : colours.successGreen)};
   }
 `;

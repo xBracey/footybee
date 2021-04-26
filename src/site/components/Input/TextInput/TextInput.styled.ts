@@ -8,6 +8,10 @@ interface ITextInputError {
   isVisible: boolean;
 }
 
+interface IInput {
+  isDisabled: boolean;
+}
+
 export const TextInputOuterContainer = styled.div`
   display: flex;
 `;
@@ -19,7 +23,7 @@ export const TextInputContainer = styled.div<ITextInputContainer>`
   padding-bottom: 40px;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<IInput>`
   background-color: ${colours.grey100};
   border: none;
   display: block;
@@ -33,6 +37,7 @@ export const Input = styled.input`
   position: relative;
   z-index: 10;
   width: calc(100% - 46px);
+  pointer-events: ${props => (props.isDisabled ? "none" : "auto")};
 
   :invalid {
     box-shadow: none;
@@ -58,7 +63,7 @@ export const TextInputError = styled.div<ITextInputError>`
   border: 3px solid ${colours.grey300};
   border-top: none;
   font-size: ${fonts.size.small};
-  background-color: ${colours.errorRed};
+  background-color: ${colours.red200};
   color: ${colours.white};
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

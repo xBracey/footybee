@@ -3,6 +3,7 @@ import {
   addGroups,
   deleteGroup,
   getAllGroups,
+  getGroup,
   getGroups,
 } from "../services";
 import IGroup, { isValidGroup } from "../models/Group/type";
@@ -74,4 +75,12 @@ export const bulkGetController = async (): Promise<controllerResponse> => {
   const { groups } = await getAllGroups();
 
   return { status: 200, response: groups };
+};
+
+export const getController = async (
+  letter: string
+): Promise<controllerResponse> => {
+  const { group } = await getGroup(letter);
+
+  return { status: 200, response: group };
 };

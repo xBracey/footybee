@@ -4,9 +4,10 @@ import { getTeams } from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { Page } from "../../Page";
-import { AdminTable } from "components";
-import { TeamsPageContainer } from "./TeamsPage.styled";
+import { AdminTable, Button } from "components";
+import { AddButtonContainer, PageContainer } from "../styles";
 import { colours } from "theme";
+import Link from "next/link";
 
 export const TeamsPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -24,7 +25,7 @@ export const TeamsPage = () => {
       adminPages
       backgroundColour={colours.green200}
     >
-      <TeamsPageContainer>
+      <PageContainer>
         <AdminTable
           data={teams.teams}
           headers={[
@@ -40,7 +41,12 @@ export const TeamsPage = () => {
           url={"/admin/teams"}
           primaryKey="name"
         />
-      </TeamsPageContainer>
+        <AddButtonContainer>
+          <Link href="/admin/teams/add">
+            <Button text="Add Team" onClick={() => {}} buttonType={"blue"} />
+          </Link>
+        </AddButtonContainer>
+      </PageContainer>
     </Page>
   );
 };
