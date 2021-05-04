@@ -3,3 +3,4 @@ export * from "./TeamsPage";
 export * from "./PlayersPage";
 export * from "./AddGroupPage";
 export * from "./AddTeamPage";
+export * from "./AddGroupMatchPage";

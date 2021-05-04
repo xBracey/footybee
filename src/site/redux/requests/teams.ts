@@ -9,3 +9,8 @@ export const fetchTeam = async (
   state: IRootState,
   name: string
 ): Promise<IAPIResponse> => authorisedRequest(state, `/team/${name}`);
+
+export const fetchTeamsFromGroup = async (
+  state: IRootState,
+  letter: string
+): Promise<IAPIResponse> => authorisedRequest(state, `/team/group/${letter}`);

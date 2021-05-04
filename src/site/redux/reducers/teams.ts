@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { IAction, IReducers } from "../types";
 
 interface ITeam {
@@ -28,13 +29,15 @@ export const teamsTypes = {
 const loadingTeams = state => ({ ...state, loading: true });
 
 const fetchedTeam = (state, { data }) => {
-  const teams = [data];
+  const teams = _.uniqBy([data, ...state.teams], "name");
 
   return { ...state, loading: false, teams };
 };
 
 const fetchedTeams = (state, { data }) => {
-  return { ...state, loading: false, teams: data };
+  const teams = _.uniqBy([...data, ...state.teams], "name");
+
+  return { ...state, loading: false, teams };
 };
 
 /**

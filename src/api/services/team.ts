@@ -69,4 +69,24 @@ const deleteTeam = async (name: string): Promise<ITeamResponse> => {
   return team ? { team: null } : { error, team: null };
 };
 
-export { addTeam, addTeams, getTeam, getTeams, getAllTeams, deleteTeam };
+const getTeamsFromGroup = async (
+  groupLetter: string
+): Promise<ITeamsResponse> => {
+  const teams = await models.Team.findAll({
+    where: {
+      groupLetter,
+    },
+  });
+
+  return { teams };
+};
+
+export {
+  addTeam,
+  addTeams,
+  getTeam,
+  getTeams,
+  getAllTeams,
+  deleteTeam,
+  getTeamsFromGroup,
+};

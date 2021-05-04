@@ -24,17 +24,13 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
   const teams = useSelector((state: IRootState) => state.teams);
   const team = name
     ? teams.teams.find(singleTeam => singleTeam.name === name)
-    : { groupLetter: null, name: null };
+    : { groupLetter: "", name: "" };
   const groups = useSelector((state: IRootState) => state.groups);
   const groupLetters = groups.groups.map(group => group.letter);
 
   const onSave = () => {};
 
   const onDelete = () => {};
-
-  console.log("====================================");
-  console.log(team);
-  console.log("====================================");
 
   return (
     <Page

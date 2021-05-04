@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 
-const story = storiesOf("Components/TeamEditCard", module);
+const story = storiesOf("Components/EditCard/TeamEditCard", module);
 
 story.add("TeamEditCard Component", () => (
   <TeamEditCard

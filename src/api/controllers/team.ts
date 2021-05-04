@@ -1,4 +1,10 @@
-import { addTeam, deleteTeam, getAllTeams, getTeam } from "../services";
+import {
+  addTeam,
+  deleteTeam,
+  getAllTeams,
+  getTeam,
+  getTeamsFromGroup,
+} from "../services";
 import ITeam, { isValidTeam } from "../models/Team/type";
 import controllerResponse from "./controller";
 import { StatusError } from "../lib";
@@ -58,4 +64,12 @@ export const getController = async (
   const { team } = await getTeam(name);
 
   return { status: 200, response: team };
+};
+
+export const getFromGroupController = async (
+  groupLetter: string
+): Promise<controllerResponse> => {
+  const { teams } = await getTeamsFromGroup(groupLetter);
+
+  return { status: 200, response: teams };
 };

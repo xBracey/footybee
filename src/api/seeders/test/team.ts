@@ -8,7 +8,7 @@ const teamSeed = async () => {
     },
     {
       name: "Test Team 2",
-      groupLetter: "Test Group 1",
+      groupLetter: "Test Group 2",
     },
     {
       name: "Test Team Delete 1",

@@ -3,6 +3,7 @@ import playerSeed from "./player";
 import teamSeed from "./team";
 import userSeed from "./user";
 import groupSeed from "./group";
+import groupMatchSeed from "./groupMatch";
 
 const seedData = async () => {
   await leagueSeed();
@@ -10,6 +11,7 @@ const seedData = async () => {
   await groupSeed();
   await teamSeed();
   await playerSeed();
+  await groupMatchSeed();
 };
 
 export default seedData;

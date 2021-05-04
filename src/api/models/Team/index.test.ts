@@ -5,6 +5,7 @@ import {
   getTeams,
   getAllTeams,
   deleteTeam,
+  getTeamsFromGroup,
 } from "../../services";
 
 describe("Get team", () => {
@@ -119,6 +120,15 @@ describe("Delete team", () => {
     const { error } = await deleteTeam("Incorrect Team");
 
     expect(error.message).toEqual("Primary Key not found when deleting entity");
+    done();
+  });
+});
+
+describe("Get teams from group", () => {
+  it("Valid", async done => {
+    const { teams } = await getTeamsFromGroup("Test Group 2");
+
+    expect(teams.length).toEqual(1);
     done();
   });
 });

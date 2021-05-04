@@ -95,3 +95,12 @@ describe("Test get all teams endpoint", () => {
     done();
   });
 });
+
+describe("Test get teams from groups endpoint", () => {
+  it("Valid group letter", async done => {
+    const response = await request.get("/team/group/Test Group 2");
+
+    expect(response.status).toBe(200);
+    done();
+  });
+});

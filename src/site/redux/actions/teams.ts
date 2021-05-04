@@ -1,5 +1,5 @@
 import { types } from "../reducers";
-import { fetchTeam, fetchTeams } from "../requests";
+import { fetchTeam, fetchTeams, fetchTeamsFromGroup } from "../requests";
 import { ThunkResult } from "../types";
 
 export const getTeams = (): ThunkResult<any> => {
@@ -28,6 +28,24 @@ export const getTeam = (name: string): ThunkResult<any> => {
       !response.error
         ? dispatch({
             type: types.teams.TEAMS_FETCHED_TEAM,
+            data: response,
+          })
+        : dispatch({
+            type: types.message.MESSAGE_SET_MESSAGE,
+            data: response,
+          })
+    );
+  };
+};
+
+export const getTeamsFromGroup = (groupLetter: string): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    dispatch({ type: types.teams.TEAMS_LOADING_TEAMS });
+
+    return fetchTeamsFromGroup(getState(), groupLetter).then(response =>
+      !response.error
+        ? dispatch({
+            type: types.teams.TEAMS_FETCHED_TEAMS,
             data: response,
           })
         : dispatch({

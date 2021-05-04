@@ -1,15 +1,15 @@
 import { Router } from "express";
 import {
-  bulkGetController,
   createController,
+  bulkCreateController,
   deleteController,
-  getController,
   getFromGroupController,
-} from "../../controllers/team";
+  getController,
+} from "../../controllers/groupMatch";
 
-export const Team = Router();
+export const GroupMatch = Router();
 
-Team.post("/create", async (req, res) => {
+GroupMatch.post("/create", async (req, res) => {
   const { status, error, response } = await createController(req.body);
 
   return error
@@ -17,31 +17,31 @@ Team.post("/create", async (req, res) => {
     : res.status(status).send(response);
 });
 
-Team.delete("/:name", async (req, res) => {
-  const { status, error, response } = await deleteController(req.params.name);
+GroupMatch.post("/bulk-create", async (req, res) => {
+  const { status, error, response } = await bulkCreateController(req.body);
 
   return error
     ? res.status(status).send({ error })
     : res.status(status).send(response);
 });
 
-Team.get("/", async (req, res) => {
-  const { status, error, response } = await bulkGetController();
+GroupMatch.delete("/:id", async (req, res) => {
+  const { status, error, response } = await deleteController(req.params.id);
 
   return error
     ? res.status(status).send({ error })
     : res.status(status).send(response);
 });
 
-Team.get("/:name", async (req, res) => {
-  const { status, error, response } = await getController(req.params.name);
+GroupMatch.get("/:id", async (req, res) => {
+  const { status, error, response } = await getController(req.params.id);
 
   return error
     ? res.status(status).send({ error })
     : res.status(status).send(response);
 });
 
-Team.get("/group/:groupLetter", async (req, res) => {
+GroupMatch.get("/group/:groupLetter", async (req, res) => {
   const { status, error, response } = await getFromGroupController(
     req.params.groupLetter
   );

@@ -76,5 +76,8 @@ export const numberValidation: ITextValidation = {
 export const isPasswordMatch = (password: string): ITextValidation => ({
   message: "Confirm Password does not match",
   validation: (text: string) => text === password,
-  restrictsInput: true,
+});
+
+export const isNotEqual = (otherValue: string): ITextValidation => ({
+  validation: (text: string) => text !== otherValue,
 });

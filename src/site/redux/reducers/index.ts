@@ -5,6 +5,7 @@ import auth, { authTypes, IAuth } from "./auth";
 import groups, { groupsTypes, IGroups } from "./groups";
 import teams, { teamsTypes, ITeams } from "./teams";
 import players, { playersTypes, IPlayers } from "./players";
+import groupMatches, { groupMatchesTypes, IGroupMatches } from "./groupMatches";
 
 export const cache = {};
 
@@ -15,6 +16,7 @@ export const types = {
   groups: groupsTypes,
   teams: teamsTypes,
   players: playersTypes,
+  groupMatches: groupMatchesTypes,
 };
 
 export interface IRootState {
@@ -24,6 +26,15 @@ export interface IRootState {
   groups: IGroups;
   teams: ITeams;
   players: IPlayers;
+  groupMatches: IGroupMatches;
 }
 
-export default combineReducers({ user, message, auth, groups, teams, players });
+export default combineReducers({
+  user,
+  message,
+  auth,
+  groups,
+  teams,
+  players,
+  groupMatches,
+});
