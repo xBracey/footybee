@@ -5,6 +5,7 @@ import { IGroupMatchReducer, reducer } from "./GroupMatchReducer";
 import { EditCard } from "../EditCard";
 import { TextInput } from "../../Input/TextInput";
 import { customMenuStyle, EditFlex, EditFlexOne, InputLabel } from "../styles";
+import { DateInput } from "components/Input";
 
 let hasBlurred = [false, false, false, false];
 
@@ -24,13 +25,14 @@ export const GroupMatchEditCard = ({
   onDelete,
 }: IGroupMatchEditCard) => {
   const [state, dispatch]: [IGroupMatchReducer, any] = useReducer(reducer, {
+    date: groupMatch.date,
     homeTeam: groupMatch.homeTeam,
     awayTeam: groupMatch.awayTeam,
     homeTeamGoals: groupMatch.homeTeamGoals,
     awayTeamGoals: groupMatch.awayTeamGoals,
   });
 
-  const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = state;
+  const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, date } = state;
 
   const options = teamNames.map(name => ({
     value: name,
@@ -81,6 +83,16 @@ export const GroupMatchEditCard = ({
       isDisabled={validation.isDisabled}
       isEdit={isEdit}
     >
+      <InputLabel>Date</InputLabel>
+      <DateInput
+        date={date ? new Date(date) : new Date()}
+        setDate={date =>
+          dispatch({
+            type: "edit",
+            data: { date: date.toString() },
+          })
+        }
+      />
       <EditFlex>
         <EditFlexOne>
           <InputLabel>Home Team</InputLabel>

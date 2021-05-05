@@ -5,7 +5,7 @@ import { AddGroupMatchPage } from "templates";
 const Add = () => {
   const { letter }: { letter?: string } = router.query;
 
-  return <AddGroupMatchPage groupLetter={letter} id={null} />;
+  return letter ? <AddGroupMatchPage groupLetter={letter} id={null} /> : null;
 };
 
 export default Add;

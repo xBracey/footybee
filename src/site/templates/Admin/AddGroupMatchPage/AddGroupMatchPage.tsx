@@ -30,6 +30,7 @@ export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
   const groupMatch = id
     ? groupMatches.groupMatches.find(match => match.id === id)
     : {
+        date: "",
         homeTeam: "",
         awayTeam: "",
         homeTeamGoals: "",
@@ -39,6 +40,10 @@ export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
   const onSave = () => {};
 
   const onDelete = () => {};
+
+  console.log("====================================");
+  console.log(teamNames, groupMatch);
+  console.log("====================================");
 
   return (
     <Page
@@ -52,6 +57,7 @@ export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
           <GroupMatchEditCard
             teamNames={teamNames}
             groupMatch={{
+              date: groupMatch.date,
               homeTeam: groupMatch.homeTeam,
               awayTeam: groupMatch.awayTeam,
               homeTeamGoals: groupMatch.homeTeamGoals?.toString(),

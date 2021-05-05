@@ -1,5 +1,6 @@
+import { IGroupReducer } from "components/EditCard/GroupEditCard/GroupReducer";
 import { types } from "../reducers";
-import { fetchGroups } from "../requests";
+import { fetchGroups, postGroup, deleteGroup } from "../requests";
 import { ThunkResult } from "../types";
 
 export const getGroups = (): ThunkResult<any> => {
@@ -16,6 +17,28 @@ export const getGroups = (): ThunkResult<any> => {
             type: types.message.MESSAGE_SET_MESSAGE,
             data: response,
           })
+    );
+  };
+};
+
+export const saveGroup = (group: IGroupReducer): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return postGroup(getState(), group).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
+    );
+  };
+};
+
+export const removeGroup = (letter: string): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return deleteGroup(getState(), letter).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
     );
   };
 };

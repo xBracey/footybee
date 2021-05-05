@@ -6,6 +6,7 @@ export const fonts = {
     large: "18px",
     medium: "16px",
     small: "14px",
+    extraSmall: "13px",
   },
   family: {
     poppins: "Poppins, sans-serif;",

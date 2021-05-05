@@ -1,7 +1,8 @@
 import { TeamEditCard } from "components";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTeam } from "redux/actions";
+import { getTeam, removeTeam } from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { getGroups } from "src/site/redux/actions/groups";
@@ -15,6 +16,7 @@ interface IAddTeamPage {
 
 export const AddTeamPage = ({ name }: IAddTeamPage) => {
   const dispatch: AppDispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (name) dispatch(getTeam(name));
@@ -30,7 +32,13 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
 
   const onSave = () => {};
 
-  const onDelete = () => {};
+  const onDelete = () => {
+    dispatch(removeTeam(name)).then(({ data }) => {
+      if (!data?.error) {
+        router.push("/admin/groups");
+      }
+    });
+  };
 
   return (
     <Page

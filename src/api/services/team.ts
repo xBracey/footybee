@@ -81,6 +81,21 @@ const getTeamsFromGroup = async (
   return { teams };
 };
 
+const editTeam = async (name, teamData: ITeam): Promise<ITeamResponse> => {
+  try {
+    const team = await models.Team.findOne({
+      where: {
+        name,
+      },
+    });
+
+    team.update(teamData);
+    return { team };
+  } catch (error) {
+    return { error: new StatusError(error), team: null };
+  }
+};
+
 export {
   addTeam,
   addTeams,
@@ -89,4 +104,5 @@ export {
   getAllTeams,
   deleteTeam,
   getTeamsFromGroup,
+  editTeam,
 };

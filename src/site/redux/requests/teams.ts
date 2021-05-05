@@ -14,3 +14,9 @@ export const fetchTeamsFromGroup = async (
   state: IRootState,
   letter: string
 ): Promise<IAPIResponse> => authorisedRequest(state, `/team/group/${letter}`);
+
+export const deleteTeam = async (
+  state: IRootState,
+  name: string
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/team/${name}`, { method: "DELETE" });

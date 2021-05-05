@@ -5,7 +5,9 @@ import { AddGroupMatchPage } from "templates";
 const GroupMatch = () => {
   const { letter, id }: { letter?: string; id?: string } = router.query;
 
-  return id ? <AddGroupMatchPage groupLetter={letter} id={id} /> : null;
+  return letter && id ? (
+    <AddGroupMatchPage groupLetter={letter} id={id} />
+  ) : null;
 };
 
 export default GroupMatch;

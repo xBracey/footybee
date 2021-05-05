@@ -39,7 +39,12 @@ export const apiRequest = async (
   }
 };
 
-export const authorisedRequest = async (state: IRootState, url: string) =>
+export const authorisedRequest = async (
+  state: IRootState,
+  url: string,
+  options: AxiosRequestConfig = {}
+) =>
   apiRequest(url, {
+    ...options,
     headers: { Authorization: `Bearer ${state.auth.token}` },
   });

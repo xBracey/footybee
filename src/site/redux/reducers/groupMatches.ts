@@ -3,6 +3,7 @@ import { IAction, IReducers } from "../types";
 
 export interface IGroupMatch {
   id: string;
+  date: string;
   groupLetter: string;
   homeTeam: string;
   awayTeam: string;

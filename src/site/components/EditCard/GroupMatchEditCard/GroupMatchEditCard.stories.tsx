@@ -10,6 +10,7 @@ story.add("GroupMatchEditCard Component", () => (
   <GroupMatchEditCard
     teamNames={["England", "Belgium", "Denmark", "Spain"]}
     groupMatch={{
+      date: "",
       homeTeam: null,
       awayTeam: null,
       homeTeamGoals: "",

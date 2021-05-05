@@ -1,4 +1,5 @@
 export interface IGroupMatchReducer {
+  date: string;
   homeTeam: string;
   awayTeam: string;
   homeTeamGoals: string;

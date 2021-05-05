@@ -1,6 +1,7 @@
 import {
   addTeam,
   deleteTeam,
+  editTeam,
   getAllTeams,
   getTeam,
   getTeamsFromGroup,
@@ -32,6 +33,23 @@ export const createController = async (
   }
 
   const { error, team } = await addTeam(body);
+
+  if (!error) {
+    return { status: 200, response: team };
+  }
+
+  return handleError(error);
+};
+
+export const editController = async (
+  name: string,
+  body: ITeam
+): Promise<controllerResponse> => {
+  if (!isValidTeam(body)) {
+    return { status: 400, error: "Invalid parameters" };
+  }
+
+  const { error, team } = await editTeam(name, body);
 
   if (!error) {
     return { status: 200, response: team };

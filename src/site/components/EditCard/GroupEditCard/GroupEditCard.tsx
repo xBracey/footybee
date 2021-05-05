@@ -10,7 +10,7 @@ let hasBlurred = [false, false];
 interface IGroupEditCard {
   group: IGroupReducer;
   isEdit: boolean;
-  onSave: () => void;
+  onSave: (group: IGroupReducer) => void;
   onDelete: () => void;
 }
 
@@ -51,10 +51,14 @@ export const GroupEditCard = ({
     setValidation(newValidation);
   };
 
+  const saveGroup = () => {
+    onSave(state);
+  };
+
   return (
     <EditCard
       title={group.letter ? `Group ${group.letter}` : "New Group"}
-      onSave={onSave}
+      onSave={saveGroup}
       onDelete={onDelete}
       isDisabled={validation.isDisabled}
       isEdit={isEdit}
