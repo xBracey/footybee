@@ -4,9 +4,11 @@ import { getPlayers } from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { Page } from "../../Page";
-import { AdminTable } from "components";
+import { AdminTable, Button } from "components";
 import { PlayersPageContainer } from "./PlayersPage.styled";
 import { colours } from "theme";
+import { AddButtonContainer } from "../styles";
+import Link from "next/link";
 
 export const PlayersPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -29,17 +31,22 @@ export const PlayersPage = () => {
           data={players.players}
           headers={[
             {
-              Header: "Team Name",
-              accessor: "teamName",
-            },
-            {
               Header: "Player Name",
               accessor: "name",
+            },
+            {
+              Header: "Team Name",
+              accessor: "teamName",
             },
           ]}
           url={"/admin/players"}
           primaryKey="name"
         />
+        <AddButtonContainer>
+          <Link href={`/admin/players/add`}>
+            <Button text="Add Player" onClick={() => {}} buttonType={"blue"} />
+          </Link>
+        </AddButtonContainer>
       </PlayersPageContainer>
     </Page>
   );

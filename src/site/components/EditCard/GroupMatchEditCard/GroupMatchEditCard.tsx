@@ -13,7 +13,7 @@ interface IGroupMatchEditCard {
   teamNames: string[];
   groupMatch: IGroupMatchReducer;
   isEdit: boolean;
-  onSave: () => void;
+  onSave: (groupMatch: IGroupMatchReducer) => void;
   onDelete: () => void;
 }
 
@@ -75,10 +75,14 @@ export const GroupMatchEditCard = ({
     setValidation(newValidation);
   };
 
+  const saveGroupMatch = () => {
+    onSave(state);
+  };
+
   return (
     <EditCard
       title={homeTeam && awayTeam ? `${homeTeam} vs ${awayTeam}` : "New Match"}
-      onSave={onSave}
+      onSave={saveGroupMatch}
       onDelete={onDelete}
       isDisabled={validation.isDisabled}
       isEdit={isEdit}

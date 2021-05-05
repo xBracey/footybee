@@ -1,8 +1,12 @@
+import { IGroupMatchReducer } from "components/EditCard/GroupMatchEditCard/GroupMatchReducer";
 import { types } from "../reducers";
 import {
   fetchGroupMatches,
   fetchMatchesFromGroup,
   fetchGroupMatch,
+  postGroupMatch,
+  putGroupMatch,
+  deleteGroupMatch,
 } from "../requests";
 import { ThunkResult } from "../types";
 
@@ -56,6 +60,44 @@ export const getGroupMatch = (id: string): ThunkResult<any> => {
             type: types.message.MESSAGE_SET_MESSAGE,
             data: response,
           })
+    );
+  };
+};
+
+export const saveGroupMatch = (
+  groupmatch: IGroupMatchReducer
+): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return postGroupMatch(getState(), groupmatch).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
+    );
+  };
+};
+
+export const editGroupMatch = (
+  id: string,
+  groupmatch: IGroupMatchReducer
+): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return putGroupMatch(getState(), id, groupmatch).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
+    );
+  };
+};
+
+export const removeGroupMatch = (id: string): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return deleteGroupMatch(getState(), id).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
     );
   };
 };

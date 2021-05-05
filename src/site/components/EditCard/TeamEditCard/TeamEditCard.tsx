@@ -12,7 +12,7 @@ interface ITeamEditCard {
   groupLetters: string[];
   team: ITeamReducer;
   isEdit: boolean;
-  onSave: () => void;
+  onSave: (team: ITeamReducer) => void;
   onDelete: () => void;
 }
 
@@ -82,10 +82,14 @@ export const TeamEditCard = ({
     }),
   };
 
+  const saveTeam = () => {
+    onSave(state);
+  };
+
   return (
     <EditCard
       title={team.name ?? "New Team"}
-      onSave={onSave}
+      onSave={saveTeam}
       onDelete={onDelete}
       isDisabled={validation.isDisabled}
       isEdit={isEdit}

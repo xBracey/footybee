@@ -1,9 +1,12 @@
+import { ITeamReducer } from "components/EditCard/TeamEditCard/TeamReducer";
 import { types } from "../reducers";
 import {
   fetchTeam,
   fetchTeams,
   fetchTeamsFromGroup,
   deleteTeam,
+  postTeam,
+  putTeam,
 } from "../requests";
 import { ThunkResult } from "../types";
 
@@ -57,6 +60,31 @@ export const getTeamsFromGroup = (groupLetter: string): ThunkResult<any> => {
             type: types.message.MESSAGE_SET_MESSAGE,
             data: response,
           })
+    );
+  };
+};
+
+export const saveTeam = (team: ITeamReducer): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return postTeam(getState(), team).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
+    );
+  };
+};
+
+export const editTeam = (
+  name: string,
+  team: ITeamReducer
+): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return putTeam(getState(), name, team).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
     );
   };
 };

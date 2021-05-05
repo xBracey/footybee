@@ -1,7 +1,12 @@
 import { GroupMatchEditCard } from "components";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGroupMatch, getTeamsFromGroup } from "redux/actions";
+import {
+  getGroupMatch,
+  getTeamsFromGroup,
+  removeGroupMatch,
+} from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { Page } from "templates";
@@ -15,6 +20,7 @@ interface IAddGroupMatchPage {
 
 export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
   const dispatch: AppDispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (id !== null) dispatch(getGroupMatch(id));
@@ -39,11 +45,13 @@ export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
 
   const onSave = () => {};
 
-  const onDelete = () => {};
-
-  console.log("====================================");
-  console.log(teamNames, groupMatch);
-  console.log("====================================");
+  const onDelete = () => {
+    dispatch(removeGroupMatch(id)).then(({ data }) => {
+      if (!data?.error) {
+        router.push("/admin/players");
+      }
+    });
+  };
 
   return (
     <Page

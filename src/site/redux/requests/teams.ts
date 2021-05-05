@@ -1,3 +1,4 @@
+import { ITeamReducer } from "components/EditCard/TeamEditCard/TeamReducer";
 import { authorisedRequest } from "../api";
 import { IRootState } from "../reducers";
 import { IAPIResponse } from "../types";
@@ -20,3 +21,16 @@ export const deleteTeam = async (
   name: string
 ): Promise<IAPIResponse> =>
   authorisedRequest(state, `/team/${name}`, { method: "DELETE" });
+
+export const postTeam = async (
+  state: IRootState,
+  team: ITeamReducer
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/team`, { data: team, method: "POST" });
+
+export const putTeam = async (
+  state: IRootState,
+  name: string,
+  team: ITeamReducer
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/team/${name}`, { data: team, method: "PUT" });

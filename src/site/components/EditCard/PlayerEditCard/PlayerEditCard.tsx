@@ -12,7 +12,7 @@ interface IPlayerEditCard {
   teamNames: string[];
   player: IPlayerReducer;
   isEdit: boolean;
-  onSave: () => void;
+  onSave: (player: IPlayerReducer) => void;
   onDelete: () => void;
 }
 
@@ -82,10 +82,14 @@ export const PlayerEditCard = ({
     }),
   };
 
+  const savePlayer = () => {
+    onSave(state);
+  };
+
   return (
     <EditCard
       title={player.name ?? "New Player"}
-      onSave={onSave}
+      onSave={savePlayer}
       onDelete={onDelete}
       isDisabled={validation.isDisabled}
       isEdit={isEdit}

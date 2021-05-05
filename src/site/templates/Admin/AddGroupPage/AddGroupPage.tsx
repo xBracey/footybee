@@ -36,12 +36,12 @@ export const AddGroupPage = ({ letter }: IAddGroupPage) => {
     dispatch(getMatchesFromGroup(letter));
   }, []);
 
-  const onSave = (group: IGroupReducer) => {
-    dispatch(saveGroup(group)).then(({ data }) => {
-      if (!data?.error) {
-        router.push("/admin/groups");
-      }
-    });
+  const onSave = async (group: IGroupReducer) => {
+    const { data } = dispatch(saveGroup(group));
+
+    if (!data?.error) {
+      router.push("/admin/groups");
+    }
   };
 
   const onDelete = () => {

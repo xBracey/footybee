@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { IAction, IReducers } from "../types";
 
 export interface IPlayer {
@@ -17,6 +18,7 @@ const initialState: IPlayers = {
 
 export const playersTypes = {
   PLAYERS_FETCHED_PLAYERS: "fetchedPlayers",
+  PLAYERS_FETCHED_PLAYER: "fetchedPlayer",
   PLAYERS_LOADING_PLAYERS: "loadingPlayers",
 };
 
@@ -27,7 +29,15 @@ export const playersTypes = {
 const loadingPlayers = state => ({ ...state, loading: true });
 
 const fetchedPlayers = (state, { data }) => {
-  return { ...state, loading: false, players: data };
+  const players = _.uniqBy([...data, ...state.players], "name");
+
+  return { ...state, loading: false, players };
+};
+
+const fetchedPlayer = (state: IPlayers, { data }) => {
+  const players = _.uniqBy([data, ...state.players], "name");
+
+  return { ...state, loading: false, players };
 };
 
 /**
@@ -36,6 +46,7 @@ const fetchedPlayers = (state, { data }) => {
 
 const reducers: IReducers<IPlayers> = {
   fetchedPlayers,
+  fetchedPlayer,
   loadingPlayers,
 };
 

@@ -1,14 +1,21 @@
-import { TeamEditCard } from "components";
+import { Button, TeamEditCard } from "components";
+import { ITeamReducer } from "components/EditCard/TeamEditCard/TeamReducer";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTeam, removeTeam } from "redux/actions";
+import {
+  editTeam,
+  getTeam,
+  removeTeam,
+  saveTeam,
+  getGroups,
+} from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
-import { getGroups } from "src/site/redux/actions/groups";
 import { Page } from "templates";
 import { colours } from "theme";
-import { AddPageContainer } from "../styles";
+import { AddButtonContainer, AddPageContainer } from "../styles";
 
 interface IAddTeamPage {
   name: string;
@@ -30,12 +37,20 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
   const groups = useSelector((state: IRootState) => state.groups);
   const groupLetters = groups.groups.map(group => group.letter);
 
-  const onSave = () => {};
+  const onSave = async (team: ITeamReducer) => {
+    const { data } = team
+      ? await dispatch(editTeam(name, team))
+      : await dispatch(saveTeam(team));
+
+    if (!data?.error) {
+      router.push("/admin/teams");
+    }
+  };
 
   const onDelete = () => {
     dispatch(removeTeam(name)).then(({ data }) => {
       if (!data?.error) {
-        router.push("/admin/groups");
+        router.push("/admin/teams");
       }
     });
   };
