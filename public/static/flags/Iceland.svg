@@ -1,1 +1,7 @@
-<?xml version="1.0" ?><svg xmlns="http://www.w3.org/2000/svg"  width="1250" height="900" viewBox="0 0 25 18">	<path d="M0 0H25V18H0Z" fill="#02529C"/>	<path d="M0 9H25M9 0V18" stroke-width="4" stroke="#FFF"/>	<path d="M0 9H25M9 0V18" stroke-width="2" stroke="#DC1E35"/></svg>
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0H600V600H0V0Z" fill="#02529C"/>
+<path d="M0 300H600H0ZM216 0V600Z" fill="black"/>
+<path d="M216 0V600M0 300H600H0Z" stroke="white" stroke-width="200"/>
+<path d="M216 0V600Z" fill="black"/>
+<path d="M0 300H600M216 0V600" stroke="#DC1E35" stroke-width="100"/>
+</svg>

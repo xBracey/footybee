@@ -6,6 +6,8 @@ import {
   ResultScore,
   ResultDate,
   ResultScoreContainer,
+  ResultDateTime,
+  ResultTeam,
 } from "./Result.styled";
 import moment from "moment";
 
@@ -24,18 +26,34 @@ export const Result = ({
   awayGoals,
   date,
 }: IResult) => {
+  const emptyResult = homeGoals === null || awayGoals === null;
+
+  const resultScore = emptyResult ? (
+    <>
+      <ResultDate>{moment(date).format("DD/MM")}</ResultDate>
+      <ResultDateTime>{moment(date).format("HH:mm")}</ResultDateTime>
+    </>
+  ) : (
+    <ResultScore>{`${homeGoals} - ${awayGoals}`}</ResultScore>
+  );
+
   return (
     <ResultContainer>
+      <ResultTeam>{homeTeam}</ResultTeam>
       <ResultFlagContainer>
-        <ResultFlag src={`/static/flags/${homeTeam.replace(" ", "_")}.svg`} />
+        <ResultFlag
+          src={`/static/flags/${homeTeam.replaceAll(" ", "_")}.svg`}
+        />
       </ResultFlagContainer>
-      <ResultScoreContainer>
-        <ResultScore>{`${homeGoals} - ${awayGoals}`}</ResultScore>
-        <ResultDate>{moment(date).format("DD/MM")}</ResultDate>
-      </ResultScoreContainer>
+
+      <ResultScoreContainer>{resultScore}</ResultScoreContainer>
+
       <ResultFlagContainer>
-        <ResultFlag src={`/static/flags/${awayTeam.replace(" ", "_")}.svg`} />
+        <ResultFlag
+          src={`/static/flags/${awayTeam.replaceAll(" ", "_")}.svg`}
+        />
       </ResultFlagContainer>
+      <ResultTeam>{awayTeam}</ResultTeam>
     </ResultContainer>
   );
 };

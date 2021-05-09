@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg height="560" width="740" xmlns="http://www.w3.org/2000/svg">
-	<rect fill="#C60C30" height="560" width="740"/>
-	<rect fill="#FFFFFF" height="560" width="80" x="240"/>
-	<rect fill="#FFFFFF" height="80" width="740" y="240"/>
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M600 0H0V600H600V0Z" fill="#C60C30"/>
+<path d="M264 0H179V600H264V0Z" fill="white"/>
+<path d="M600 257.143H0V342.857H600V257.143Z" fill="white"/>
 </svg>
