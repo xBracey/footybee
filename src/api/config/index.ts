@@ -1,5 +1,6 @@
 import { League, User, Player, Team, Group, GroupMatch } from "../models";
 import { Sequelize } from "sequelize-typescript";
+import fs from "fs";
 
 /* istanbul ignore next */
 const sequelize = new Sequelize(
@@ -21,5 +22,11 @@ const models = {
 };
 
 sequelize.addModels(Object.values(models));
+
+if (process.env.NODE_ENV !== "test") {
+  const sql = fs.readFileSync("./sql/footybee.sql", "utf8");
+
+  sequelize.query(sql);
+}
 
 export { models, sequelize };

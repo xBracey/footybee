@@ -1,7 +1,6 @@
 import testSeed from "./test";
-import realSeed from "./real";
 
 const seedData = async () =>
-  process.env.NODE_ENV === "test" ? testSeed() : realSeed();
+  process.env.NODE_ENV === "test" ? testSeed() : () => {};
 
 export default seedData;

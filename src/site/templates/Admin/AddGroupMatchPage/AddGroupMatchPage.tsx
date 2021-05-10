@@ -1,11 +1,14 @@
 import { GroupMatchEditCard } from "components";
+import { IGroupMatchReducer } from "components/EditCard/GroupMatchEditCard/GroupMatchReducer";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  editGroupMatch,
   getGroupMatch,
   getTeamsFromGroup,
   removeGroupMatch,
+  saveGroupMatch,
 } from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
@@ -43,7 +46,15 @@ export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
         awayTeamGoals: "",
       };
 
-  const onSave = () => {};
+  const onSave = async (groupMatch: IGroupMatchReducer) => {
+    const { data } = id
+      ? await dispatch(editGroupMatch(id, groupMatch))
+      : await dispatch(saveGroupMatch(groupMatch));
+
+    if (!data?.error) {
+      router.push("/admin/teams");
+    }
+  };
 
   const onDelete = () => {
     dispatch(removeGroupMatch(id)).then(({ data }) => {

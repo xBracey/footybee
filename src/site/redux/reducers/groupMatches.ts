@@ -45,6 +45,12 @@ const fetchedGroupMatch = (state: IGroupMatches, { data }) => {
   return { ...state, loading: false, groupMatches };
 };
 
+const deletedGroupMatch = (state: IGroupMatches, { data }) => {
+  const groupMatches = _.uniqBy([data, ...state.groupMatches], "id");
+
+  return { ...state, loading: false, groupMatches };
+};
+
 /**
  * GROUP MATCHES REDUCERS - END
  * */
