@@ -1,40 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
 import {
   LeagueTableContainer,
   LeagueTableRow,
   LeagueTableCell,
   LeagueTableHeader,
   LeagueTableHeaderCell,
-  LeagueTableAtom,
+  LeagueTableSwap,
 } from "./LeagueTable.styled";
-
-interface ITeam {
-  name: string;
-  goalsFor: number;
-  goalsAgainst: number;
-  points: number;
-}
+import { calculateTable } from "../../../../api/lib/calculateTable/calculateTable";
+import _ from "lodash";
+import { icons } from "assets";
 
 interface ILeagueTable {
-  teams: ITeam[];
+  matches: IGroupMatch[];
   inverted?: boolean;
 }
 
-export const LeagueTable = ({ teams, inverted }: ILeagueTable) => {
-  const rowsComponent = teams.map(team => (
-    <LeagueTableRow>
+export const LeagueTable = ({ matches, inverted }: ILeagueTable) => {
+  // @ts-ignore
+  const { table: firstTable, pairings } = calculateTable(matches);
+  const [table, setTable] = useState(firstTable);
+
+  useEffect(() => {
+    // @ts-ignore
+    const { table: newTable } = calculateTable(matches);
+    setTable(newTable);
+  }, [matches]);
+
+  const indexPairings = _.flatten(
+    pairings.map(pairing => {
+      return pairing
+        .map(team1 => table.findIndex(team2 => team2.name === team1))
+        .sort()
+        .slice(0, -1);
+    })
+  );
+
+  const swapIndex = (index: number) => {
+    const newTable = [...table];
+    [newTable[index], newTable[index + 1]] = [
+      newTable[index + 1],
+      newTable[index],
+    ];
+    setTable(newTable);
+  };
+
+  const rowsComponent = table.map((team, index) => (
+    <LeagueTableRow key={index}>
       <LeagueTableCell name>{team.name}</LeagueTableCell>
-      <LeagueTableCell hideMobile>{team.goalsFor}</LeagueTableCell>
-      <LeagueTableCell hideMobile>{team.goalsAgainst}</LeagueTableCell>
-      <LeagueTableCell showMobile>
-        <LeagueTableAtom>{team.goalsFor}</LeagueTableAtom>
-        <LeagueTableAtom>-</LeagueTableAtom>
-        <LeagueTableAtom>{team.goalsAgainst}</LeagueTableAtom>
+      <LeagueTableCell>{team.played}</LeagueTableCell>
+      <LeagueTableCell>{team.wins}</LeagueTableCell>
+      <LeagueTableCell>{team.draws}</LeagueTableCell>
+      <LeagueTableCell>{team.losses}</LeagueTableCell>
+      <LeagueTableCell>{team.goalsFor}</LeagueTableCell>
+      <LeagueTableCell>{team.goalsAgainst}</LeagueTableCell>
+      <LeagueTableCell>{team.goalDifference}</LeagueTableCell>
+      <LeagueTableCell>
+        <strong>{team.points}</strong>
       </LeagueTableCell>
-      <LeagueTableCell right>
-        {team.goalsFor - team.goalsAgainst}
-      </LeagueTableCell>
-      <LeagueTableCell right>{team.points}</LeagueTableCell>
+      {indexPairings.includes(index) ? (
+        <LeagueTableSwap onClick={() => swapIndex(index)}>
+          <icons.swap />
+        </LeagueTableSwap>
+      ) : null}
     </LeagueTableRow>
   ));
 
@@ -42,18 +71,14 @@ export const LeagueTable = ({ teams, inverted }: ILeagueTable) => {
     <LeagueTableContainer>
       <LeagueTableHeader>
         <LeagueTableHeaderCell name>Name</LeagueTableHeaderCell>
-        <LeagueTableHeaderCell hideMobile>For</LeagueTableHeaderCell>
-        <LeagueTableHeaderCell hideMobile>Against</LeagueTableHeaderCell>
-        <LeagueTableHeaderCell showMobile center>
-          +/-
-        </LeagueTableHeaderCell>
-        <LeagueTableHeaderCell right>GD</LeagueTableHeaderCell>
-        <LeagueTableHeaderCell right showMobile>
-          Pts
-        </LeagueTableHeaderCell>
-        <LeagueTableHeaderCell right hideMobile>
-          Points
-        </LeagueTableHeaderCell>
+        <LeagueTableHeaderCell>Pld</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell>W</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell>D</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell>L</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell>GF</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell>GA</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell>GD</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell>Pts</LeagueTableHeaderCell>
       </LeagueTableHeader>
       {rowsComponent}
     </LeagueTableContainer>

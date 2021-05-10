@@ -39,8 +39,9 @@ describe("Test calculate table", () => {
       },
     ];
 
-    const table = calculateTable(groupMatches);
+    const { table, pairings } = calculateTable(groupMatches);
 
+    expect(pairings.length).toEqual(0);
     expect(table).toEqual([
       {
         name: "A",

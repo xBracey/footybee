@@ -1,9 +1,12 @@
 import _ from "lodash";
+import { IGroupTeam } from "./calculateGroup";
+import { IRawPairing } from "./calculateTable";
 
 export const reducePairings = (
-  pairings: { a: string; b: string }[]
+  pairings: IRawPairing[],
+  table: IGroupTeam[]
 ): string[][] => {
-  let matches = [];
+  let matches: string[][] = [];
   const indexesCovered = [];
 
   for (let i = 0; i < pairings.length; i++) {
@@ -17,10 +20,7 @@ export const reducePairings = (
 
         if (
           !indexesCovered.includes(j) &&
-          (pairing.a === pairing2.a ||
-            pairing.b === pairing2.b ||
-            pairing.a === pairing2.b ||
-            pairing.b === pairing2.a)
+          (matches[i].includes(pairing2.a) || matches[i].includes(pairing2.b))
         ) {
           indexesCovered.push(j);
           matches[i].push(pairing2.a);
@@ -30,7 +30,13 @@ export const reducePairings = (
     }
   }
 
-  matches = matches.filter(match => !!match).map(match => _.uniq(match));
+  matches = matches
+    .filter(
+      match =>
+        !!match &&
+        match.every(teamName => !!table.find(team => team.name === teamName))
+    )
+    .map(match => _.uniq(match));
 
   return matches;
 };

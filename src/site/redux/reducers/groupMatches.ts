@@ -7,8 +7,8 @@ export interface IGroupMatch {
   groupLetter: string;
   homeTeam: string;
   awayTeam: string;
-  homeTeamGoals: number;
-  awayTeamGoals: number;
+  homeGoals: number;
+  awayGoals: number;
 }
 
 export interface IGroupMatches {

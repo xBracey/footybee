@@ -1,12 +1,8 @@
 import styled, { css } from "styled-components";
 import { colours, device, fonts } from "theme";
 
-interface ILeagueTableCell {
+interface ITableCell {
   name?: boolean;
-  right?: boolean;
-  center?: boolean;
-  hideMobile?: boolean;
-  showMobile?: boolean;
 }
 
 export const LeagueTableContainer = styled.div`
@@ -14,11 +10,17 @@ export const LeagueTableContainer = styled.div`
   border-radius: 4px;
   border: 3px solid ${colours.blue200};
   width: 100%;
+  margin: 16px;
+
+  path {
+    stroke: ${colours.blue200};
+  }
 `;
 
 export const LeagueTableRow = styled.div`
   display: flex;
   padding: 12px;
+  position: relative;
 
   &:nth-child(2n + 1) {
     color: ${colours.white};
@@ -33,19 +35,15 @@ export const LeagueTableRow = styled.div`
 const TableCell = css`
   flex: ${props => (props.name ? 3 : 1)};
   font-size: ${fonts.size.small};
-  justify-content: ${props =>
-    props.right ? "flex-end" : props.center ? "center " : "flex-start"};
+  justify-content: center;
   padding: 4px;
-  display: ${props => (props.hideMobile ? "none" : "flex")};
+  display: flex;
   align-items: center;
   min-height: 25px;
-
-  @media ${device.laptop} {
-    display: ${props => (props.showMobile ? "none" : "flex")};
-  }
+  text-align: center;
 `;
 
-export const LeagueTableCell = styled.div<ILeagueTableCell>`
+export const LeagueTableCell = styled.div<ITableCell>`
   ${TableCell}
 `;
 
@@ -57,11 +55,14 @@ export const LeagueTableHeader = styled.div`
   color: ${colours.white};
 `;
 
-export const LeagueTableHeaderCell = styled.div<ILeagueTableCell>`
+export const LeagueTableHeaderCell = styled.div<ITableCell>`
   ${TableCell}
 `;
 
-export const LeagueTableAtom = styled.div`
-  flex: 1;
-  text-align: center;
+export const LeagueTableSwap = styled.div`
+  position: absolute;
+  top: 50%;
+  right: -32px;
+  transform: translate(0, -50%);
+  cursor: pointer;
 `;
