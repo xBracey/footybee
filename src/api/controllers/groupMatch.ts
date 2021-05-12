@@ -2,6 +2,7 @@ import {
   addGroupMatch,
   addGroupMatches,
   deleteGroupMatch,
+  getAllGroupMatches,
   getGroupMatch,
   getMatchFromGroup,
 } from "../services";
@@ -74,6 +75,12 @@ export const deleteController = async (
   }
 
   return handleError(error);
+};
+
+export const getAllController = async (): Promise<controllerResponse> => {
+  const { groupMatches } = await getAllGroupMatches();
+
+  return { status: 200, response: groupMatches };
 };
 
 export const getController = async (

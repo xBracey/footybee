@@ -1,12 +1,14 @@
 import validator from "validator";
 
+const notNullOrUndefined = (data: any) => data !== null && data !== undefined;
+
 export const checkBody = (body: object) => {
   return !!body && typeof body == "object";
 };
 
 export const validateArray = (data: any[], type: string) => {
   return (
-    !!data &&
+    notNullOrUndefined(data) &&
     typeof data == "object" &&
     data.length &&
     data.every(singleData => typeof singleData === type)
@@ -15,7 +17,7 @@ export const validateArray = (data: any[], type: string) => {
 
 export const validateArrayTypeCheck = (data: any[], typeCheck: Function) => {
   return (
-    !!data &&
+    notNullOrUndefined(data) &&
     typeof data == "object" &&
     data.length &&
     data.every(singleData => typeCheck(singleData))
@@ -24,9 +26,9 @@ export const validateArrayTypeCheck = (data: any[], typeCheck: Function) => {
 
 export const validateType = (data: any, type: string, required: boolean) => {
   if (required) {
-    return !!data && typeof data == type;
+    return notNullOrUndefined(data) && typeof data == type;
   } else {
-    return (!!data && typeof data == type) || !data;
+    return (notNullOrUndefined(data) && typeof data == type) || !data;
   }
 };
 
@@ -40,9 +42,9 @@ export const validateBoolean = (data: any, required: boolean) => {
 
 export const validateDate = (data: string, required: boolean) => {
   if (required) {
-    return !!data && validator.isISO8601(data);
+    return notNullOrUndefined(data) && validator.isISO8601(data);
   } else {
-    return (!!data && validator.isISO8601(data)) || !data;
+    return (notNullOrUndefined(data) && validator.isISO8601(data)) || !data;
   }
 };
 

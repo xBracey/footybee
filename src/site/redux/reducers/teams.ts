@@ -4,6 +4,7 @@ import { IAction, IReducers } from "../types";
 interface ITeam {
   groupLetter: string;
   name: string;
+  groupPosition: number;
 }
 
 export interface ITeams {

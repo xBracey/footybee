@@ -1,5 +1,14 @@
 import express, { Router } from "express";
-import { League, User, Player, Team, Group, GroupMatch } from "./routes";
+import {
+  League,
+  User,
+  Player,
+  Team,
+  Group,
+  GroupMatch,
+  TeamPrediction,
+  GroupMatchPrediction,
+} from "./routes";
 import passport from "./passport";
 import bodyParser from "body-parser";
 import expressSession from "express-session";
@@ -28,5 +37,7 @@ app.use("/player", Player);
 app.use("/team", Team);
 app.use("/group", Group);
 app.use("/groupMatch", GroupMatch);
+app.use("/teamPrediction", TeamPrediction);
+app.use("/groupMatchPrediction", GroupMatchPrediction);
 
 export default app;

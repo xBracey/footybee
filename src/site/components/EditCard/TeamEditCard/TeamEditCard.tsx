@@ -1,12 +1,12 @@
 import React, { useReducer, useState } from "react";
 import Select from "react-select";
-import { isMandatory, validateInputs } from "lib";
+import { isMandatory, numberValidation, validateInputs } from "lib";
 import { ITeamReducer, reducer } from "./TeamReducer";
 import { EditCard } from "../EditCard";
 import { TextInput } from "../../Input/TextInput";
 import { InputLabel } from "../styles";
 
-let hasBlurred = [false, false];
+let hasBlurred = [false, false, false];
 
 interface ITeamEditCard {
   groupLetters: string[];
@@ -26,9 +26,10 @@ export const TeamEditCard = ({
   const [state, dispatch]: [ITeamReducer, any] = useReducer(reducer, {
     groupLetter: team.groupLetter,
     name: team.name,
+    groupPosition: team.groupPosition,
   });
 
-  const { groupLetter, name } = state;
+  const { groupLetter, name, groupPosition } = state;
 
   const options = groupLetters.map(letter => ({
     value: letter,
@@ -64,6 +65,11 @@ export const TeamEditCard = ({
         value: name,
         hasBlurred: hasBlurred[1],
         validation: [isMandatory],
+      },
+      {
+        value: groupPosition,
+        hasBlurred: hasBlurred[2],
+        validation: [numberValidation],
       },
     ]);
 
@@ -112,6 +118,16 @@ export const TeamEditCard = ({
         placeholder="Team Name"
         error={validation.errorMessages[1]}
         isDisabled={isEdit}
+      />
+      <InputLabel>Group Position</InputLabel>
+      <TextInput
+        text={groupPosition}
+        setText={groupPosition =>
+          dispatch({ type: "edit", data: { groupPosition } })
+        }
+        onBlurHandler={() => onBlurHandler(2)}
+        placeholder="Group Position"
+        error={validation.errorMessages[2]}
       />
     </EditCard>
   );

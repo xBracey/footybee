@@ -5,6 +5,7 @@ import {
   deleteController,
   getFromGroupController,
   getController,
+  getAllController,
 } from "../../controllers/groupMatch";
 
 export const GroupMatch = Router();
@@ -33,8 +34,8 @@ GroupMatch.delete("/:id", async (req, res) => {
     : res.status(status).send(response);
 });
 
-GroupMatch.get("/:id", async (req, res) => {
-  const { status, error, response } = await getController(req.params.id);
+GroupMatch.get("/", async (req, res) => {
+  const { status, error, response } = await getAllController();
 
   return error
     ? res.status(status).send({ error })

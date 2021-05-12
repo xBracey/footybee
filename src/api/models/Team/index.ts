@@ -19,6 +19,9 @@ export class Team extends Model {
   @HasMany(() => Player)
   players: Player[];
 
+  @Column(DataType.SMALLINT)
+  groupPosition: number;
+
   @ForeignKey(() => Group)
   @Column
   groupLetter: string;
