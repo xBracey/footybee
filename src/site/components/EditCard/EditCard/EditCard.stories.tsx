@@ -13,6 +13,7 @@ story.add("EditCard Component", () => (
     onSave={action("Save")}
     onDelete={boolean("Has delete", true) ? action("Delete") : null}
     title="Test Player 1"
+    isEdit={boolean("Is Edit", false)}
   >
     <TextInput text="efnejkfn" setText={() => {}} />
   </EditCard>

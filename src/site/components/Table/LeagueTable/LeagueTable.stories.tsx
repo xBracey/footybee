@@ -8,7 +8,7 @@ import { IGroupMatch } from "../../../redux/reducers/groupMatches";
 const story = storiesOf("Components/Table/LeagueTable", module);
 
 const groupMatchBase = {
-  id: "0",
+  id: 0,
   date: "2020-01-01",
   groupLetter: "1",
 };

@@ -25,7 +25,6 @@
       "redux/actions": ["src/site/redux/actions/index"],
       "redux/reducers": ["src/site/redux/reducers/index"],
       "redux/requests": ["src/site/redux/requests/index"],
-      "redux/selectors": ["src/site/redux/selectors/index"],
       "redux/store": ["src/site/redux/store"]
     },
     "downlevelIteration": true,

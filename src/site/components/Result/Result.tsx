@@ -41,17 +41,13 @@ export const Result = ({
     <ResultContainer>
       <ResultTeam>{homeTeam}</ResultTeam>
       <ResultFlagContainer>
-        <ResultFlag
-          src={`/static/flags/${homeTeam.replaceAll(" ", "_")}.svg`}
-        />
+        <ResultFlag src={`/static/flags/${homeTeam.replace(/ /g, "_")}.svg`} />
       </ResultFlagContainer>
 
       <ResultScoreContainer>{resultScore}</ResultScoreContainer>
 
       <ResultFlagContainer>
-        <ResultFlag
-          src={`/static/flags/${awayTeam.replaceAll(" ", "_")}.svg`}
-        />
+        <ResultFlag src={`/static/flags/${awayTeam.replace(/ /g, "_")}.svg`} />
       </ResultFlagContainer>
       <ResultTeam>{awayTeam}</ResultTeam>
     </ResultContainer>
