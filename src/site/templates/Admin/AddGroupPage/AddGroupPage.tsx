@@ -27,9 +27,7 @@ export const AddGroupPage = ({ letter }: IAddGroupPage) => {
     .filter(match => match.groupLetter === letter)
     .map(groupMatch => ({
       ...groupMatch,
-      score: `${groupMatch.homeTeamGoals ?? 0}-${
-        groupMatch.awayTeamGoals ?? 0
-      }`,
+      score: `${groupMatch.homeGoals ?? 0}-${groupMatch.awayGoals ?? 0}`,
     }));
 
   useEffect(() => {

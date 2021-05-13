@@ -2,7 +2,7 @@ import _ from "lodash";
 import { IAction, IReducers } from "../types";
 
 export interface IGroupMatch {
-  id: string;
+  id: number;
   date: string;
   groupLetter: string;
   homeTeam: string;

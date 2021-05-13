@@ -26,7 +26,7 @@ export const postTeam = async (
   state: IRootState,
   team: ITeamReducer
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/team`, { data: team, method: "POST" });
+  authorisedRequest(state, `/team/create`, { data: team, method: "POST" });
 
 export const putTeam = async (
   state: IRootState,

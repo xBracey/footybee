@@ -15,7 +15,7 @@ import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { Page } from "templates";
 import { colours } from "theme";
-import { AddButtonContainer, AddPageContainer } from "../styles";
+import { AddPageContainer } from "../styles";
 
 interface IAddTeamPage {
   name: string;
@@ -38,7 +38,7 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
   const groupLetters = groups.groups.map(group => group.letter);
 
   const onSave = async (team: ITeamReducer) => {
-    const { data } = team
+    const { data } = name
       ? await dispatch(editTeam(name, team))
       : await dispatch(saveTeam(team));
 

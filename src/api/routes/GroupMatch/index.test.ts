@@ -9,7 +9,7 @@ describe("Test create groupMatch endpoint", () => {
     const response = await request
       .post("/groupMatch/create")
       .send({
-        date: new Date(),
+        date: "2021-06-11T19:42:50.000Z",
         homeTeam: "Test Team 1",
         awayTeam: "Test Team 2",
         groupLetter: "Test Group 1",

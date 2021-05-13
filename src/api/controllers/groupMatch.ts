@@ -2,6 +2,7 @@ import {
   addGroupMatch,
   addGroupMatches,
   deleteGroupMatch,
+  editGroupMatch,
   getAllGroupMatches,
   getGroupMatch,
   getMatchFromGroup,
@@ -102,6 +103,23 @@ export const getFromGroupController = async (
 
   if (!error) {
     return { status: 200, response: groupMatches };
+  }
+
+  return handleError(error);
+};
+
+export const editController = async (
+  name: string,
+  body: IGroupMatch
+): Promise<controllerResponse> => {
+  if (!isValidGroupMatch(body)) {
+    return { status: 400, error: "Invalid parameters" };
+  }
+
+  const { error, groupMatch } = await editGroupMatch(name, body);
+
+  if (!error) {
+    return { status: 200, response: groupMatch };
   }
 
   return handleError(error);

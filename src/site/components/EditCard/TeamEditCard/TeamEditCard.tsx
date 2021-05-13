@@ -66,11 +66,6 @@ export const TeamEditCard = ({
         hasBlurred: hasBlurred[1],
         validation: [isMandatory],
       },
-      {
-        value: groupPosition,
-        hasBlurred: hasBlurred[2],
-        validation: [numberValidation],
-      },
     ]);
 
     setValidation(newValidation);
@@ -122,12 +117,13 @@ export const TeamEditCard = ({
       <InputLabel>Group Position</InputLabel>
       <TextInput
         text={groupPosition}
-        setText={groupPosition =>
-          dispatch({ type: "edit", data: { groupPosition } })
-        }
+        setText={groupPosition => {
+          if (numberValidation.validation(groupPosition)) {
+            dispatch({ type: "edit", data: { groupPosition } });
+          }
+        }}
         onBlurHandler={() => onBlurHandler(2)}
         placeholder="Group Position"
-        error={validation.errorMessages[2]}
       />
     </EditCard>
   );

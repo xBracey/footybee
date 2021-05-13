@@ -1,13 +1,13 @@
 import React, { useReducer, useState } from "react";
 import Select from "react-select";
-import { isMandatory, isNotEqual, numberValidation, validateInputs } from "lib";
+import { isMandatory, isNotEqual, scoreValidation, validateInputs } from "lib";
 import { IGroupMatchReducer, reducer } from "./GroupMatchReducer";
 import { EditCard } from "../EditCard";
 import { TextInput } from "../../Input/TextInput";
 import { customMenuStyle, EditFlex, EditFlexOne, InputLabel } from "../styles";
 import { DateInput } from "components/Input";
 
-let hasBlurred = [false, false, false, false];
+let hasBlurred = [false, false];
 
 interface IGroupMatchEditCard {
   teamNames: string[];
@@ -28,11 +28,11 @@ export const GroupMatchEditCard = ({
     date: groupMatch.date,
     homeTeam: groupMatch.homeTeam,
     awayTeam: groupMatch.awayTeam,
-    homeTeamGoals: groupMatch.homeTeamGoals,
-    awayTeamGoals: groupMatch.awayTeamGoals,
+    homeGoals: groupMatch.homeGoals,
+    awayGoals: groupMatch.awayGoals,
   });
 
-  const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, date } = state;
+  const { homeTeam, awayTeam, homeGoals, awayGoals, date } = state;
 
   const options = teamNames.map(name => ({
     value: name,
@@ -49,16 +49,6 @@ export const GroupMatchEditCard = ({
       value: awayTeam,
       hasBlurred: hasBlurred[1],
       validation: [isMandatory],
-    },
-    {
-      value: homeTeamGoals,
-      hasBlurred: hasBlurred[2],
-      validation: [numberValidation],
-    },
-    {
-      value: awayTeamGoals,
-      hasBlurred: hasBlurred[3],
-      validation: [numberValidation],
     },
   ];
 
@@ -93,7 +83,7 @@ export const GroupMatchEditCard = ({
         setDate={date =>
           dispatch({
             type: "edit",
-            data: { date: date.toString() },
+            data: { date: date.toISOString() },
           })
         }
       />
@@ -113,10 +103,10 @@ export const GroupMatchEditCard = ({
             styles={customMenuStyle}
           />
           <TextInput
-            text={homeTeamGoals}
-            setText={homeTeamGoals => {
-              if (numberValidation.validation(homeTeamGoals)) {
-                dispatch({ type: "edit", data: { homeTeamGoals } });
+            text={homeGoals}
+            setText={homeGoals => {
+              if (scoreValidation.validation(homeGoals)) {
+                dispatch({ type: "edit", data: { homeGoals } });
               }
             }}
             onBlurHandler={() => onBlurHandler(2)}
@@ -139,10 +129,10 @@ export const GroupMatchEditCard = ({
             styles={customMenuStyle}
           />
           <TextInput
-            text={awayTeamGoals}
-            setText={awayTeamGoals => {
-              if (numberValidation.validation(awayTeamGoals)) {
-                dispatch({ type: "edit", data: { awayTeamGoals } });
+            text={awayGoals}
+            setText={awayGoals => {
+              if (scoreValidation.validation(awayGoals)) {
+                dispatch({ type: "edit", data: { awayGoals } });
               }
             }}
             onBlurHandler={() => onBlurHandler(3)}

@@ -65,10 +65,11 @@ export const getGroupMatch = (id: string): ThunkResult<any> => {
 };
 
 export const saveGroupMatch = (
-  groupmatch: IGroupMatchReducer
+  groupmatch: IGroupMatchReducer,
+  groupLetter: string
 ): ThunkResult<any> => {
   return (dispatch, getState) => {
-    return postGroupMatch(getState(), groupmatch).then(response =>
+    return postGroupMatch(getState(), groupmatch, groupLetter).then(response =>
       dispatch({
         type: types.message.MESSAGE_SET_MESSAGE,
         data: response,
@@ -79,14 +80,16 @@ export const saveGroupMatch = (
 
 export const editGroupMatch = (
   id: string,
-  groupmatch: IGroupMatchReducer
+  groupmatch: IGroupMatchReducer,
+  groupLetter: string
 ): ThunkResult<any> => {
   return (dispatch, getState) => {
-    return putGroupMatch(getState(), id, groupmatch).then(response =>
-      dispatch({
-        type: types.message.MESSAGE_SET_MESSAGE,
-        data: response,
-      })
+    return putGroupMatch(getState(), id, groupmatch, groupLetter).then(
+      response =>
+        dispatch({
+          type: types.message.MESSAGE_SET_MESSAGE,
+          data: response,
+        })
     );
   };
 };

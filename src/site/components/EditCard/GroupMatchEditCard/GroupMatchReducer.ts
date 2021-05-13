@@ -2,8 +2,8 @@ export interface IGroupMatchReducer {
   date: string;
   homeTeam: string;
   awayTeam: string;
-  homeTeamGoals: string;
-  awayTeamGoals: string;
+  homeGoals: string;
+  awayGoals: string;
 }
 
 export const reducer = (state: IGroupMatchReducer, action) => {

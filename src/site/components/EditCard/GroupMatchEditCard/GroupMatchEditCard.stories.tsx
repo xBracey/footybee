@@ -13,8 +13,8 @@ story.add("GroupMatchEditCard Component", () => (
       date: "",
       homeTeam: null,
       awayTeam: null,
-      homeTeamGoals: "",
-      awayTeamGoals: "",
+      homeGoals: "",
+      awayGoals: "",
     }}
     onSave={action("Save")}
     onDelete={action("Delete")}

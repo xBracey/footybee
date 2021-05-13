@@ -16,7 +16,8 @@ export const DateInput = ({ date, setDate }: IDateInput) => {
         selected={date}
         onChange={setDate}
         locale="gb"
-        dateFormat="dd/MM/yyyy"
+        dateFormat="dd/MM/yyyy HH:MM"
+        showTimeSelect
       />
     </DateInputContainer>
   );

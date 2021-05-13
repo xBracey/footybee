@@ -18,7 +18,10 @@ const addGroupMatch = async (
   groupMatchData: IGroupMatch
 ): Promise<IGroupMatchResponse> => {
   try {
+    console.log(groupMatchData);
     const groupMatch = await models.GroupMatch.create(groupMatchData);
+    console.log(groupMatch);
+
     return { groupMatch };
   } catch (error) {
     return { error: new StatusError(error), groupMatch: null };
@@ -86,6 +89,24 @@ const getMatchFromGroup = async (
   return { groupMatches };
 };
 
+const editGroupMatch = async (
+  id,
+  teamData: IGroupMatch
+): Promise<IGroupMatchResponse> => {
+  try {
+    const groupMatch = await models.GroupMatch.findOne({
+      where: {
+        id,
+      },
+    });
+
+    groupMatch.update(teamData);
+    return { groupMatch };
+  } catch (error) {
+    return { error: new StatusError(error), groupMatch: null };
+  }
+};
+
 export {
   addGroupMatch,
   addGroupMatches,
@@ -94,4 +115,5 @@ export {
   getAllGroupMatches,
   deleteGroupMatch,
   getMatchFromGroup,
+  editGroupMatch,
 };

@@ -36,20 +36,21 @@ export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
     .map(team => team.name);
 
   const groupMatches = useSelector((state: IRootState) => state.groupMatches);
-  const groupMatch = id
-    ? groupMatches.groupMatches.find(match => match.id === id)
-    : {
-        date: "",
-        homeTeam: "",
-        awayTeam: "",
-        homeTeamGoals: "",
-        awayTeamGoals: "",
-      };
+  const groupMatch =
+    id !== null
+      ? groupMatches.groupMatches.find(match => match.id === parseInt(id))
+      : {
+          date: "",
+          homeTeam: "",
+          awayTeam: "",
+          homeGoals: "",
+          awayGoals: "",
+        };
 
   const onSave = async (groupMatch: IGroupMatchReducer) => {
     const { data } = id
-      ? await dispatch(editGroupMatch(id, groupMatch))
-      : await dispatch(saveGroupMatch(groupMatch));
+      ? await dispatch(editGroupMatch(id, groupMatch, groupLetter))
+      : await dispatch(saveGroupMatch(groupMatch, groupLetter));
 
     if (!data?.error) {
       router.push("/admin/teams");
@@ -79,8 +80,8 @@ export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
               date: groupMatch.date,
               homeTeam: groupMatch.homeTeam,
               awayTeam: groupMatch.awayTeam,
-              homeTeamGoals: groupMatch.homeTeamGoals?.toString(),
-              awayTeamGoals: groupMatch.awayTeamGoals?.toString(),
+              homeGoals: groupMatch.homeGoals?.toString(),
+              awayGoals: groupMatch.awayGoals?.toString(),
             }}
             onSave={onSave}
             onDelete={onDelete}

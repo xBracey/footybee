@@ -1,4 +1,5 @@
 import { IGroupMatchReducer } from "components/EditCard/GroupMatchEditCard/GroupMatchReducer";
+import _ from "lodash";
 import { authorisedRequest } from "../api";
 import { IRootState } from "../reducers";
 import { IAPIResponse } from "../types";
@@ -26,16 +27,21 @@ export const deleteGroupMatch = async (
 
 export const postGroupMatch = async (
   state: IRootState,
-  groupMatch: IGroupMatchReducer
+  groupMatch: IGroupMatchReducer,
+  groupLetter: string
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/groupMatch`, { data: groupMatch, method: "POST" });
+  authorisedRequest(state, `/groupMatch/create`, {
+    data: _.pickBy({ ...groupMatch, groupLetter }, _.identity),
+    method: "POST",
+  });
 
 export const putGroupMatch = async (
   state: IRootState,
   id: string,
-  groupMatch: IGroupMatchReducer
+  groupMatch: IGroupMatchReducer,
+  groupLetter: string
 ): Promise<IAPIResponse> =>
   authorisedRequest(state, `/groupMatch/${id}`, {
-    data: groupMatch,
+    data: _.pickBy({ ...groupMatch, groupLetter }, _.identity),
     method: "PUT",
   });

@@ -4,7 +4,7 @@ import {
   Column,
   Model,
   PrimaryKey,
-  IsUUID,
+  AutoIncrement,
   ForeignKey,
 } from "sequelize-typescript";
 import { Group } from "../Group";
@@ -12,10 +12,10 @@ import { Team } from "../Team";
 
 @Table
 export class GroupMatch extends Model {
-  @IsUUID(4)
+  @AutoIncrement
   @PrimaryKey
-  @Column
-  id: string;
+  @Column(DataType.BIGINT)
+  id: number;
 
   @Column(DataType.DATE)
   date: Date;

@@ -81,3 +81,10 @@ export const isPasswordMatch = (password: string): ITextValidation => ({
 export const isNotEqual = (otherValue: string): ITextValidation => ({
   validation: (text: string) => text !== otherValue,
 });
+
+export const scoreValidation: ITextValidation = {
+  message: "Test Message",
+  validation: (text: string) =>
+    (!!/^[0-9]*$/g.test(text) && text.length < 3) || text === "",
+  restrictsInput: true,
+};
