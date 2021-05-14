@@ -33,9 +33,10 @@ export const ResultFlag = styled.img`
 `;
 
 export const ResultScore = styled.p`
-  margin: 0px 16px;
+  width: 100%;
   font-size: ${fonts.size.header2};
   white-space: pre;
+  text-align: center;
 `;
 
 export const ResultDate = styled.p`

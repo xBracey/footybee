@@ -41,6 +41,26 @@ export const createController = async (
   return handleError(error);
 };
 
+export const bulkCreateController = async (body: {
+  players: IPlayer[];
+}): Promise<controllerResponse> => {
+  if (
+    !checkBody(body) ||
+    !body.players ||
+    !validateArrayTypeCheck(body.players, isValidPlayer)
+  ) {
+    return { status: 400, error: "Invalid parameters" };
+  }
+
+  const { error, players } = await addPlayers(body.players);
+
+  if (!error) {
+    return { status: 200, response: players };
+  }
+
+  return handleError(error);
+};
+
 export const deleteController = async (
   name: string
 ): Promise<controllerResponse> => {

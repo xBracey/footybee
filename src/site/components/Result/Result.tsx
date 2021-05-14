@@ -10,14 +10,7 @@ import {
   ResultTeam,
 } from "./Result.styled";
 import moment from "moment";
-
-interface IResult {
-  homeTeam: string;
-  awayTeam: string;
-  homeGoals: number;
-  awayGoals: number;
-  date: Date;
-}
+import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
 
 export const Result = ({
   homeTeam,
@@ -25,7 +18,7 @@ export const Result = ({
   homeGoals,
   awayGoals,
   date,
-}: IResult) => {
+}: IGroupMatch) => {
   const emptyResult = homeGoals === null || awayGoals === null;
 
   const resultScore = emptyResult ? (

@@ -15,9 +15,10 @@ import { icons } from "assets";
 interface ILeagueTable {
   matches: IGroupMatch[];
   inverted?: boolean;
+  isResults?: boolean;
 }
 
-export const LeagueTable = ({ matches, inverted }: ILeagueTable) => {
+export const LeagueTable = ({ matches, inverted, isResults }: ILeagueTable) => {
   // @ts-ignore
   const { table: firstTable, pairings } = calculateTable(matches);
   const [table, setTable] = useState(firstTable);
@@ -59,7 +60,7 @@ export const LeagueTable = ({ matches, inverted }: ILeagueTable) => {
       <LeagueTableCell>
         <strong>{team.points}</strong>
       </LeagueTableCell>
-      {indexPairings.includes(index) ? (
+      {indexPairings.includes(index) && !isResults ? (
         <LeagueTableSwap onClick={() => swapIndex(index)}>
           <icons.swap />
         </LeagueTableSwap>

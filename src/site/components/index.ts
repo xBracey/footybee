@@ -8,3 +8,4 @@ export * from "./Head";
 export * from "./Modal";
 export * from "./Table";
 export * from "./EditCard";
+export * from "./ResultsTable";

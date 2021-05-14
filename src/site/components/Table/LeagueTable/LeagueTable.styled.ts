@@ -9,8 +9,8 @@ export const LeagueTableContainer = styled.div`
   background-color: ${colours.green300};
   border-radius: 4px;
   border: 3px solid ${colours.blue200};
-  width: 100%;
-  margin: 16px;
+  width: calc(100% - 48px);
+  margin: 32px 24px;
 
   path {
     stroke: ${colours.blue200};

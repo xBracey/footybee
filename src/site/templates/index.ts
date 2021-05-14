@@ -7,3 +7,4 @@ export * from "./PrivacyPage";
 export * from "./RegisterPage";
 export * from "./Message";
 export * from "./Admin";
+export * from "./ResultsPage";
