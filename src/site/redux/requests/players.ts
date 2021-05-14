@@ -21,7 +21,7 @@ export const postPlayer = async (
   state: IRootState,
   player: IPlayerReducer
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/player`, { data: player, method: "POST" });
+  authorisedRequest(state, `/player/create`, { data: player, method: "POST" });
 
 export const putPlayer = async (
   state: IRootState,
@@ -29,3 +29,19 @@ export const putPlayer = async (
   player: IPlayerReducer
 ): Promise<IAPIResponse> =>
   authorisedRequest(state, `/player/${name}`, { data: player, method: "PUT" });
+
+export const postPlayers = async (
+  state: IRootState,
+  teamName: string,
+  playerNames: string[]
+): Promise<IAPIResponse> => {
+  const players = playerNames.map(name => ({
+    teamName,
+    name,
+  }));
+
+  return authorisedRequest(state, `/player/bulk-create`, {
+    data: { players },
+    method: "POST",
+  });
+};

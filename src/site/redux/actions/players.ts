@@ -5,6 +5,7 @@ import {
   fetchPlayer,
   fetchPlayers,
   postPlayer,
+  postPlayers,
   putPlayer,
 } from "../requests";
 import { ThunkResult } from "../types";
@@ -48,6 +49,20 @@ export const getPlayer = (name: string): ThunkResult<any> => {
 export const savePlayer = (player: IPlayerReducer): ThunkResult<any> => {
   return (dispatch, getState) => {
     return postPlayer(getState(), player).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
+    );
+  };
+};
+
+export const savePlayers = (
+  teamName: string,
+  playerNames: string[]
+): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return postPlayers(getState(), teamName, playerNames).then(response =>
       dispatch({
         type: types.message.MESSAGE_SET_MESSAGE,
         data: response,

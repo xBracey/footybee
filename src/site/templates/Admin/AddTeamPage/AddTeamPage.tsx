@@ -1,4 +1,5 @@
 import { Button, TeamEditCard } from "components";
+import { GroupPlayerAddCard } from "components/EditCard/GroupPlayerAddCard";
 import { ITeamReducer } from "components/EditCard/TeamEditCard/TeamReducer";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,12 +11,14 @@ import {
   removeTeam,
   saveTeam,
   getGroups,
+  savePlayers,
 } from "redux/actions";
-import { IRootState } from "redux/reducers";
+import { IRootState, types } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { Page } from "templates";
 import { colours } from "theme";
 import { AddPageContainer } from "../styles";
+import { AddTeamFlex } from "./AddTeamPage.styled";
 
 interface IAddTeamPage {
   name: string;
@@ -55,6 +58,17 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
     });
   };
 
+  const onPlayersSave = (playerNames: string[]) => {
+    dispatch(savePlayers(team.name, playerNames)).then(({ data }) => {
+      if (!data?.error) {
+        dispatch({
+          type: types.message.MESSAGE_SET_MESSAGE,
+          data: { message: "Successfully added players" },
+        });
+      }
+    });
+  };
+
   return (
     <Page
       title="Add Team"
@@ -64,13 +78,16 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
     >
       <AddPageContainer>
         {team && groupLetters.length ? (
-          <TeamEditCard
-            groupLetters={groupLetters}
-            team={team}
-            onSave={onSave}
-            onDelete={onDelete}
-            isEdit={!!name}
-          />
+          <AddTeamFlex>
+            <TeamEditCard
+              groupLetters={groupLetters}
+              team={team}
+              onSave={onSave}
+              onDelete={onDelete}
+              isEdit={!!name}
+            />
+            <GroupPlayerAddCard onSave={onPlayersSave} />
+          </AddTeamFlex>
         ) : null}
       </AddPageContainer>
     </Page>
