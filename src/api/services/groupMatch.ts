@@ -18,9 +18,7 @@ const addGroupMatch = async (
   groupMatchData: IGroupMatch
 ): Promise<IGroupMatchResponse> => {
   try {
-    console.log(groupMatchData);
     const groupMatch = await models.GroupMatch.create(groupMatchData);
-    console.log(groupMatch);
 
     return { groupMatch };
   } catch (error) {
@@ -39,7 +37,7 @@ const addGroupMatches = async (
   }
 };
 
-const getGroupMatch = async (id: string): Promise<IGroupMatchResponse> => {
+const getGroupMatch = async (id: number): Promise<IGroupMatchResponse> => {
   const groupMatch = await models.GroupMatch.findOne({
     where: {
       id,
@@ -49,7 +47,7 @@ const getGroupMatch = async (id: string): Promise<IGroupMatchResponse> => {
 };
 
 const getGroupMatches = async (
-  ids: string[]
+  ids: number[]
 ): Promise<IGroupMatchesResponse> => {
   const groupMatches = await models.GroupMatch.findAll({
     where: {
@@ -64,7 +62,7 @@ const getAllGroupMatches = async (): Promise<IGroupMatchesResponse> => {
   return { groupMatches };
 };
 
-const deleteGroupMatch = async (id: string): Promise<IGroupMatchResponse> => {
+const deleteGroupMatch = async (id: number): Promise<IGroupMatchResponse> => {
   const groupMatch = await models.GroupMatch.destroy({
     where: {
       id,
@@ -90,7 +88,7 @@ const getMatchFromGroup = async (
 };
 
 const editGroupMatch = async (
-  id,
+  id: number,
   teamData: IGroupMatch
 ): Promise<IGroupMatchResponse> => {
   try {

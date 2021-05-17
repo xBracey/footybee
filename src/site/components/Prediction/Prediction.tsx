@@ -19,8 +19,8 @@ interface IPrediction {
   homeTeam: string;
   awayTeam: string;
   homeGoals: string;
-  setHomeGoals: (homeGoals: string) => void;
   awayGoals: string;
+  setHomeGoals: (homeGoals: string) => void;
   setAwayGoals: (awayGoals: string) => void;
 }
 

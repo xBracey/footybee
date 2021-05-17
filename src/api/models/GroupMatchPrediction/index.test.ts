@@ -28,13 +28,13 @@ describe("Add groupMatchPredictions", () => {
     const { groupMatchPredictions } = await addGroupMatchPredictions([
       {
         username: "Test User 1",
-        groupMatchId: "Test Group Match 1",
+        groupMatchId: 1,
         homeGoals: 3,
         awayGoals: 3,
       },
       {
         username: "Test User 2",
-        groupMatchId: "Test Group Match 2",
+        groupMatchId: 2,
         homeGoals: 4,
         awayGoals: 4,
       },

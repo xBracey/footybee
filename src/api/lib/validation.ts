@@ -1,6 +1,7 @@
 import validator from "validator";
 
-const notNullOrUndefined = (data: any) => data !== null && data !== undefined;
+const notNullOrUndefined = (data: any) =>
+  data !== null && data !== undefined && data !== "";
 
 export const checkBody = (body: object) => {
   return !!body && typeof body == "object";

@@ -69,7 +69,7 @@ export const bulkCreateController = async (body: {
 export const deleteController = async (
   id: string
 ): Promise<controllerResponse> => {
-  const { error, groupMatch } = await deleteGroupMatch(id);
+  const { error, groupMatch } = await deleteGroupMatch(parseInt(id));
 
   if (!error) {
     return { status: 200, response: groupMatch };
@@ -87,7 +87,7 @@ export const getAllController = async (): Promise<controllerResponse> => {
 export const getController = async (
   id: string
 ): Promise<controllerResponse> => {
-  const { error, groupMatch } = await getGroupMatch(id);
+  const { error, groupMatch } = await getGroupMatch(parseInt(id));
 
   if (!error) {
     return { status: 200, response: groupMatch };
@@ -109,14 +109,14 @@ export const getFromGroupController = async (
 };
 
 export const editController = async (
-  name: string,
+  id: string,
   body: IGroupMatch
 ): Promise<controllerResponse> => {
   if (!isValidGroupMatch(body)) {
     return { status: 400, error: "Invalid parameters" };
   }
 
-  const { error, groupMatch } = await editGroupMatch(name, body);
+  const { error, groupMatch } = await editGroupMatch(parseInt(id), body);
 
   if (!error) {
     return { status: 200, response: groupMatch };

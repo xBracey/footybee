@@ -4,7 +4,7 @@ describe("Test isValidgroupMatchPrediction", () => {
   it("Valid", async done => {
     const validGroupMatchPrediction = isValidGroupMatchPrediction({
       username: "test",
-      groupMatchId: "test",
+      groupMatchId: 1,
       homeGoals: 0,
       awayGoals: 0,
     });

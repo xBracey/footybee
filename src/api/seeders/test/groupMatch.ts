@@ -3,7 +3,7 @@ import { addGroupMatches } from "../../services";
 const groupMatchSeed = async () => {
   const groupMatches = [
     {
-      id: "Test Group Match 1",
+      id: 1,
       date: new Date(),
       homeGoals: 1,
       awayGoals: 1,
@@ -12,7 +12,7 @@ const groupMatchSeed = async () => {
       groupLetter: "Test Group 1",
     },
     {
-      id: "Test Group Match 2",
+      id: 2,
       date: new Date(),
       homeGoals: 1,
       awayGoals: 1,
@@ -21,7 +21,7 @@ const groupMatchSeed = async () => {
       groupLetter: "Test Group 2",
     },
     {
-      id: "Test Group Match Delete 1",
+      id: 3,
       date: new Date(),
       homeGoals: 1,
       awayGoals: 1,
@@ -30,7 +30,7 @@ const groupMatchSeed = async () => {
       groupLetter: "Test Group 1",
     },
     {
-      id: "Test Group Match Delete 2",
+      id: 4,
       date: new Date(),
       homeGoals: 1,
       awayGoals: 1,

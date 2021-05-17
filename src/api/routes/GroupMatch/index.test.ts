@@ -118,16 +118,14 @@ describe("Test bulk create groupMatch endpoint", () => {
 
 describe("Test delete groupMatch endpoint", () => {
   it("Valid groupMatch name", async done => {
-    const response = await request.delete(
-      "/groupMatch/Test Group Match Delete 2"
-    );
+    const response = await request.delete("/groupMatch/4");
 
     expect(response.status).toBe(200);
     done();
   });
 
   it("Invalid groupMatch name", async done => {
-    const response = await request.delete("/groupMatch/fewfewfewfewfew");
+    const response = await request.delete("/groupMatch/23242344");
 
     expect(response.status).toBe(400);
     expect(response.body.error).toBe("Group Match ID does not exist");
@@ -137,7 +135,7 @@ describe("Test delete groupMatch endpoint", () => {
 
 describe("Test get groupMatch from groups endpoint", () => {
   it("Valid group letter", async done => {
-    const response = await request.get("/groupMatch/group/Test Group 2");
+    const response = await request.get("/groupMatch/group/2");
 
     expect(response.status).toBe(200);
     done();

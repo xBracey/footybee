@@ -12,7 +12,7 @@ describe("Test create groupMatchPrediction endpoint", () => {
         groupMatchPredictions: [
           {
             username: "Test User 1",
-            groupMatchId: "Test Group Match 1",
+            groupMatchId: 1,
             homeGoals: 1,
             awayGoals: 3,
           },
@@ -32,7 +32,7 @@ describe("Test create groupMatchPrediction endpoint", () => {
         groupMatchPredictions: [
           {
             username: "Test User 1",
-            groupMatchId: "Test Group Match 1",
+            groupMatchId: 1,
             homeGoals: 1,
             awayGoals: 3,
           },

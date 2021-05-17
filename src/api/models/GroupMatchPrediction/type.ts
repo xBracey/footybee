@@ -2,7 +2,7 @@ import { validateType } from "../../lib";
 
 export default interface IGroupMatchPrediction {
   username: string;
-  groupMatchId: string;
+  groupMatchId: number;
   homeGoals: number;
   awayGoals: number;
 }

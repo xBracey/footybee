@@ -10,15 +10,15 @@ import {
 
 describe("Get groupMatch", () => {
   it("Valid groupMatch name", async done => {
-    const { groupMatch } = await getGroupMatch("Test Group Match 1");
+    const { groupMatch } = await getGroupMatch(1);
     const name = groupMatch.get("id", { plain: true });
 
-    expect(name).toEqual("Test Group Match 1");
+    expect(name).toEqual(1);
     done();
   });
 
   it("Invalid groupMatch name", async done => {
-    const { groupMatch } = await getGroupMatch("Incorrect Group Match 1");
+    const { groupMatch } = await getGroupMatch(12323);
 
     expect(groupMatch).toBeNull();
     done();
@@ -27,20 +27,14 @@ describe("Get groupMatch", () => {
 
 describe("Get groupMatches", () => {
   it("Valid groupMatches name", async done => {
-    const { groupMatches } = await getGroupMatches([
-      "Test Group Match 1",
-      "Test Group Match 2",
-    ]);
+    const { groupMatches } = await getGroupMatches([1, 2]);
 
     expect(groupMatches).toHaveLength(2);
     done();
   });
 
   it("Invalid groupMatches name", async done => {
-    const { groupMatches } = await getGroupMatches([
-      "Incorrect groupMatch 1",
-      "Incorrect groupMatch 2",
-    ]);
+    const { groupMatches } = await getGroupMatches([2312312, 312323]);
 
     expect(groupMatches).toHaveLength(0);
     done();
@@ -102,14 +96,14 @@ describe("Add groupMatches", () => {
 
 describe("Delete groupMatch", () => {
   it("Valid groupMatch name", async done => {
-    const { error } = await deleteGroupMatch("Test Group Match Delete 1");
+    const { error } = await deleteGroupMatch(3);
 
     expect(error).toBeUndefined();
     done();
   });
 
   it("Invalid groupMatch name", async done => {
-    const { error } = await deleteGroupMatch("Incorrect GroupMatch");
+    const { error } = await deleteGroupMatch(32132);
 
     expect(error.message).toEqual("Primary Key not found when deleting entity");
     done();
