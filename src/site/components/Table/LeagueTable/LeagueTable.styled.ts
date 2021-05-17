@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import { colours, device, fonts } from "theme";
+import { colours, fonts } from "theme";
 
 interface ITableCell {
-  name?: boolean;
+  isName?: boolean;
 }
 
 export const LeagueTableContainer = styled.div`

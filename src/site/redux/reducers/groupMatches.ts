@@ -25,6 +25,7 @@ export const groupMatchesTypes = {
   GROUP_MATCHES_FETCHED_GROUP_MATCH: "fetchedGroupMatch",
   GROUP_MATCHES_FETCHED_GROUP_MATCHES: "fetchedGroupMatches",
   GROUP_MATCHES_LOADING_GROUP_MATCHES: "loadingGroupMatches",
+  GROUP_MATCHES_DELETED_GROUP_MATCH: "deletedGroupMatch",
 };
 
 /**
@@ -59,6 +60,7 @@ const reducers: IReducers<IGroupMatches> = {
   fetchedGroupMatches,
   loadingGroupMatches,
   fetchedGroupMatch,
+  deletedGroupMatch,
 };
 
 export default (state = initialState, action: IAction) => {

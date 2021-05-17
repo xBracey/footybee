@@ -7,6 +7,7 @@ export const PredictionScoreContainer = styled.div`
   align-items: center;
   width: 80px;
   height: 30px;
+  padding: 24px 0;
 `;
 
 export const PredictionInputContainer = styled.div`
@@ -18,10 +19,6 @@ export const PredictionInputContainer = styled.div`
   svg {
     cursor: pointer;
     transform: scale(0.75);
-
-    path {
-      fill: ${colours.grey300};
-    }
   }
 
   svg:nth-child(3) {
@@ -48,10 +45,5 @@ export const PredictionInput = styled.input`
 
   &:focus {
     outline: none;
-    background-color: ${colours.yellow200} !important;
-  }
-
-  &:hover {
-    background-color: ${colours.yellow100};
   }
 `;

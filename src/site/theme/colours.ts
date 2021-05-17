@@ -5,6 +5,7 @@ export const colours = {
   blue200: "#454D66",
   blue300: "#33394C",
   green100: "#00F2B9",
+  green150: "#00C597",
   green200: "#009975",
   green300: "#007257",
   grey100: "#E2E2E2",

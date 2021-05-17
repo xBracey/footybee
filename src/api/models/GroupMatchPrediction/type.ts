@@ -16,11 +16,9 @@ export const isValidGroupMatchPrediction = (
 
   const { username, groupMatchId, homeGoals, awayGoals } = data;
 
-  console.log(data);
-
   return (
     validateType(username, "string", true) &&
-    validateType(groupMatchId, "string", true) &&
+    validateType(groupMatchId, "number", true) &&
     validateType(homeGoals, "number", true) &&
     validateType(awayGoals, "number", true)
   );

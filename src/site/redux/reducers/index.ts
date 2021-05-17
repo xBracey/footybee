@@ -6,6 +6,10 @@ import groups, { groupsTypes, IGroups } from "./groups";
 import teams, { teamsTypes, ITeams } from "./teams";
 import players, { playersTypes, IPlayers } from "./players";
 import groupMatches, { groupMatchesTypes, IGroupMatches } from "./groupMatches";
+import groupMatchPredictions, {
+  groupMatchPredictionsTypes,
+  IGroupMatchPredictions,
+} from "./groupMatchPredictions";
 
 export const cache = {};
 
@@ -17,6 +21,7 @@ export const types = {
   teams: teamsTypes,
   players: playersTypes,
   groupMatches: groupMatchesTypes,
+  groupMatchPredictions: groupMatchPredictionsTypes,
 };
 
 export interface IRootState {
@@ -27,6 +32,7 @@ export interface IRootState {
   teams: ITeams;
   players: IPlayers;
   groupMatches: IGroupMatches;
+  groupMatchPredictions: IGroupMatchPredictions;
 }
 
 export default combineReducers({
@@ -37,4 +43,5 @@ export default combineReducers({
   teams,
   players,
   groupMatches,
+  groupMatchPredictions,
 });

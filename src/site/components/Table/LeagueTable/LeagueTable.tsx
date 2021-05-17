@@ -49,7 +49,7 @@ export const LeagueTable = ({ matches, inverted, isResults }: ILeagueTable) => {
 
   const rowsComponent = table.map((team, index) => (
     <LeagueTableRow key={index}>
-      <LeagueTableCell name>{team.name}</LeagueTableCell>
+      <LeagueTableCell isName={true}>{team.name}</LeagueTableCell>
       <LeagueTableCell>{team.played}</LeagueTableCell>
       <LeagueTableCell>{team.wins}</LeagueTableCell>
       <LeagueTableCell>{team.draws}</LeagueTableCell>
@@ -71,7 +71,7 @@ export const LeagueTable = ({ matches, inverted, isResults }: ILeagueTable) => {
   return (
     <LeagueTableContainer>
       <LeagueTableHeader>
-        <LeagueTableHeaderCell name>Name</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell isName={true}>Name</LeagueTableHeaderCell>
         <LeagueTableHeaderCell>Pld</LeagueTableHeaderCell>
         <LeagueTableHeaderCell>W</LeagueTableHeaderCell>
         <LeagueTableHeaderCell>D</LeagueTableHeaderCell>

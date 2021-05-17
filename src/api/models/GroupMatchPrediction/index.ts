@@ -18,7 +18,7 @@ export class GroupMatchPrediction extends Model {
   @PrimaryKey
   @ForeignKey(() => GroupMatch)
   @Column
-  groupMatchId: string;
+  groupMatchId: number;
 
   @Column(DataType.SMALLINT)
   homeGoals: number;

@@ -20,7 +20,7 @@ export interface IGroupTeams {
 export const calculateMatch = (match: IGroupMatch, teams: IGroupTeams) => {
   const { homeTeam, awayTeam, homeGoals, awayGoals } = match;
 
-  if (homeGoals === null || awayGoals === null) {
+  if ((!homeGoals && homeGoals !== 0) || (!awayGoals && awayGoals !== 0)) {
     return;
   }
 

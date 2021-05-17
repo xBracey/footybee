@@ -9,3 +9,4 @@ export * from "./Modal";
 export * from "./Table";
 export * from "./EditCard";
 export * from "./ResultsTable";
+export * from "./PredictionsTable";
