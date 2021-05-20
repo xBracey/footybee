@@ -6,3 +6,4 @@ export * from "./Group";
 export * from "./GroupMatch";
 export * from "./TeamPrediction";
 export * from "./GroupMatchPrediction";
+export * from "./UserLeague";

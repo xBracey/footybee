@@ -7,9 +7,9 @@ import {
   GroupMatch,
   TeamPrediction,
   GroupMatchPrediction,
+  UserLeague,
 } from "../models";
 import { Sequelize } from "sequelize-typescript";
-import fs from "fs";
 
 /* istanbul ignore next */
 const sequelize = new Sequelize(
@@ -30,6 +30,7 @@ const models = {
   GroupMatch,
   TeamPrediction,
   GroupMatchPrediction,
+  UserLeague,
 };
 
 sequelize.addModels(Object.values(models));
