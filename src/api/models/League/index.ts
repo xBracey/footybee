@@ -20,7 +20,4 @@ export class League extends Model {
   @AllowNull(false)
   @Column(DataType.STRING)
   password: string;
-
-  //   @BelongsToMany(() => user, () => userLeague)
-  //   users: user[];
 }
