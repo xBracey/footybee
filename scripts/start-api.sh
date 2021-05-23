@@ -5,3 +5,5 @@ if [ $NODE_ENV == "development" ]; then
 else
     yarn serve
 fi
+
+tail -f /dev/null
