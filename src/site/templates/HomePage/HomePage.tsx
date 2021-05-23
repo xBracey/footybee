@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/reducers";
-import { TodaysMatches } from "components";
-import { getGroupMatches } from "src/site/redux/actions/groupMatches";
+import { Overview, TodaysMatches } from "components";
+import { getGroupMatches, getUserPoints } from "redux/actions";
 import { Page } from "../Page";
 import { HomePageContainer } from "./HomePage.styled";
 
@@ -14,11 +14,15 @@ interface IHomePage {
 export const HomePage = ({ username }: IHomePage) => {
   const dispatch = useDispatch();
 
+  const user = useSelector((state: IRootState) => state.user);
   const groupMatches = useSelector((state: IRootState) => state.groupMatches);
 
   useEffect(() => {
-    dispatch(getGroupMatches());
-  }, []);
+    if (user.username) {
+      dispatch(getGroupMatches());
+      dispatch(getUserPoints());
+    }
+  }, [user.username]);
 
   const todayMatches = groupMatches.groupMatches.filter(match =>
     moment(match.date).isSame(new Date(), "day")
@@ -26,8 +30,15 @@ export const HomePage = ({ username }: IHomePage) => {
 
   return (
     <Page title="Home" isLoggedIn loading={!username} usePadding={false}>
+      <Overview
+        name={user.username}
+        points={user.points}
+        pointsToday={user.pointsToday}
+        favLeagueName={"Test"}
+        favLeagueRank={1}
+      />
       <TodaysMatches groupMatches={todayMatches} />
-      <HomePageContainer>{`Hello ${username}`}</HomePageContainer>
+      <HomePageContainer></HomePageContainer>
     </Page>
   );
 };

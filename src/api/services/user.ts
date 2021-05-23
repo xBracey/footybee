@@ -4,6 +4,7 @@ import { saltRounds, StatusError } from "../lib";
 import { User } from "../models";
 import { ValidationError } from "sequelize";
 import bcrypt from "bcrypt";
+import moment from "moment";
 
 interface IUserResponse {
   error?: StatusError;
@@ -118,4 +119,50 @@ export const loginUser = async (
   }
 
   return { error, user: null };
+};
+
+export const getUserPoints = async (
+  username: string
+): Promise<{
+  points: number;
+  pointsToday: number;
+}> => {
+  let points = 0;
+  let pointsToday = 0;
+
+  const matchPredictions = await models.GroupMatchPrediction.findAll({
+    where: {
+      username,
+    },
+  });
+
+  const teamPredictions = await models.TeamPrediction.findAll({
+    where: {
+      username,
+    },
+  });
+
+  for (let index = 0; index < matchPredictions.length; index++) {
+    const matchPrediction = matchPredictions[index];
+
+    points += matchPrediction.get("points", { plain: true });
+
+    const match = await models.GroupMatch.findOne({
+      where: {
+        id: matchPrediction.get("groupMatchId", { plain: true }),
+      },
+    });
+
+    if (moment(match.get("date", { plain: true })).isSame(new Date(), "day")) {
+      pointsToday += matchPrediction.get("points", { plain: true });
+    }
+  }
+
+  for (let index = 0; index < teamPredictions.length; index++) {
+    const teamPrediction = teamPredictions[index];
+
+    points += teamPrediction.get("points", { plain: true });
+  }
+
+  return { points, pointsToday };
 };

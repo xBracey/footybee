@@ -1,6 +1,7 @@
 import { validateDate, validateType } from "../../lib";
 
 export default interface IGroupMatch {
+  id?: number;
   date: Date;
   homeTeam: string;
   awayTeam: string;
@@ -14,9 +15,18 @@ export const isValidGroupMatch = (data: any): data is IGroupMatch => {
     return false;
   }
 
-  const { date, homeGoals, awayGoals, groupLetter, homeTeam, awayTeam } = data;
+  const {
+    id,
+    date,
+    homeGoals,
+    awayGoals,
+    groupLetter,
+    homeTeam,
+    awayTeam,
+  } = data;
 
   return (
+    validateType(id, "number", false) &&
     validateType(homeTeam, "string", true) &&
     validateDate(date, true) &&
     validateType(awayTeam, "string", true) &&

@@ -40,3 +40,8 @@ export const registerUser = async (
 
   return response;
 };
+
+export const fetchUserPoints = async (
+  state: IRootState
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/user/points/${state.user.username}`);

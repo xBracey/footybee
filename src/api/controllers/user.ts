@@ -1,4 +1,4 @@
-import { addUser, deleteUser, getUser } from "../services";
+import { addUser, deleteUser, getUser, getUserPoints } from "../services";
 import IUser, { isValidUser } from "../models/User/type";
 import controllerResponse from "./controller";
 import { StatusError } from "../lib";
@@ -50,4 +50,12 @@ export const getController = async (
   const { user } = await getUser(username);
 
   return { status: 200, response: user };
+};
+
+export const getPointsController = async (
+  username: string
+): Promise<controllerResponse> => {
+  const response = await getUserPoints(username);
+
+  return { status: 200, response };
 };

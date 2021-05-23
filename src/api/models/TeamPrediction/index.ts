@@ -5,6 +5,7 @@ import {
   Model,
   PrimaryKey,
   ForeignKey,
+  Default,
 } from "sequelize-typescript";
 import { User, Team } from "..";
 
@@ -22,4 +23,8 @@ export class TeamPrediction extends Model {
 
   @Column(DataType.SMALLINT)
   groupPosition: number;
+
+  @Default(0)
+  @Column(DataType.SMALLINT)
+  points: number;
 }

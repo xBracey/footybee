@@ -3,6 +3,7 @@ import IGroupMatch from "../models/GroupMatch/type";
 import { StatusError } from "../lib";
 import { GroupMatch } from "../models";
 import { ValidationError } from "sequelize";
+import { calculateMatchesPoints } from "../lib/calculatePoints/calculateMatchesPoints";
 
 interface IGroupMatchResponse {
   error?: StatusError;
@@ -99,6 +100,19 @@ const editGroupMatch = async (
     });
 
     groupMatch.update(teamData);
+
+    const predictions = await models.GroupMatchPrediction.findAll({
+      where: {
+        groupMatchId: id,
+      },
+    });
+
+    const newPoints = calculateMatchesPoints(groupMatch, predictions);
+
+    predictions.forEach((prediction, index) =>
+      prediction.update({ points: newPoints[index] })
+    );
+
     return { groupMatch };
   } catch (error) {
     return { error: new StatusError(error), groupMatch: null };

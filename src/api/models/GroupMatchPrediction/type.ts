@@ -5,6 +5,7 @@ export default interface IGroupMatchPrediction {
   groupMatchId: number;
   homeGoals: number;
   awayGoals: number;
+  points?: number;
 }
 
 export const isValidGroupMatchPrediction = (
@@ -14,12 +15,13 @@ export const isValidGroupMatchPrediction = (
     return false;
   }
 
-  const { username, groupMatchId, homeGoals, awayGoals } = data;
+  const { username, groupMatchId, homeGoals, awayGoals, points } = data;
 
   return (
     validateType(username, "string", true) &&
     validateType(groupMatchId, "number", true) &&
     validateType(homeGoals, "number", true) &&
-    validateType(awayGoals, "number", true)
+    validateType(awayGoals, "number", true) &&
+    validateType(points, "number", false)
   );
 };

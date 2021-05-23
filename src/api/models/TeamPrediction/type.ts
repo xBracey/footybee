@@ -4,6 +4,7 @@ export default interface ITeamPrediction {
   username: string;
   teamName: string;
   groupPosition: number;
+  points?: number;
 }
 
 export const isValidTeamPrediction = (data: any): data is ITeamPrediction => {
@@ -11,11 +12,12 @@ export const isValidTeamPrediction = (data: any): data is ITeamPrediction => {
     return false;
   }
 
-  const { username, teamName, groupPosition } = data;
+  const { username, teamName, groupPosition, points } = data;
 
   return (
     validateType(username, "string", true) &&
     validateType(teamName, "string", true) &&
-    validateType(groupPosition, "number", true)
+    validateType(groupPosition, "number", true) &&
+    validateType(points, "number", false)
   );
 };

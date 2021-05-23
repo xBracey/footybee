@@ -7,7 +7,8 @@
   "scripts": {
     "start": "docker-compose up",
     "build:site": "next build",
-    "develop:site":  "NODE_ENV=development forever start -c \"ts-node -r tsconfig-paths/register\" server/index.ts",
+    "develop:site":  "NODE_ENV=development ts-node -r tsconfig-paths/register server/index.ts",
+    "forever:develop:site":  "NODE_ENV=development forever start -c \"ts-node -r tsconfig-paths/register\" server/index.ts",
     "develop": "nodemon --watch \"src/api/**\" --ext \"ts,json\" --exec \"yarn develop:site\"",
     "serve": "NODE_ENV=production forever start -c \"ts-node -r tsconfig-paths/register\" server/index.ts",
     "forever:stop": "forever stopall",

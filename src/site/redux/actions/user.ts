@@ -1,5 +1,10 @@
 import { types } from "../reducers";
-import { fetchUser, loginUser, registerUser } from "../requests";
+import {
+  fetchUser,
+  fetchUserPoints,
+  loginUser,
+  registerUser,
+} from "../requests";
 import { ThunkResult } from "../types";
 
 export const tryLoginUser = (
@@ -54,6 +59,24 @@ export const tryRegisterUser = (
         type: types.message.MESSAGE_SET_MESSAGE,
         data: response,
       })
+    );
+  };
+};
+
+export const getUserPoints = (): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    dispatch({ type: types.user.USER_LOADING_USER });
+
+    return fetchUserPoints(getState()).then(response =>
+      !response.error
+        ? dispatch({
+            type: types.user.USER_FETCHED_USER_POINTS,
+            data: response,
+          })
+        : dispatch({
+            type: types.message.MESSAGE_SET_MESSAGE,
+            data: response,
+          })
     );
   };
 };

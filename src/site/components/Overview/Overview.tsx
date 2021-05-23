@@ -5,9 +5,11 @@ import {
   OverviewTitle,
   OverviewDescription,
   OverviewInnerContainer,
+  OverviewName,
 } from "./Overview.styled";
 
 interface IOverview {
+  name: string;
   pointsToday: number;
   points: number;
   favLeagueName: string;
@@ -15,6 +17,7 @@ interface IOverview {
 }
 
 export const Overview = ({
+  name,
   pointsToday,
   points,
   favLeagueName,
@@ -22,6 +25,7 @@ export const Overview = ({
 }: IOverview) => {
   return (
     <OverviewContainer>
+      <OverviewName>{name}</OverviewName>
       <OverviewInnerContainer>
         <OverviewFlex>
           <OverviewTitle>Points Today:</OverviewTitle>

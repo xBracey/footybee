@@ -1,5 +1,5 @@
 import _ from "lodash";
-import IGroupMatch from "../..//models/GroupMatch/type";
+import IGroupMatch from "../../models/GroupMatch/type";
 
 export interface IGroupTeam {
   name: string;

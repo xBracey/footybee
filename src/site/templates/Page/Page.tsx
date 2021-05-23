@@ -46,10 +46,6 @@ export const Page = ({
     menu = adminHeaderData;
   }
 
-  console.log("====================================");
-  console.log(usePadding);
-  console.log("====================================");
-
   return isLoggedIn && !auth.token ? (
     <Loading />
   ) : (

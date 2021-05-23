@@ -4,6 +4,7 @@ import {
   createController,
   deleteController,
   getController,
+  getPointsController,
 } from "../../controllers/user";
 
 export const User = Router();
@@ -43,3 +44,13 @@ User.get(
       : res.status(status).send(response);
   }
 );
+
+User.get("/points/:username", async (req, res) => {
+  const { status, error, response } = await getPointsController(
+    req.params.username
+  );
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});

@@ -5,14 +5,15 @@ export const OverviewContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${colours.blue300};
+  flex-direction: column;
+  color: ${colours.white};
 `;
 
 export const OverviewInnerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${colours.blue300};
-  color: ${colours.white};
   width: calc(100% - 32px);
   padding: 0 50px;
   max-width: calc(600px - 32px);
@@ -33,7 +34,7 @@ export const OverviewDescription = styled.p`
 
 export const OverviewFlex = styled.div`
   flex: 1;
-  padding: 50px 0;
+  padding: 0 0 50px 0;
 
   &:nth-child(2) {
     ${OverviewTitle} {
@@ -44,4 +45,11 @@ export const OverviewFlex = styled.div`
       font-size: ${fonts.size.header1};
     }
   }
+`;
+
+export const OverviewName = styled.h2`
+  margin: 32px;
+  text-align: center;
+  font-weight: 300;
+  font-size: ${fonts.size.header1};
 `;
