@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { colours } from "theme";
+import styled, { css } from "styled-components";
 
 interface IPageOuterContainer {
   backgroundColour: string;
+  usePadding: boolean;
 }
 
 export const PageOuterContainer = styled.div<IPageOuterContainer>`
@@ -12,9 +12,18 @@ export const PageOuterContainer = styled.div<IPageOuterContainer>`
   background-color: ${props => props.backgroundColour};
 `;
 
-export const PageInnerContainer = styled.div`
+const withPadding = css`
   width: calc(100% - 32px);
   padding: 16px;
   max-width: calc(1000px - 32px);
-  min-height: calc(100vh - 200px - 32px);
+  min-height: calc(100vh - 200px - 32px + 1px);
+`;
+
+const withoutPadding = css`
+  width: 100%;
+  min-height: calc(100vh - 200px + 1px);
+`;
+
+export const PageInnerContainer = styled.div`
+  ${props => (props.usePadding ? withPadding : withoutPadding)}
 `;

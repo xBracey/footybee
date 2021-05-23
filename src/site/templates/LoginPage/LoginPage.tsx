@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Head,
   ISidebarInfo,
   ISidebarMenu,
   LoginCard,
@@ -41,5 +42,6 @@ export const LoginPage = ({
       </LoginCardContainer>
     </LoginPageContainer>
     <Message />
+    <Head title={`FootyBee - Home`} />
   </>
 );

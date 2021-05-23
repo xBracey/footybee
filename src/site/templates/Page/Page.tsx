@@ -16,6 +16,7 @@ interface IPage {
   loading?: boolean;
   aboutPages?: boolean;
   adminPages?: boolean;
+  usePadding?: boolean;
 }
 
 export const Page = ({
@@ -26,6 +27,7 @@ export const Page = ({
   loading,
   aboutPages,
   adminPages,
+  usePadding = true,
 }: IPage) => {
   const auth = useSelector((state: IRootState) => state.auth);
   const user = useSelector((state: IRootState) => state.user);
@@ -44,6 +46,10 @@ export const Page = ({
     menu = adminHeaderData;
   }
 
+  console.log("====================================");
+  console.log(usePadding);
+  console.log("====================================");
+
   return isLoggedIn && !auth.token ? (
     <Loading />
   ) : (
@@ -52,7 +58,9 @@ export const Page = ({
       <Head title={`FootyBee - ${title}`} />
       <Message />
       <PageOuterContainer backgroundColour={backgroundColour}>
-        <PageInnerContainer>{childrenComponent}</PageInnerContainer>
+        <PageInnerContainer usePadding={usePadding}>
+          {childrenComponent}
+        </PageInnerContainer>
       </PageOuterContainer>
       {footerComponent}
     </div>

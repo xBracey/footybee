@@ -20,6 +20,7 @@ export const IconButtonInnerContainer = styled.div`
 
   &:hover {
     background-color: ${colours.white};
+
     path {
       fill: ${colours.blue200};
     }

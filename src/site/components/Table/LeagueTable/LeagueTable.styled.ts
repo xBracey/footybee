@@ -3,6 +3,14 @@ import { colours, fonts } from "theme";
 
 interface ITableCell {
   isName?: boolean;
+  width?: number;
+  notCentered?: boolean;
+  paddingLeft?: number;
+  paddingRight?: number;
+}
+
+interface ILeagueTableRow {
+  isHighlighted?: boolean;
 }
 
 export const LeagueTableContainer = styled.div`
@@ -17,10 +25,11 @@ export const LeagueTableContainer = styled.div`
   }
 `;
 
-export const LeagueTableRow = styled.div`
+export const LeagueTableRow = styled.div<ILeagueTableRow>`
   display: flex;
   padding: 12px;
   position: relative;
+  transition: all 0.2s;
 
   &:nth-child(2n + 1) {
     color: ${colours.white};
@@ -30,17 +39,30 @@ export const LeagueTableRow = styled.div`
     background-color: ${colours.yellow200};
     color: ${colours.black};
   }
+
+  ${props =>
+    props.isHighlighted
+      ? css`
+          background-color: ${colours.black} !important;
+          color: ${colours.white} !important;
+        `
+      : null}
 `;
 
 const TableCell = css`
-  flex: ${props => (props.name ? 3 : 1)};
+  flex: ${props => {
+    if (!props.width) return props.name ? 3 : 1;
+    return "initial";
+  }};
   font-size: ${fonts.size.small};
-  justify-content: center;
-  padding: 4px;
+  justify-content: ${props => (props.notCentered ? "flex-start" : "center")};
+  padding: 4px ${props => (props.paddingRight ? props.paddingRight : 4)}px 4px
+    ${props => (props.paddingLeft ? props.paddingLeft : 4)}px;
   display: flex;
   align-items: center;
   min-height: 25px;
   text-align: center;
+  width: ${props => (props.width ? `${props.width}px` : "initial")};
 `;
 
 export const LeagueTableCell = styled.div<ITableCell>`

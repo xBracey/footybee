@@ -10,3 +10,4 @@ export * from "./Table";
 export * from "./EditCard";
 export * from "./ResultsTable";
 export * from "./PredictionsTable";
+export * from "./TodaysMatches";
