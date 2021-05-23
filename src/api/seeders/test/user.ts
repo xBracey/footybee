@@ -37,6 +37,20 @@ const userSeed = async () => {
       verified: false,
       admin: true,
     },
+    {
+      username: "Test User League 1",
+      password: "password",
+      email: "testleague1@test.com",
+      verified: false,
+      admin: true,
+    },
+    {
+      username: "Test User League 2",
+      password: "password",
+      email: "testleague2@test.com",
+      verified: false,
+      admin: true,
+    },
   ];
 
   await addUsers(users);

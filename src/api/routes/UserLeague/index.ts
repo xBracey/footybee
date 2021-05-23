@@ -1,7 +1,6 @@
 import { Router } from "express";
 import {
   createController,
-  bulkCreateController,
   deleteController,
   editController,
   getController,
@@ -11,14 +10,6 @@ export const UserLeague = Router();
 
 UserLeague.post("/create", async (req, res) => {
   const { status, error, response } = await createController(req.body);
-
-  return error
-    ? res.status(status).send({ error })
-    : res.status(status).send(response);
-});
-
-UserLeague.post("/bulk-create", async (req, res) => {
-  const { status, error, response } = await bulkCreateController(req.body);
 
   return error
     ? res.status(status).send({ error })

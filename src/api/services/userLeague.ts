@@ -44,6 +44,8 @@ const getUsersLeagues = async (
       username,
     },
   });
+  console.log(username, userLeagues);
+
   return { userLeagues };
 };
 

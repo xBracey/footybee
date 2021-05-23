@@ -16,13 +16,13 @@ const handleError = (error: StatusError): controllerResponse => {
     case 0:
       return { status, error: error.message };
     case 1:
-      return { status, error: "UserLeague ID already exists" };
+      return { status, error: "User League already exists" };
     case 2:
       return { status, error: error.message };
     case 3:
-      return { status, error: error.message };
+      return { status, error: "User League does not exist" };
     case 4:
-      return { status, error: "UserLeague ID does not exist" };
+      return { status, error: "User League does not exist" };
     case 5:
       return { status, error: error.message };
   }
@@ -39,26 +39,6 @@ export const createController = async (
 
   if (!error) {
     return { status: 200, response: userLeague };
-  }
-
-  return handleError(error);
-};
-
-export const bulkCreateController = async (body: {
-  userLeagues: IUserLeague[];
-}): Promise<controllerResponse> => {
-  if (
-    !checkBody(body) ||
-    !body.userLeagues ||
-    !validateArrayTypeCheck(body.userLeagues, isValidUserLeague)
-  ) {
-    return { status: 400, error: "Invalid parameters" };
-  }
-
-  const { error, userLeagues } = await addUserLeagues(body.userLeagues);
-
-  if (!error) {
-    return { status: 200, response: userLeagues };
   }
 
   return handleError(error);

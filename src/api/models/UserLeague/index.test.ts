@@ -1,121 +1,96 @@
-// import {
-// 	addUserLeague,
-// 	addUserLeagues,
-// 	getUserLeague,
-// 	getUserLeagues,
-// 	getAllUserLeagues,
-// 	deleteUserLeague,
-// } from "../../services";
+import {
+  addUserLeague,
+  addUserLeagues,
+  deleteUserLeague,
+  getUsersLeagues,
+} from "../../services";
 
-// describe("Get userLeague", () => {
-// 	it("Valid userLeague name", async done => {
-// 		const { userLeague } = await getUserLeague("Test UserLeague 1");
-// 		const name = userLeague.get("id", { plain: true });
+describe("Get usersLeague", () => {
+  it("Valid userLeague name", async done => {
+    const { userLeagues } = await getUsersLeagues("Test User 1");
 
-// 		expect(name).toEqual("Test UserLeague 1");
-// 		done();
-// 	});
+    expect(userLeagues).toHaveLength(2);
+    done();
+  });
 
-// 	it("Invalid userLeague name", async done => {
-// 		const { userLeague } = await getUserLeague("Incorrect UserLeague 1");
+  it("Invalid userLeague name", async done => {
+    const { userLeagues } = await getUsersLeagues("Test User 3");
 
-// 		expect(userLeague).toBeNull();
-// 		done();
-// 	});
-// });
+    expect(userLeagues).toHaveLength(0);
+    done();
+  });
+});
 
-// describe("Get userLeagues", () => {
-// 	it("Valid userLeagues name", async done => {
-// 		const { userLeagues } = await getUserLeagues(["Test UserLeague 1", "Test UserLeague 2"]);
+describe("Add userLeague", () => {
+  it("Valid userLeague", async done => {
+    const { userLeague } = await addUserLeague({
+      username: "Test User League 1",
+      leagueName: "Test User League 1",
+    });
 
-// 		expect(userLeagues).toHaveLength(2);
-// 		done();
-// 	});
+    const username = userLeague.get("username", { plain: true });
 
-// 	it("Invalid userLeagues name", async done => {
-// 		const { userLeagues } = await getUserLeagues([
-// 			"Incorrect userLeague 1",
-// 			"Incorrect userLeague 2",
-// 		]);
+    expect(username).toEqual("Test User League 1");
+    done();
+  });
 
-// 		expect(userLeagues).toHaveLength(0);
-// 		done();
-// 	});
-// });
+  it("Duplicate userLeague name", async done => {
+    const { error } = await addUserLeague({
+      username: "Test User 1",
+      leagueName: "Test League 1",
+    });
 
-// describe("Get all userLeagues", () => {
-// 	it("Valid", async done => {
-// 		const { userLeagues } = await getAllUserLeagues();
+    expect(error.message).toEqual("Primary Key duplicate");
+    done();
+  });
+});
 
-// 		expect(userLeagues.length).toBeGreaterThan(1);
-// 		done();
-// 	});
-// });
+describe("Add userLeagues", () => {
+  it("Valid userLeagues", async done => {
+    const { userLeagues } = await addUserLeagues([
+      {
+        username: "Test User League 2",
+        leagueName: "Test User League 1",
+      },
+      {
+        username: "Test User League 2",
+        leagueName: "Test User League 2",
+      },
+    ]);
 
-// describe("Add userLeague", () => {
-// 	it("Valid userLeague", async done => {
-// 		const { userLeague } = await addUserLeague({
-// 			id: "Test UserLeague 3",
-// 		});
+    expect(userLeagues).toHaveLength(2);
+    done();
+  });
 
-// 		const name = userLeague.get("id", { plain: true });
+  it("Duplicate userLeague names", async done => {
+    const { error } = await addUserLeagues([
+      {
+        username: "Test User 1",
+        leagueName: "Test League 1",
+      },
+      {
+        username: "Test User 2",
+        leagueName: "Test League 2",
+      },
+    ]);
 
-// 		expect(name).toEqual("Test UserLeague 3");
-// 		done();
-// 	});
+    expect(error.message).toEqual("Primary Key duplicate");
+    done();
+  });
+});
 
-// 	it("Duplicate userLeague name", async done => {
-// 		const { error } = await addUserLeague({
-// 			id: "Test UserLeague 1",
-// 		});
+describe("Delete userLeague", () => {
+  it("Valid userLeague name", async done => {
+    const { error } = await deleteUserLeague("Test User 2", "Test League 2");
 
-// 		expect(error.message).toEqual("Primary Key duplicate");
-// 		done();
-// 	});
-// });
+    expect(error).toBeUndefined();
+    done();
+  });
 
-// describe("Add userLeagues", () => {
-// 	it("Valid userLeagues", async done => {
-// 		const { userLeagues } = await addUserLeagues([
-// 			{
-// 				id: "Test UserLeague 4",
-// 			},
-// 			{
-// 				id: "Test UserLeague 5",
-// 			}
-// 		]);
+  it("Invalid userLeague name", async done => {
+    const { error } = await deleteUserLeague("Test User 3", "Test League 2");
 
-// 		expect(userLeagues).toHaveLength(2);
-// 		done();
-// 	});
-
-// 	it("Duplicate userLeague names", async done => {
-// 		const { error } = await addUserLeagues([
-// 			{
-// 				id: "Test UserLeague 1",
-// 			},
-// 			{
-// 				id: "Test UserLeague 2",
-// 			}
-// 		]);
-
-// 		expect(error.message).toEqual("Primary Key duplicate");
-// 		done();
-// 	});
-// });
-
-// describe("Delete userLeague", () => {
-// 	it("Valid userLeague name", async done => {
-// 		const { error } = await deleteUserLeague("Test UserLeague Delete 1");
-
-// 		expect(error).toBeUndefined();
-// 		done();
-// 	});
-
-// 	it("Invalid userLeague name", async done => {
-// 		const { error } = await deleteUserLeague("Incorrect UserLeague");
-
-// 		expect(error.message).toEqual("Primary Key not found when deleting entity");
-// 		done();
-// 	});
-// });
+    expect(error.message).toEqual("Primary Key not found when deleting entity");
+    done();
+  });
+});

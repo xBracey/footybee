@@ -22,6 +22,16 @@ const leagueSeed = async () => {
       displayName: "Tom's League",
       password: "1234",
     },
+    {
+      leagueName: "Test User League 1",
+      displayName: "Tom's League",
+      password: "1234",
+    },
+    {
+      leagueName: "Test User League 2",
+      displayName: "Tom's League",
+      password: "1234",
+    },
   ];
 
   await addLeagues(leagues);

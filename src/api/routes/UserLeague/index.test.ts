@@ -8,7 +8,10 @@ describe("Test create userLeague endpoint", () => {
   it("Valid userLeague", async done => {
     const response = await request
       .post("/userLeague/create")
-      .send({})
+      .send({
+        username: "Test User League 1",
+        leagueName: "Test League 1",
+      })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(200);
@@ -19,11 +22,11 @@ describe("Test create userLeague endpoint", () => {
   it("Duplicate userLeague", async done => {
     const response = await request
       .post("/userLeague/create")
-      .send()
+      .send({ username: "Test User 1", leagueName: "Test League 1" })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(409);
-    expect(response.body.error).toBe("userLeague name already exists");
+    expect(response.body.error).toBe("User League already exists");
     done();
   });
 
@@ -61,76 +64,23 @@ describe("Test create userLeague endpoint", () => {
   });
 });
 
-describe("Test bulk create userLeague endpoint", () => {
-  it("Valid userLeagues", async done => {
-    const response = await request
-      .post("/userLeague/bulk-create")
-      .send()
-      .set("Accept", "application/json");
-
-    expect(response.status).toBe(200);
-
-    done();
-  });
-
-  it("Duplicate userLeague", async done => {
-    const response = await request
-      .post("/userLeague/bulk-create")
-      .send()
-      .set("Accept", "application/json");
-
-    expect(response.status).toBe(409);
-
-    done();
-  });
-
-  it("Invalid body", async done => {
-    const response = await request
-      .post("/userLeague/bulk-create")
-      .send([{ fefefe: "fefefefe" }])
-      .set("Accept", "application/json");
-
-    expect(response.status).toBe(400);
-    expect(response.body.error).toBe("Invalid parameters");
-    done();
-  });
-
-  it("Invalid array", async done => {
-    const response = await request
-      .post("/userLeague/bulk-create")
-      .send([])
-      .set("Accept", "application/json");
-
-    expect(response.status).toBe(400);
-    expect(response.body.error).toBe("Invalid parameters");
-    done();
-  });
-
-  it("Wrong Data type", async done => {
-    const response = await request
-      .post("/userLeague/bulk-create")
-      .send({ fefe: "fefef" })
-      .set("Accept", "application/json");
-
-    expect(response.status).toBe(400);
-    expect(response.body.error).toBe("Invalid parameters");
-    done();
-  });
-});
-
 describe("Test delete userLeague endpoint", () => {
   it("Valid userLeague name", async done => {
-    const response = await request.delete("/userLeague/test");
+    const response = await request.delete(
+      "/userLeague/Test User 2/Test League 1"
+    );
 
     expect(response.status).toBe(200);
     done();
   });
 
   it("Invalid userLeague name", async done => {
-    const response = await request.delete("/userLeague/fewfewfewfewfew");
+    const response = await request.delete(
+      "/userLeague/fewfewfewfewfew/fefiefuef"
+    );
 
     expect(response.status).toBe(400);
-    expect(response.body.error).toBe("userLeague does not exist");
+    expect(response.body.error).toBe("User League does not exist");
     done();
   });
 });
