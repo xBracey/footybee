@@ -10,5 +10,6 @@ story.add("Overview Component", () => (
     points={200}
     favLeagueName={"Test League"}
     favLeagueRank={12}
+    name={"xBracey"}
   />
 ));
