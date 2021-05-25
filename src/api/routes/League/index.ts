@@ -3,6 +3,7 @@ import {
   createController,
   bulkCreateController,
   deleteController,
+  getController,
 } from "../../controllers/league";
 
 export const League = Router();
@@ -25,6 +26,16 @@ League.post("/bulk-create", async (req, res) => {
 
 League.delete("/:leagueName", async (req, res) => {
   const { status, error, response } = await deleteController(
+    req.params.leagueName
+  );
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});
+
+League.get("/:leagueName", async (req, res) => {
+  const { status, error, response } = await getController(
     req.params.leagueName
   );
 

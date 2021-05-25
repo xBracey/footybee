@@ -1,4 +1,4 @@
-import { addLeague, addLeagues, deleteLeague } from "../services";
+import { addLeague, addLeagues, deleteLeague, getLeague } from "../services";
 import ILeague, { isValidLeague } from "../models/League/type";
 import controllerResponse from "./controller";
 import { StatusError, checkBody, validateArrayTypeCheck } from "../lib";
@@ -62,4 +62,12 @@ export const deleteController = async (
   }
 
   return handleError(error);
+};
+
+export const getController = async (
+  name: string
+): Promise<controllerResponse> => {
+  const { league } = await getLeague(name);
+
+  return { status: 200, response: league };
 };

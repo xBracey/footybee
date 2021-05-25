@@ -7,7 +7,11 @@ import {
   AllowNull,
   Unique,
   Default,
+  ForeignKey,
+  BelongsToMany,
 } from "sequelize-typescript";
+import { League } from "../League";
+import { UserLeague } from "../UserLeague";
 
 @Table
 export class User extends Model {
@@ -43,4 +47,11 @@ export class User extends Model {
 
   @Column(DataType.DATE)
   forgot_password_expiry: string;
+
+  @ForeignKey(() => League)
+  @Column(DataType.STRING)
+  favouriteLeagueName: string;
+
+  @BelongsToMany(() => League, () => UserLeague)
+  leagues: League[];
 }

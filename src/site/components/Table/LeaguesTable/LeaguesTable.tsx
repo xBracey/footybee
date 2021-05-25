@@ -28,7 +28,7 @@ export const LeaguesTable = ({ leagues, onLeagueClick }: ILeaguesTable) => {
     <LeaguesTableRowWrapper onClick={() => onLeagueClick(league.name)}>
       <LeagueTableRow key={index}>
         <LeagueTableCell width={80} paddingRight={40}>
-          {league.rank}
+          {league.rank ?? "N/A"}
         </LeagueTableCell>
         <LeagueTableCell isName={true} notCentered>
           {league.name}

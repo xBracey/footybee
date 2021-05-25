@@ -22,4 +22,7 @@ export class UserLeague extends Model {
 
   @Column(DataType.BOOLEAN)
   admin: boolean;
+
+  @Column(DataType.SMALLINT)
+  rank: number;
 }

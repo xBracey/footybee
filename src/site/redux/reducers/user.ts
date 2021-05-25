@@ -1,11 +1,17 @@
 import { IAction, IReducers } from "../types";
 
+export interface IUserLeagues {
+  rank: number;
+  name: string;
+}
+
 export interface IUser {
   username: string;
   admin: boolean;
   loading: boolean;
   points: number;
   pointsToday: number;
+  userLeagues: IUserLeagues[];
 }
 
 const initialState: IUser = {
@@ -14,6 +20,7 @@ const initialState: IUser = {
   loading: false,
   points: 0,
   pointsToday: 0,
+  userLeagues: [],
 };
 
 export const userTypes = {
@@ -29,9 +36,14 @@ export const userTypes = {
 const loadingUser = state => ({ ...state, loading: true });
 
 const fetchedUser = (state, { data }) => {
-  const { username, admin } = data;
+  const { username, admin, leagues } = data;
 
-  return { ...state, username, admin, loading: false };
+  const userLeagues = leagues.map(league => ({
+    rank: league.UserLeague.rank,
+    name: league.leagueName,
+  }));
+
+  return { ...state, username, admin, userLeagues, loading: false };
 };
 
 const fetchedUserPoints = (state, { data }) => {

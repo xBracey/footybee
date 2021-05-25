@@ -10,6 +10,7 @@ import groupMatchPredictions, {
   groupMatchPredictionsTypes,
   IGroupMatchPredictions,
 } from "./groupMatchPredictions";
+import leagues, { leaguesTypes, ILeagues } from "./leagues";
 
 export const cache = {};
 
@@ -22,6 +23,7 @@ export const types = {
   players: playersTypes,
   groupMatches: groupMatchesTypes,
   groupMatchPredictions: groupMatchPredictionsTypes,
+  leagues: leaguesTypes,
 };
 
 export interface IRootState {
@@ -33,6 +35,7 @@ export interface IRootState {
   players: IPlayers;
   groupMatches: IGroupMatches;
   groupMatchPredictions: IGroupMatchPredictions;
+  leagues: ILeagues;
 }
 
 export default combineReducers({
@@ -44,4 +47,5 @@ export default combineReducers({
   players,
   groupMatches,
   groupMatchPredictions,
+  leagues,
 });

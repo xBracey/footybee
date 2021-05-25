@@ -1,7 +1,7 @@
 import { models } from "../config";
 import IUser from "../models/User/type";
 import { saltRounds, StatusError } from "../lib";
-import { User } from "../models";
+import { League, User } from "../models";
 import { ValidationError } from "sequelize";
 import bcrypt from "bcrypt";
 import moment from "moment";
@@ -59,6 +59,7 @@ export const getUser = async (username: string): Promise<IUserResponse> => {
     where: {
       username,
     },
+    include: [League],
   });
 
   const error = new StatusError(

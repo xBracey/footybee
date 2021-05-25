@@ -5,7 +5,10 @@ import {
   Model,
   PrimaryKey,
   AllowNull,
+  BelongsToMany,
 } from "sequelize-typescript";
+import { User } from "../User";
+import { UserLeague } from "../UserLeague";
 
 @Table
 export class League extends Model {
@@ -20,4 +23,7 @@ export class League extends Model {
   @AllowNull(false)
   @Column(DataType.STRING)
   password: string;
+
+  @BelongsToMany(() => User, () => UserLeague)
+  users: User[];
 }

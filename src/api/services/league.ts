@@ -1,6 +1,6 @@
 import { models } from "../config";
 import ILeague from "../models/League/type";
-import { League } from "../models";
+import { League, User } from "../models";
 import { StatusError } from "../lib";
 import { ValidationError } from "sequelize";
 
@@ -43,6 +43,7 @@ export const getLeague = async (
     where: {
       leagueName,
     },
+    include: [User],
   });
   return { league };
 };
