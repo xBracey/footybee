@@ -1,4 +1,5 @@
 import { Router } from "express";
+import _ from "lodash";
 import passport from "passport";
 import {
   createController,
@@ -41,7 +42,11 @@ User.get(
 
     return error
       ? res.status(status).send({ error })
-      : res.status(status).send(response);
+      : res
+          .status(status)
+          .send(
+            _.pick(response, ["username", "displayName", "admin", "verified"])
+          );
   }
 );
 

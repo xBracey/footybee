@@ -43,8 +43,8 @@ const fetchedLeague = (state: ILeagues, { data }) => {
     name: data.leagueName,
     users: data.users.map(user => ({
       rank: user.UserLeague.rank,
-      displayName: user.username, //TODO change to displayName
-      points: 0, // TODO
+      displayName: user.displayName,
+      points: user.points,
     })),
   };
 

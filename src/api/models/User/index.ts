@@ -37,6 +37,13 @@ export class User extends Model {
   admin: boolean;
 
   @Column(DataType.STRING)
+  displayName: string;
+
+  @Default(0)
+  @Column(DataType.SMALLINT)
+  points: number;
+
+  @Column(DataType.STRING)
   verification_token: string;
 
   @Column(DataType.DATE)

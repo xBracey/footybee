@@ -38,10 +38,12 @@ const loadingUser = state => ({ ...state, loading: true });
 const fetchedUser = (state, { data }) => {
   const { username, admin, leagues } = data;
 
-  const userLeagues = leagues.map(league => ({
-    rank: league.UserLeague.rank,
-    name: league.leagueName,
-  }));
+  const userLeagues = leagues
+    ? leagues.map(league => ({
+        rank: league.UserLeague.rank,
+        name: league.leagueName,
+      }))
+    : [];
 
   return { ...state, username, admin, userLeagues, loading: false };
 };
