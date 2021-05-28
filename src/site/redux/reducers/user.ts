@@ -27,6 +27,7 @@ export const userTypes = {
   USER_FETCHED_USER: "fetchedUser",
   USER_LOADING_USER: "loadingUser",
   USER_FETCHED_USER_POINTS: "fetchedUserPoints",
+  USER_ADDED_LEAGUE: "addedLeague",
 };
 
 /**
@@ -54,6 +55,17 @@ const fetchedUserPoints = (state, { data }) => {
   return { ...state, points, pointsToday, loading: false };
 };
 
+const addedLeague = (state: IUser, { data }) => {
+  const userLeagues = [...state.userLeagues];
+
+  userLeagues.push({
+    rank: null,
+    name: data.leagueName,
+  });
+
+  return { ...state, loading: false, userLeagues };
+};
+
 /**
  * USER REDUCERS - END
  * */
@@ -62,6 +74,7 @@ const reducers: IReducers<IUser> = {
   fetchedUser,
   loadingUser,
   fetchedUserPoints,
+  addedLeague,
 };
 
 export default (state = initialState, action: IAction) => {

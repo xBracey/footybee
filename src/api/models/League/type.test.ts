@@ -4,8 +4,7 @@ describe("Test isValidLeague", () => {
   it("Valid", async done => {
     const validLeague = isValidLeague({
       leagueName: "Test 1",
-      displayName: "Test",
-      password: "Test",
+      code: "Test",
     });
     expect(validLeague).toBe(true);
     done();

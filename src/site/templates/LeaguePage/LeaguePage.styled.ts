@@ -9,4 +9,5 @@ export const LeaguePageHeader = styled.h1`
   text-align: center;
   margin: 40px 0;
   color: ${colours.white};
+  font-weight: 500;
 `;

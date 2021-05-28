@@ -1,7 +1,18 @@
-import { addLeague, addLeagues, deleteLeague, getLeague } from "../services";
+import {
+  addLeague,
+  addLeagues,
+  addUserLeague,
+  deleteLeague,
+  getLeague,
+} from "../services";
 import ILeague, { isValidLeague } from "../models/League/type";
 import controllerResponse from "./controller";
-import { StatusError, checkBody, validateArrayTypeCheck } from "../lib";
+import {
+  StatusError,
+  checkBody,
+  validateArrayTypeCheck,
+  validateType,
+} from "../lib";
 
 const handleError = (error: StatusError): controllerResponse => {
   const { status, code } = error;
@@ -17,16 +28,26 @@ const handleError = (error: StatusError): controllerResponse => {
 };
 
 export const createController = async (
-  body: ILeague
+  body: ILeague & { username: string }
 ): Promise<controllerResponse> => {
-  if (!isValidLeague(body)) {
+  if (validateType(body.username, "string", true) && !isValidLeague(body)) {
     return { status: 400, error: "Invalid parameters" };
   }
 
   const { error, league } = await addLeague(body);
 
   if (!error) {
-    return { status: 200, response: league };
+    const { error: newError } = await addUserLeague({
+      username: body.username,
+      leagueName: league.get("leagueName", { plain: true }),
+      admin: true,
+    });
+
+    if (!newError) {
+      return { status: 200, response: league };
+    }
+
+    return handleError(newError);
   }
 
   return handleError(error);

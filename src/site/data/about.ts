@@ -1,8 +1,8 @@
 export const aboutData = {
   header: `About FootyBee`,
   introduction: [
-    `FootyBee is a Euro 2020/21 football predictor. As a FootyBee user, you can make predictions on  game, create and
-        join leagues with your friends and customise how your own league scores points. You score points by making correct
+    `FootyBee is a Euro 2020/21 football predictor. As a FootyBee user, you can make predictions on games, create and
+        join leagues with your friends and compete in our global FootyBee leaderboard. You score points by making correct
         predictions about match results, team squalifying for each round and predictions on individual awards like the Golden Boot`,
 
     `FootyBee is built using React as a frontend, Redux as a data layer, a combination of NextJS and ExpressJS for the backend and 

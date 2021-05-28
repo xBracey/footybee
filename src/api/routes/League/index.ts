@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { generateWords } from "../../lib/codeGenerator/codeGenerator";
 import {
   createController,
   bulkCreateController,
@@ -9,7 +10,10 @@ import {
 export const League = Router();
 
 League.post("/create", async (req, res) => {
-  const { status, error, response } = await createController(req.body);
+  const { status, error, response } = await createController({
+    ...req.body,
+    code: generateWords(),
+  });
 
   return error
     ? res.status(status).send({ error })

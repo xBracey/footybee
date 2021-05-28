@@ -18,11 +18,7 @@ export class League extends Model {
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  displayName: string;
-
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  password: string;
+  code: string;
 
   @BelongsToMany(() => User, () => UserLeague)
   users: User[];

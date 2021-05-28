@@ -5,7 +5,7 @@ import {
   getGroupMatchPredictions,
   saveGroupMatchPredictions,
 } from "redux/actions";
-import { IRootState } from "redux/reducers";
+import { IRootState, types } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { getGroupMatches } from "src/site/redux/actions/groupMatches";
 import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
@@ -42,7 +42,14 @@ export const PredictionsPage = () => {
   });
 
   const onSave = predictions => {
-    dispatch(saveGroupMatchPredictions(predictions));
+    dispatch(saveGroupMatchPredictions(predictions)).then(({ data }) => {
+      if (!data.error) {
+        dispatch({
+          type: types.message.MESSAGE_SET_MESSAGE,
+          data: { message: "Successfully made predictions" },
+        });
+      }
+    });
   };
 
   const groupMatchesComponent = Object.entries(

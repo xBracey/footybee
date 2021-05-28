@@ -43,7 +43,7 @@ export const HomePage = ({ username }: IHomePage) => {
       isLoggedIn
       loading={!username}
       usePadding={false}
-      backgroundColour={colours.green300}
+      backgroundColour={colours.green200}
     >
       <Overview
         name={user.username}

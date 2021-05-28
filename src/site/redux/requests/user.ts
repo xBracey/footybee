@@ -45,3 +45,21 @@ export const fetchUserPoints = async (
   state: IRootState
 ): Promise<IAPIResponse> =>
   authorisedRequest(state, `/user/points/${state.user.username}`);
+
+export const postUserLeague = async (
+  state: IRootState,
+  leagueName: string
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/userLeague/create`, {
+    method: "POST",
+    data: { username: state.user.username, leagueName },
+  });
+
+export const postNewLeague = async (
+  state: IRootState,
+  leagueName: string
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/league/create`, {
+    method: "POST",
+    data: { username: state.user.username, leagueName },
+  });

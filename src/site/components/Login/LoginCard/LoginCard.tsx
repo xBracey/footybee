@@ -41,7 +41,9 @@ export const LoginCard = ({
 
   const onBlurHandler = (index: number) => {
     hasBlurred[index] = true;
+  };
 
+  const validate = () => {
     const newValidation = validateInputs([
       {
         value: username,
@@ -69,14 +71,20 @@ export const LoginCard = ({
         <CardHeader>Log in</CardHeader>
         <TextInput
           text={username}
-          setText={setUsername}
+          setText={(text: string) => {
+            validate();
+            setUsername(text);
+          }}
           placeholder="Username"
           error={validation.errorMessages[0]}
           onBlurHandler={() => onBlurHandler(0)}
         />
         <TextInput
           text={password}
-          setText={setPassword}
+          setText={(text: string) => {
+            validate();
+            setPassword(text);
+          }}
           type="password"
           placeholder="Password"
           error={validation.errorMessages[1]}

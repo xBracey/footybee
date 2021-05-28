@@ -8,7 +8,7 @@ export const footerData: IFooter = {
     },
     {
       text: "Leaderboard",
-      link: "/leaderboard",
+      link: "/league/global",
     },
     {
       text: "Contact",

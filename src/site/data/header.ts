@@ -4,8 +4,8 @@ import { icons } from "../assets/icons";
 export const headerData = (isAdmin: boolean): IHeader["menu"] => {
   const menu: IHeader["menu"] = [
     {
-      text: "Leagues",
-      link: "/league",
+      text: "How To Play",
+      link: "/howtoplay",
     },
     {
       text: "Predictions",

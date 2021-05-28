@@ -20,10 +20,15 @@ export const LeaguePage = ({ name }: ILeaguePage) => {
     dispatch(getLeague(name));
   }, []);
 
+  const leagueName =
+    leagues.leagues[name]?.name === "global"
+      ? "Global Leaderboard"
+      : leagues.leagues[name]?.name;
+
   return (
     <Page title="League" isLoggedIn={true} backgroundColour={colours.green300}>
       <LeaguePageContainer>
-        <LeaguePageHeader>{leagues.leagues[name]?.name}</LeaguePageHeader>
+        <LeaguePageHeader>{leagueName}</LeaguePageHeader>
         <UserTable users={leagues.leagues[name]?.users ?? []} />
       </LeaguePageContainer>
     </Page>

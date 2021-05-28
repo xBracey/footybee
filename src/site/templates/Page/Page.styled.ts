@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 interface IPageOuterContainer {
   backgroundColour: string;
   usePadding: boolean;
+  isLoggedIn: boolean;
 }
 
 export const PageOuterContainer = styled.div<IPageOuterContainer>`
@@ -16,7 +17,9 @@ const withPadding = css`
   width: calc(100% - 32px);
   padding: 16px;
   max-width: calc(1000px - 32px);
-  min-height: calc(100vh - 200px - 32px + 1px);
+  min-height: calc(
+    100vh - ${props => (props.isLoggedIn ? 200 : 130)}px - 32px + 1px
+  );
 `;
 
 const withoutPadding = css`

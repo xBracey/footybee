@@ -72,7 +72,7 @@ export const Logo = styled.div`
   height: 80px;
   width: 80px;
   cursor: pointer;
-  margin: 0 256px 0 0;
+  margin: 0 192px 0 0;
 
   path {
     fill: ${colours.white};

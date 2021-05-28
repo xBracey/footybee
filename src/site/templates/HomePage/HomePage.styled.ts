@@ -12,14 +12,14 @@ export const HomePageContainer = styled.div`
 
 export const HomePageInnerContainer = styled.div`
   width: calc(100% - 32px);
-  max-width: calc(600px - 32px);
+  max-width: calc(1000px - 32px);
 `;
 
 export const AddLeagueFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 16px 100px 16px;
+  padding: 24px 24px 64px 24px;
   flex-wrap: wrap;
 
   ${TextInputContainer} {
@@ -30,7 +30,6 @@ export const AddLeagueFlex = styled.div`
 export const AddLeagueText = styled.p`
   color: ${colours.white};
   text-align: center;
-  margin: 8px;
-  width: 100%;
   font-size: ${fonts.size.header3};
+  margin: 0;
 `;

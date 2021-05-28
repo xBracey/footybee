@@ -18,7 +18,7 @@ const handleError = (error: StatusError): controllerResponse => {
     case 1:
       return { status, error: "User League already exists" };
     case 2:
-      return { status, error: error.message };
+      return { status, error: "User League does not exist" };
     case 3:
       return { status, error: "User League does not exist" };
     case 4:

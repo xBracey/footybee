@@ -1,4 +1,10 @@
-import { addUser, deleteUser, getUser, getUserPoints } from "../services";
+import {
+  addUser,
+  addUserLeague,
+  deleteUser,
+  getUser,
+  getUserPoints,
+} from "../services";
 import IUser, { isValidUser } from "../models/User/type";
 import controllerResponse from "./controller";
 import { StatusError } from "../lib";
@@ -26,7 +32,17 @@ export const createController = async (
   const { error, user } = await addUser(body);
 
   if (!error) {
-    return { status: 200, response: user };
+    const { error: newError } = await addUserLeague({
+      username: body.username,
+      leagueName: "global",
+      admin: false,
+    });
+
+    if (!newError) {
+      return { status: 200, response: user };
+    }
+
+    return handleError(newError);
   }
 
   return handleError(error);

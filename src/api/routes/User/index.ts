@@ -45,7 +45,13 @@ User.get(
       : res
           .status(status)
           .send(
-            _.pick(response, ["username", "displayName", "admin", "verified"])
+            _.pick(response, [
+              "username",
+              "displayName",
+              "admin",
+              "verified",
+              "leagues",
+            ])
           );
   }
 );

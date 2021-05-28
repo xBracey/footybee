@@ -54,7 +54,7 @@ export const Page = ({
       <Head title={`FootyBee - ${title}`} />
       <Message />
       <PageOuterContainer backgroundColour={backgroundColour}>
-        <PageInnerContainer usePadding={usePadding}>
+        <PageInnerContainer usePadding={usePadding} isLoggedIn={isLoggedIn}>
           {childrenComponent}
         </PageInnerContainer>
       </PageOuterContainer>

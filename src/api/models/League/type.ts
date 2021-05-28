@@ -2,8 +2,7 @@ import { validateType } from "../../lib";
 
 export default interface ILeague {
   leagueName: string;
-  displayName: string;
-  password: string;
+  code: string;
 }
 
 export const isValidLeague = (data: any): data is ILeague => {
@@ -11,11 +10,10 @@ export const isValidLeague = (data: any): data is ILeague => {
     return false;
   }
 
-  const { leagueName, displayName, password } = data;
+  const { leagueName, code } = data;
 
   return (
     validateType(leagueName, "string", true) &&
-    validateType(displayName, "string", true) &&
-    validateType(password, "string", true)
+    validateType(code, "string", true)
   );
 };

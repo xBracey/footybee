@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colours } from "theme";
 
 export const TodaysMatchesContainer = styled.div`
-  background-color: ${colours.green200};
+  background-color: ${colours.green300};
   display: flex;
   justify-content: center;
   align-items: center;
