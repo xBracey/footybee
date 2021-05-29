@@ -53,7 +53,10 @@ export const Header = ({ menu }: IHeader) => {
     </>
   ) : null;
 
-  const onMenuClick = () => setOpen(!open);
+  const onMenuClick = () => {
+    window.scrollTo(0, 0);
+    setOpen(!open);
+  };
 
   return (
     <HeaderOuterContainer>

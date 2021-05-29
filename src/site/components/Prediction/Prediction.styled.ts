@@ -8,6 +8,7 @@ export const PredictionScoreContainer = styled.div`
   width: 80px;
   height: 30px;
   padding: 24px 0;
+  margin: 0 12px;
 `;
 
 export const PredictionInputContainer = styled.div`
@@ -18,7 +19,9 @@ export const PredictionInputContainer = styled.div`
 
   svg {
     cursor: pointer;
-    transform: scale(0.75);
+    transform: scale(0.8);
+    padding: 8px;
+    margin: -8px;
   }
 
   svg:nth-child(3) {
@@ -40,7 +43,7 @@ export const PredictionInput = styled.input`
   font-size: ${fonts.size.header3};
   text-align: center;
   height: 28px;
-  line-height: 50px;
+  line-height: 28px;
   padding-bottom: 2px;
 
   &:focus {

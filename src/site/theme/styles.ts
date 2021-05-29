@@ -7,6 +7,10 @@ interface IStorybookWrapper {
 }
 
 export const GlobalStyles = createGlobalStyle`
+    html, body{
+        overflow-x: hidden;
+    }
+
     body {
         margin: 0;
         padding: 0;

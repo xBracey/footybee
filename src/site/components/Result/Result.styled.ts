@@ -6,6 +6,7 @@ export const ResultContainer = styled.div`
   align-items: center;
   margin: 12px;
   transform: scale(0.9);
+  touch-action: manipulation;
 `;
 
 export const ResultFlagContainer = styled.div`
