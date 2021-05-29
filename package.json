@@ -17,7 +17,8 @@
     "test:watch": "jest --collectCoverage --watchAll",
     "storybook": "start-storybook -s ./public -p 9000 ",
     "storybook:build": "build-storybook -c .storybook -o .out",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "deploy": "docker-compose down && git pull && yarn && yarn build:site && yarn start -d"
   },
   "dependencies": {
     "@storybook/addon-actions": "^6.1.14",
