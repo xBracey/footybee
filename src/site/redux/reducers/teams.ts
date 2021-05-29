@@ -5,6 +5,7 @@ interface ITeam {
   groupLetter: string;
   name: string;
   groupPosition: string;
+  userPrediction?: number;
 }
 
 export interface ITeams {

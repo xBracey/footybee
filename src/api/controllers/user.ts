@@ -8,6 +8,7 @@ import {
 import IUser, { isValidUser } from "../models/User/type";
 import controllerResponse from "./controller";
 import { StatusError } from "../lib";
+import _ from "lodash";
 
 const handleError = (error: StatusError): controllerResponse => {
   const { status, code } = error;
@@ -65,7 +66,15 @@ export const getController = async (
 ): Promise<controllerResponse> => {
   const { user } = await getUser(username);
 
-  return { status: 200, response: user };
+  const response = _.pick(user, [
+    "username",
+    "displayName",
+    "admin",
+    "verified",
+    "leagues",
+  ]);
+
+  return { status: 200, response };
 };
 
 export const getPointsController = async (

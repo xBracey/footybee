@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
 import {
   ResultsTableContainer,
@@ -23,13 +23,20 @@ export const ResultsTable = ({
 }: IResultsTable) => {
   const resultsComponent = groupMatches.map(match => <Result {...match} />);
 
+  const [table, setTable] = useState([]);
+
   return (
     <ResultsTableOuterContainer inverted={inverted}>
       <ResultsTableContainer>
         <ResultTableTitle>{title}</ResultTableTitle>
         <ResultsContainer>{resultsComponent}</ResultsContainer>
         <TableContainer>
-          <LeagueTable matches={groupMatches} isResults />
+          <LeagueTable
+            matches={groupMatches}
+            isResults
+            table={table}
+            setTable={setTable}
+          />
         </TableContainer>
       </ResultsTableContainer>
     </ResultsTableOuterContainer>

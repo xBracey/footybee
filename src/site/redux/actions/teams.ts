@@ -7,6 +7,7 @@ import {
   deleteTeam,
   postTeam,
   putTeam,
+  postTeamsPrediction,
 } from "../requests";
 import { ThunkResult } from "../types";
 
@@ -92,6 +93,17 @@ export const editTeam = (
 export const removeTeam = (name: string): ThunkResult<any> => {
   return (dispatch, getState) => {
     return deleteTeam(getState(), name).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
+    );
+  };
+};
+
+export const addTeamsPrediction = (names: string[]): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return postTeamsPrediction(getState(), names).then(response =>
       dispatch({
         type: types.message.MESSAGE_SET_MESSAGE,
         data: response,

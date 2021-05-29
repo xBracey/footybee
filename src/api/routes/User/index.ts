@@ -42,17 +42,7 @@ User.get(
 
     return error
       ? res.status(status).send({ error })
-      : res
-          .status(status)
-          .send(
-            _.pick(response, [
-              "username",
-              "displayName",
-              "admin",
-              "verified",
-              "leagues",
-            ])
-          );
+      : res.status(status).send(response);
   }
 );
 

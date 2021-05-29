@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
 import { IPredictionReducer, reducer } from "./PredictionReducer";
 import { Prediction } from "../Prediction";
@@ -11,7 +11,8 @@ import {
 } from "components/ResultsTable/ResultsTable.styled";
 import { LeagueTable } from "../Table";
 import { Button } from "../Button";
-import { ButtonContainer } from "./PredictionsTable.styled";
+import { ButtonContainer, PairingNote } from "./PredictionsTable.styled";
+import { calculateTable } from "src/api/lib/calculateTable/calculateTable";
 
 export interface IPrediction {
   groupMatchId: number;
@@ -24,7 +25,8 @@ interface IPredictionsTable {
   originalPredictions: IPrediction[];
   title: string;
   inverted: boolean;
-  onSave: (predictions: IPrediction[]) => void;
+  onSave: (predictions: IPrediction[], teams: string[]) => void;
+  originalPositions?: string[];
 }
 
 export const PredictionsTable = ({
@@ -33,6 +35,7 @@ export const PredictionsTable = ({
   title,
   inverted,
   onSave,
+  originalPositions,
 }: IPredictionsTable) => {
   const [state, dispatch]: [IPredictionReducer, any] = useReducer(reducer, {
     predictions: groupMatches.map(match => ({
@@ -44,11 +47,46 @@ export const PredictionsTable = ({
     })),
   });
 
+  const { predictions } = state;
+
+  const [matches, setMatches] = useState(
+    predictions.map(prediction => ({
+      ...prediction,
+      id: prediction.groupMatchId,
+      homeGoals: parseInt(prediction.homeGoals),
+      awayGoals: parseInt(prediction.awayGoals),
+      date: null,
+      groupLetter: null,
+    }))
+  );
+
+  const [table, setTable] = useState([]);
+
+  useEffect(() => {
+    if (originalPositions.length && table.length) {
+      const newTable = originalPositions.map(teamName =>
+        table.find(team => team.name === teamName)
+      );
+      setTable(newTable);
+    }
+  }, [originalPositions]);
+
   useEffect(() => {
     dispatch({ type: "setPredictions", data: { originalPredictions } });
   }, [originalPredictions]);
 
-  const { predictions } = state;
+  useEffect(() => {
+    setMatches(
+      predictions.map(prediction => ({
+        ...prediction,
+        id: prediction.groupMatchId,
+        homeGoals: parseInt(prediction.homeGoals),
+        awayGoals: parseInt(prediction.awayGoals),
+        date: null,
+        groupLetter: null,
+      }))
+    );
+  }, [predictions]);
 
   const predictionsComponent = predictions.map(prediction => (
     <Prediction
@@ -69,24 +107,31 @@ export const PredictionsTable = ({
     />
   ));
 
-  const matches: IGroupMatch[] = predictions.map(prediction => ({
-    ...prediction,
-    id: prediction.groupMatchId,
-    homeGoals: parseInt(prediction.homeGoals),
-    awayGoals: parseInt(prediction.awayGoals),
-    date: null,
-    groupLetter: null,
-  }));
+  const onButtonClick = () =>
+    onSave(
+      predictions,
+      table.map(team => team.name)
+    );
 
-  const onButtonClick = () => onSave(predictions);
+  const { pairings } = calculateTable(matches);
+
+  const pairingNoteComponent = pairings.length ? (
+    <PairingNote>
+      <b>Note: </b> <br /> Your predictions have resulted in a tie between two
+      or more teams for a position in the league table.
+      <br /> Because you get points for predicting a team's position, you have
+      the option on the side of the table to switch these positions
+    </PairingNote>
+  ) : null;
 
   return (
     <ResultsTableOuterContainer inverted={inverted}>
       <ResultsTableContainer>
         <ResultTableTitle>{title}</ResultTableTitle>
         <ResultsContainer>{predictionsComponent}</ResultsContainer>
+        {pairingNoteComponent}
         <TableContainer>
-          <LeagueTable matches={matches} />
+          <LeagueTable matches={matches} table={table} setTable={setTable} />
         </TableContainer>
         <ButtonContainer>
           <Button

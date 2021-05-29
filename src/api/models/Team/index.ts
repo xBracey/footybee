@@ -7,8 +7,9 @@ import {
   HasMany,
   ForeignKey,
   BelongsTo,
+  BelongsToMany,
 } from "sequelize-typescript";
-import { Player, Group } from "..";
+import { Player, Group, User, TeamPrediction } from "..";
 
 @Table
 export class Team extends Model {
@@ -28,4 +29,7 @@ export class Team extends Model {
 
   @BelongsTo(() => Group)
   group: Group;
+
+  @BelongsToMany(() => User, () => TeamPrediction)
+  usersPredictions: User[];
 }

@@ -26,7 +26,7 @@ export const LeaguePage = ({ name }: ILeaguePage) => {
       : leagues.leagues[name]?.name;
 
   return (
-    <Page title="League" isLoggedIn={true} backgroundColour={colours.green300}>
+    <Page title="League" isLoggedIn={true} backgroundColour={colours.green200}>
       <LeaguePageContainer>
         <LeaguePageHeader>{leagueName}</LeaguePageHeader>
         <UserTable users={leagues.leagues[name]?.users ?? []} />

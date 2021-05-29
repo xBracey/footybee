@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { LeagueTable } from "./LeagueTable";
 import { storiesOf } from "@storybook/react";
 import { StorybookWrapper } from "theme";
@@ -59,9 +59,11 @@ story.add("LeagueTable Component", () => {
     },
   ];
 
+  const [table, setTable] = useState([]);
+
   return (
     <StorybookWrapper width={boolean("Mobile", false) ? 375 : 1000}>
-      <LeagueTable matches={groupMatches} />
+      <LeagueTable matches={groupMatches} table={table} setTable={setTable} />
     </StorybookWrapper>
   );
 });

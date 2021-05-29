@@ -1,4 +1,5 @@
 import { Router } from "express";
+import passport from "passport";
 import {
   bulkGetController,
   createController,
@@ -26,13 +27,17 @@ Team.delete("/:name", async (req, res) => {
     : res.status(status).send(response);
 });
 
-Team.get("/", async (req, res) => {
-  const { status, error, response } = await bulkGetController();
+Team.get(
+  "/",
+  passport.authenticate("bearer", { session: false }),
+  async (req, res) => {
+    const { status, error, response } = await bulkGetController(req.user);
 
-  return error
-    ? res.status(status).send({ error })
-    : res.status(status).send(response);
-});
+    return error
+      ? res.status(status).send({ error })
+      : res.status(status).send(response);
+  }
+);
 
 Team.get("/:name", async (req, res) => {
   const { status, error, response } = await getController(req.params.name);

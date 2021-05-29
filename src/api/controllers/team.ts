@@ -9,6 +9,8 @@ import {
 import ITeam, { isValidTeam } from "../models/Team/type";
 import controllerResponse from "./controller";
 import { StatusError } from "../lib";
+import _ from "lodash";
+import { TeamPrediction, User } from "../models";
 
 const handleError = (error: StatusError): controllerResponse => {
   const { status, code } = error;
@@ -70,10 +72,26 @@ export const deleteController = async (
   return handleError(error);
 };
 
-export const bulkGetController = async (): Promise<controllerResponse> => {
+export const bulkGetController = async (
+  username: string
+): Promise<controllerResponse> => {
   const { teams } = await getAllTeams();
 
-  return { status: 200, response: teams };
+  const response = teams.map(team => {
+    // @ts-ignore
+    const userPrediction: User & {
+      TeamPrediction: TeamPrediction;
+    } = team.usersPredictions.find(
+      prediction => prediction.username === username
+    );
+
+    return {
+      ..._.pick(team, ["groupLetter", "groupPosition", "name"]),
+      userPrediction: userPrediction?.TeamPrediction?.groupPosition,
+    };
+  });
+
+  return { status: 200, response };
 };
 
 export const getController = async (

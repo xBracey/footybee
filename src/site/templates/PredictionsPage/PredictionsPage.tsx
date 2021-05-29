@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { PredictionsTable } from "components";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addTeamsPrediction,
   getGroupMatchPredictions,
+  getTeams,
   saveGroupMatchPredictions,
 } from "redux/actions";
 import { IRootState, types } from "redux/reducers";
@@ -20,9 +22,15 @@ export const PredictionsPage = () => {
   const groupMatchPredictions = useSelector(
     (state: IRootState) => state.groupMatchPredictions
   );
+  const teams = useSelector((state: IRootState) => state.teams);
 
   useEffect(() => {
-    dispatch(getGroupMatches());
+    dispatch(getGroupMatches()).then(() => {
+      // TODO maybe better way to do this
+      setTimeout(() => {
+        dispatch(getTeams());
+      }, 500);
+    });
   }, []);
 
   useEffect(() => {
@@ -41,29 +49,37 @@ export const PredictionsPage = () => {
     }
   });
 
-  const onSave = predictions => {
+  const onSave = (predictions, teams) => {
     dispatch(saveGroupMatchPredictions(predictions)).then(({ data }) => {
       if (!data.error) {
-        dispatch({
-          type: types.message.MESSAGE_SET_MESSAGE,
-          data: { message: "Successfully made predictions" },
+        dispatch(addTeamsPrediction(teams)).then(({ data }) => {
+          if (!data.error) {
+            dispatch({
+              type: types.message.MESSAGE_SET_MESSAGE,
+              data: { message: "Successfully made predictions" },
+            });
+          }
         });
       }
     });
   };
 
-  const groupMatchesComponent = Object.entries(
-    groups
-  ).map(([key, value], index) => (
-    <PredictionsTable
-      key={key}
-      groupMatches={value}
-      originalPredictions={groupMatchPredictions.predictions}
-      title={`Group ${key}`}
-      inverted={index % 2 === 0}
-      onSave={onSave}
-    />
-  ));
+  const groupMatchesComponent = Object.entries(groups).map(
+    ([key, value], index) => (
+      <PredictionsTable
+        key={key}
+        groupMatches={value}
+        originalPredictions={groupMatchPredictions.predictions}
+        originalPositions={teams.teams
+          .filter(team => team.groupLetter === key && !!team.userPrediction)
+          .sort((a, b) => a.userPrediction - b.userPrediction)
+          .map(team => team.name)}
+        title={`Group ${key}`}
+        inverted={index % 2 === 0}
+        onSave={onSave}
+      />
+    )
+  );
 
   return (
     <PredictionsPageContainer>

@@ -14,18 +14,24 @@ import { icons } from "assets";
 
 interface ILeagueTable {
   matches: IGroupMatch[];
-  inverted?: boolean;
   isResults?: boolean;
+  table: any;
+  setTable: (table: any) => void;
 }
 
-export const LeagueTable = ({ matches, inverted, isResults }: ILeagueTable) => {
+export const LeagueTable = ({
+  matches,
+  isResults,
+  table,
+  setTable,
+}: ILeagueTable) => {
   // @ts-ignore
-  const { table: firstTable, pairings } = calculateTable(matches);
-  const [table, setTable] = useState(firstTable);
+  const { pairings } = calculateTable(matches);
 
   useEffect(() => {
     // @ts-ignore
     const { table: newTable } = calculateTable(matches);
+    console.log("2", newTable);
     setTable(newTable);
   }, [matches]);
 

@@ -37,3 +37,18 @@ export const putTeam = async (
     data: { ...team, groupPosition: parseInt(team.groupPosition, 10) },
     method: "PUT",
   });
+
+export const postTeamsPrediction = async (
+  state: IRootState,
+  names: string[]
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/teamPrediction/create`, {
+    data: {
+      teamPredictions: names.map((teamName, index) => ({
+        username: state.user.username,
+        teamName,
+        groupPosition: index + 1,
+      })),
+    },
+    method: "POST",
+  });

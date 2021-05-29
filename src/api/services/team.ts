@@ -1,7 +1,7 @@
 import { models } from "../config";
 import ITeam from "../models/Team/type";
 import { StatusError } from "../lib";
-import { Team } from "../models";
+import { Team, User } from "../models";
 import { ValidationError } from "sequelize";
 
 interface ITeamResponse {
@@ -51,7 +51,9 @@ const getTeams = async (names: string[]): Promise<ITeamsResponse> => {
 };
 
 const getAllTeams = async (): Promise<ITeamsResponse> => {
-  const teams = await models.Team.findAll();
+  const teams = await models.Team.findAll({
+    include: [User],
+  });
   return { teams };
 };
 
