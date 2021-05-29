@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colours, fonts } from "theme";
+import { colours, device, fonts } from "theme";
 
 export const AboutPageContainer = styled.div`
   color: ${colours.white};
@@ -24,10 +24,18 @@ export const AboutSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media ${device.laptop} {
+    flex-direction: column;
+  }
 `;
 
 export const AboutContent = styled.div`
   margin-right: 64px;
+
+  @media ${device.laptop} {
+    margin-right: 0;
+  }
 `;
 
 export const PhotoContainer = styled.div`
