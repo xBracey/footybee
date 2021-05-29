@@ -50,7 +50,8 @@ export const ResultsTableOuterContainer = styled.div<
 `;
 
 export const ResultsTableContainer = styled.div`
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
 `;
 
 export const ResultsContainer = styled.div`

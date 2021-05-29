@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colours } from "theme";
+import { colours, device } from "theme";
 
 interface IFooterMenu {
   alignment: string;
@@ -19,6 +19,11 @@ export const FooterContainer = styled.div`
   height: 38px;
   max-width: calc(1000px - 32px);
   width: calc(100% - 32px);
+
+  @media ${device.mobile} {
+    flex-direction: column;
+    height: 138px;
+  }
 `;
 
 export const FooterMenu = styled.div<IFooterMenu>`

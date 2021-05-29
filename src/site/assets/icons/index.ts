@@ -13,6 +13,8 @@ import sortUp from "./sort-up.inline.svg";
 import sortDown from "./sort-down.inline.svg";
 import swap from "./swap.inline.svg";
 import triangle from "./triangle.inline.svg";
+import close from "./close.inline.svg";
+import menu from "./menu.inline.svg";
 
 export const icons = {
   logo,
@@ -30,4 +32,6 @@ export const icons = {
   sortDown,
   swap,
   triangle,
+  close,
+  menu,
 };

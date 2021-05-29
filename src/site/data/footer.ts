@@ -10,10 +10,6 @@ export const footerData: IFooter = {
       text: "Leaderboard",
       link: "/league/global",
     },
-    {
-      text: "Contact",
-      link: "/contact",
-    },
   ],
   footerMenuRight: [
     {

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Link from "next/link";
 import {
   HeaderOuterContainer,
@@ -7,8 +7,13 @@ import {
   SingleMenuIcon,
   Logo,
   SingleMenuContainer,
+  HeaderDesktopMenu,
+  HeaderMobileMenu,
+  HeaderMenuContainer,
+  MenuContainer,
 } from "./Header.styled";
 import { icons } from "assets";
+import ScrollLock from "react-scrolllock";
 
 interface IMenu {
   link: string;
@@ -21,6 +26,8 @@ export interface IHeader {
 }
 
 export const Header = ({ menu }: IHeader) => {
+  const [open, setOpen] = useState(false);
+
   const menuComponent = menu.map(singleMenu =>
     singleMenu.text ? (
       <SingleMenuContainer key={singleMenu.link}>
@@ -39,6 +46,15 @@ export const Header = ({ menu }: IHeader) => {
     )
   );
 
+  const mobileMenuComponent = open ? (
+    <>
+      <ScrollLock />
+      <HeaderMobileMenu>{menuComponent}</HeaderMobileMenu>
+    </>
+  ) : null;
+
+  const onMenuClick = () => setOpen(!open);
+
   return (
     <HeaderOuterContainer>
       <HeaderContainer>
@@ -47,7 +63,13 @@ export const Header = ({ menu }: IHeader) => {
             <icons.headerLogo />
           </Link>
         </Logo>
-        {menuComponent}
+        {mobileMenuComponent}
+        <HeaderMenuContainer>
+          <MenuContainer onClick={onMenuClick}>
+            {open ? <icons.close /> : <icons.menu />}
+          </MenuContainer>
+        </HeaderMenuContainer>
+        <HeaderDesktopMenu>{menuComponent}</HeaderDesktopMenu>
       </HeaderContainer>
     </HeaderOuterContainer>
   );

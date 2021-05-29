@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { colours, fonts } from "theme";
+import { colours, device, fonts } from "theme";
 
 interface ITableCell {
   isName?: boolean;
@@ -7,6 +7,7 @@ interface ITableCell {
   notCentered?: boolean;
   paddingLeft?: number;
   paddingRight?: number;
+  hideMobile?: boolean;
 }
 
 interface ILeagueTableRow {
@@ -63,6 +64,11 @@ const TableCell = css`
   min-height: 25px;
   text-align: center;
   width: ${props => (props.width ? `${props.width}px` : "initial")};
+
+  @media ${device.mobile} {
+    min-width: ${props => (props.isName ? 80 : 0)}px;
+    display: ${props => (props.hideMobile ? "none" : "flex")};
+  }
 `;
 
 export const LeagueTableCell = styled.div<ITableCell>`

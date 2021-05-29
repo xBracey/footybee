@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colours } from "theme";
+import { colours, device } from "theme";
 
 export const LoginSidebarContainer = styled.div`
   width: 30%;
@@ -10,16 +10,30 @@ export const LoginSidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${device.laptop} {
+    min-height: 0px;
+    width: calc(100% - 100px);
+    max-width: calc(100% - 100px);
+  }
 `;
 
 export const LogoContainer = styled.div`
   margin-bottom: 0px;
+
+  @media ${device.laptop} {
+    display: none;
+  }
 `;
 
 export const PredictorText = styled.h3`
   margin: 10px;
   text-align: center;
   font-weight: 500;
+
+  @media ${device.laptop} {
+    display: none;
+  }
 `;
 
 export const SidebarInfoContainer = styled.div`
@@ -28,6 +42,10 @@ export const SidebarInfoContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media ${device.laptop} {
+    display: none;
+  }
 `;
 
 export const SidebarInfo = styled.div`

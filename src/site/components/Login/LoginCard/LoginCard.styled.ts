@@ -3,7 +3,7 @@ import {
   ButtonOuterContainer,
 } from "components/Button/Button.styled";
 import styled from "styled-components";
-import { colours, fonts } from "theme";
+import { colours, device, fonts } from "theme";
 import { TextInputOuterContainer } from "../../Input/TextInput/TextInput.styled";
 
 export const LoginCardContainer = styled.div`
@@ -16,6 +16,11 @@ export const LoginCardContainer = styled.div`
   ${TextInputOuterContainer} {
     width: 100%;
   }
+
+  @media ${device.laptop} {
+    width: 100%;
+    border-radius: 0px;
+  }
 `;
 
 export const CardMain = styled.form`
@@ -25,6 +30,11 @@ export const CardMain = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media ${device.laptop} {
+    padding: 40px 20px;
+    width: calc(100% - 40px);
+  }
 `;
 
 export const CardSplitter = styled.div`
@@ -89,6 +99,10 @@ export const ForgotPasswordContainer = styled.div`
       margin: 0;
       font-size: ${fonts.size.large};
     }
+  }
+
+  @media ${device.laptop} {
+    flex-direction: column;
   }
 `;
 

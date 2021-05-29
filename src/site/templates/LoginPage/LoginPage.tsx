@@ -4,6 +4,7 @@ import {
   ISidebarInfo,
   ISidebarMenu,
   LoginCard,
+  LoginMobileHeader,
   LoginSidebar,
 } from "components";
 import { LoginPageContainer, LoginCardContainer } from "./LoginPage.styled";
@@ -40,6 +41,7 @@ export const LoginPage = ({
           onSubmit={onSubmit}
         />
       </LoginCardContainer>
+      <LoginMobileHeader />
     </LoginPageContainer>
     <Message />
     <Head title={`FootyBee - Home`} />

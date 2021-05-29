@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colours, fonts } from "theme";
+import { colours, device, fonts } from "theme";
 
 export const HowToPageContainer = styled.div`
   padding: 20px 0 80px 0;
@@ -33,6 +33,10 @@ export const WelcomeCards = styled.div`
   align-items: center;
   color: ${colours.blue300};
   padding: 16px 0;
+
+  @media ${device.mobile} {
+    flex-direction: column;
+  }
 `;
 
 export const WelcomeCard = styled.div`
@@ -43,6 +47,10 @@ export const WelcomeCard = styled.div`
   padding: 8px 32px;
   margin: 16px;
   height: 250px;
+
+  @media ${device.mobile} {
+    height: initial;
+  }
 `;
 
 export const WelcomeCardHeader = styled.h2`

@@ -49,7 +49,7 @@ export const HomePage = ({ username }: IHomePage) => {
         name={user.username}
         points={user.points}
         pointsToday={user.pointsToday}
-        favLeagueName={"Test"}
+        favLeagueName={"Global"}
         favLeagueRank={1}
       />
       <TodaysMatches groupMatches={todayMatches} />

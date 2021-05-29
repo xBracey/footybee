@@ -31,7 +31,6 @@ export const LeagueTable = ({
   useEffect(() => {
     // @ts-ignore
     const { table: newTable } = calculateTable(matches);
-    console.log("2", newTable);
     setTable(newTable);
   }, [matches]);
 
@@ -60,9 +59,9 @@ export const LeagueTable = ({
       <LeagueTableCell>{team.wins}</LeagueTableCell>
       <LeagueTableCell>{team.draws}</LeagueTableCell>
       <LeagueTableCell>{team.losses}</LeagueTableCell>
-      <LeagueTableCell>{team.goalsFor}</LeagueTableCell>
-      <LeagueTableCell>{team.goalsAgainst}</LeagueTableCell>
-      <LeagueTableCell>{team.goalDifference}</LeagueTableCell>
+      <LeagueTableCell hideMobile>{team.goalsFor}</LeagueTableCell>
+      <LeagueTableCell hideMobile>{team.goalsAgainst}</LeagueTableCell>
+      <LeagueTableCell hideMobile>{team.goalDifference}</LeagueTableCell>
       <LeagueTableCell>
         <strong>{team.points}</strong>
       </LeagueTableCell>
@@ -82,9 +81,9 @@ export const LeagueTable = ({
         <LeagueTableHeaderCell>W</LeagueTableHeaderCell>
         <LeagueTableHeaderCell>D</LeagueTableHeaderCell>
         <LeagueTableHeaderCell>L</LeagueTableHeaderCell>
-        <LeagueTableHeaderCell>GF</LeagueTableHeaderCell>
-        <LeagueTableHeaderCell>GA</LeagueTableHeaderCell>
-        <LeagueTableHeaderCell>GD</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell hideMobile>GF</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell hideMobile>GA</LeagueTableHeaderCell>
+        <LeagueTableHeaderCell hideMobile>GD</LeagueTableHeaderCell>
         <LeagueTableHeaderCell>Pts</LeagueTableHeaderCell>
       </LeagueTableHeader>
       {rowsComponent}

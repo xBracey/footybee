@@ -19,7 +19,7 @@ export const AddLeagueFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 24px 64px 24px;
+  padding: 24px 24px 48px 24px;
   flex-wrap: wrap;
 
   ${TextInputContainer} {

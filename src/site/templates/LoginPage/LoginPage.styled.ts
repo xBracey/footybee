@@ -3,10 +3,15 @@ import {
   ButtonOuterContainer,
 } from "../../components/Button/Button.styled";
 import styled from "styled-components";
-import { colours } from "theme";
+import { colours, device } from "theme";
 
 export const LoginPageContainer = styled.div`
   display: flex;
+  flex-direction: row;
+
+  @media ${device.laptop} {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const LoginCardContainer = styled.div`

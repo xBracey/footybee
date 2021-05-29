@@ -3,6 +3,7 @@ import {
   ISidebarMenu,
   RegisterCard,
   LoginSidebar,
+  LoginMobileHeader,
 } from "components";
 import React from "react";
 import { Message } from "../Message";
@@ -54,6 +55,7 @@ export const RegisterPage = ({
           onSubmit={onSubmit}
         />
       </RegisterCardContainer>
+      <LoginMobileHeader />
     </RegisterPageContainer>
     <Message />
   </>
