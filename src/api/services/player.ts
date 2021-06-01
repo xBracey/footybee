@@ -2,7 +2,7 @@ import { models } from "../config";
 import IPlayer from "../models/Player/type";
 import { StatusError } from "../lib";
 import { Player } from "../models";
-import { ValidationError } from "sequelize";
+import { Op, ValidationError } from "sequelize";
 
 interface IPlayerResponse {
   error?: StatusError;
@@ -69,6 +69,19 @@ const deletePlayer = async (name: string): Promise<IPlayerResponse> => {
   );
 
   return player ? { player: null } : { error, player: null };
+};
+
+export const searchPlayers = async (
+  name: string
+): Promise<IPlayersResponse> => {
+  const players = await models.Player.findAll({
+    where: {
+      name: {
+        [Op.like]: `%${name}%`,
+      },
+    },
+  });
+  return { players };
 };
 
 export {

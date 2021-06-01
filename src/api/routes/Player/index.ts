@@ -4,6 +4,7 @@ import {
   bulkGetController,
   createController,
   deleteController,
+  searchController,
 } from "../../controllers/player";
 
 export const Player = Router();
@@ -34,6 +35,14 @@ Player.delete("/:name", async (req, res) => {
 
 Player.get("/", async (req, res) => {
   const { status, error, response } = await bulkGetController();
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});
+
+Player.get("/search/:name", async (req, res) => {
+  const { status, error, response } = await searchController(req.params.name);
 
   return error
     ? res.status(status).send({ error })

@@ -11,6 +11,8 @@ import {
   BelongsToMany,
 } from "sequelize-typescript";
 import { League } from "../League";
+import { Player } from "../Player";
+import { Team } from "../Team";
 import { UserLeague } from "../UserLeague";
 
 @Table
@@ -58,6 +60,14 @@ export class User extends Model {
   @ForeignKey(() => League)
   @Column(DataType.STRING)
   favouriteLeagueName: string;
+
+  @ForeignKey(() => Player)
+  @Column(DataType.STRING)
+  goldenBootPrediction: string;
+
+  @ForeignKey(() => Team)
+  @Column(DataType.STRING)
+  winnerPrediction: string;
 
   @BelongsToMany(() => League, () => UserLeague)
   leagues: League[];

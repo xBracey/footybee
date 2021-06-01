@@ -45,3 +45,9 @@ export const postPlayers = async (
     method: "POST",
   });
 };
+
+export const searchForPlayers = async (
+  state: IRootState,
+  searchTerm: string
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/player/search/${searchTerm}`);

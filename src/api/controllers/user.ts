@@ -4,6 +4,8 @@ import {
   deleteUser,
   getUser,
   getUserPoints,
+  postGoldenBoot,
+  postWinner,
 } from "../services";
 import IUser, { isValidUser } from "../models/User/type";
 import controllerResponse from "./controller";
@@ -81,6 +83,24 @@ export const getPointsController = async (
   username: string
 ): Promise<controllerResponse> => {
   const response = await getUserPoints(username);
+
+  return { status: 200, response };
+};
+
+export const goldenBootController = async (
+  username: string,
+  name: string
+): Promise<controllerResponse> => {
+  const response = await postGoldenBoot(username, name);
+
+  return { status: 200, response };
+};
+
+export const winnerController = async (
+  username: string,
+  name: string
+): Promise<controllerResponse> => {
+  const response = await postWinner(username, name);
 
   return { status: 200, response };
 };

@@ -7,6 +7,7 @@ import {
   postPlayer,
   postPlayers,
   putPlayer,
+  searchForPlayers,
 } from "../requests";
 import { ThunkResult } from "../types";
 
@@ -92,6 +93,24 @@ export const removePlayer = (name: string): ThunkResult<any> => {
         type: types.message.MESSAGE_SET_MESSAGE,
         data: response,
       })
+    );
+  };
+};
+
+export const searchPlayers = (searchTerm: string): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    dispatch({ type: types.players.PLAYERS_LOADING_PLAYERS });
+
+    return searchForPlayers(getState(), searchTerm).then(response =>
+      !response.error
+        ? dispatch({
+            type: types.players.PLAYERS_FETCHED_PLAYERS,
+            data: response,
+          })
+        : dispatch({
+            type: types.message.MESSAGE_SET_MESSAGE,
+            data: response,
+          })
     );
   };
 };

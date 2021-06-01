@@ -70,5 +70,6 @@ story.add("PredictionsTable Component", () => (
     onSave={action("Save")}
     title="Test Group"
     inverted={boolean("Inverted", false)}
+    originalPositions={[]}
   />
 ));

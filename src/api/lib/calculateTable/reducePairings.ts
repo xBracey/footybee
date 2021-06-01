@@ -25,6 +25,8 @@ export const reducePairings = (
           indexesCovered.push(j);
           matches[i].push(pairing2.a);
           matches[i].push(pairing2.b);
+
+          j = i;
         }
       }
     }

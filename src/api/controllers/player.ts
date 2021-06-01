@@ -3,6 +3,7 @@ import {
   addPlayers,
   deletePlayer,
   getAllPlayers,
+  searchPlayers,
 } from "../services";
 import IPlayer, { isValidPlayer } from "../models/Player/type";
 import controllerResponse from "./controller";
@@ -75,6 +76,14 @@ export const deleteController = async (
 
 export const bulkGetController = async (): Promise<controllerResponse> => {
   const { players } = await getAllPlayers();
+
+  return { status: 200, response: players };
+};
+
+export const searchController = async (
+  name: string
+): Promise<controllerResponse> => {
+  const { players } = await searchPlayers(name);
 
   return { status: 200, response: players };
 };

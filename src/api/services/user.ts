@@ -167,3 +167,35 @@ export const getUserPoints = async (
 
   return { points, pointsToday };
 };
+
+export const postGoldenBoot = async (
+  username: string,
+  goldenBootPrediction: string
+): Promise<IUserResponse> => {
+  const [, user] = await models.User.update(
+    { goldenBootPrediction },
+    {
+      where: {
+        username,
+      },
+    }
+  );
+
+  return user[0] ? { user: user[0] } : { user: null };
+};
+
+export const postWinner = async (
+  username: string,
+  winnerPrediction: string
+): Promise<IUserResponse> => {
+  const [, user] = await models.User.update(
+    { winnerPrediction },
+    {
+      where: {
+        username,
+      },
+    }
+  );
+
+  return user[0] ? { user: user[0] } : { user: null };
+};

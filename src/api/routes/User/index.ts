@@ -6,6 +6,8 @@ import {
   deleteController,
   getController,
   getPointsController,
+  goldenBootController,
+  winnerController,
 } from "../../controllers/user";
 
 export const User = Router();
@@ -55,3 +57,33 @@ User.get("/points/:username", async (req, res) => {
     ? res.status(status).send({ error })
     : res.status(status).send(response);
 });
+
+User.post(
+  "/prediction/goldenboot",
+  passport.authenticate("bearer", { session: false }),
+  async (req, res) => {
+    const { status, error, response } = await goldenBootController(
+      req.user,
+      req.body.name
+    );
+
+    return error
+      ? res.status(status).send({ error })
+      : res.status(status).send(response);
+  }
+);
+
+User.post(
+  "/prediction/winner",
+  passport.authenticate("bearer", { session: false }),
+  async (req, res) => {
+    const { status, error, response } = await winnerController(
+      req.user,
+      req.body.name
+    );
+
+    return error
+      ? res.status(status).send({ error })
+      : res.status(status).send(response);
+  }
+);

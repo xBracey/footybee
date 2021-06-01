@@ -19,8 +19,6 @@ export const reducer = (state: IPredictionReducer, action) => {
       prediction => prediction.groupMatchId === groupMatchId
     );
 
-    console.log(index);
-
     if (index === -1) {
       return state;
     }

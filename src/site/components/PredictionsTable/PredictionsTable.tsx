@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
+import { IGroupMatch } from "../../redux/reducers/groupMatches";
 import { IPredictionReducer, reducer } from "./PredictionReducer";
 import { Prediction } from "../Prediction";
 import {
@@ -12,7 +12,7 @@ import {
 import { LeagueTable } from "../Table";
 import { Button } from "../Button";
 import { ButtonContainer, PairingNote } from "./PredictionsTable.styled";
-import { calculateTable } from "src/api/lib/calculateTable/calculateTable";
+import { calculateTable } from "../../../api/lib/calculateTable/calculateTable";
 
 export interface IPrediction {
   groupMatchId: number;
