@@ -74,6 +74,8 @@ export const getController = async (
     "admin",
     "verified",
     "leagues",
+    "goldenBootPrediction",
+    "winnerPrediction",
   ]);
 
   return { status: 200, response };

@@ -171,8 +171,10 @@ export const getUserPoints = async (
 export const postGoldenBoot = async (
   username: string,
   goldenBootPrediction: string
-): Promise<IUserResponse> => {
-  const [, user] = await models.User.update(
+): Promise<{
+  goldenBootPrediction: string;
+}> => {
+  await models.User.update(
     { goldenBootPrediction },
     {
       where: {
@@ -181,14 +183,16 @@ export const postGoldenBoot = async (
     }
   );
 
-  return user[0] ? { user: user[0] } : { user: null };
+  return { goldenBootPrediction };
 };
 
 export const postWinner = async (
   username: string,
   winnerPrediction: string
-): Promise<IUserResponse> => {
-  const [, user] = await models.User.update(
+): Promise<{
+  winnerPrediction: string;
+}> => {
+  await models.User.update(
     { winnerPrediction },
     {
       where: {
@@ -197,5 +201,5 @@ export const postWinner = async (
     }
   );
 
-  return user[0] ? { user: user[0] } : { user: null };
+  return { winnerPrediction };
 };

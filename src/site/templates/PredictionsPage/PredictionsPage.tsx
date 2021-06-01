@@ -1,18 +1,33 @@
-import React, { useEffect } from "react";
-import { PredictionsTable } from "components";
+import React, { useEffect, useState } from "react";
+import {
+  AsyncSelectInput,
+  Button,
+  PredictionsTable,
+  SelectInput,
+} from "components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addTeamsPrediction,
   getGroupMatchPredictions,
   getTeams,
+  predictGoldenBoot,
+  predictWinner,
   saveGroupMatchPredictions,
+  searchPlayers,
 } from "redux/actions";
 import { IRootState, types } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { getGroupMatches } from "src/site/redux/actions/groupMatches";
 import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
 import { Page } from "templates";
-import { PredictionsPageContainer } from "./PredictionsPage.styled";
+import {
+  ExtraFlex,
+  ExtraFlexs,
+  ExtraHeader,
+  ExtraPredictionsContainer,
+  ExtraText,
+  PredictionsPageContainer,
+} from "./PredictionsPage.styled";
 
 export const PredictionsPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -24,6 +39,9 @@ export const PredictionsPage = () => {
   );
   const teams = useSelector((state: IRootState) => state.teams);
 
+  const [teamOption, setTeamOption] = useState(null);
+  const [playerOption, setPlayerOption] = useState(null);
+
   useEffect(() => {
     dispatch(getGroupMatches()).then(() => {
       // TODO maybe better way to do this
@@ -34,7 +52,24 @@ export const PredictionsPage = () => {
   }, []);
 
   useEffect(() => {
-    if (user.username) dispatch(getGroupMatchPredictions());
+    if (user.username) {
+      // TODO fix
+      dispatch(getGroupMatchPredictions());
+
+      console.log(user);
+
+      if (user.goldenBootPrediction)
+        setPlayerOption({
+          value: user.goldenBootPrediction,
+          label: user.goldenBootPrediction,
+        });
+
+      if (user.winnerPrediction)
+        setTeamOption({
+          value: user.winnerPrediction,
+          label: user.winnerPrediction,
+        });
+    }
   }, [user.username]);
 
   const groups: {
@@ -81,9 +116,88 @@ export const PredictionsPage = () => {
     )
   );
 
+  const teamOptions = teams.teams.map(team => ({
+    value: team.name,
+    label: team.name,
+  }));
+
+  const loadPlayers = (searchTerm: string, callback) => {
+    if (searchTerm.length > 2) {
+      dispatch(searchPlayers(searchTerm)).then(({ data }) => {
+        if (!data.error) {
+          callback(
+            data.data.map(player => ({
+              value: player.name,
+              label: player.name,
+            }))
+          );
+        } else {
+          callback([]);
+        }
+      });
+    } else {
+      callback([]);
+    }
+  };
+
+  const saveWinner = () => {
+    dispatch(predictWinner(teamOption.value)).then(({ data }) => {
+      if (!data.error) {
+        dispatch({
+          type: types.message.MESSAGE_SET_MESSAGE,
+          data: { message: "Successfully made winner prediction" },
+        });
+      }
+    });
+  };
+
+  const saveGoldenBoot = () => {
+    dispatch(predictGoldenBoot(playerOption.value)).then(({ data }) => {
+      if (!data.error) {
+        dispatch({
+          type: types.message.MESSAGE_SET_MESSAGE,
+          data: { message: "Successfully made golden boot prediction" },
+        });
+      }
+    });
+  };
+
   return (
     <PredictionsPageContainer>
       <Page title="Results" isLoggedIn={true}>
+        <ExtraPredictionsContainer>
+          <ExtraHeader>Extra Predictions</ExtraHeader>
+          <ExtraFlexs>
+            <ExtraFlex>
+              <ExtraText>Predict the Euro 2021 Winner</ExtraText>
+              <SelectInput
+                options={teamOptions}
+                option={teamOption}
+                setOption={setTeamOption}
+                placeholder={"Select a team"}
+              />
+              <Button
+                text="Predict Winner"
+                onClick={saveWinner}
+                buttonType={"blue"}
+              />
+            </ExtraFlex>
+            <ExtraFlex>
+              <ExtraText>Predict the Euro 2021 Golden Boot</ExtraText>
+              <AsyncSelectInput
+                loadOptions={loadPlayers}
+                option={playerOption}
+                setOption={setPlayerOption}
+                placeholder={"Select a player"}
+              />
+              <Button
+                text="Predict Golden Boot"
+                onClick={saveGoldenBoot}
+                buttonType={"blue"}
+              />
+            </ExtraFlex>
+          </ExtraFlexs>
+        </ExtraPredictionsContainer>
         {groupMatchesComponent}
       </Page>
     </PredictionsPageContainer>

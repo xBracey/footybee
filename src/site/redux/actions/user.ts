@@ -3,8 +3,10 @@ import {
   fetchUser,
   fetchUserPoints,
   loginUser,
+  postGoldenBoot,
   postNewLeague,
   postUserLeague,
+  postWinner,
   registerUser,
 } from "../requests";
 import { ThunkResult } from "../types";
@@ -112,6 +114,44 @@ export const addNewLeague = (leagueName: string): ThunkResult<any> => {
       !response.error
         ? dispatch({
             type: types.user.USER_ADDED_LEAGUE,
+            data: response,
+          })
+        : dispatch({
+            type: types.message.MESSAGE_SET_MESSAGE,
+            data: response,
+          })
+    );
+  };
+};
+
+export const predictGoldenBoot = (
+  winnerPrediction: string
+): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    dispatch({ type: types.user.USER_LOADING_USER });
+
+    return postGoldenBoot(getState(), winnerPrediction).then(response =>
+      !response.error
+        ? dispatch({
+            type: types.user.USER_POSTED_WINNER,
+            data: response,
+          })
+        : dispatch({
+            type: types.message.MESSAGE_SET_MESSAGE,
+            data: response,
+          })
+    );
+  };
+};
+
+export const predictWinner = (winnerPrediction: string): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    dispatch({ type: types.user.USER_LOADING_USER });
+
+    return postWinner(getState(), winnerPrediction).then(response =>
+      !response.error
+        ? dispatch({
+            type: types.user.USER_POSTED_WINNER,
             data: response,
           })
         : dispatch({

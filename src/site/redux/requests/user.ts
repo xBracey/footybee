@@ -63,3 +63,21 @@ export const postNewLeague = async (
     method: "POST",
     data: { username: state.user.username, leagueName },
   });
+
+export const postGoldenBoot = async (
+  state: IRootState,
+  name: string
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, "/user/prediction/goldenboot", {
+    method: "POST",
+    data: { name },
+  });
+
+export const postWinner = async (
+  state: IRootState,
+  name: string
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, "/user/prediction/winner", {
+    method: "POST",
+    data: { name },
+  });

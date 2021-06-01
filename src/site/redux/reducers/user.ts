@@ -12,6 +12,8 @@ export interface IUser {
   points: number;
   pointsToday: number;
   userLeagues: IUserLeagues[];
+  goldenBootPrediction: string;
+  winnerPrediction: string;
 }
 
 const initialState: IUser = {
@@ -21,6 +23,8 @@ const initialState: IUser = {
   points: 0,
   pointsToday: 0,
   userLeagues: [],
+  goldenBootPrediction: null,
+  winnerPrediction: null,
 };
 
 export const userTypes = {
@@ -28,6 +32,8 @@ export const userTypes = {
   USER_LOADING_USER: "loadingUser",
   USER_FETCHED_USER_POINTS: "fetchedUserPoints",
   USER_ADDED_LEAGUE: "addedLeague",
+  USER_POSTED_GOLDEN_BOOT: "postedGoldenBoot",
+  USER_POSTED_WINNER: "postedWinner",
 };
 
 /**
@@ -37,7 +43,13 @@ export const userTypes = {
 const loadingUser = state => ({ ...state, loading: true });
 
 const fetchedUser = (state, { data }) => {
-  const { username, admin, leagues } = data;
+  const {
+    username,
+    admin,
+    leagues,
+    goldenBootPrediction,
+    winnerPrediction,
+  } = data;
 
   const userLeagues = leagues
     ? leagues.map(league => ({
@@ -46,7 +58,15 @@ const fetchedUser = (state, { data }) => {
       }))
     : [];
 
-  return { ...state, username, admin, userLeagues, loading: false };
+  return {
+    ...state,
+    username,
+    admin,
+    userLeagues,
+    goldenBootPrediction,
+    winnerPrediction,
+    loading: false,
+  };
 };
 
 const fetchedUserPoints = (state, { data }) => {
@@ -66,6 +86,18 @@ const addedLeague = (state: IUser, { data }) => {
   return { ...state, loading: false, userLeagues };
 };
 
+const postedGoldenBoot = (state, { data }) => ({
+  ...state,
+  goldenBootPrediction: data.goldenBootPrediction,
+  loading: false,
+});
+
+const postedWinner = (state, { data }) => ({
+  ...state,
+  winnerPrediction: data.winnerPrediction,
+  loading: false,
+});
+
 /**
  * USER REDUCERS - END
  * */
@@ -75,6 +107,8 @@ const reducers: IReducers<IUser> = {
   loadingUser,
   fetchedUserPoints,
   addedLeague,
+  postedGoldenBoot,
+  postedWinner,
 };
 
 export default (state = initialState, action: IAction) => {
