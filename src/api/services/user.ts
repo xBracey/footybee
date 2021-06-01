@@ -5,6 +5,7 @@ import { League, User } from "../models";
 import { ValidationError } from "sequelize";
 import bcrypt from "bcrypt";
 import moment from "moment";
+import crypto from "crypto";
 
 interface IUserResponse {
   error?: StatusError;
@@ -19,8 +20,15 @@ interface IUsersResponse {
 export const addUser = async (userData: IUser): Promise<IUserResponse> => {
   try {
     const password = await bcrypt.hash(userData.password, saltRounds);
+    const verification_token = crypto.randomBytes(20).toString("hex");
+    const verification_expiry = Date.now() + 24 * 60 * 60 * 5 * 1000;
 
-    const user = await models.User.create({ ...userData, password });
+    const user = await models.User.create({
+      ...userData,
+      password,
+      verification_token,
+      verification_expiry,
+    });
     return { user };
   } catch (error) {
     return { error: new StatusError(error), user: null };
@@ -202,4 +210,101 @@ export const postWinner = async (
   );
 
   return { winnerPrediction };
+};
+
+export const postEmailVerify = async (
+  token: string
+): Promise<IUserResponse> => {
+  const error = new StatusError(
+    new ValidationError("Token is not valid or has expired")
+  );
+
+  if (!token) {
+    return { error, user: null };
+  }
+
+  const user = await models.User.findOne({
+    where: {
+      verification_token: token,
+    },
+  });
+
+  if (!user) {
+    return { error, user: null };
+  }
+
+  user.update({
+    verification_token: null,
+    verification_expiry: null,
+    verified: true,
+  });
+
+  user.save();
+
+  return { user };
+};
+
+export const postForgotPassword = async (
+  email: string
+): Promise<IUserResponse> => {
+  if (!email) {
+    return { user: null };
+  }
+
+  const user = await models.User.findOne({
+    where: {
+      email,
+    },
+  });
+
+  if (!user) {
+    return { user: null };
+  }
+
+  const forgot_password_token = crypto.randomBytes(20).toString("hex");
+  const forgot_password_expiry = Date.now() + 24 * 60 * 60 * 1 * 1000;
+
+  user.update({
+    forgot_password_token,
+    forgot_password_expiry,
+  });
+
+  user.save();
+
+  return { user };
+};
+
+export const postResetPassword = async (
+  token: string,
+  password: string
+): Promise<IUserResponse> => {
+  const error = new StatusError(
+    new ValidationError("Token is not valid or has expired")
+  );
+
+  if (!token || !password) {
+    return { error, user: null };
+  }
+
+  const user = await models.User.findOne({
+    where: {
+      forgot_password_token: token,
+    },
+  });
+
+  if (!user) {
+    return { error, user: null };
+  }
+
+  const passwordHash = await bcrypt.hash(password, saltRounds);
+
+  user.update({
+    forgot_password_token: null,
+    forgot_password_expiry: null,
+    password: passwordHash,
+  });
+
+  user.save();
+
+  return { user };
 };

@@ -1,12 +1,16 @@
 import { Router } from "express";
 import _ from "lodash";
 import passport from "passport";
+import { sendMail } from "../../lib/email";
 import {
   createController,
   deleteController,
+  emailVerifyController,
+  forgotPasswordController,
   getController,
   getPointsController,
   goldenBootController,
+  resetPasswordController,
   winnerController,
 } from "../../controllers/user";
 
@@ -15,9 +19,18 @@ export const User = Router();
 User.post("/register", async (req, res) => {
   const { status, error, response } = await createController(req.body);
 
-  return error
-    ? res.status(status).send({ error })
-    : res.status(status).send(response);
+  if (error) return res.status(status).send({ error });
+
+  const host = req.get("host");
+
+  sendMail({
+    from: "hello@footybee.com",
+    to: response.email,
+    subject: "Email Verification",
+    text: `Verify your email here ${req.protocol}://${host}/verify?token=${response.verification_token}`,
+  });
+
+  res.status(status).send(response);
 });
 
 User.delete("/:username", async (req, res) => {
@@ -87,3 +100,41 @@ User.post(
       : res.status(status).send(response);
   }
 );
+
+User.post("/email-verify", async (req, res) => {
+  const { status, error, response } = await emailVerifyController(
+    req.body.token
+  );
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});
+
+User.post("/forgot-password", async (req, res) => {
+  const { status, response } = await forgotPasswordController(req.body.email);
+
+  if (!response.username) return res.status(status).send({});
+
+  const host = req.get("host");
+
+  sendMail({
+    from: "hello@footybee.com",
+    to: response.email,
+    subject: "Email Verification",
+    text: `Reset your password here ${req.protocol}://${host}/reset-password?token=${response.forgot_password_token}`,
+  });
+
+  return res.status(status).send({});
+});
+
+User.post("/reset-password", async (req, res) => {
+  const { status, error, response } = await resetPasswordController(
+    req.body.token,
+    req.body.password
+  );
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});

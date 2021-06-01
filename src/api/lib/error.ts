@@ -59,6 +59,12 @@ export class StatusError extends Error {
         this.message = error.message;
         this.code = 5;
         break;
+
+      case "Token Invalid":
+        this.status = 403;
+        this.message = error.message;
+        this.code = 6;
+        break;
     }
   }
 }

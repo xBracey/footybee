@@ -4,7 +4,10 @@ import {
   deleteUser,
   getUser,
   getUserPoints,
+  postEmailVerify,
+  postForgotPassword,
   postGoldenBoot,
+  postResetPassword,
   postWinner,
 } from "../services";
 import IUser, { isValidUser } from "../models/User/type";
@@ -22,6 +25,11 @@ const handleError = (error: StatusError): controllerResponse => {
       return { status, error: "Username or email already exists" };
     case 3:
       return { status, error: "Username does not exist" };
+    case 6:
+      return {
+        status,
+        error: "Token is not valid or has expired",
+      };
   }
 };
 
@@ -42,7 +50,8 @@ export const createController = async (
     });
 
     if (!newError) {
-      return { status: 200, response: user };
+      const response = _.pick(user, ["username", "verification_token"]);
+      return { status: 200, response };
     }
 
     return handleError(newError);
@@ -105,4 +114,37 @@ export const winnerController = async (
   const response = await postWinner(username, name);
 
   return { status: 200, response };
+};
+
+export const emailVerifyController = async (
+  token: string
+): Promise<controllerResponse> => {
+  const { error, user } = await postEmailVerify(token);
+
+  if (!error) {
+    return { status: 200, response: user };
+  }
+
+  return handleError(error);
+};
+
+export const forgotPasswordController = async (
+  email: string
+): Promise<controllerResponse> => {
+  const { user } = await postForgotPassword(email);
+
+  return { status: 200, response: user };
+};
+
+export const resetPasswordController = async (
+  token: string,
+  password: string
+): Promise<controllerResponse> => {
+  const { error, user } = await postResetPassword(token, password);
+
+  if (!error) {
+    return { status: 200, response: user };
+  }
+
+  return handleError(error);
 };
