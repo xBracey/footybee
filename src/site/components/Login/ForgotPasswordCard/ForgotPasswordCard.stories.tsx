@@ -6,15 +6,12 @@ import { action } from "@storybook/addon-actions";
 const story = storiesOf("Components/Login/ForgotPasswordCard", module);
 
 story.add("ForgotPasswordCard Component", () => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   return (
     <ForgotPasswordCard
-      password={password}
-      setPassword={setPassword}
-      confirmPassword={confirmPassword}
-      setConfirmPassword={setConfirmPassword}
+      email={email}
+      setEmail={setEmail}
       onSubmit={action("Submit")}
     />
   );

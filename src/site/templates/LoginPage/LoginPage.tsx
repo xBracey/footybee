@@ -1,49 +1,39 @@
-import React from "react";
-import {
-  Head,
-  ISidebarInfo,
-  ISidebarMenu,
-  LoginCard,
-  LoginMobileHeader,
-  LoginSidebar,
-} from "components";
-import { LoginPageContainer, LoginCardContainer } from "./LoginPage.styled";
-import { Message } from "../Message";
+import React, { useEffect, useState } from "react";
+import { LoginCard } from "components";
+import { AppDispatch } from "redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { tryLoginUser } from "redux/actions";
+import { IRootState } from "redux/reducers";
+import Router from "next/router";
+import { LoggedOutPage } from "../LoggedOutPage";
 
-interface ILogin {
-  username: string;
-  setUsername: (username: string) => void;
-  password: string;
-  setPassword: (username: string) => void;
-  sidebarInfo: ISidebarInfo[];
-  sidebarMenu: ISidebarMenu[];
-  onSubmit: () => void;
-}
+export const LoginPage = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-export const LoginPage = ({
-  username,
-  setUsername,
-  password,
-  setPassword,
-  sidebarInfo,
-  sidebarMenu,
-  onSubmit,
-}: ILogin) => (
-  <>
-    <LoginPageContainer>
-      <LoginSidebar sidebarInfo={sidebarInfo} sidebarMenu={sidebarMenu} />
-      <LoginCardContainer>
-        <LoginCard
-          username={username}
-          setUsername={setUsername}
-          password={password}
-          setPassword={setPassword}
-          onSubmit={onSubmit}
-        />
-      </LoginCardContainer>
-      <LoginMobileHeader />
-    </LoginPageContainer>
-    <Message />
-    <Head title={`FootyBee - Home`} />
-  </>
-);
+  const dispatch: AppDispatch = useDispatch();
+
+  const auth = useSelector((state: IRootState) => state.auth);
+
+  const onSubmit = () => {
+    dispatch(tryLoginUser(username, password));
+  };
+
+  useEffect(() => {
+    if (auth.token) {
+      Router.push("/");
+    }
+  }, [auth.token]);
+
+  return (
+    <LoggedOutPage>
+      <LoginCard
+        username={username}
+        setUsername={setUsername}
+        password={password}
+        setPassword={setPassword}
+        onSubmit={onSubmit}
+      />
+    </LoggedOutPage>
+  );
+};

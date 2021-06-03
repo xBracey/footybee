@@ -81,3 +81,20 @@ export const postWinner = async (
     method: "POST",
     data: { name },
   });
+
+export const postForgotPassword = async (
+  email: string
+): Promise<IAPIResponse> => {
+  const data = { email };
+
+  const successMessage =
+    "Forgot password email will be sent if the email is valid";
+
+  const response = await apiRequest(
+    "/user/forgot-password",
+    { method: "POST", data },
+    successMessage
+  );
+
+  return response;
+};

@@ -4,6 +4,7 @@ import {
   CardMain,
   LoginCardContainer,
   CardHeader,
+  DummySubmit,
 } from "../LoginCard/LoginCard.styled";
 import { Button } from "../../Button";
 import { IconButton } from "../../IconButton";
@@ -79,7 +80,12 @@ export const RegisterCard = ({
       <BackButton>
         <IconButton SVG={icons.back} link="/login" />
       </BackButton>
-      <CardMain>
+      <CardMain
+        onSubmit={event => {
+          event.preventDefault();
+          if (!validation.isDisabled) onSubmit();
+        }}
+      >
         <CardHeader>Register</CardHeader>
 
         <TextInput
@@ -116,6 +122,8 @@ export const RegisterCard = ({
             onBlurHandler={() => onBlurHandler(3)}
           />
         </TwoInputContainer>
+        <DummySubmit type="submit" />
+
         <Button
           text="Submit"
           onClick={onSubmit}

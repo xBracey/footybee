@@ -92,7 +92,7 @@ export const LoginCard = ({
         />
         <DummySubmit type="submit" />
         <ForgotPasswordContainer>
-          <Link href="/">
+          <Link href="/forgot-password">
             <CardLink>Forgot Password?</CardLink>
           </Link>
           <Button

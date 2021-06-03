@@ -114,7 +114,7 @@ User.post("/email-verify", async (req, res) => {
 User.post("/forgot-password", async (req, res) => {
   const { status, response } = await forgotPasswordController(req.body.email);
 
-  if (!response.username) return res.status(status).send({});
+  if (!response?.username) return res.status(status).send({});
 
   const host = req.get("host");
 

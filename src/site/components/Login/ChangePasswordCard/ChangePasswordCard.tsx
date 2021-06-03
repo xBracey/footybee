@@ -10,40 +10,47 @@ import { Button } from "../../Button";
 import { IconButton } from "../../IconButton";
 import { icons } from "assets";
 import { BackButton } from "../RegisterCard/RegisterCard.styled";
-import { isEmail, isMandatory, validateInputs } from "lib";
+import { isMandatory, isPasswordMatch, validateInputs } from "lib";
 
-let hasBlurred = [false];
+let hasBlurred = [false, false];
 
-interface IForgotPasswordCard {
-  email: string;
-  setEmail: (password: string) => void;
+interface IChangePasswordCard {
+  password: string;
+  setPassword: (password: string) => void;
+  confirmPassword: string;
+  setConfirmPassword: (confirmPassword: string) => void;
   onSubmit: () => void;
 }
 
-export const ForgotPasswordCard = ({
-  email,
-  setEmail,
+export const ChangePasswordCard = ({
+  password,
+  setPassword,
+  confirmPassword,
+  setConfirmPassword,
   onSubmit,
-}: IForgotPasswordCard) => {
+}: IChangePasswordCard) => {
   useEffect(() => {
     hasBlurred = [false, false];
   }, []);
 
   const [validation, setValidation] = useState({
-    errorMessages: [""],
+    errorMessages: ["", ""],
     isDisabled: true,
   });
 
   const onBlurHandler = (index: number) => {
     hasBlurred[index] = true;
-  };
 
-  const validate = () => {
     const newValidation = validateInputs([
       {
-        value: email,
+        value: password,
         hasBlurred: hasBlurred[0],
-        validation: [isMandatory, isEmail],
+        validation: [isMandatory],
+      },
+      {
+        value: confirmPassword,
+        hasBlurred: hasBlurred[1],
+        validation: [isMandatory, isPasswordMatch(password)],
       },
     ]);
 
@@ -64,15 +71,20 @@ export const ForgotPasswordCard = ({
         <CardHeader>Forgot Password</CardHeader>
 
         <TextInput
-          text={email}
-          setText={(text: string) => {
-            validate();
-            setEmail(text);
-          }}
-          type="email"
-          placeholder="Email"
+          text={password}
+          setText={setPassword}
+          type="password"
+          placeholder="Password"
           error={validation.errorMessages[0]}
           onBlurHandler={() => onBlurHandler(0)}
+        />
+        <TextInput
+          text={confirmPassword}
+          setText={setConfirmPassword}
+          type="password"
+          placeholder="Confirm Password"
+          error={validation.errorMessages[1]}
+          onBlurHandler={() => onBlurHandler(1)}
         />
         <DummySubmit type="submit" />
 

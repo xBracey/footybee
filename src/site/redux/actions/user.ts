@@ -3,6 +3,7 @@ import {
   fetchUser,
   fetchUserPoints,
   loginUser,
+  postForgotPassword,
   postGoldenBoot,
   postNewLeague,
   postUserLeague,
@@ -158,6 +159,17 @@ export const predictWinner = (winnerPrediction: string): ThunkResult<any> => {
             type: types.message.MESSAGE_SET_MESSAGE,
             data: response,
           })
+    );
+  };
+};
+
+export const forgotPassword = (email: string): ThunkResult<any> => {
+  return dispatch => {
+    return postForgotPassword(email).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
     );
   };
 };
