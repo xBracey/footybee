@@ -4,3 +4,4 @@ export * from "./RegisterCard";
 export * from "./LoginMobileHeader";
 export * from "./ChangePasswordCard";
 export * from "./ForgotPasswordCard";
+export * from "./VerifyCard";

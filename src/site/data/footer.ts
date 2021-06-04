@@ -8,7 +8,7 @@ export const footerData: IFooter = {
     },
     {
       text: "Leaderboard",
-      link: "/league/global",
+      link: "/league/Global",
     },
   ],
   footerMenuRight: [

@@ -45,12 +45,16 @@ export const createController = async (
   if (!error) {
     const { error: newError } = await addUserLeague({
       username: body.username,
-      leagueName: "global",
+      leagueName: "Global",
       admin: false,
     });
 
     if (!newError) {
-      const response = _.pick(user, ["username", "verification_token"]);
+      const response = _.pick(user, [
+        "username",
+        "verification_token",
+        "email",
+      ]);
       return { status: 200, response };
     }
 

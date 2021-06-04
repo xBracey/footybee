@@ -98,3 +98,17 @@ export const postForgotPassword = async (
 
   return response;
 };
+
+export const postVerifyUser = async (token: string): Promise<IAPIResponse> => {
+  const data = { token };
+
+  const successMessage = "User has successfully been verified!";
+
+  const response = await apiRequest(
+    "/user/email-verify",
+    { method: "POST", data },
+    successMessage
+  );
+
+  return response;
+};

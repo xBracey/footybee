@@ -7,6 +7,7 @@ import {
   postGoldenBoot,
   postNewLeague,
   postUserLeague,
+  postVerifyUser,
   postWinner,
   registerUser,
 } from "../requests";
@@ -166,6 +167,17 @@ export const predictWinner = (winnerPrediction: string): ThunkResult<any> => {
 export const forgotPassword = (email: string): ThunkResult<any> => {
   return dispatch => {
     return postForgotPassword(email).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
+    );
+  };
+};
+
+export const verifyUser = (token: string): ThunkResult<any> => {
+  return dispatch => {
+    return postVerifyUser(token).then(response =>
       dispatch({
         type: types.message.MESSAGE_SET_MESSAGE,
         data: response,

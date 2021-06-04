@@ -56,8 +56,6 @@ export const PredictionsPage = () => {
       // TODO fix
       dispatch(getGroupMatchPredictions());
 
-      console.log(user);
-
       if (user.goldenBootPrediction)
         setPlayerOption({
           value: user.goldenBootPrediction,

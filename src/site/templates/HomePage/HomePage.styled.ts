@@ -19,7 +19,7 @@ export const AddLeagueFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 24px 48px 24px;
+  padding: 24px;
   flex-wrap: wrap;
 
   ${TextInputContainer} {
@@ -31,5 +31,20 @@ export const AddLeagueText = styled.p`
   color: ${colours.white};
   text-align: center;
   font-size: ${fonts.size.header3};
-  margin: 0;
+  margin: 24px 0 0 0;
+`;
+
+export const AddLeagueDescription = styled.p`
+  color: ${colours.white};
+  text-align: center;
+  font-size: ${fonts.size.small};
+  margin: 8px 0;
+  width: 80%;
+`;
+
+export const SingleAddLeague = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;

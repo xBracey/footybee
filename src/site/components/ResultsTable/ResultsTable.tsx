@@ -21,7 +21,9 @@ export const ResultsTable = ({
   inverted,
   title,
 }: IResultsTable) => {
-  const resultsComponent = groupMatches.map(match => <Result {...match} />);
+  const resultsComponent = groupMatches.map(match => (
+    <Result {...match} key={match.id} />
+  ));
 
   const [table, setTable] = useState([]);
 

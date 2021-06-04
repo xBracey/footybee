@@ -42,6 +42,8 @@ export const HowToPage = () => {
               <br /> <br />
               <b>Extras:</b>
               <br />
+              5 Points - Correct Group Position Prediction
+              <br />
               50 Points - Pre Tournament Winner
               <br />
               50 Points - Golden Boot

@@ -46,7 +46,7 @@ export const WelcomeCard = styled.div`
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   padding: 8px 32px;
   margin: 16px;
-  height: 250px;
+  height: 275px;
 
   @media ${device.mobile} {
     height: initial;

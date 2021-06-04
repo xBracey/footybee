@@ -55,7 +55,6 @@ export const HomePage = ({ username }: IHomePage) => {
       <TodaysMatches groupMatches={todayMatches} />
       <HomePageContainer>
         <HomePageInnerContainer>
-          <AddLeague />
           <AddLeagueText>{`${user.username}'s Leagues`}</AddLeagueText>
           <LeaguesTable
             leagues={user.userLeagues}
@@ -63,6 +62,7 @@ export const HomePage = ({ username }: IHomePage) => {
               router.push(`/league/${name}`);
             }}
           />
+          <AddLeague />
         </HomePageInnerContainer>
       </HomePageContainer>
     </Page>

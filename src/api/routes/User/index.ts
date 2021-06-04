@@ -24,7 +24,7 @@ User.post("/register", async (req, res) => {
   const host = req.get("host");
 
   sendMail({
-    from: "hello@footybee.com",
+    from: '"FootyBee - Admin" <hello@footybee.com>',
     to: response.email,
     subject: "Email Verification",
     text: `Verify your email here ${req.protocol}://${host}/verify?token=${response.verification_token}`,
@@ -119,7 +119,7 @@ User.post("/forgot-password", async (req, res) => {
   const host = req.get("host");
 
   sendMail({
-    from: "hello@footybee.com",
+    from: '"FootyBee - Admin" <hello@footybee.com>',
     to: response.email,
     subject: "Email Verification",
     text: `Reset your password here ${req.protocol}://${host}/reset-password?token=${response.forgot_password_token}`,

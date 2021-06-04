@@ -2,7 +2,12 @@ import { Button, TextInput } from "components";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewLeague, addUserLeague } from "redux/actions";
-import { AddLeagueFlex, AddLeagueText } from "../HomePage.styled";
+import {
+  AddLeagueDescription,
+  AddLeagueFlex,
+  AddLeagueText,
+  SingleAddLeague,
+} from "../HomePage.styled";
 
 export const AddLeague = () => {
   const dispatch = useDispatch();
@@ -24,30 +29,36 @@ export const AddLeague = () => {
 
   return (
     <AddLeagueFlex>
-      <div>
-        <AddLeagueText>Add New League</AddLeagueText>
+      <SingleAddLeague>
+        <AddLeagueText>Create New League</AddLeagueText>
+        <AddLeagueDescription>
+          Create a new league for your friends to join and compete in!
+        </AddLeagueDescription>
         <AddLeagueFlex>
           <TextInput text={newLeagueName} setText={setNewLeagueName} />
           <Button
-            text={"Add"}
+            text={"Create"}
             onClick={onSubmitNew}
             isDisabled={newLeagueName === ""}
             buttonType={"blue"}
           />
         </AddLeagueFlex>
-      </div>
-      <div>
-        <AddLeagueText>Add Existing League</AddLeagueText>
+      </SingleAddLeague>
+      <SingleAddLeague>
+        <AddLeagueText>Join Existing League</AddLeagueText>
+        <AddLeagueDescription>
+          Join an already existing league using the name of the league!
+        </AddLeagueDescription>
         <AddLeagueFlex>
           <TextInput text={leagueName} setText={setLeagueName} />
           <Button
-            text={"Add"}
+            text={"Join"}
             onClick={onSubmitExisting}
             isDisabled={leagueName === ""}
             buttonType={"blue"}
           />
         </AddLeagueFlex>
-      </div>
+      </SingleAddLeague>
     </AddLeagueFlex>
   );
 };
