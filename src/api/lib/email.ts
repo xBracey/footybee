@@ -11,7 +11,12 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendMail = (mailOptions, callback = () => {}) => {
-  console.log(mailOptions);
+  console.log({
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
