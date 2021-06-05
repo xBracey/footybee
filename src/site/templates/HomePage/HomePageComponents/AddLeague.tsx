@@ -47,7 +47,7 @@ export const AddLeague = () => {
       <SingleAddLeague>
         <AddLeagueText>Join Existing League</AddLeagueText>
         <AddLeagueDescription>
-          Join an already existing league using the name of the league!
+          Join an already existing league using the code from the league!
         </AddLeagueDescription>
         <AddLeagueFlex>
           <TextInput text={leagueName} setText={setLeagueName} />

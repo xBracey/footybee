@@ -50,12 +50,12 @@ const getUsersLeagues = async (
 
 const deleteUserLeague = async (
   username: string,
-  leagueName: string
+  leagueCode: string
 ): Promise<IUserLeagueResponse> => {
   const userLeague = await models.UserLeague.destroy({
     where: {
       username,
-      leagueName,
+      leagueCode,
     },
   });
 
@@ -68,13 +68,13 @@ const deleteUserLeague = async (
 
 const editUserLeague = async (
   username: string,
-  leagueName: string,
+  leagueCode: string,
   admin: boolean
 ): Promise<IUserLeagueResponse> => {
   const userLeague = await models.UserLeague.findOne({
     where: {
       username,
-      leagueName,
+      leagueCode,
     },
   });
 

@@ -10,7 +10,6 @@ describe("Test create league endpoint", () => {
       .post("/league/create")
       .send({
         leagueName: "Test League 10",
-        code: "1234",
       })
       .set("Accept", "application/json");
 
@@ -24,7 +23,6 @@ describe("Test create league endpoint", () => {
       .post("/league/create")
       .send({
         leagueName: "Test League 1",
-        code: "1234",
       })
       .set("Accept", "application/json");
 
@@ -75,11 +73,9 @@ describe("Test bulk create league endpoint", () => {
         leagues: [
           {
             leagueName: "Test League 11",
-            code: "1234",
           },
           {
             leagueName: "Test League 12",
-            code: "1234",
           },
         ],
       })
@@ -97,11 +93,9 @@ describe("Test bulk create league endpoint", () => {
         leagues: [
           {
             leagueName: "Test League 1",
-            code: "1234",
           },
           {
             leagueName: "Test League 2",
-            code: "1234",
           },
         ],
       })

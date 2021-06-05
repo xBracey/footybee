@@ -10,7 +10,7 @@ describe("Test create userLeague endpoint", () => {
       .post("/userLeague/create")
       .send({
         username: "Test User League 1",
-        leagueName: "Test League 1",
+        leagueCode: "Test League Code 1",
       })
       .set("Accept", "application/json");
 
@@ -22,7 +22,7 @@ describe("Test create userLeague endpoint", () => {
   it("Duplicate userLeague", async done => {
     const response = await request
       .post("/userLeague/create")
-      .send({ username: "Test User 1", leagueName: "Test League 1" })
+      .send({ username: "Test User 1", leagueCode: "Test League Code 1" })
       .set("Accept", "application/json");
 
     expect(response.status).toBe(409);
@@ -67,7 +67,7 @@ describe("Test create userLeague endpoint", () => {
 describe("Test delete userLeague endpoint", () => {
   it("Valid userLeague name", async done => {
     const response = await request.delete(
-      "/userLeague/Test User 2/Test League 1"
+      "/userLeague/Test User 2/Test League Code 1"
     );
 
     expect(response.status).toBe(200);

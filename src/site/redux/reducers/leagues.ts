@@ -8,6 +8,7 @@ interface ILeagueUser {
 
 interface ILeague {
   name: string;
+  code: string;
   users: ILeagueUser[];
 }
 
@@ -41,6 +42,7 @@ const fetchedLeague = (state: ILeagues, { data }) => {
 
   leagues[data.leagueName] = {
     name: data.leagueName,
+    code: data.code,
     users: data.users.map(user => ({
       rank: user.UserLeague.rank,
       displayName: user.displayName ?? user.username,

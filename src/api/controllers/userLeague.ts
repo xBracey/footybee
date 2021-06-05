@@ -46,9 +46,9 @@ export const createController = async (
 
 export const deleteController = async (
   username: string,
-  leagueName: string
+  leagueCode: string
 ): Promise<controllerResponse> => {
-  const { error, userLeague } = await deleteUserLeague(username, leagueName);
+  const { error, userLeague } = await deleteUserLeague(username, leagueCode);
 
   if (!error) {
     return { status: 200, response: userLeague };
@@ -59,12 +59,12 @@ export const deleteController = async (
 
 export const editController = async (
   username: string,
-  leagueName: string,
+  leagueCode: string,
   admin: boolean
 ): Promise<controllerResponse> => {
   const { error, userLeague } = await editUserLeague(
     username,
-    leagueName,
+    leagueCode,
     admin
   );
 

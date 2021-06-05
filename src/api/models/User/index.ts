@@ -57,10 +57,6 @@ export class User extends Model {
   @Column(DataType.DATE)
   forgot_password_expiry: string;
 
-  @ForeignKey(() => League)
-  @Column(DataType.STRING)
-  favouriteLeagueName: string;
-
   @ForeignKey(() => Player)
   @Column(DataType.STRING)
   goldenBootPrediction: string;

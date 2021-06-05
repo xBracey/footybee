@@ -31,7 +31,6 @@ export const userTypes = {
   USER_FETCHED_USER: "fetchedUser",
   USER_LOADING_USER: "loadingUser",
   USER_FETCHED_USER_POINTS: "fetchedUserPoints",
-  USER_ADDED_LEAGUE: "addedLeague",
   USER_POSTED_GOLDEN_BOOT: "postedGoldenBoot",
   USER_POSTED_WINNER: "postedWinner",
 };
@@ -75,17 +74,6 @@ const fetchedUserPoints = (state, { data }) => {
   return { ...state, points, pointsToday, loading: false };
 };
 
-const addedLeague = (state: IUser, { data }) => {
-  const userLeagues = [...state.userLeagues];
-
-  userLeagues.push({
-    rank: null,
-    name: data.leagueName,
-  });
-
-  return { ...state, loading: false, userLeagues };
-};
-
 const postedGoldenBoot = (state, { data }) => ({
   ...state,
   goldenBootPrediction: data.goldenBootPrediction,
@@ -106,7 +94,6 @@ const reducers: IReducers<IUser> = {
   fetchedUser,
   loadingUser,
   fetchedUserPoints,
-  addedLeague,
   postedGoldenBoot,
   postedWinner,
 };

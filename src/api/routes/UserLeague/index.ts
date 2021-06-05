@@ -16,10 +16,10 @@ UserLeague.post("/create", async (req, res) => {
     : res.status(status).send(response);
 });
 
-UserLeague.delete("/:username/:leagueName", async (req, res) => {
+UserLeague.delete("/:username/:leagueCode", async (req, res) => {
   const { status, error, response } = await deleteController(
     req.params.username,
-    req.params.leagueName
+    req.params.leagueCode
   );
 
   return error
@@ -27,10 +27,10 @@ UserLeague.delete("/:username/:leagueName", async (req, res) => {
     : res.status(status).send(response);
 });
 
-UserLeague.put("/:username/:leagueName", async (req, res) => {
+UserLeague.put("/:username/:leagueCode", async (req, res) => {
   const { status, error, response } = await editController(
     req.params.username,
-    req.params.leagueName,
+    req.params.leagueCode,
     req.body.admin
   );
 

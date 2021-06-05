@@ -1,7 +1,7 @@
 import { words } from "./words";
 
 export const generateWords = () =>
-  Array(3)
+  Array(4)
     .fill(null)
     .map((value, index) => {
       const word = words[Math.floor(Math.random() * words.length)];

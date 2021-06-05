@@ -57,7 +57,7 @@ describe("Add league", () => {
   it("Valid league", async done => {
     const { league } = await addLeague({
       leagueName: "Test League 3",
-      code: "1234",
+      code: "Test League Code 3",
     });
 
     const name = league.get("leagueName", { plain: true });
@@ -69,7 +69,7 @@ describe("Add league", () => {
   it("Duplicate league name", async done => {
     const { error } = await addLeague({
       leagueName: "Test League 1",
-      code: "1234",
+      code: "Test League Code 1",
     });
 
     expect(error.message).toEqual("Primary Key duplicate");
@@ -82,11 +82,11 @@ describe("Add leagues", () => {
     const { leagues } = await addLeagues([
       {
         leagueName: "Test League 4",
-        code: "1234",
+        code: "Test League Code 4",
       },
       {
         leagueName: "Test League 5",
-        code: "1234",
+        code: "Test League Code 5",
       },
     ]);
 
@@ -98,11 +98,11 @@ describe("Add leagues", () => {
     const { error } = await addLeagues([
       {
         leagueName: "Test League 1",
-        code: "1234",
+        code: "Test League Code 1",
       },
       {
         leagueName: "Test League 2",
-        code: "1234",
+        code: "Test League Code 2",
       },
     ]);
 

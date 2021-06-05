@@ -39,7 +39,7 @@ export const createController = async (
   if (!error) {
     const { error: newError } = await addUserLeague({
       username: body.username,
-      leagueName: league.get("leagueName", { plain: true }),
+      leagueCode: league.get("code", { plain: true }),
       admin: true,
     });
 

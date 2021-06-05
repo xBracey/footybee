@@ -2,7 +2,7 @@ import { validateBoolean, validateType } from "../../lib";
 
 export default interface IUserLeague {
   username: string;
-  leagueName: string;
+  leagueCode: string;
   admin?: boolean;
   rank?: number;
 }
@@ -12,11 +12,11 @@ export const isValidUserLeague = (data: any): data is IUserLeague => {
     return false;
   }
 
-  const { username, leagueName, admin, rank } = data;
+  const { username, leagueCode, admin, rank } = data;
 
   return (
     validateType(username, "string", true) &&
-    validateType(leagueName, "string", true) &&
+    validateType(leagueCode, "string", true) &&
     validateType(rank, "number", false) &&
     validateBoolean(admin, false)
   );

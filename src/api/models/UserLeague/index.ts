@@ -18,7 +18,7 @@ export class UserLeague extends Model {
   @PrimaryKey
   @ForeignKey(() => League)
   @Column
-  leagueName: string;
+  leagueCode: string;
 
   @Column(DataType.BOOLEAN)
   admin: boolean;

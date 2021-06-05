@@ -90,16 +90,13 @@ export const getUserPoints = (): ThunkResult<any> => {
   };
 };
 
-export const addUserLeague = (leagueName: string): ThunkResult<any> => {
+export const addUserLeague = (leagueCode: string): ThunkResult<any> => {
   return (dispatch, getState) => {
     dispatch({ type: types.user.USER_LOADING_USER });
 
-    return postUserLeague(getState(), leagueName).then(response =>
+    return postUserLeague(getState(), leagueCode).then(response =>
       !response.error
-        ? dispatch({
-            type: types.user.USER_ADDED_LEAGUE,
-            data: response,
-          })
+        ? dispatch(getUser())
         : dispatch({
             type: types.message.MESSAGE_SET_MESSAGE,
             data: response,
@@ -114,10 +111,7 @@ export const addNewLeague = (leagueName: string): ThunkResult<any> => {
 
     return postNewLeague(getState(), leagueName).then(response =>
       !response.error
-        ? dispatch({
-            type: types.user.USER_ADDED_LEAGUE,
-            data: response,
-          })
+        ? dispatch(getUser())
         : dispatch({
             type: types.message.MESSAGE_SET_MESSAGE,
             data: response,
