@@ -119,8 +119,8 @@ export const PredictionsTable = ({
     <PairingNote>
       <b>Note: </b> <br /> Your predictions have resulted in a tie between two
       or more teams for a position in the league table.
-      <br /> Because you get points for predicting a team's position, you have
-      the option on the side of the table to switch these positions
+      <br /> You have the option on the side of the table to switch these
+      positions
     </PairingNote>
   ) : null;
 
