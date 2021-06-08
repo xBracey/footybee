@@ -64,6 +64,11 @@ export const getAllLeagues = async (): Promise<ILeaguesResponse> => {
   return { leagues };
 };
 
+export const getAllLeaguesWithUsers = async (): Promise<ILeaguesResponse> => {
+  const leagues = await models.League.findAll({ include: [User] });
+  return { leagues };
+};
+
 export const deleteLeague = async (
   leagueName: string
 ): Promise<ILeagueResponse> => {

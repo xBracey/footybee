@@ -1,9 +1,9 @@
 import IGroupMatchPrediction from "../../models/GroupMatchPrediction/type";
 import IGroupMatch from "../../models/GroupMatch/type";
 
-const correctScore = 50;
-const correctScoreDiff = 20;
-const correctResult = 10;
+const correctScore = 25;
+const correctScoreDiff = 15;
+const correctResult = 5;
 
 export const calculateMatchPoints = ({
   groupMatch,

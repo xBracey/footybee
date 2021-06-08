@@ -1,9 +1,10 @@
 import { models } from "../config";
 import IGroupMatch from "../models/GroupMatch/type";
-import { StatusError } from "../lib";
+import { StatusError, updateMatchPoints } from "../lib";
 import { GroupMatch } from "../models";
 import { ValidationError } from "sequelize";
 import { calculateMatchesPoints } from "../lib/calculatePoints/calculateMatchesPoints";
+import { updateRanks } from "../lib/updateRanks";
 
 interface IGroupMatchResponse {
   error?: StatusError;
@@ -112,6 +113,9 @@ const editGroupMatch = async (
     predictions.forEach((prediction, index) =>
       prediction.update({ points: newPoints[index] })
     );
+
+    await updateMatchPoints();
+    await updateRanks();
 
     return { groupMatch };
   } catch (error) {
