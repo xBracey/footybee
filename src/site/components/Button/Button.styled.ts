@@ -56,6 +56,8 @@ export const ButtonContainer = styled.div<IButtonContainer>`
         return colours.green200;
     }
   }};
+  display: flex;
+  align-items: center;
   color: ${colours.white};
   padding: 12px 24px;
   margin: 8px;
@@ -81,4 +83,12 @@ export const ButtonContainer = styled.div<IButtonContainer>`
     }};
 
   ${props => (!props.isDisabled ? ButtonContainerPsuedo : null)}
+
+  svg {
+    margin-right: 10px;
+
+    path {
+      fill: ${colours.white};
+    }
+  }
 `;

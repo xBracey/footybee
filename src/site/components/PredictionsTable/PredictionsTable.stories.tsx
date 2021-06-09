@@ -71,5 +71,6 @@ story.add("PredictionsTable Component", () => (
     title="Test Group"
     inverted={boolean("Inverted", false)}
     originalPositions={[]}
+    isLocked={false}
   />
 ));

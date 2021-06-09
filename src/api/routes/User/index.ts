@@ -13,6 +13,7 @@ import {
   resetPasswordController,
   winnerController,
 } from "../../controllers/user";
+import { predictionLock } from "../../../site/lib/predictionLock";
 
 export const User = Router();
 
@@ -75,6 +76,10 @@ User.post(
   "/prediction/goldenboot",
   passport.authenticate("bearer", { session: false }),
   async (req, res) => {
+    if (predictionLock) {
+      return res.status(403).send({ error: "Too late to make prediction!" });
+    }
+
     const { status, error, response } = await goldenBootController(
       req.user,
       req.body.name
@@ -90,6 +95,10 @@ User.post(
   "/prediction/winner",
   passport.authenticate("bearer", { session: false }),
   async (req, res) => {
+    if (predictionLock) {
+      return res.status(403).send({ error: "Too late to make prediction!" });
+    }
+
     const { status, error, response } = await winnerController(
       req.user,
       req.body.name

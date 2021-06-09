@@ -28,6 +28,7 @@ import {
   ExtraText,
   PredictionsPageContainer,
 } from "./PredictionsPage.styled";
+import { predictionLock } from "src/site/lib/predictionLock";
 
 export const PredictionsPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -110,6 +111,7 @@ export const PredictionsPage = () => {
         title={`Group ${key}`}
         inverted={index % 2 === 0}
         onSave={onSave}
+        isLocked={predictionLock}
       />
     )
   );
@@ -178,6 +180,7 @@ export const PredictionsPage = () => {
                 text="Predict Winner"
                 onClick={saveWinner}
                 buttonType={"blue"}
+                isLocked={predictionLock}
               />
             </ExtraFlex>
             <ExtraFlex>
@@ -192,6 +195,7 @@ export const PredictionsPage = () => {
                 text="Predict Golden Boot"
                 onClick={saveGoldenBoot}
                 buttonType={"blue"}
+                isLocked={predictionLock}
               />
             </ExtraFlex>
           </ExtraFlexs>

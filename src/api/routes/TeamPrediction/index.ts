@@ -3,10 +3,15 @@ import {
   bulkCreateController,
   getController,
 } from "../../controllers/teamPrediction";
+import { predictionLock } from "../../../site/lib/predictionLock";
 
 export const TeamPrediction = Router();
 
 TeamPrediction.post("/create", async (req, res) => {
+  if (predictionLock) {
+    return res.status(403).send({ error: "Too late to make prediction!" });
+  }
+
   const { status, error, response } = await bulkCreateController(req.body);
 
   return error

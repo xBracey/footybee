@@ -26,6 +26,7 @@ interface IPredictionsTable {
   title: string;
   inverted: boolean;
   onSave: (predictions: IPrediction[], teams: string[]) => void;
+  isLocked: boolean;
   originalPositions?: string[];
 }
 
@@ -35,6 +36,7 @@ export const PredictionsTable = ({
   title,
   inverted,
   onSave,
+  isLocked,
   originalPositions,
 }: IPredictionsTable) => {
   const [state, dispatch]: [IPredictionReducer, any] = useReducer(reducer, {
@@ -138,6 +140,7 @@ export const PredictionsTable = ({
             text="Save Group Predictions"
             buttonType={inverted ? "green" : "blue"}
             onClick={onButtonClick}
+            isLocked={isLocked}
           />
         </ButtonContainer>
       </ResultsTableContainer>
