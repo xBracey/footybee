@@ -48,7 +48,9 @@ export const RegisterCard = ({
 
   const onBlurHandler = (index: number) => {
     hasBlurred[index] = true;
+  };
 
+  const validate = () => {
     const newValidation = validateInputs([
       {
         value: username,
@@ -74,6 +76,10 @@ export const RegisterCard = ({
 
     setValidation(newValidation);
   };
+
+  useEffect(() => {
+    validate();
+  }, [password, username, email, confirmPassword]);
 
   return (
     <LoginCardContainer>

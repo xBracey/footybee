@@ -195,6 +195,7 @@ export const verifyUser = (token: string): ThunkResult<any> => {
     );
   };
 };
+
 export const changeDisplayName = (displayName: string): ThunkResult<any> => {
   return (dispatch, getState) => {
     return postDisplayName(getState(), displayName).then(response =>

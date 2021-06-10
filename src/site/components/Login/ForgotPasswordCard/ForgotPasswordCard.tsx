@@ -50,6 +50,10 @@ export const ForgotPasswordCard = ({
     setValidation(newValidation);
   };
 
+  useEffect(() => {
+    validate();
+  }, [email]);
+
   return (
     <LoginCardContainer>
       <BackButton>
@@ -66,7 +70,6 @@ export const ForgotPasswordCard = ({
         <TextInput
           text={email}
           setText={(text: string) => {
-            validate();
             setEmail(text);
           }}
           type="email"

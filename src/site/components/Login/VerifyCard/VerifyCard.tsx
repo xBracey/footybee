@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  CardMain,
-  LoginCardContainer,
-  CardHeader,
-} from "../LoginCard/LoginCard.styled";
+import { CardMain, LoginCardContainer } from "../LoginCard/LoginCard.styled";
 import { IconButton } from "../../IconButton";
 import { icons } from "assets";
 import { BackButton } from "../RegisterCard/RegisterCard.styled";

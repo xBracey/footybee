@@ -60,6 +60,10 @@ export const LoginCard = ({
     setValidation(newValidation);
   };
 
+  useEffect(() => {
+    validate();
+  }, [password, username]);
+
   return (
     <LoginCardContainer>
       <CardMain
@@ -72,7 +76,6 @@ export const LoginCard = ({
         <TextInput
           text={username}
           setText={(text: string) => {
-            validate();
             setUsername(text);
           }}
           placeholder="Username"
@@ -82,7 +85,6 @@ export const LoginCard = ({
         <TextInput
           text={password}
           setText={(text: string) => {
-            validate();
             setPassword(text);
           }}
           type="password"

@@ -40,7 +40,9 @@ export const ChangePasswordCard = ({
 
   const onBlurHandler = (index: number) => {
     hasBlurred[index] = true;
+  };
 
+  const validate = () => {
     const newValidation = validateInputs([
       {
         value: password,
@@ -56,6 +58,10 @@ export const ChangePasswordCard = ({
 
     setValidation(newValidation);
   };
+
+  useEffect(() => {
+    validate();
+  }, [password, confirmPassword]);
 
   return (
     <LoginCardContainer>
