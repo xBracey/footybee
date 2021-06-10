@@ -1,7 +1,7 @@
 import { ButtonContainer } from "components/Button/Button.styled";
 import { TextInputContainer } from "components/Input/TextInput/TextInput.styled";
 import styled, { css } from "styled-components";
-import { colours, fonts } from "theme";
+import { colours, device, fonts } from "theme";
 
 const ProfilePageContainer = css`
   padding: 20px 0;
@@ -45,6 +45,10 @@ export const ProfileLoggedInContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${device.mobile} {
+    flex-direction: column;
+  }
 `;
 
 export const ProfileDisplayName = styled.div`
@@ -62,4 +66,5 @@ export const ProfileDisplayName = styled.div`
 export const ProfileDisplayNameLabel = styled.p`
   margin: 10px 0;
   font-size: ${fonts.size.large};
+  text-align: center;
 `;

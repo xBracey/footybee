@@ -99,6 +99,23 @@ export const postForgotPassword = async (
   return response;
 };
 
+export const postChangePassword = async (
+  token: string,
+  password: string
+): Promise<IAPIResponse> => {
+  const data = { token, password };
+
+  const successMessage = "Password has successfully been reset";
+
+  const response = await apiRequest(
+    "/user/reset-password",
+    { method: "POST", data },
+    successMessage
+  );
+
+  return response;
+};
+
 export const postVerifyUser = async (token: string): Promise<IAPIResponse> => {
   const data = { token };
 

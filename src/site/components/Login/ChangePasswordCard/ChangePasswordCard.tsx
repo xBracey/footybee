@@ -74,7 +74,7 @@ export const ChangePasswordCard = ({
           text={password}
           setText={setPassword}
           type="password"
-          placeholder="Password"
+          placeholder="New Password"
           error={validation.errorMessages[0]}
           onBlurHandler={() => onBlurHandler(0)}
         />
@@ -82,7 +82,7 @@ export const ChangePasswordCard = ({
           text={confirmPassword}
           setText={setConfirmPassword}
           type="password"
-          placeholder="Confirm Password"
+          placeholder="Confirm New Password"
           error={validation.errorMessages[1]}
           onBlurHandler={() => onBlurHandler(1)}
         />

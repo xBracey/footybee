@@ -14,3 +14,4 @@ export * from "./HowToPage";
 export * from "./ForgotPasswordPage";
 export * from "./VerifyPage";
 export * from "./ProfilePage";
+export * from "./ResetPasswordPage";
