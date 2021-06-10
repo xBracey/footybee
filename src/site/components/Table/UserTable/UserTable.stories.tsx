@@ -9,6 +9,7 @@ const generateUsers = (userNumber: number) =>
   Array(userNumber)
     .fill(null)
     .map((value, index) => ({
+      username: `Test ${index + 1}`,
       displayName: `Test ${index + 1}`,
       points: Math.ceil(Math.random() * 100),
       isUser: index === 3,

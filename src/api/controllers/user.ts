@@ -4,6 +4,7 @@ import {
   deleteUser,
   getUser,
   getUserPoints,
+  postDisplayName,
   postEmailVerify,
   postForgotPassword,
   postGoldenBoot,
@@ -89,6 +90,7 @@ export const getController = async (
     "leagues",
     "goldenBootPrediction",
     "winnerPrediction",
+    "points",
   ]);
 
   return { status: 200, response };
@@ -151,4 +153,13 @@ export const resetPasswordController = async (
   }
 
   return handleError(error);
+};
+
+export const editDisplayNameController = async (
+  username: string,
+  displayName: string
+): Promise<controllerResponse> => {
+  const response = await postDisplayName(username, displayName);
+
+  return { status: 200, response };
 };

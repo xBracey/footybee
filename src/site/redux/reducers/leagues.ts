@@ -3,6 +3,7 @@ import { IAction, IReducers } from "../types";
 interface ILeagueUser {
   rank: number;
   displayName: string;
+  username: string;
   points: number;
 }
 
@@ -46,6 +47,7 @@ const fetchedLeague = (state: ILeagues, { data }) => {
     users: data.users.map(user => ({
       rank: user.UserLeague.rank,
       displayName: user.displayName ?? user.username,
+      username: user.username,
       points: user.points,
     })),
   };

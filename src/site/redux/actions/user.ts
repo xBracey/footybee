@@ -3,6 +3,7 @@ import {
   fetchUser,
   fetchUserPoints,
   loginUser,
+  postDisplayName,
   postForgotPassword,
   postGoldenBoot,
   postNewLeague,
@@ -172,6 +173,16 @@ export const forgotPassword = (email: string): ThunkResult<any> => {
 export const verifyUser = (token: string): ThunkResult<any> => {
   return dispatch => {
     return postVerifyUser(token).then(response =>
+      dispatch({
+        type: types.message.MESSAGE_SET_MESSAGE,
+        data: response,
+      })
+    );
+  };
+};
+export const changeDisplayName = (displayName: string): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    return postDisplayName(getState(), displayName).then(response =>
       dispatch({
         type: types.message.MESSAGE_SET_MESSAGE,
         data: response,

@@ -38,7 +38,7 @@ export const Page = ({
 
   const footerComponent = auth.token ? <Footer {...footerData} /> : null;
 
-  let menu = headerData(user.admin);
+  let menu = headerData(user.admin, user.username);
 
   if (aboutPages) {
     menu = aboutHeaderData;

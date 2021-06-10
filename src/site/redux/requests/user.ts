@@ -112,3 +112,21 @@ export const postVerifyUser = async (token: string): Promise<IAPIResponse> => {
 
   return response;
 };
+
+export const postDisplayName = async (
+  state: IRootState,
+  displayName: string
+): Promise<IAPIResponse> => {
+  const data = { displayName };
+
+  const successMessage = "Team name has successfully been changed!";
+
+  const response = await authorisedRequest(
+    state,
+    "/user/displayName",
+    { method: "POST", data },
+    successMessage
+  );
+
+  return response;
+};

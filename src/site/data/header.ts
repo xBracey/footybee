@@ -1,7 +1,10 @@
 import { IHeader } from "components/Header";
 import { icons } from "../assets/icons";
 
-export const headerData = (isAdmin: boolean): IHeader["menu"] => {
+export const headerData = (
+  isAdmin: boolean,
+  username: string
+): IHeader["menu"] => {
   const menu: IHeader["menu"] = [
     {
       text: "How To Play",
@@ -16,7 +19,7 @@ export const headerData = (isAdmin: boolean): IHeader["menu"] => {
       link: "/results",
     },
     {
-      link: "/logout",
+      link: `/profile/${username}`,
       SVG: icons.account,
     },
   ];

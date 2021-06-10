@@ -5,3 +5,4 @@ export * from "./players";
 export * from "./groupMatches";
 export * from "./groupMatchPredictions";
 export * from "./leagues";
+export * from "./users";

@@ -308,3 +308,19 @@ export const postResetPassword = async (
 
   return { user };
 };
+
+export const postDisplayName = async (
+  username: string,
+  displayName: string
+): Promise<{ username: string }> => {
+  await models.User.update(
+    { displayName },
+    {
+      where: {
+        username,
+      },
+    }
+  );
+
+  return { username };
+};

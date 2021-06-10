@@ -5,6 +5,7 @@ import { sendMail } from "../../lib/email";
 import {
   createController,
   deleteController,
+  editDisplayNameController,
   emailVerifyController,
   forgotPasswordController,
   getController,
@@ -142,6 +143,31 @@ User.post("/reset-password", async (req, res) => {
     req.body.token,
     req.body.password
   );
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});
+
+User.post(
+  "/displayName",
+  passport.authenticate("bearer", { session: false }),
+  async (req, res) => {
+    console.log(req.user);
+
+    const { status, error, response } = await editDisplayNameController(
+      req.user,
+      req.body.displayName
+    );
+
+    return error
+      ? res.status(status).send({ error })
+      : res.status(status).send(response);
+  }
+);
+
+User.get("/:username", async (req, res) => {
+  const { status, error, response } = await getController(req.params.username);
 
   return error
     ? res.status(status).send({ error })

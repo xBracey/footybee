@@ -31,6 +31,7 @@ export const LeagueTableRow = styled.div<ILeagueTableRow>`
   padding: 12px;
   position: relative;
   transition: all 0.2s;
+  cursor: pointer;
 
   &:nth-child(2n + 1) {
     color: ${colours.white};

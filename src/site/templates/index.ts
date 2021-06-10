@@ -13,3 +13,4 @@ export * from "./LeaguePage";
 export * from "./HowToPage";
 export * from "./ForgotPasswordPage";
 export * from "./VerifyPage";
+export * from "./ProfilePage";
