@@ -1,4 +1,4 @@
-import { Button, TextInput } from "components";
+import { Button, TextInput, Overview } from "components";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ import {
   ProfileLoggedInContainer,
   ProfileDisplayName,
   ProfileDisplayNameLabel,
+  ProfilePageHeaderContainer,
 } from "./ProfilePage.styled";
 
 interface IProfilePage {
@@ -49,41 +50,57 @@ export const ProfilePage = ({ username }: IProfilePage) => {
     }
   };
 
-  console.log(loggedInUser.username, user?.username);
+  const logoutButton =
+    loggedInUser.username && loggedInUser.username === user?.username ? (
+      <Link href="/logout">
+        <Button text={"Logout"} buttonType="red" onClick={() => {}} />
+      </Link>
+    ) : null;
 
   const isUserComponent =
     loggedInUser.username && loggedInUser.username === user?.username ? (
-      <ProfileLoggedInContainer>
-        <ProfileDisplayName>
-          <ProfileDisplayNameLabel>Change Team Name</ProfileDisplayNameLabel>
-          <TextInput
-            text={displayName}
-            setText={setDisplayName}
-            placeholder={"Change Team Name"}
-          />
-          <Button
-            text={"Submit"}
-            buttonType="blue"
-            onClick={onSubmit}
-            isDisabled={!displayName}
-          />
-        </ProfileDisplayName>
-
-        <Link href="/logout">
-          <Button text={"Logout"} buttonType="red" onClick={() => {}} />
-        </Link>
-      </ProfileLoggedInContainer>
+      <ProfilePageTopContainer>
+        <ProfilePageInnerContainer>
+          <ProfileHeader>{`Profile Admin`}</ProfileHeader>
+          <ProfileLoggedInContainer>
+            <ProfileDisplayName>
+              <ProfileDisplayNameLabel>
+                Change Team Name
+              </ProfileDisplayNameLabel>
+              <TextInput
+                text={displayName}
+                setText={setDisplayName}
+                placeholder={"Change Team Name"}
+              />
+              <Button
+                text={"Submit"}
+                buttonType="blue"
+                onClick={onSubmit}
+                isDisabled={!displayName}
+              />
+            </ProfileDisplayName>
+          </ProfileLoggedInContainer>
+        </ProfilePageInnerContainer>
+      </ProfilePageTopContainer>
     ) : null;
 
   return (
     <Page title="Profile" isLoggedIn={true} usePadding={false}>
       <ProfileOuterContainer>
-        <ProfilePageTopContainer>
+        <ProfilePageHeaderContainer>
           <ProfilePageInnerContainer>
-            <ProfileHeader>{`${username}'s Profile`}</ProfileHeader>
-            {isUserComponent}
+            <Overview
+              name={`${user?.username}'s profile`}
+              points={user?.points}
+              pointsToday={0}
+              favLeagueName={"Global"}
+              favLeagueRank={user?.globalRank ?? 1}
+            />
+            {logoutButton}
           </ProfilePageInnerContainer>
-        </ProfilePageTopContainer>
+        </ProfilePageHeaderContainer>
+
+        {isUserComponent}
 
         <ProfilePageMainContainer>
           <ProfilePageInnerContainer>

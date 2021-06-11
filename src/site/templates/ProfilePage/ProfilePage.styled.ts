@@ -1,4 +1,3 @@
-import { ButtonContainer } from "components/Button/Button.styled";
 import { TextInputContainer } from "components/Input/TextInput/TextInput.styled";
 import styled, { css } from "styled-components";
 import { colours, device, fonts } from "theme";
@@ -12,6 +11,11 @@ const ProfilePageContainer = css`
   color: ${colours.white};
 `;
 
+export const ProfilePageHeaderContainer = styled.div`
+  ${ProfilePageContainer}
+  background-color: ${colours.blue300};
+`;
+
 export const ProfilePageTopContainer = styled.div`
   ${ProfilePageContainer}
   background-color: ${colours.green300};
@@ -20,6 +24,9 @@ export const ProfilePageTopContainer = styled.div`
 export const ProfilePageInnerContainer = styled.div`
   width: calc(100% - 32px);
   max-width: calc(1000px - 32px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const ProfilePageMainContainer = styled.div`

@@ -14,6 +14,7 @@ export interface IUser {
   userLeagues: IUserLeagues[];
   goldenBootPrediction: string;
   winnerPrediction: string;
+  globalRank: number;
 }
 
 const initialState: IUser = {
@@ -25,6 +26,7 @@ const initialState: IUser = {
   userLeagues: [],
   goldenBootPrediction: null,
   winnerPrediction: null,
+  globalRank: null,
 };
 
 export const userTypes = {
@@ -50,6 +52,9 @@ const fetchedUser = (state, { data }) => {
     winnerPrediction,
   } = data;
 
+  const globalRank = leagues.find(league => league.code === "Global")
+    ?.UserLeague?.rank;
+
   const userLeagues = leagues
     ? leagues.map(league => ({
         rank: league.UserLeague.rank,
@@ -64,6 +69,7 @@ const fetchedUser = (state, { data }) => {
     userLeagues,
     goldenBootPrediction,
     winnerPrediction,
+    globalRank,
     loading: false,
   };
 };

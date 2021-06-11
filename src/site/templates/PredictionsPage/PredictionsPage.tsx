@@ -98,8 +98,9 @@ export const PredictionsPage = () => {
     });
   };
 
-  const groupMatchesComponent = Object.entries(groups).map(
-    ([key, value], index) => (
+  const groupMatchesComponent = Object.entries(groups)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([key, value], index) => (
       <PredictionsTable
         key={key}
         groupMatches={value}
@@ -113,8 +114,7 @@ export const PredictionsPage = () => {
         onSave={onSave}
         isLocked={predictionLock}
       />
-    )
-  );
+    ));
 
   const teamOptions = teams.teams.map(team => ({
     value: team.name,

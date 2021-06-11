@@ -7,6 +7,7 @@ export interface IUser {
   points: number;
   goldenBootPrediction: string;
   winnerPrediction: string;
+  globalRank: number;
   predictions: IGroupMatchPrediction[];
 }
 
@@ -16,6 +17,7 @@ export const defaultUser: IUser = {
   points: 0,
   goldenBootPrediction: null,
   winnerPrediction: null,
+  globalRank: null,
   predictions: [],
 };
 
@@ -50,7 +52,11 @@ const fetchedProfileUser = (state, { data }) => {
     points,
     goldenBootPrediction,
     winnerPrediction,
+    leagues,
   } = data;
+
+  const globalRank = leagues.find(league => league.code === "Global")
+    ?.UserLeague?.rank;
 
   const users = {
     ...state.users,
@@ -60,6 +66,7 @@ const fetchedProfileUser = (state, { data }) => {
       points,
       goldenBootPrediction,
       winnerPrediction,
+      globalRank,
       predictions: [],
     },
   };

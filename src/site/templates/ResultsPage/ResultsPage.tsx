@@ -29,16 +29,16 @@ export const ResultsPage = () => {
     }
   });
 
-  const groupMatchesComponent = Object.entries(
-    groups
-  ).map(([key, value], index) => (
-    <ResultsTable
-      key={key}
-      groupMatches={value}
-      title={`Group ${key}`}
-      inverted={index % 2 === 0}
-    />
-  ));
+  const groupMatchesComponent = Object.entries(groups)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([key, value], index) => (
+      <ResultsTable
+        key={key}
+        groupMatches={value}
+        title={`Group ${key}`}
+        inverted={index % 2 === 0}
+      />
+    ));
 
   return (
     <ResultsPageContainer>
