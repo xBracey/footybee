@@ -32,6 +32,8 @@ export const calculateMatchPoints = ({
   ) {
     return correctResult;
   }
+
+  return 0;
 };
 
 export const calculateMatchesPoints = (
