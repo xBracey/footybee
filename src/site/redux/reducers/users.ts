@@ -55,7 +55,7 @@ const fetchedProfileUser = (state, { data }) => {
     leagues,
   } = data;
 
-  const globalRank = leagues.find(league => league.code === "Global")
+  const globalRank = leagues?.find(league => league.code === "Global")
     ?.UserLeague?.rank;
 
   const users = {
