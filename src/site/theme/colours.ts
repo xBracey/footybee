@@ -19,5 +19,7 @@ export const colours = {
   red200: "#ef2929",
   red300: "#c30e0e",
 
+  amber: "#e87700",
+
   successGreen: "#4e9a06",
 };

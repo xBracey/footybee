@@ -52,7 +52,7 @@ const fetchedUser = (state, { data }) => {
     winnerPrediction,
   } = data;
 
-  const globalRank = leagues.find(league => league.code === "Global")
+  const globalRank = leagues?.find(league => league.code === "Global")
     ?.UserLeague?.rank;
 
   const userLeagues = leagues

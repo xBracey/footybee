@@ -1,10 +1,11 @@
-import { Button, TextInput, Overview } from "components";
+import { Button, TextInput, Overview, PredictionsBreakdown } from "components";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDisplayName, getGroupMatches, getUser } from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
+import { predictionLock } from "src/site/lib/predictionLock";
 import {
   getProfilePredictions,
   getProfileUser,
@@ -20,6 +21,7 @@ import {
   ProfileDisplayName,
   ProfileDisplayNameLabel,
   ProfilePageHeaderContainer,
+  ProfileExtraPrediction,
 } from "./ProfilePage.styled";
 
 interface IProfilePage {
@@ -84,6 +86,39 @@ export const ProfilePage = ({ username }: IProfilePage) => {
       </ProfilePageTopContainer>
     ) : null;
 
+  const fixtures = groupMatches.groupMatches.map(match => {
+    const prediction = user?.predictions.find(
+      prediction => prediction.groupMatchId === match.id
+    );
+
+    return {
+      fixture: `${match.homeTeam} vs ${match.awayTeam}`,
+      score:
+        match.homeGoals && match.awayGoals
+          ? `${match.homeGoals}-${match.awayGoals}`
+          : "N/A",
+      prediction:
+        prediction?.homeGoals && prediction?.awayGoals
+          ? `${prediction?.homeGoals}-${prediction?.awayGoals}`
+          : "N/A",
+      points: prediction?.points,
+    };
+  });
+
+  const pointsBreakdownComponent = predictionLock ? (
+    <>
+      <ProfileExtraPrediction>{`Winner Prediction - ${
+        user?.winnerPrediction ?? "N/A"
+      }`}</ProfileExtraPrediction>
+      <ProfileExtraPrediction>{`Golden Boot Prediction - ${
+        user?.goldenBootPrediction ?? "N/A"
+      }`}</ProfileExtraPrediction>
+      <PredictionsBreakdown fixtures={fixtures} />
+    </>
+  ) : (
+    <ProfileExtraPrediction>{"TBA"}</ProfileExtraPrediction>
+  );
+
   return (
     <Page title="Profile" isLoggedIn={true} usePadding={false}>
       <ProfileOuterContainer>
@@ -105,7 +140,7 @@ export const ProfilePage = ({ username }: IProfilePage) => {
         <ProfilePageMainContainer>
           <ProfilePageInnerContainer>
             <ProfileHeader>{`Points Breakdown`}</ProfileHeader>
-            <ProfileHeader>{`TBA`}</ProfileHeader>
+            {pointsBreakdownComponent}
           </ProfilePageInnerContainer>
         </ProfilePageMainContainer>
       </ProfileOuterContainer>

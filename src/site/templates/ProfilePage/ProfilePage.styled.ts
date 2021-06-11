@@ -75,3 +75,8 @@ export const ProfileDisplayNameLabel = styled.p`
   font-size: ${fonts.size.large};
   text-align: center;
 `;
+
+export const ProfileExtraPrediction = styled.p`
+  text-align: center;
+  font-size: ${fonts.size.large};
+`;

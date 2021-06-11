@@ -5,6 +5,7 @@ export interface IGroupMatchPrediction {
   groupMatchId: number;
   homeGoals: string;
   awayGoals: string;
+  points: number;
 }
 
 export interface IGroupMatchPredictions {
