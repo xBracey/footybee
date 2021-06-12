@@ -112,7 +112,7 @@ export const PredictionsPage = () => {
         title={`Group ${key}`}
         inverted={index % 2 === 0}
         onSave={onSave}
-        isLocked={predictionLock}
+        isLocked={predictionLock(user.username)}
       />
     ));
 
@@ -180,7 +180,7 @@ export const PredictionsPage = () => {
                 text="Predict Winner"
                 onClick={saveWinner}
                 buttonType={"blue"}
-                isLocked={predictionLock}
+                isLocked={predictionLock(user.username)}
               />
             </ExtraFlex>
             <ExtraFlex>
@@ -195,7 +195,7 @@ export const PredictionsPage = () => {
                 text="Predict Golden Boot"
                 onClick={saveGoldenBoot}
                 buttonType={"blue"}
-                isLocked={predictionLock}
+                isLocked={predictionLock(user.username)}
               />
             </ExtraFlex>
           </ExtraFlexs>

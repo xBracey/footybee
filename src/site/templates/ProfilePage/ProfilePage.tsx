@@ -105,7 +105,7 @@ export const ProfilePage = ({ username }: IProfilePage) => {
     };
   });
 
-  const pointsBreakdownComponent = predictionLock ? (
+  const pointsBreakdownComponent = predictionLock("") ? (
     <>
       <ProfileExtraPrediction>{`Winner Prediction - ${
         user?.winnerPrediction ?? "N/A"

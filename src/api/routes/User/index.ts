@@ -77,7 +77,7 @@ User.post(
   "/prediction/goldenboot",
   passport.authenticate("bearer", { session: false }),
   async (req, res) => {
-    if (predictionLock) {
+    if (predictionLock(req.user)) {
       return res.status(403).send({ error: "Too late to make prediction!" });
     }
 
@@ -96,7 +96,7 @@ User.post(
   "/prediction/winner",
   passport.authenticate("bearer", { session: false }),
   async (req, res) => {
-    if (predictionLock) {
+    if (predictionLock(req.user)) {
       return res.status(403).send({ error: "Too late to make prediction!" });
     }
 
