@@ -5,8 +5,36 @@ import { ITeamReducer, reducer } from "./TeamReducer";
 import { EditCard } from "../EditCard";
 import { TextInput } from "../../Input/TextInput";
 import { InputLabel } from "../styles";
+import { SelectInput } from "components/Input";
 
 let hasBlurred = [false, false, false];
+
+const tournamentPositionOptions = [
+  {
+    label: "Group Stages",
+    value: "0",
+  },
+  {
+    label: "Round of 16",
+    value: "1",
+  },
+  {
+    label: "Quarter Final",
+    value: "2",
+  },
+  {
+    label: "Semi Final",
+    value: "3",
+  },
+  {
+    label: "Final",
+    value: "4",
+  },
+  {
+    label: "Winner",
+    value: "5",
+  },
+];
 
 interface ITeamEditCard {
   groupLetters: string[];
@@ -27,9 +55,10 @@ export const TeamEditCard = ({
     groupLetter: team.groupLetter,
     name: team.name,
     groupPosition: team.groupPosition,
+    tournamentPosition: team.tournamentPosition ?? null,
   });
 
-  const { groupLetter, name, groupPosition } = state;
+  const { groupLetter, name, groupPosition, tournamentPosition } = state;
 
   const options = groupLetters.map(letter => ({
     value: letter,
@@ -124,6 +153,16 @@ export const TeamEditCard = ({
         }}
         onBlurHandler={() => onBlurHandler(2)}
         placeholder="Group Position"
+      />
+
+      <InputLabel>Tournament Position</InputLabel>
+      <SelectInput
+        option={tournamentPosition}
+        options={tournamentPositionOptions}
+        setOption={tournamentPosition =>
+          dispatch({ type: "edit", data: { tournamentPosition } })
+        }
+        placeholder="Tournament Position"
       />
     </EditCard>
   );

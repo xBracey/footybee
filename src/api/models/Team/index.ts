@@ -8,6 +8,7 @@ import {
   ForeignKey,
   BelongsTo,
   BelongsToMany,
+  Default,
 } from "sequelize-typescript";
 import { Player, Group, User, TeamPrediction } from "..";
 
@@ -32,4 +33,8 @@ export class Team extends Model {
 
   @BelongsToMany(() => User, () => TeamPrediction)
   usersPredictions: User[];
+
+  @Default(0)
+  @Column(DataType.SMALLINT)
+  tournamentPosition: number;
 }

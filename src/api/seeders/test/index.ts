@@ -7,6 +7,7 @@ import groupMatchSeed from "./groupMatch";
 import teamPredictionSeed from "./teamPrediction";
 import groupMatchPredictionSeed from "./groupMatchPrediction";
 import userLeagueSeed from "./userLeague";
+import roundSeed from "./round";
 
 const seedData = async () => {
   await leagueSeed();
@@ -18,6 +19,7 @@ const seedData = async () => {
   await teamPredictionSeed();
   await groupMatchPredictionSeed();
   await userLeagueSeed();
+  await roundSeed();
 };
 
 export default seedData;

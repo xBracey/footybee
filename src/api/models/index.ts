@@ -7,3 +7,5 @@ export * from "./GroupMatch";
 export * from "./TeamPrediction";
 export * from "./GroupMatchPrediction";
 export * from "./UserLeague";
+export * from "./Round";
+export * from "./KnockoutMatch";

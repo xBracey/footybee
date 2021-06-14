@@ -17,6 +17,9 @@ import close from "./close.inline.svg";
 import menu from "./menu.inline.svg";
 import copy from "./copy.inline.svg";
 import lock from "./lock.inline.svg";
+import correct from "./correct.inline.svg";
+import incorrect from "./incorrect.inline.svg";
+import undecided from "./undecided.inline.svg";
 
 export const icons = {
   logo,
@@ -38,4 +41,7 @@ export const icons = {
   menu,
   copy,
   lock,
+  correct,
+  incorrect,
+  undecided,
 };

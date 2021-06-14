@@ -1,3 +1,4 @@
+import { SelectInputContainer } from "components/Input/SelectInput/SelectInput.styled";
 import styled from "styled-components";
 import { colours } from "theme";
 
@@ -8,6 +9,10 @@ export const EditCardContainer = styled.form`
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   position: relative;
   padding: 20px 40px;
+
+  ${SelectInputContainer} {
+    padding-bottom: 40px;
+  }
 `;
 
 export const EditCardMain = styled.div`

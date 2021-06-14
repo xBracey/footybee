@@ -5,7 +5,6 @@ import {
   ResultContainer,
   ResultFlag,
   ResultFlagContainer,
-  ResultScore,
   ResultTeam,
 } from "../Result/Result.styled";
 import {
