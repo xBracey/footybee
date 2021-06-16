@@ -110,9 +110,10 @@ const editGroupMatch = async (
 
     const newPoints = calculateMatchesPoints(groupMatch, predictions);
 
-    predictions.forEach((prediction, index) =>
-      prediction.update({ points: newPoints[index] })
-    );
+    for (let index = 0; index < predictions.length; index++) {
+      const prediction = predictions[index];
+      await prediction.update({ points: newPoints[index] });
+    }
 
     await updateMatchPoints();
     await updateRanks();
