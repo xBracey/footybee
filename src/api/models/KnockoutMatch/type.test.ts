@@ -9,6 +9,7 @@ describe("Test isValidknockoutMatch", () => {
       homeTeam: "Test Team",
       awayTeam: "Test Team 2",
       roundName: "Test Round 1",
+      position: 1,
     });
     expect(validKnockoutMatch).toBe(true);
     done();

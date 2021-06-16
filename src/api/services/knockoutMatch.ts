@@ -97,13 +97,12 @@ const getMatchFromRound = async (
   return { knockoutMatches };
 };
 
-// TODO
-// const editKnockoutMatch = async (
-//   id: number,
-//   teamData: IKnockoutMatch
-// ): Promise<IKnockoutMatchResponse> => {
-
-// };
+const editKnockoutMatch = async (
+  id: number,
+  teamData: IKnockoutMatch
+): Promise<IKnockoutMatchResponse> => {
+  return { knockoutMatch: null };
+};
 
 export {
   addKnockoutMatch,
@@ -113,4 +112,5 @@ export {
   getAllKnockoutMatches,
   deleteKnockoutMatch,
   getMatchFromRound,
+  editKnockoutMatch,
 };

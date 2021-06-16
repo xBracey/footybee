@@ -6,8 +6,9 @@ import {
   PrimaryKey,
   ForeignKey,
   Default,
+  BelongsTo,
 } from "sequelize-typescript";
-import { User, Team } from "..";
+import { User, Team, Round } from "..";
 
 @Table
 export class TeamPrediction extends Model {
@@ -27,4 +28,11 @@ export class TeamPrediction extends Model {
   @Default(0)
   @Column(DataType.SMALLINT)
   points: number;
+
+  @ForeignKey(() => Round)
+  @Column
+  roundName: string;
+
+  @BelongsTo(() => Round)
+  round: Round;
 }

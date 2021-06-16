@@ -9,6 +9,8 @@ import {
   TeamPrediction,
   GroupMatchPrediction,
   UserLeague,
+  Round,
+  KnockoutMatch,
 } from "./routes";
 import passport from "./passport";
 import bodyParser from "body-parser";
@@ -41,5 +43,7 @@ app.use("/groupMatch", GroupMatch);
 app.use("/teamPrediction", TeamPrediction);
 app.use("/groupMatchPrediction", GroupMatchPrediction);
 app.use("/userLeague", UserLeague);
+app.use("/round", Round);
+app.use("./knockoutMatch", KnockoutMatch);
 
 export default app;

@@ -43,4 +43,7 @@ export class KnockoutMatch extends Model {
   @ForeignKey(() => Team)
   @Column
   awayTeam: string;
+
+  @Column(DataType.TINYINT)
+  position: number;
 }

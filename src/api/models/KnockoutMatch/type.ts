@@ -8,6 +8,7 @@ export default interface IKnockoutMatch {
   roundName: string;
   homeGoals?: number;
   awayGoals?: number;
+  position?: number;
 }
 
 export const isValidKnockoutMatch = (data: any): data is IKnockoutMatch => {
@@ -23,6 +24,7 @@ export const isValidKnockoutMatch = (data: any): data is IKnockoutMatch => {
     roundName,
     homeTeam,
     awayTeam,
+    position,
   } = data;
 
   return (
@@ -32,6 +34,7 @@ export const isValidKnockoutMatch = (data: any): data is IKnockoutMatch => {
     validateType(awayTeam, "string", true) &&
     validateType(roundName, "string", true) &&
     validateType(homeGoals, "number", false) &&
-    validateType(awayGoals, "number", false)
+    validateType(awayGoals, "number", false) &&
+    validateType(position, "number", false)
   );
 };
