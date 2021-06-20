@@ -16,6 +16,12 @@ export const fetchTeamsFromGroup = async (
   letter: string
 ): Promise<IAPIResponse> => authorisedRequest(state, `/team/group/${letter}`);
 
+export const fetchTeamsFromRound = async (
+  state: IRootState,
+  roundName: string
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/team/round/${roundName}`);
+
 export const deleteTeam = async (
   state: IRootState,
   name: string

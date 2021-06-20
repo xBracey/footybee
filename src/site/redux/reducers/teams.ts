@@ -3,6 +3,7 @@ import { IAction, IReducers } from "../types";
 
 interface ITeam {
   groupLetter: string;
+  roundName: string;
   name: string;
   groupPosition: string;
   userPrediction?: number;

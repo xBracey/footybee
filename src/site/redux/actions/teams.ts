@@ -4,6 +4,7 @@ import {
   fetchTeam,
   fetchTeams,
   fetchTeamsFromGroup,
+  fetchTeamsFromRound,
   deleteTeam,
   postTeam,
   putTeam,
@@ -52,6 +53,24 @@ export const getTeamsFromGroup = (groupLetter: string): ThunkResult<any> => {
     dispatch({ type: types.teams.TEAMS_LOADING_TEAMS });
 
     return fetchTeamsFromGroup(getState(), groupLetter).then(response =>
+      !response.error
+        ? dispatch({
+            type: types.teams.TEAMS_FETCHED_TEAMS,
+            data: response,
+          })
+        : dispatch({
+            type: types.message.MESSAGE_SET_MESSAGE,
+            data: response,
+          })
+    );
+  };
+};
+
+export const getTeamsFromRound = (roundName: string): ThunkResult<any> => {
+  return (dispatch, getState) => {
+    dispatch({ type: types.teams.TEAMS_LOADING_TEAMS });
+
+    return fetchTeamsFromRound(getState(), roundName).then(response =>
       !response.error
         ? dispatch({
             type: types.teams.TEAMS_FETCHED_TEAMS,
