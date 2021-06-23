@@ -6,3 +6,5 @@ export * from "./groupMatches";
 export * from "./groupMatchPredictions";
 export * from "./leagues";
 export * from "./users";
+export * from "./rounds";
+export * from "./knockoutMatches";
