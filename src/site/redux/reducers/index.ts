@@ -17,6 +17,10 @@ import knockoutMatches, {
   knockoutMatchesTypes,
   IKnockoutMatches,
 } from "./knockoutMatches";
+import teamPredictions, {
+  teamPredictionsTypes,
+  ITeamPredictions,
+} from "./teamPredictions";
 
 export const cache = {};
 
@@ -33,6 +37,7 @@ export const types = {
   users: usersTypes,
   rounds: roundsTypes,
   knockoutMatches: knockoutMatchesTypes,
+  teamPredictions: teamPredictionsTypes,
 };
 
 export interface IRootState {
@@ -48,6 +53,7 @@ export interface IRootState {
   users: IUsers;
   rounds: IRounds;
   knockoutMatches: IKnockoutMatches;
+  teamPredictions: ITeamPredictions;
 }
 
 export default combineReducers({
@@ -63,4 +69,5 @@ export default combineReducers({
   users,
   rounds,
   knockoutMatches,
+  teamPredictions,
 });

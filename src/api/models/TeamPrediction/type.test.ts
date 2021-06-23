@@ -5,7 +5,7 @@ describe("Test isValidteamPrediction", () => {
     const validTeamPrediction = isValidTeamPrediction({
       username: "test",
       teamName: "test",
-      groupPosition: 1,
+      roundName: "1",
     });
     expect(validTeamPrediction).toBe(true);
     done();

@@ -65,8 +65,3 @@ export const postTeamsPrediction = async (
     },
     method: "POST",
   });
-
-export const fetchTeamPredictions = async (
-  state: IRootState
-): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/teamPrediction/${state.user.username}`);

@@ -5,12 +5,12 @@ const teamPredictionSeed = async () => {
     {
       username: "Test User 1",
       teamName: "Test Team 1",
-      groupPosition: 1,
+      roundName: "Test Group 1",
     },
     {
       username: "Test User 2",
       teamName: "Test Team 2",
-      groupPosition: 2,
+      roundName: "Test Group 2",
     },
   ];
 

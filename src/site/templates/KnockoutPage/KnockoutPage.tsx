@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { getMatchesFromRound } from "src/site/redux/actions/knockoutMatches";
-import { getTeamPredictions } from "src/site/redux/actions/teams";
+import {
+  getTeamPredictions,
+  makeTeamPredictions,
+} from "src/site/redux/actions/teamPredictions";
 import { Page } from "templates";
 import { Button, KnockoutPrediction } from "components";
 import {
@@ -34,6 +37,7 @@ export const KnockoutPage = () => {
     initialState
   );
 
+  const user = useSelector((state: IRootState) => state.user);
   const knockoutMatches = useSelector(
     (state: IRootState) => state.knockoutMatches
   );
@@ -42,9 +46,11 @@ export const KnockoutPage = () => {
   );
 
   useEffect(() => {
-    reduxDispatch(getTeamPredictions());
-    reduxDispatch(getMatchesFromRound("Round of 16"));
-  }, []);
+    if (user.username) {
+      reduxDispatch(getTeamPredictions(user.username));
+      reduxDispatch(getMatchesFromRound("Round of 16"));
+    }
+  }, [user.username]);
 
   const initialise = () => {
     dispatch({
@@ -141,10 +147,10 @@ export const KnockoutPage = () => {
     "Round of 16": state["Round of 16"].matches
       .filter(nullWin)
       .map(match => (match.homeWin ? match.awayTeam : match.homeTeam)),
-    "Quarter final": state["Quarter final"].matches
+    "Quarter finals": state["Quarter finals"].matches
       .filter(nullWin)
       .map(match => (match.homeWin ? match.awayTeam : match.homeTeam)),
-    "Semi final": state["Semi final"].matches
+    "Semi finals": state["Semi finals"].matches
       .filter(nullWin)
       .map(match => (match.homeWin ? match.awayTeam : match.homeTeam)),
     Final: state.Final.matches
@@ -156,13 +162,13 @@ export const KnockoutPage = () => {
   };
 
   const onSubmit = () => {
-    // reduxDispatch(submitPredictions(predictions))
+    reduxDispatch(makeTeamPredictions(predictions));
   };
 
   const isNotDisabled =
     predictions["Round of 16"].length === 8 &&
-    predictions["Quarter final"].length === 4 &&
-    predictions["Semi final"].length === 2 &&
+    predictions["Quarter finals"].length === 4 &&
+    predictions["Semi finals"].length === 2 &&
     predictions.Final.length === 1 &&
     predictions.Winner.length === 1;
 

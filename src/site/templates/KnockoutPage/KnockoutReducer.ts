@@ -13,10 +13,10 @@ export const initialState = {
   "Round of 16": {
     matches: [],
   },
-  "Quarter final": {
+  "Quarter finals": {
     matches: initialiseMatches(4),
   },
-  "Semi final": {
+  "Semi finals": {
     matches: initialiseMatches(2),
   },
   Final: {
@@ -39,16 +39,16 @@ export interface IKnockoutRound {
 
 export interface IKnockoutReducer {
   "Round of 16": IKnockoutRound;
-  "Quarter final": IKnockoutRound;
-  "Semi final": IKnockoutRound;
+  "Quarter finals": IKnockoutRound;
+  "Semi finals": IKnockoutRound;
   Final: IKnockoutRound;
   Winner: IKnockoutRound;
 }
 
 const roundRankings = [
   "Round of 16",
-  "Quarter final",
-  "Semi final",
+  "Quarter finals",
+  "Semi finals",
   "Final",
   "Winner",
 ];

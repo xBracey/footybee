@@ -131,19 +131,3 @@ export const addTeamsPrediction = (names: string[]): ThunkResult<any> => {
     );
   };
 };
-
-export const getTeamPredictions = (): ThunkResult<any> => {
-  return (dispatch, getState) => {
-    return fetchTeamPredictions(getState()).then(response =>
-      !response.error
-        ? dispatch({
-            type: types.teams.TEAMS_FETCHED_PREDICTIONS,
-            data: response,
-          })
-        : dispatch({
-            type: types.message.MESSAGE_SET_MESSAGE,
-            data: response,
-          })
-    );
-  };
-};
