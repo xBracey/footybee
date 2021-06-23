@@ -26,6 +26,7 @@ export const KnockoutMatchEditCard = ({
 }: IKnockoutMatchEditCard) => {
   const [state, dispatch]: [IKnockoutMatchReducer, any] = useReducer(reducer, {
     date: knockoutMatch.date,
+    position: knockoutMatch.position,
     homeTeam: knockoutMatch.homeTeam,
     awayTeam: knockoutMatch.awayTeam,
     homeGoals: knockoutMatch.homeGoals,
@@ -40,6 +41,7 @@ export const KnockoutMatchEditCard = ({
     homeGoals,
     awayGoals,
     date,
+    position,
     homePenalties,
     awayPenalties,
   } = state;
@@ -94,6 +96,17 @@ export const KnockoutMatchEditCard = ({
           dispatch({
             type: "edit",
             data: { date: date.toISOString() },
+          })
+        }
+      />
+
+      <InputLabel>Position</InputLabel>
+      <TextInput
+        text={position}
+        setText={position =>
+          dispatch({
+            type: "edit",
+            data: { position },
           })
         }
       />

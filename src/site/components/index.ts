@@ -12,3 +12,4 @@ export * from "./ResultsTable";
 export * from "./PredictionsTable";
 export * from "./TodaysMatches";
 export * from "./Overview";
+export * from "./KnockoutPrediction";

@@ -46,6 +46,7 @@ export const AddKnockoutMatchPage = ({
       ? knockoutMatches.knockoutMatches.find(match => match.id === parseInt(id))
       : {
           date: "",
+          position: "",
           homeTeam: "",
           awayTeam: "",
           homeGoals: "",
@@ -87,6 +88,7 @@ export const AddKnockoutMatchPage = ({
               date: knockoutMatch.date,
               homeTeam: knockoutMatch.homeTeam,
               awayTeam: knockoutMatch.awayTeam,
+              position: knockoutMatch.position?.toString(),
               homeGoals: knockoutMatch.homeGoals?.toString(),
               awayGoals: knockoutMatch.awayGoals?.toString(),
               homePenalties: knockoutMatch.homePenalties?.toString(),

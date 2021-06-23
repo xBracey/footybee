@@ -44,6 +44,6 @@ app.use("/teamPrediction", TeamPrediction);
 app.use("/groupMatchPrediction", GroupMatchPrediction);
 app.use("/userLeague", UserLeague);
 app.use("/round", Round);
-app.use("./knockoutMatch", KnockoutMatch);
+app.use("/knockoutMatch", KnockoutMatch);
 
 export default app;

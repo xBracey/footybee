@@ -1,1 +1,1 @@
-export * from "./AddGroupPage";
+export * from "./AddRoundPage";

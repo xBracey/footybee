@@ -1,5 +1,6 @@
 export interface IKnockoutMatchReducer {
   date: string;
+  position: string;
   homeTeam: string;
   awayTeam: string;
   homeGoals: string;

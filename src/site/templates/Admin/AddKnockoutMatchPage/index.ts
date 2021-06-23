@@ -1,1 +1,1 @@
-export * from "./AddGroupMatchPage";
+export * from "./AddKnockoutMatchPage";

@@ -12,7 +12,7 @@ export const fetchMatchesFromRound = async (
   state: IRootState,
   roundName: string
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/knockoutMatch/group/${roundName}`);
+  authorisedRequest(state, `/knockoutMatch/round/${roundName}`);
 
 export const fetchKnockoutMatch = async (
   state: IRootState,
@@ -29,21 +29,23 @@ export const postKnockoutMatch = async (
   state: IRootState,
   knockoutMatch: IKnockoutMatchReducer,
   roundName: string
-): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/knockoutMatch/create`, {
+): Promise<IAPIResponse> => {
+  return authorisedRequest(state, `/knockoutMatch/create`, {
     data: _.pickBy(
       {
         ...knockoutMatch,
         roundName,
+        position: parseInt(knockoutMatch.position),
         homeGoals: parseInt(knockoutMatch.homeGoals),
         awayGoals: parseInt(knockoutMatch.awayGoals),
         homePenalties: parseInt(knockoutMatch.homePenalties),
         awayPenalties: parseInt(knockoutMatch.awayPenalties),
       },
-      _.isNil
+      value => !_.isNil(value)
     ),
     method: "POST",
   });
+};
 
 export const putKnockoutMatch = async (
   state: IRootState,
@@ -51,27 +53,12 @@ export const putKnockoutMatch = async (
   knockoutMatch: IKnockoutMatchReducer,
   roundName: string
 ): Promise<IAPIResponse> => {
-  console.log(knockoutMatch.awayGoals === "0");
-
-  console.log(
-    _.pickBy(
-      {
-        ...knockoutMatch,
-        roundName,
-        homeGoals: parseInt(knockoutMatch.homeGoals),
-        awayGoals: parseInt(knockoutMatch.awayGoals),
-        homePenalties: parseInt(knockoutMatch.homePenalties),
-        awayPenalties: parseInt(knockoutMatch.awayPenalties),
-      },
-      value => !_.isNil(value)
-    )
-  );
-
   return authorisedRequest(state, `/knockoutMatch/${id}`, {
     data: _.pickBy(
       {
         ...knockoutMatch,
         roundName,
+        position: parseInt(knockoutMatch.position),
         homeGoals: parseInt(knockoutMatch.homeGoals),
         awayGoals: parseInt(knockoutMatch.awayGoals),
         homePenalties: parseInt(knockoutMatch.homePenalties),

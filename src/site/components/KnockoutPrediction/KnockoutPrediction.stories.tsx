@@ -15,6 +15,7 @@ story.add("KnockoutPrediction Component", () => {
         awayTeam="Croatia"
         homeWin={homeWin}
         setHomeWin={setHomeWin}
+        isDisabled={false}
       />
     </StorybookWrapper>
   );

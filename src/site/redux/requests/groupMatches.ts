@@ -38,7 +38,7 @@ export const postGroupMatch = async (
         homeGoals: parseInt(groupMatch.homeGoals),
         awayGoals: parseInt(groupMatch.awayGoals),
       },
-      _.isNil
+      value => !_.isNil(value)
     ),
     method: "POST",
   });
@@ -49,20 +49,6 @@ export const putGroupMatch = async (
   groupMatch: IGroupMatchReducer,
   groupLetter: string
 ): Promise<IAPIResponse> => {
-  console.log(groupMatch.awayGoals === "0");
-
-  console.log(
-    _.pickBy(
-      {
-        ...groupMatch,
-        groupLetter,
-        homeGoals: parseInt(groupMatch.homeGoals),
-        awayGoals: parseInt(groupMatch.awayGoals),
-      },
-      value => !_.isNil(value)
-    )
-  );
-
   return authorisedRequest(state, `/groupMatch/${id}`, {
     data: _.pickBy(
       {

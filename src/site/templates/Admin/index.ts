@@ -5,3 +5,6 @@ export * from "./AddGroupPage";
 export * from "./AddTeamPage";
 export * from "./AddGroupMatchPage";
 export * from "./AddPlayerPage";
+export * from "./AddRoundPage";
+export * from "./AddKnockoutMatchPage";
+export * from "./RoundsPage";

@@ -101,7 +101,48 @@ const editKnockoutMatch = async (
   id: number,
   teamData: IKnockoutMatch
 ): Promise<IKnockoutMatchResponse> => {
-  return { knockoutMatch: null };
+  // try {
+  //   const groupMatch = await models.GroupMatch.findOne({
+  //     where: {
+  //       id,
+  //     },
+  //   });
+
+  //   groupMatch.update(teamData);
+
+  //   const predictions = await models.GroupMatchPrediction.findAll({
+  //     where: {
+  //       groupMatchId: id,
+  //     },
+  //   });
+
+  //   const newPoints = calculateMatchesPoints(groupMatch, predictions);
+
+  //   predictions.forEach((prediction, index) =>
+  //     prediction.update({ points: newPoints[index] })
+  //   );
+
+  //   await updateMatchPoints();
+  //   await updateRanks();
+
+  //   return { groupMatch };
+  // } catch (error) {
+  //   return { error: new StatusError(error), groupMatch: null };
+  // }
+
+  try {
+    const knockoutMatch = await models.KnockoutMatch.findOne({
+      where: {
+        id,
+      },
+    });
+
+    knockoutMatch.update(teamData);
+
+    return { knockoutMatch };
+  } catch (error) {
+    return { error: new StatusError(error), knockoutMatch: null };
+  }
 };
 
 export {

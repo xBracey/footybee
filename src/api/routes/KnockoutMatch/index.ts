@@ -6,9 +6,20 @@ import {
   getController,
   getAllController,
   editController,
+  getFromRoundController,
 } from "../../controllers/knockoutMatch";
 
 export const KnockoutMatch = Router();
+
+KnockoutMatch.get("/round/:roundName", async (req, res) => {
+  const { status, error, response } = await getFromRoundController(
+    req.params.roundName
+  );
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});
 
 KnockoutMatch.post("/create", async (req, res) => {
   const { status, error, response } = await createController(req.body);

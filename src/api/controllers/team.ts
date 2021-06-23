@@ -5,6 +5,7 @@ import {
   getAllTeams,
   getTeam,
   getTeamsFromGroup,
+  getTeamsFromRound,
 } from "../services";
 import ITeam, { isValidTeam } from "../models/Team/type";
 import controllerResponse from "./controller";
@@ -106,6 +107,14 @@ export const getFromGroupController = async (
   groupLetter: string
 ): Promise<controllerResponse> => {
   const { teams } = await getTeamsFromGroup(groupLetter);
+
+  return { status: 200, response: teams };
+};
+
+export const getFromRoundController = async (
+  roundName: string
+): Promise<controllerResponse> => {
+  const { teams } = await getTeamsFromRound(roundName);
 
   return { status: 200, response: teams };
 };

@@ -4,6 +4,7 @@ import { IAction, IReducers } from "../types";
 export interface IKnockoutMatch {
   id: number;
   date: string;
+  position: number;
   roundName: string;
   homeTeam: string;
   awayTeam: string;

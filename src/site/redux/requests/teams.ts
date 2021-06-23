@@ -32,7 +32,10 @@ export const postTeam = async (
   state: IRootState,
   team: ITeamReducer
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/team/create`, { data: team, method: "POST" });
+  authorisedRequest(state, `/team/create`, {
+    data: { ...team, roundName: team.roundName.value },
+    method: "POST",
+  });
 
 export const putTeam = async (
   state: IRootState,
@@ -40,7 +43,11 @@ export const putTeam = async (
   team: ITeamReducer
 ): Promise<IAPIResponse> =>
   authorisedRequest(state, `/team/${name}`, {
-    data: { ...team, groupPosition: parseInt(team.groupPosition, 10) },
+    data: {
+      ...team,
+      groupPosition: parseInt(team.groupPosition, 10),
+      roundName: team.roundName.value,
+    },
     method: "PUT",
   });
 
@@ -58,3 +65,8 @@ export const postTeamsPrediction = async (
     },
     method: "POST",
   });
+
+export const fetchTeamPredictions = async (
+  state: IRootState
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/teamPrediction/${state.user.username}`);

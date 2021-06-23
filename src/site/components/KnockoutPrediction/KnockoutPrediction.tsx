@@ -16,6 +16,7 @@ interface IKnockoutPrediction {
   awayTeam: string;
   homeWin: boolean;
   setHomeWin: (homeWin: boolean) => void;
+  isDisabled: boolean;
 }
 
 export const KnockoutPrediction = ({
@@ -23,6 +24,7 @@ export const KnockoutPrediction = ({
   awayTeam,
   homeWin,
   setHomeWin,
+  isDisabled,
 }: IKnockoutPrediction) => {
   let homeIcon = <icons.undecided />;
   let awayIcon = <icons.undecided />;
@@ -35,18 +37,24 @@ export const KnockoutPrediction = ({
     awayIcon = <icons.correct />;
   }
 
-  const onHomeClick = () => setHomeWin(true);
-  const onAwayClick = () => setHomeWin(false);
+  const onHomeClick = () => {
+    if (!isDisabled) setHomeWin(true);
+  };
+  const onAwayClick = () => {
+    if (!isDisabled) setHomeWin(false);
+  };
 
   return (
     <KnockoutPredictionContainer>
       <KnockoutCard onClick={onHomeClick} isWinning={homeWin}>
         <KnockoutName>
-          <ResultFlagContainer>
-            <ResultFlag
-              src={`/static/flags/${homeTeam.replace(/ /g, "_")}.svg`}
-            />
-          </ResultFlagContainer>
+          {!!homeTeam.match(/W\d/) ? null : (
+            <ResultFlagContainer>
+              <ResultFlag
+                src={`/static/flags/${homeTeam.replace(/ /g, "_")}.svg`}
+              />
+            </ResultFlagContainer>
+          )}
           {homeTeam}
         </KnockoutName>
         <KnockoutIcon>{homeIcon}</KnockoutIcon>
@@ -59,11 +67,14 @@ export const KnockoutPrediction = ({
         isWinning={homeWin === null ? null : !homeWin}
       >
         <KnockoutName>
-          <ResultFlagContainer>
-            <ResultFlag
-              src={`/static/flags/${awayTeam.replace(/ /g, "_")}.svg`}
-            />
-          </ResultFlagContainer>
+          {!!awayTeam.match(/W\d/) ? null : (
+            <ResultFlagContainer>
+              <ResultFlag
+                src={`/static/flags/${awayTeam.replace(/ /g, "_")}.svg`}
+              />
+            </ResultFlagContainer>
+          )}
+
           {awayTeam}
         </KnockoutName>
         <KnockoutIcon>{awayIcon}</KnockoutIcon>

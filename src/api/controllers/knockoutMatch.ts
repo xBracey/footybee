@@ -5,6 +5,7 @@ import {
   editKnockoutMatch,
   getAllKnockoutMatches,
   getKnockoutMatch,
+  getMatchFromRound,
 } from "../services";
 import IKnockoutMatch, {
   isValidKnockoutMatch,
@@ -111,6 +112,18 @@ export const editController = async (
 
   if (!error) {
     return { status: 200, response: knockoutMatch };
+  }
+
+  return handleError(error);
+};
+
+export const getFromRoundController = async (
+  roundName: string
+): Promise<controllerResponse> => {
+  const { error, knockoutMatches } = await getMatchFromRound(roundName);
+
+  if (!error) {
+    return { status: 200, response: knockoutMatches };
   }
 
   return handleError(error);

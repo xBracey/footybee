@@ -1,7 +1,7 @@
 import { IAction, IReducers } from "../types";
 
 interface IRound {
-  letter: string;
+  name: string;
 }
 
 export interface IRounds {
