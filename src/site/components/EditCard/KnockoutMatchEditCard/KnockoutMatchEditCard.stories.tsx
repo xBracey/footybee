@@ -17,6 +17,7 @@ story.add("KnockoutMatchEditCard Component", () => (
       awayGoals: "",
       homePenalties: "",
       awayPenalties: "",
+      position: "",
     }}
     onSave={action("Save")}
     onDelete={action("Delete")}
