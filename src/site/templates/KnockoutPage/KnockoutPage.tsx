@@ -25,9 +25,12 @@ import {
 import {
   IKnockoutReducer,
   IKnockoutRound,
+  IKnockoutRoundMatch,
   initialState,
   reducer,
 } from "./KnockoutReducer";
+import { ITeamPrediction } from "src/site/redux/reducers/teamPredictions";
+import { usePredictions } from "./helpers";
 
 export const KnockoutPage = () => {
   const reduxDispatch: AppDispatch = useDispatch();
@@ -45,10 +48,13 @@ export const KnockoutPage = () => {
     match => match.roundName === "Round of 16"
   );
 
+  usePredictions(state, dispatch);
+
   useEffect(() => {
     if (user.username) {
-      reduxDispatch(getTeamPredictions(user.username));
-      reduxDispatch(getMatchesFromRound("Round of 16"));
+      reduxDispatch(getMatchesFromRound("Round of 16")).then(() =>
+        reduxDispatch(getTeamPredictions(user.username))
+      );
     }
   }, [user.username]);
 

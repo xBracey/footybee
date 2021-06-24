@@ -1,12 +1,18 @@
 import { IAction, IReducers } from "../types";
 
+export interface ITeamPrediction {
+  username: string;
+  roundName: string;
+  teamName: string;
+}
+
 export interface ITeamPredictions {
-  id: string;
+  predictions: ITeamPrediction[];
   loading: boolean;
 }
 
 const initialState: ITeamPredictions = {
-  id: null,
+  predictions: [],
   loading: false,
 };
 
@@ -22,7 +28,7 @@ export const teamPredictionsTypes = {
 const loadingTeamPredictions = state => ({ ...state, loading: true });
 
 const fetchedTeamPredictions = (state, { data }) => {
-  return { ...state, loading: false };
+  return { ...state, loading: false, predictions: data };
 };
 
 /**
