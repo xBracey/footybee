@@ -11,8 +11,8 @@ export const headerData = (
       link: "/howtoplay",
     },
     {
-      text: "Predictions",
-      link: "/predictions",
+      text: "Knockout",
+      link: "/knockout",
     },
     {
       text: "Results",
