@@ -3,7 +3,7 @@ import { validateType } from "../../lib";
 export default interface ITeamPrediction {
   username: string;
   teamName: string;
-  groupPosition: number;
+  roundName: string;
   points?: number;
 }
 
@@ -12,12 +12,12 @@ export const isValidTeamPrediction = (data: any): data is ITeamPrediction => {
     return false;
   }
 
-  const { username, teamName, groupPosition, points } = data;
+  const { username, teamName, roundName, points } = data;
 
   return (
     validateType(username, "string", true) &&
     validateType(teamName, "string", true) &&
-    validateType(groupPosition, "number", true) &&
+    validateType(roundName, "string", true) &&
     validateType(points, "number", false)
   );
 };

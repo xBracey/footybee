@@ -3,7 +3,7 @@ import {
   bulkCreateController,
   getController,
 } from "../../controllers/teamPrediction";
-import { predictionLock } from "../../../site/lib/predictionLock";
+import { teamPredictionLock } from "../../../site/lib/predictionLock";
 import passport from "passport";
 
 export const TeamPrediction = Router();
@@ -12,7 +12,7 @@ TeamPrediction.post(
   "/create",
   passport.authenticate("bearer", { session: false }),
   async (req, res) => {
-    if (predictionLock(req.user)) {
+    if (teamPredictionLock(req.user)) {
       return res.status(403).send({ error: "Too late to make prediction!" });
     }
 

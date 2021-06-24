@@ -7,3 +7,9 @@ export const predictionLock = (username: string) => {
     moment().isAfter(moment.unix(1623436200)) && !usernames.includes(username)
   );
 };
+
+export const teamPredictionLock = (username: string) => {
+  return (
+    moment().isAfter(moment.unix(16234362000)) && !usernames.includes(username)
+  );
+};

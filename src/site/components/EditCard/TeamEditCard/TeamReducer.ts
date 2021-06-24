@@ -2,6 +2,10 @@ export interface ITeamReducer {
   groupLetter: string;
   name: string;
   groupPosition: string;
+  roundName: {
+    value: string;
+    label: string;
+  };
 }
 
 export const reducer = (state: ITeamReducer, action) => {

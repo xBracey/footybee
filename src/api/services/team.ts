@@ -83,6 +83,18 @@ const getTeamsFromGroup = async (
   return { teams };
 };
 
+const getTeamsFromRound = async (
+  roundName: string
+): Promise<ITeamsResponse> => {
+  const teams = await models.Team.findAll({
+    where: {
+      roundName,
+    },
+  });
+
+  return { teams };
+};
+
 const editTeam = async (name, teamData: ITeam): Promise<ITeamResponse> => {
   try {
     const team = await models.Team.findOne({
@@ -106,5 +118,6 @@ export {
   getAllTeams,
   deleteTeam,
   getTeamsFromGroup,
+  getTeamsFromRound,
   editTeam,
 };

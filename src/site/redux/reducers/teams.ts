@@ -3,6 +3,7 @@ import { IAction, IReducers } from "../types";
 
 interface ITeam {
   groupLetter: string;
+  roundName: string;
   name: string;
   groupPosition: string;
   userPrediction?: number;
@@ -22,6 +23,7 @@ export const teamsTypes = {
   TEAMS_FETCHED_TEAMS: "fetchedTeams",
   TEAMS_FETCHED_TEAM: "fetchedTeam",
   TEAMS_LOADING_TEAMS: "loadingTeams",
+  TEAMS_FETCHED_PREDICTIONS: "fetchedTeamPredictions",
 };
 
 /**
@@ -42,6 +44,10 @@ const fetchedTeams = (state, { data }) => {
   return { ...state, loading: false, teams };
 };
 
+const fetchedTeamPredictions = (state, { data }) => {
+  return { ...state };
+};
+
 /**
  * TEAMS REDUCERS - END
  * */
@@ -50,6 +56,7 @@ const reducers: IReducers<ITeams> = {
   fetchedTeams,
   fetchedTeam,
   loadingTeams,
+  fetchedTeamPredictions,
 };
 
 export default (state = initialState, action: IAction) => {

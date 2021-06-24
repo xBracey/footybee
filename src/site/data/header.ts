@@ -11,8 +11,8 @@ export const headerData = (
       link: "/howtoplay",
     },
     {
-      text: "Predictions",
-      link: "/predictions",
+      text: "Knockout",
+      link: "/knockout",
     },
     {
       text: "Results",
@@ -28,7 +28,7 @@ export const headerData = (
     ? [
         {
           text: "Admin",
-          link: "/admin/groups",
+          link: "/admin/rounds",
         },
         ...menu,
       ]
@@ -37,8 +37,8 @@ export const headerData = (
 
 export const adminHeaderData: IHeader["menu"] = [
   {
-    text: "Groups",
-    link: "/admin/groups",
+    text: "Rounds",
+    link: "/admin/rounds",
   },
   {
     text: "Teams",

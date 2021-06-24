@@ -15,3 +15,4 @@ export * from "./ForgotPasswordPage";
 export * from "./VerifyPage";
 export * from "./ProfilePage";
 export * from "./ResetPasswordPage";
+export * from "./KnockoutPage";

@@ -8,6 +8,8 @@ import {
   TeamPrediction,
   GroupMatchPrediction,
   UserLeague,
+  Round,
+  KnockoutMatch,
 } from "../models";
 import { Sequelize } from "sequelize-typescript";
 
@@ -31,6 +33,8 @@ const models = {
   TeamPrediction,
   GroupMatchPrediction,
   UserLeague,
+  Round,
+  KnockoutMatch,
 };
 
 sequelize.addModels(Object.values(models));

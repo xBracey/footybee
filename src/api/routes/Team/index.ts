@@ -7,6 +7,7 @@ import {
   editController,
   getController,
   getFromGroupController,
+  getFromRoundController,
 } from "../../controllers/team";
 
 export const Team = Router();
@@ -61,6 +62,16 @@ Team.put("/:name", async (req, res) => {
 Team.get("/group/:groupLetter", async (req, res) => {
   const { status, error, response } = await getFromGroupController(
     req.params.groupLetter
+  );
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});
+
+Team.get("/round/:roundName", async (req, res) => {
+  const { status, error, response } = await getFromRoundController(
+    req.params.roundName
   );
 
   return error

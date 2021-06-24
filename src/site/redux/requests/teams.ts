@@ -16,6 +16,12 @@ export const fetchTeamsFromGroup = async (
   letter: string
 ): Promise<IAPIResponse> => authorisedRequest(state, `/team/group/${letter}`);
 
+export const fetchTeamsFromRound = async (
+  state: IRootState,
+  roundName: string
+): Promise<IAPIResponse> =>
+  authorisedRequest(state, `/team/round/${roundName}`);
+
 export const deleteTeam = async (
   state: IRootState,
   name: string
@@ -26,7 +32,10 @@ export const postTeam = async (
   state: IRootState,
   team: ITeamReducer
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/team/create`, { data: team, method: "POST" });
+  authorisedRequest(state, `/team/create`, {
+    data: { ...team, roundName: team.roundName.value },
+    method: "POST",
+  });
 
 export const putTeam = async (
   state: IRootState,
@@ -34,7 +43,11 @@ export const putTeam = async (
   team: ITeamReducer
 ): Promise<IAPIResponse> =>
   authorisedRequest(state, `/team/${name}`, {
-    data: { ...team, groupPosition: parseInt(team.groupPosition, 10) },
+    data: {
+      ...team,
+      groupPosition: parseInt(team.groupPosition, 10),
+      roundName: team.roundName.value,
+    },
     method: "PUT",
   });
 

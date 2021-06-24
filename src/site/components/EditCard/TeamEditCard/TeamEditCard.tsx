@@ -1,10 +1,11 @@
 import React, { useReducer, useState } from "react";
 import Select from "react-select";
-import { isMandatory, numberValidation, validateInputs } from "lib";
+import { isMandatory, validateInputs } from "lib";
 import { ITeamReducer, reducer } from "./TeamReducer";
 import { EditCard } from "../EditCard";
 import { TextInput } from "../../Input/TextInput";
 import { InputLabel } from "../styles";
+import { SelectInput } from "components/Input";
 
 let hasBlurred = [false, false, false];
 
@@ -14,6 +15,7 @@ interface ITeamEditCard {
   isEdit: boolean;
   onSave: (team: ITeamReducer) => void;
   onDelete: () => void;
+  roundNames: string[];
 }
 
 export const TeamEditCard = ({
@@ -22,14 +24,15 @@ export const TeamEditCard = ({
   isEdit,
   onSave,
   onDelete,
+  roundNames,
 }: ITeamEditCard) => {
   const [state, dispatch]: [ITeamReducer, any] = useReducer(reducer, {
     groupLetter: team.groupLetter,
     name: team.name,
-    groupPosition: team.groupPosition,
+    roundName: team.roundName,
   });
 
-  const { groupLetter, name, groupPosition } = state;
+  const { groupLetter, name, roundName } = state;
 
   const options = groupLetters.map(letter => ({
     value: letter,
@@ -114,16 +117,15 @@ export const TeamEditCard = ({
         error={validation.errorMessages[1]}
         isDisabled={isEdit}
       />
-      <InputLabel>Group Position</InputLabel>
-      <TextInput
-        text={groupPosition}
-        setText={groupPosition => {
-          if (numberValidation.validation(groupPosition)) {
-            dispatch({ type: "edit", data: { groupPosition } });
-          }
-        }}
-        onBlurHandler={() => onBlurHandler(2)}
-        placeholder="Group Position"
+      <InputLabel>Tournament Position</InputLabel>
+      <SelectInput
+        option={roundName}
+        options={roundNames.map(name => ({
+          value: name,
+          label: name,
+        }))}
+        setOption={roundName => dispatch({ type: "edit", data: { roundName } })}
+        placeholder="Tournament Position"
       />
     </EditCard>
   );

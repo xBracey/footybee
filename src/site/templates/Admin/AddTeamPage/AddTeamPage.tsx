@@ -1,7 +1,6 @@
 import { Button, TeamEditCard } from "components";
 import { GroupPlayerAddCard } from "components/EditCard/GroupPlayerAddCard";
 import { ITeamReducer } from "components/EditCard/TeamEditCard/TeamReducer";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +11,7 @@ import {
   saveTeam,
   getGroups,
   savePlayers,
+  getRounds,
 } from "redux/actions";
 import { IRootState, types } from "redux/reducers";
 import { AppDispatch } from "redux/store";
@@ -31,14 +31,17 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
   useEffect(() => {
     if (name) dispatch(getTeam(name));
     dispatch(getGroups());
+    dispatch(getRounds());
   }, []);
 
   const teams = useSelector((state: IRootState) => state.teams);
   const team = name
     ? teams.teams.find(singleTeam => singleTeam.name === name)
-    : { groupLetter: "", name: "", groupPosition: "" };
+    : { groupLetter: "", name: "", groupPosition: "", roundName: "" };
   const groups = useSelector((state: IRootState) => state.groups);
   const groupLetters = groups.groups.map(group => group.letter);
+  const rounds = useSelector((state: IRootState) => state.rounds);
+  const roundNames = rounds.rounds.map(round => round.name);
 
   const onSave = async (team: ITeamReducer) => {
     const { data } = name
@@ -77,14 +80,23 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
       backgroundColour={colours.green200}
     >
       <AddPageContainer>
-        {team && groupLetters.length ? (
+        {team && groupLetters.length && team.roundName ? (
           <AddTeamFlex>
             <TeamEditCard
               groupLetters={groupLetters}
-              team={team}
+              team={{
+                ...team,
+                roundName: team.roundName
+                  ? {
+                      value: team.roundName,
+                      label: team.roundName,
+                    }
+                  : null,
+              }}
               onSave={onSave}
               onDelete={onDelete}
               isEdit={!!name}
+              roundNames={roundNames}
             />
             <GroupPlayerAddCard onSave={onPlayersSave} />
           </AddTeamFlex>
