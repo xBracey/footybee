@@ -67,5 +67,5 @@ export const usePredictions = (
         teamsSorted.Final.forEach(dispatchPrediction);
       }, 300);
     }
-  }, [teamPredictions]);
+  }, [teamPredictions.predictions.length]);
 };
