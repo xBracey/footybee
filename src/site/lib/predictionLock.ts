@@ -10,6 +10,6 @@ export const predictionLock = (username: string) => {
 
 export const teamPredictionLock = (username: string) => {
   return (
-    moment().isAfter(moment.unix(16234362000)) && !usernames.includes(username)
+    moment().isAfter(moment.unix(1624722959)) && !usernames.includes(username)
   );
 };
