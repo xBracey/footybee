@@ -1,9 +1,10 @@
 import { models } from "../config";
 import IKnockoutMatch from "../models/KnockoutMatch/type";
-import { StatusError, updateMatchPoints } from "../lib";
+import { StatusError } from "../lib";
+import { updateTeamPoints } from "../lib/updateTeamPoints";
 import { KnockoutMatch } from "../models";
 import { ValidationError } from "sequelize";
-import { calculateMatchesPoints } from "../lib/calculatePoints/calculateMatchesPoints";
+import { calculateTeamsPoints } from "../lib/calculatePoints/calculateTeamPoints";
 import { updateRanks } from "../lib/updateRanks";
 
 interface IKnockoutMatchResponse {
@@ -101,35 +102,6 @@ const editKnockoutMatch = async (
   id: number,
   teamData: IKnockoutMatch
 ): Promise<IKnockoutMatchResponse> => {
-  // try {
-  //   const groupMatch = await models.GroupMatch.findOne({
-  //     where: {
-  //       id,
-  //     },
-  //   });
-
-  //   groupMatch.update(teamData);
-
-  //   const predictions = await models.GroupMatchPrediction.findAll({
-  //     where: {
-  //       groupMatchId: id,
-  //     },
-  //   });
-
-  //   const newPoints = calculateMatchesPoints(groupMatch, predictions);
-
-  //   predictions.forEach((prediction, index) =>
-  //     prediction.update({ points: newPoints[index] })
-  //   );
-
-  //   await updateMatchPoints();
-  //   await updateRanks();
-
-  //   return { groupMatch };
-  // } catch (error) {
-  //   return { error: new StatusError(error), groupMatch: null };
-  // }
-
   try {
     const knockoutMatch = await models.KnockoutMatch.findOne({
       where: {
@@ -138,6 +110,25 @@ const editKnockoutMatch = async (
     });
 
     knockoutMatch.update(teamData);
+
+    const predictions = await models.TeamPrediction.findAll();
+
+    const newPoints = calculateTeamsPoints(knockoutMatch, predictions);
+
+    newPoints.forEach(point => {
+      const prediction = predictions.find(
+        prediction =>
+          prediction.username === point.username &&
+          prediction.teamName === point.teamName
+      );
+
+      if (point.points) {
+        prediction.update({ points: point.points });
+      }
+    });
+
+    await updateTeamPoints();
+    await updateRanks();
 
     return { knockoutMatch };
   } catch (error) {
