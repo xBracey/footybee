@@ -41,7 +41,9 @@ export const calculateTeamPoints = (
       matchIndex !== -1 &&
       predictionIndex > matchIndex
     ) {
-      return points[matchIndex];
+      return points
+        .filter((point, index) => index <= matchIndex)
+        .reduce((acc, value) => acc + value);
     }
   }
 
