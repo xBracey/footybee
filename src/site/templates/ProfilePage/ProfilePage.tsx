@@ -1,8 +1,20 @@
-import { Button, TextInput, Overview, PredictionsBreakdown } from "components";
+import {
+  Button,
+  TextInput,
+  Overview,
+  PredictionsBreakdown,
+  KnockoutBreakdown,
+} from "components";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeDisplayName, getGroupMatches, getUser } from "redux/actions";
+import {
+  changeDisplayName,
+  getGroupMatches,
+  getTeamPredictions,
+  getTeams,
+  getUser,
+} from "redux/actions";
 import { IRootState } from "redux/reducers";
 import { AppDispatch } from "redux/store";
 import { predictionLock } from "src/site/lib/predictionLock";
@@ -36,6 +48,10 @@ export const ProfilePage = ({ username }: IProfilePage) => {
   const groupMatches = useSelector((state: IRootState) => state.groupMatches);
   const loggedInUser = useSelector((state: IRootState) => state.user);
   const users = useSelector((state: IRootState) => state.users);
+  const teams = useSelector((state: IRootState) => state.teams);
+  const teamPredictions = useSelector(
+    (state: IRootState) => state.teamPredictions
+  );
   const user = users.users[username];
 
   useEffect(() => {
@@ -44,6 +60,8 @@ export const ProfilePage = ({ username }: IProfilePage) => {
     dispatch(getProfileUser(username)).then(() => {
       dispatch(getProfilePredictions(username));
     });
+    dispatch(getTeams());
+    dispatch(getTeamPredictions(username));
   }, []);
 
   const onSubmit = () => {
@@ -105,6 +123,24 @@ export const ProfilePage = ({ username }: IProfilePage) => {
     };
   });
 
+  const knockoutPredictions =
+    teams.teams.length && teamPredictions.predictions.length
+      ? teamPredictions.predictions
+          .filter(prediction => prediction.roundName)
+          .map(prediction => {
+            const teamMatch = teams.teams.find(
+              team => team.name === prediction.teamName
+            );
+
+            return {
+              teamName: prediction.teamName,
+              roundName: prediction.roundName,
+              points: prediction.points,
+              isCorrect: teamMatch.roundName === prediction.roundName,
+            };
+          })
+      : [];
+
   const pointsBreakdownComponent = predictionLock("") ? (
     <>
       <ProfileExtraPrediction>{`Winner Prediction - ${
@@ -114,6 +150,7 @@ export const ProfilePage = ({ username }: IProfilePage) => {
         user?.goldenBootPrediction ?? "N/A"
       }`}</ProfileExtraPrediction>
       <PredictionsBreakdown fixtures={fixtures} />
+      <KnockoutBreakdown predictions={knockoutPredictions} />
     </>
   ) : (
     <ProfileExtraPrediction>{"TBA"}</ProfileExtraPrediction>

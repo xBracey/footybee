@@ -4,6 +4,7 @@ export interface ITeamPrediction {
   username: string;
   roundName: string;
   teamName: string;
+  points: number;
 }
 
 export interface ITeamPredictions {
