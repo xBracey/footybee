@@ -1,5 +1,6 @@
 import React from "react";
 import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
+import { IKnockoutMatch } from "src/site/redux/reducers/knockoutMatches";
 import {
   TodaysMatchesContainer,
   TodaysMatchesInnerContainer,
@@ -8,7 +9,7 @@ import {
 import { Result } from "../Result";
 
 interface ITodaysMatches {
-  groupMatches: IGroupMatch[];
+  groupMatches: (IGroupMatch | IKnockoutMatch)[];
 }
 
 export const TodaysMatches = ({ groupMatches }: ITodaysMatches) => {

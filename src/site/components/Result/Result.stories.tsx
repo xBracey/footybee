@@ -9,8 +9,6 @@ const story = storiesOf("Components/Result", module);
 story.add("Result Component", () => (
   <StorybookWrapper>
     <Result
-      id={0}
-      groupLetter={"a"}
       date={"2020-01-01"}
       homeTeam={select(
         "Home Team",

@@ -12,13 +12,21 @@ import {
 import moment from "moment";
 import { IGroupMatch } from "src/site/redux/reducers/groupMatches";
 
+interface IResult {
+  homeTeam: string;
+  awayTeam: string;
+  homeGoals: number;
+  awayGoals: number;
+  date: string;
+}
+
 export const Result = ({
   homeTeam,
   awayTeam,
   homeGoals,
   awayGoals,
   date,
-}: IGroupMatch) => {
+}: IResult) => {
   const emptyResult = homeGoals === null || awayGoals === null;
 
   const resultScore = emptyResult ? (
