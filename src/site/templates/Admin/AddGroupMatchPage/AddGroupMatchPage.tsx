@@ -53,7 +53,7 @@ export const AddGroupMatchPage = ({ groupLetter, id }: IAddGroupMatchPage) => {
       : await dispatch(saveGroupMatch(groupMatch, groupLetter));
 
     if (!data?.error) {
-      router.push("/admin/teams");
+      router.back();
     }
   };
 
