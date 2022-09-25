@@ -1,4 +1,4 @@
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "redux/actions";
@@ -9,11 +9,13 @@ export const useLoggedIn = () => {
   const dispatch: AppDispatch = useDispatch();
   const auth = useSelector((state: IRootState) => state.auth);
 
+  const router = useRouter();
+
   useEffect(() => {
     if (auth.token) {
       dispatch(getUser());
     } else {
-      Router.push("/login");
+      router.push("/login");
     }
   }, []);
 };

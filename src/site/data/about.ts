@@ -1,7 +1,7 @@
 export const aboutData = {
   header: `About FootyBee`,
   introduction: [
-    `FootyBee is a Euro 2020/21 football predictor. As a FootyBee user, you can make predictions on games, create and
+    `FootyBee is a World Cup 2022/21 football predictor. As a FootyBee user, you can make predictions on games, create and
         join leagues with your friends and compete in our global FootyBee leaderboard. You score points by making correct
         predictions about match results, team squalifying for each round and predictions on individual awards like the Golden Boot`,
 

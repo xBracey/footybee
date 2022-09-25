@@ -4,19 +4,21 @@ import { useDispatch } from "react-redux";
 import { forgotPassword } from "redux/actions";
 import { LoggedOutPage } from "../LoggedOutPage";
 import { types } from "redux/reducers";
-import Router from "next/router";
 import { AppDispatch } from "redux/store";
+import { useRouter } from "next/router";
 
 export const ForgotPasswordPage = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const [email, setEmail] = useState("");
 
+  const router = useRouter();
+
   const onSubmit = () => {
     dispatch(forgotPassword(email)).then(() => {
       setTimeout(() => {
         dispatch({ type: types.message.MESSAGE_RESET_MESSAGE });
-        Router.push("/");
+        router.push("/");
       }, 2000);
     });
   };

@@ -15,7 +15,7 @@ export const postGroup = async (
   state: IRootState,
   group: IGroupReducer
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/group`, { data: group, method: "POST" });
+  authorisedRequest(state, `/group/create`, { data: group, method: "POST" });
 
 export const putGroup = async (
   state: IRootState,

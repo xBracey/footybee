@@ -7,7 +7,7 @@ const story = storiesOf("Components/Login/LoginSidebar", module);
 const sidebarInfo = [
   {
     SVG: icons.scoreboard,
-    text: "Predict each score for the upcoming Euro 2020 tournament",
+    text: "Predict each score for the upcoming World Cup 2022 tournament",
   },
   {
     SVG: icons.trophy,

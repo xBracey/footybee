@@ -1,4 +1,4 @@
-import Router from "next/router";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { types } from "redux/reducers";
@@ -6,9 +6,11 @@ import { types } from "redux/reducers";
 const Logout = () => {
   const dispatch = useDispatch();
 
+  const router = useRouter();
+
   useEffect(() => {
     dispatch({ type: types.auth.AUTH_RESET_AUTH });
-    Router.push("/login");
+    router.push("/login");
   }, []);
 
   return <div />;

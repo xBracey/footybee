@@ -10,9 +10,13 @@ export const headerData = (
       text: "How To Play",
       link: "/howtoplay",
     },
+    // {
+    //   text: "Knockout",
+    //   link: "/knockout",
+    // },
     {
-      text: "Knockout",
-      link: "/knockout",
+      text: "Predictions",
+      link: "/predictions",
     },
     {
       text: "Results",
@@ -36,9 +40,13 @@ export const headerData = (
 };
 
 export const adminHeaderData: IHeader["menu"] = [
+  // {
+  //   text: "Rounds",
+  //   link: "/admin/rounds",
+  // },
   {
-    text: "Rounds",
-    link: "/admin/rounds",
+    text: "Groups",
+    link: "/admin/groups",
   },
   {
     text: "Teams",

@@ -4,7 +4,7 @@ import { LoggedOutPage } from "../LoggedOutPage";
 import { AppDispatch } from "redux/store";
 import { VerifyCard } from "components";
 import { verifyUser } from "src/site/redux/actions/user";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { types } from "redux/reducers";
 
 interface IVerifyPage {
@@ -14,12 +14,14 @@ interface IVerifyPage {
 export const VerifyPage = ({ token }: IVerifyPage) => {
   const dispatch: AppDispatch = useDispatch();
 
+  const router = useRouter();
+
   useEffect(() => {
     if (token) {
       dispatch(verifyUser(token)).then(() => {
         setTimeout(() => {
           dispatch({ type: types.message.MESSAGE_RESET_MESSAGE });
-          Router.push("/");
+          router.push("/");
         }, 2000);
       });
     }

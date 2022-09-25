@@ -22,8 +22,8 @@ export const HowToPage = () => {
         <WelcomeHeader>{`Welcome ${user.username}`}</WelcomeHeader>
 
         <WelcomeDescription>
-          Welcome to FootyBee, a Euro 2020/21 football predictor where you can
-          make predictions on games and create and join leagues with your
+          Welcome to FootyBee, a World Cup 2022/21 football predictor where you
+          can make predictions on games and create and join leagues with your
           friends. <br />
           <br />
           The football predictor consists of two rounds, one for the group

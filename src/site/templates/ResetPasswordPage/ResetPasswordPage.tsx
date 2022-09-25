@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { changePassword } from "redux/actions";
 import { LoggedOutPage } from "../LoggedOutPage";
 import { types } from "redux/reducers";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { AppDispatch } from "redux/store";
 
 interface IResetPasswordPage {
@@ -17,11 +17,13 @@ export const ResetPasswordPage = ({ token }: IResetPasswordPage) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const router = useRouter();
+
   const onSubmit = () => {
     dispatch(changePassword(token, password)).then(() => {
       setTimeout(() => {
         dispatch({ type: types.message.MESSAGE_RESET_MESSAGE });
-        Router.push("/");
+        router.push("/");
       }, 2000);
     });
   };

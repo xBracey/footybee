@@ -4,7 +4,7 @@ import { AppDispatch } from "redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { tryLoginUser } from "redux/actions";
 import { IRootState } from "redux/reducers";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { LoggedOutPage } from "../LoggedOutPage";
 
 export const LoginPage = () => {
@@ -15,13 +15,15 @@ export const LoginPage = () => {
 
   const auth = useSelector((state: IRootState) => state.auth);
 
+  const router = useRouter();
+
   const onSubmit = () => {
     dispatch(tryLoginUser(username, password));
   };
 
   useEffect(() => {
     if (auth.token) {
-      Router.push("/");
+      router.push("/");
     }
   }, [auth.token]);
 

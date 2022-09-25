@@ -169,7 +169,7 @@ export const PredictionsPage = () => {
           <ExtraHeader>Extra Predictions</ExtraHeader>
           <ExtraFlexs>
             <ExtraFlex>
-              <ExtraText>Predict the Euro 2021 Winner</ExtraText>
+              <ExtraText>Predict the World Cup 2022 Winner</ExtraText>
               <SelectInput
                 options={teamOptions}
                 option={teamOption}
@@ -184,7 +184,7 @@ export const PredictionsPage = () => {
               />
             </ExtraFlex>
             <ExtraFlex>
-              <ExtraText>Predict the Euro 2021 Golden Boot</ExtraText>
+              <ExtraText>Predict the World Cup 2022 Golden Boot</ExtraText>
               <AsyncSelectInput
                 loadOptions={loadPlayers}
                 option={playerOption}

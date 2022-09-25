@@ -33,7 +33,7 @@ export const LoginSidebar = ({ sidebarInfo, sidebarMenu }: ILoginSidebar) => {
       <LogoContainer>
         <icons.logo />
       </LogoContainer>
-      <PredictorText>Euro 2020 Football Predictor</PredictorText>
+      <PredictorText>World Cup 2022 Football Predictor</PredictorText>
       <SidebarInfoContainer>
         {sidebarInfo.map(info => (
           <SidebarInfo key={info.text}>

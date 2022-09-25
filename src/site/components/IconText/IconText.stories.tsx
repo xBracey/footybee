@@ -8,6 +8,6 @@ const story = storiesOf("Components/IconText", module);
 story.add("IconText Component", () => (
   <IconText
     SVG={icons.customise}
-    text="Predict each football score for the upcoming Euro 2020 tournament."
+    text="Predict each football score for the upcoming World Cup 2022 tournament."
   />
 ));

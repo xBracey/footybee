@@ -3,11 +3,7 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/reducers";
 import { LeaguesTable, Overview, TodaysMatches } from "components";
-import {
-  getGroupMatches,
-  getKnockoutMatches,
-  getUserPoints,
-} from "redux/actions";
+import { getKnockoutMatches, getUserPoints } from "redux/actions";
 import { Page } from "../Page";
 import {
   AddLeagueText,

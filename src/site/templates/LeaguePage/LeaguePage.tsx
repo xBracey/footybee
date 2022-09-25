@@ -17,7 +17,7 @@ import {
   LeaguePageInnerContainer,
 } from "./LeaguePage.styled";
 import { types } from "redux/reducers";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { AppDispatch } from "redux/store";
 import * as clipboard from "clipboard-polyfill/text";
 
@@ -30,6 +30,8 @@ export const LeaguePage = ({ name }: ILeaguePage) => {
 
   const leagues = useSelector((state: IRootState) => state.leagues);
 
+  const router = useRouter();
+
   useEffect(() => {
     dispatch(getLeague(name));
   }, []);
@@ -39,7 +41,7 @@ export const LeaguePage = ({ name }: ILeaguePage) => {
       if (!data.error) {
         setTimeout(() => {
           dispatch({ type: types.message.MESSAGE_RESET_MESSAGE });
-          Router.push("/");
+          router.push("/");
         }, 2000);
       }
     });

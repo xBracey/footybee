@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { AppDispatch } from "redux/store";
 import { useDispatch } from "react-redux";
 import { types } from "redux/reducers";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { tryRegisterUser } from "redux/actions";
 import { LoggedOutPage } from "../LoggedOutPage";
 
@@ -13,6 +13,8 @@ export const RegisterPage = ({}) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const router = useRouter();
+
   const dispatch: AppDispatch = useDispatch();
 
   const onSubmit = () => {
@@ -20,7 +22,7 @@ export const RegisterPage = ({}) => {
       if (!data.error) {
         setTimeout(() => {
           dispatch({ type: types.message.MESSAGE_RESET_MESSAGE });
-          Router.push("/");
+          router.push("/");
         }, 2000);
       }
     });

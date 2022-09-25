@@ -11,7 +11,7 @@ export const Head = ({ title }: IHead) => (
     <title>{title}</title>
     <meta
       name="description"
-      content="Football predictor app where you predict each football score for the upcoming Euro 2020 tournament. Get points for how good your predictions are and compete with your friends in your own league"
+      content="Football predictor app where you predict each football score for the upcoming World Cup 2022 tournament. Get points for how good your predictions are and compete with your friends in your own league"
     />
 
     <link

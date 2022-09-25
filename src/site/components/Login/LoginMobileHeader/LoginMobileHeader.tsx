@@ -12,7 +12,7 @@ export const LoginMobileHeader = ({}: ILoginMobileHeader) => {
     <LoginMobileHeaderContainer>
       <icons.logo />
       <LoginMobileHeaderText>
-        Euro 2020 Football Predictor
+        World Cup 2022 Football Predictor
       </LoginMobileHeaderText>
     </LoginMobileHeaderContainer>
   );
