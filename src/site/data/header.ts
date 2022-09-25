@@ -32,7 +32,7 @@ export const headerData = (
     ? [
         {
           text: "Admin",
-          link: "/admin/rounds",
+          link: "/admin/groups",
         },
         ...menu,
       ]
