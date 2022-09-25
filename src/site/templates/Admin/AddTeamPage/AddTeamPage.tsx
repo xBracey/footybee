@@ -80,7 +80,7 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
       backgroundColour={colours.green200}
     >
       <AddPageContainer>
-        {team && groupLetters.length && team.roundName ? (
+        {groupLetters.length ? (
           <AddTeamFlex>
             <TeamEditCard
               groupLetters={groupLetters}

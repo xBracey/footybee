@@ -33,7 +33,7 @@ export const postTeam = async (
   team: ITeamReducer
 ): Promise<IAPIResponse> =>
   authorisedRequest(state, `/team/create`, {
-    data: { ...team, roundName: team.roundName.value },
+    data: { ...team, roundName: team?.roundName?.value },
     method: "POST",
   });
 
@@ -46,7 +46,7 @@ export const putTeam = async (
     data: {
       ...team,
       groupPosition: parseInt(team.groupPosition, 10),
-      roundName: team.roundName.value,
+      roundName: team?.roundName?.value,
     },
     method: "PUT",
   });
