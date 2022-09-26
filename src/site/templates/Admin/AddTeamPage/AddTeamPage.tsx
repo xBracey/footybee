@@ -77,6 +77,8 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
           type: types.message.MESSAGE_SET_MESSAGE,
           data: { message: "Successfully added players" },
         });
+
+        dispatch(getPlayers());
       }
     });
   };
