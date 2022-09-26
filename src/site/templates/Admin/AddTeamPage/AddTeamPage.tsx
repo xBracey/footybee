@@ -12,6 +12,7 @@ import {
   getGroups,
   savePlayers,
   getRounds,
+  getPlayers,
 } from "redux/actions";
 import { IRootState, types } from "redux/reducers";
 import { AppDispatch } from "redux/store";
@@ -32,16 +33,24 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
     if (name) dispatch(getTeam(name));
     dispatch(getGroups());
     dispatch(getRounds());
+    dispatch(getPlayers());
   }, []);
 
   const teams = useSelector((state: IRootState) => state.teams);
   const team = name
     ? teams.teams.find(singleTeam => singleTeam.name === name)
     : { groupLetter: "", name: "", groupPosition: "", roundName: "" };
+
   const groups = useSelector((state: IRootState) => state.groups);
   const groupLetters = groups.groups.map(group => group.letter);
+
   const rounds = useSelector((state: IRootState) => state.rounds);
   const roundNames = rounds.rounds.map(round => round.name);
+
+  const players = useSelector((state: IRootState) => state.players);
+  const teamPlayers = players.players.filter(
+    player => player.teamName === name
+  );
 
   const onSave = async (team: ITeamReducer) => {
     const { data } = name
@@ -98,7 +107,10 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
               isEdit={!!name}
               roundNames={roundNames}
             />
-            <GroupPlayerAddCard onSave={onPlayersSave} />
+            <GroupPlayerAddCard
+              onSave={onPlayersSave}
+              teamPlayers={teamPlayers}
+            />
           </AddTeamFlex>
         ) : null}
       </AddPageContainer>

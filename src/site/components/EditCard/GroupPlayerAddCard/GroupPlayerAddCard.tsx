@@ -3,16 +3,24 @@ import React, { useState } from "react";
 import { isMandatory, validateInputs } from "lib";
 import { EditCard } from "../EditCard";
 import { TextInput } from "../../Input/TextInput";
-import { InputLabel } from "../styles";
 import { Button } from "../../Button";
+import { IPlayer } from "src/site/redux/reducers/players";
+import {
+  CurrentPlayer,
+  CurrentPlayersContainer,
+} from "./GroupPlayerAddCard.styled";
 
 let hasBlurred = [false];
 
 interface IGroupPlayerAddCard {
   onSave: (playerNames: string[]) => void;
+  teamPlayers: IPlayer[];
 }
 
-export const GroupPlayerAddCard = ({ onSave }: IGroupPlayerAddCard) => {
+export const GroupPlayerAddCard = ({
+  onSave,
+  teamPlayers,
+}: IGroupPlayerAddCard) => {
   const [playerNames, setPlayerNames] = useState([""]);
 
   const inputValidation = playerNames.map((name, index) => ({
@@ -43,6 +51,10 @@ export const GroupPlayerAddCard = ({ onSave }: IGroupPlayerAddCard) => {
 
     setValidation(newValidation);
   };
+
+  const currentPlayers = teamPlayers.map(player => (
+    <CurrentPlayer>{player.name}</CurrentPlayer>
+  ));
 
   const playerNamesComponent = playerNames.map((name, index) => (
     <TextInput
@@ -77,7 +89,11 @@ export const GroupPlayerAddCard = ({ onSave }: IGroupPlayerAddCard) => {
       isEdit={false}
     >
       {playerNamesComponent}
-      <Button onClick={onAdd} text="Add" buttonType="blue" />
+      <Button onClick={onAdd} text="Add Another Player" buttonType="blue" />
+      <CurrentPlayersContainer>
+        <h3>Current Players</h3>
+        {currentPlayers}
+      </CurrentPlayersContainer>
     </EditCard>
   );
 };

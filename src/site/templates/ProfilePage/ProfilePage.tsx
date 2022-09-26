@@ -144,7 +144,7 @@ export const ProfilePage = ({ username }: IProfilePage) => {
           })
       : [];
 
-  const pointsBreakdownComponent = predictionLock("") ? (
+  const pointsBreakdownComponent = (
     <>
       <ProfileExtraPrediction>{`Winner Prediction - ${
         user?.winnerPrediction ?? "N/A"
@@ -155,8 +155,6 @@ export const ProfilePage = ({ username }: IProfilePage) => {
       <PredictionsBreakdown fixtures={fixtures} />
       <KnockoutBreakdown predictions={knockoutPredictions} />
     </>
-  ) : (
-    <ProfileExtraPrediction>{"TBA"}</ProfileExtraPrediction>
   );
 
   return (
