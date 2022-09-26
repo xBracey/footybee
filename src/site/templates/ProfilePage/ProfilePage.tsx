@@ -116,7 +116,10 @@ export const ProfilePage = ({ username }: IProfilePage) => {
           ? `${match.homeGoals}-${match.awayGoals}`
           : "N/A",
       prediction:
-        prediction?.homeGoals !== null && prediction?.awayGoals !== null
+        prediction?.homeGoals !== null &&
+        prediction?.awayGoals !== null &&
+        prediction?.homeGoals !== undefined &&
+        prediction?.awayGoals !== undefined
           ? `${prediction?.homeGoals}-${prediction?.awayGoals}`
           : "N/A",
       points: prediction?.points,
