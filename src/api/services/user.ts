@@ -26,6 +26,7 @@ export const addUser = async (userData: IUser): Promise<IUserResponse> => {
     const user = await models.User.create({
       ...userData,
       password,
+      verified: true,
       verification_token,
       verification_expiry,
     });

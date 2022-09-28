@@ -23,14 +23,14 @@ User.post("/register", async (req, res) => {
 
   if (error) return res.status(status).send({ error });
 
-  const host = req.get("host");
+  // const host = req.get("host");
 
-  sendMail({
-    from: '"FootyBee - Admin" <hello@footybee.com>',
-    to: response.email,
-    subject: "Email Verification",
-    text: `Verify your email here ${req.protocol}://${host}/verify?token=${response.verification_token}`,
-  });
+  // sendMail({
+  //   from: '"FootyBee - Admin" <hello@footybee.com>',
+  //   to: response.email,
+  //   subject: "Email Verification",
+  //   text: `Verify your email here ${req.protocol}://${host}/verify?token=${response.verification_token}`,
+  // });
 
   res.status(status).send(response);
 });
