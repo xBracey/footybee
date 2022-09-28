@@ -30,7 +30,7 @@ export class User extends Model {
   @Column(DataType.STRING)
   email: string;
 
-  @Default(true)
+  @Default(false)
   @Column(DataType.BOOLEAN)
   verified: boolean;
 

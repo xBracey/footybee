@@ -19,7 +19,10 @@ import { predictionLock } from "../../../site/lib/predictionLock";
 export const User = Router();
 
 User.post("/register", async (req, res) => {
-  const { status, error, response } = await createController(req.body);
+  const { status, error, response } = await createController({
+    ...req.body,
+    verified: true,
+  });
 
   if (error) return res.status(status).send({ error });
 

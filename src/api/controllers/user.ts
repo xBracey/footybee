@@ -32,6 +32,8 @@ const handleError = (error: StatusError): controllerResponse => {
         error: "Token is not valid or has expired",
       };
   }
+
+  return { status, error: error.message };
 };
 
 export const createController = async (
