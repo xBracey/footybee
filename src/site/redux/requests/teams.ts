@@ -61,6 +61,7 @@ export const postTeamsPrediction = async (
         username: state.user.username,
         teamName,
         groupPosition: index + 1,
+        roundName: "Group Stage",
       })),
     },
     method: "POST",

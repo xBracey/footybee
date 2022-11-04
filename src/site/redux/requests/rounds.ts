@@ -15,7 +15,7 @@ export const postRound = async (
   state: IRootState,
   round: IRoundReducer
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/round`, { data: round, method: "POST" });
+  authorisedRequest(state, `/round/create`, { data: round, method: "POST" });
 
 export const putRound = async (
   state: IRootState,
