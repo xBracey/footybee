@@ -22,8 +22,8 @@ export const HowToPage = () => {
         <WelcomeHeader>{`Welcome ${user.username}`}</WelcomeHeader>
 
         <WelcomeDescription>
-          Welcome to FootyBee, a World Cup 2022/21 football predictor where you
-          can make predictions on games and create and join leagues with your
+          Welcome to FootyBee, a World Cup 2022 football predictor where you can
+          make predictions on games and create and join leagues with your
           friends. <br />
           <br />
           The football predictor consists of two rounds, one for the group
@@ -37,14 +37,14 @@ export const HowToPage = () => {
             <WelcomeCardDescription>
               25 Points - Correct Score
               <br />
-              15 Points - Correct Score Difference
+              15 Points - Correct Score Difference (excluding draws)
               <br />5 Points - Correct Result
               <br /> <br />
               <b>Extras:</b>
               <br />
-              50 Points - Pre Tournament Winner
+              10 Points per win - Bonus Team selection
               <br />
-              50 Points - Golden Boot
+              10 Points per goal - Bonus Goalscorer selection
             </WelcomeCardDescription>
           </WelcomeCard>
 

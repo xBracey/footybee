@@ -145,7 +145,7 @@ export const PredictionsPage = () => {
       if (!data.error) {
         dispatch({
           type: types.message.MESSAGE_SET_MESSAGE,
-          data: { message: "Successfully made winner prediction" },
+          data: { message: "Successfully made bonus team prediction" },
         });
       }
     });
@@ -156,7 +156,7 @@ export const PredictionsPage = () => {
       if (!data.error) {
         dispatch({
           type: types.message.MESSAGE_SET_MESSAGE,
-          data: { message: "Successfully made golden boot prediction" },
+          data: { message: "Successfully made bonus goalscorer prediction" },
         });
       }
     });
@@ -169,7 +169,7 @@ export const PredictionsPage = () => {
           <ExtraHeader>Extra Predictions</ExtraHeader>
           <ExtraFlexs>
             <ExtraFlex>
-              <ExtraText>Predict the World Cup 2022 Winner</ExtraText>
+              <ExtraText>Choose your bonus team</ExtraText>
               <SelectInput
                 options={teamOptions}
                 option={teamOption}
@@ -177,14 +177,14 @@ export const PredictionsPage = () => {
                 placeholder={"Select a team"}
               />
               <Button
-                text="Predict Winner"
+                text="Predict Team"
                 onClick={saveWinner}
                 buttonType={"blue"}
                 isLocked={predictionLock(user.username)}
               />
             </ExtraFlex>
             <ExtraFlex>
-              <ExtraText>Predict the World Cup 2022 Golden Boot</ExtraText>
+              <ExtraText>Choose your bonus goalscorer</ExtraText>
               <AsyncSelectInput
                 loadOptions={loadPlayers}
                 option={playerOption}
@@ -192,7 +192,7 @@ export const PredictionsPage = () => {
                 placeholder={"Select a player"}
               />
               <Button
-                text="Predict Golden Boot"
+                text="Predict Goalscorer"
                 onClick={saveGoldenBoot}
                 buttonType={"blue"}
                 isLocked={predictionLock(user.username)}

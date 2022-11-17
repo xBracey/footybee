@@ -22,7 +22,10 @@ export const calculateMatchPoints = ({
     return correctScore;
   }
 
-  if (matchDiff === predictionDiff) {
+  if (
+    matchDiff === predictionDiff &&
+    prediction.homeGoals !== prediction.awayGoals
+  ) {
     return correctScoreDiff;
   }
 

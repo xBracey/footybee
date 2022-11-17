@@ -3,7 +3,7 @@ export const aboutData = {
   introduction: [
     `FootyBee is a World Cup 2022/21 football predictor. As a FootyBee user, you can make predictions on games, create and
         join leagues with your friends and compete in our global FootyBee leaderboard. You score points by making correct
-        predictions about match results, team squalifying for each round and predictions on individual awards like the Golden Boot`,
+        predictions about match results, teams qualifying for each round and predictions.`,
 
     `FootyBee is built using React as a frontend, Redux as a data layer, a combination of NextJS and ExpressJS for the backend and 
         Sequelize as an ORM between the API and the database. The FootyBee app is built using a combination of mostly React Native and Redux.`,

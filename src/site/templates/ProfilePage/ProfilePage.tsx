@@ -146,10 +146,10 @@ export const ProfilePage = ({ username }: IProfilePage) => {
 
   const pointsBreakdownComponent = (
     <>
-      <ProfileExtraPrediction>{`Winner Prediction - ${
+      <ProfileExtraPrediction>{`Bonus Team Prediction - ${
         user?.winnerPrediction ?? "N/A"
       }`}</ProfileExtraPrediction>
-      <ProfileExtraPrediction>{`Golden Boot Prediction - ${
+      <ProfileExtraPrediction>{`Bonus Goalscorer Prediction - ${
         user?.goldenBootPrediction ?? "N/A"
       }`}</ProfileExtraPrediction>
       <PredictionsBreakdown fixtures={fixtures} />
