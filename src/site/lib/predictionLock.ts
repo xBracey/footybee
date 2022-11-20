@@ -1,6 +1,6 @@
 import moment from "moment";
 
-const usernames = [];
+const usernames = ["Bcraske"];
 
 export const predictionLock = (username: string) => {
   return (
