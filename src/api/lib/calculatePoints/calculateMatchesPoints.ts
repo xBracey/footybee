@@ -24,15 +24,21 @@ export const calculateMatchPoints = ({
 
   if (
     matchDiff === predictionDiff &&
-    prediction.homeGoals !== prediction.awayGoals
+    groupMatch.homeGoals !== groupMatch.awayGoals
   ) {
     return correctScoreDiff;
   }
 
   if (
+    matchDiff === predictionDiff &&
+    groupMatch.homeGoals === groupMatch.awayGoals
+  ) {
+    return correctResult;
+  }
+
+  if (
     (matchDiff > 0 && predictionDiff > 0) ||
-    (matchDiff < 0 && predictionDiff < 0) ||
-    prediction.homeGoals === prediction.awayGoals
+    (matchDiff < 0 && predictionDiff < 0)
   ) {
     return correctResult;
   }
