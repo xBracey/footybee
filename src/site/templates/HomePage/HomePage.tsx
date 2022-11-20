@@ -3,7 +3,7 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/reducers";
 import { LeaguesTable, Overview, TodaysMatches } from "components";
-import { getKnockoutMatches, getUserPoints } from "redux/actions";
+import { getGroupMatches, getUserPoints } from "redux/actions";
 import { Page } from "../Page";
 import {
   AddLeagueText,
@@ -24,18 +24,16 @@ export const HomePage = ({ username }: IHomePage) => {
   const dispatch = useDispatch();
 
   const user = useSelector((state: IRootState) => state.user);
-  const knockoutMatches = useSelector(
-    (state: IRootState) => state.knockoutMatches
-  );
+  const groupMatches = useSelector((state: IRootState) => state.groupMatches);
 
   useEffect(() => {
     if (user.username) {
-      dispatch(getKnockoutMatches());
+      dispatch(getGroupMatches());
       dispatch(getUserPoints());
     }
   }, [user.username]);
 
-  const todayMatches = knockoutMatches.knockoutMatches.filter(match =>
+  const todayMatches = groupMatches.groupMatches.filter(match =>
     moment(match.date).isSame(new Date(), "day")
   );
 
