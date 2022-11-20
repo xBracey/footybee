@@ -31,7 +31,8 @@ export const calculateMatchPoints = ({
 
   if (
     (matchDiff > 0 && predictionDiff > 0) ||
-    (matchDiff < 0 && predictionDiff < 0)
+    (matchDiff < 0 && predictionDiff < 0) ||
+    prediction.homeGoals === prediction.awayGoals
   ) {
     return correctResult;
   }
