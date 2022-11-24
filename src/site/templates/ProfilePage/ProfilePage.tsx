@@ -123,6 +123,7 @@ export const ProfilePage = ({ username }: IProfilePage) => {
           ? `${prediction?.homeGoals}-${prediction?.awayGoals}`
           : "N/A",
       points: prediction?.points,
+      date: match.date,
     };
   });
 
