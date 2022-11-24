@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   LeagueTableCell,
   LeagueTableContainer,
@@ -12,6 +12,7 @@ interface IFixture {
   score: string;
   prediction: string;
   points: number;
+  date: string;
 }
 
 interface IPredictionsBreakdown {
@@ -19,7 +20,12 @@ interface IPredictionsBreakdown {
 }
 
 export const PredictionsBreakdown = ({ fixtures }: IPredictionsBreakdown) => {
-  const rowsComponent = fixtures.map((fixture, index) => (
+  const fixturesSorted = useMemo(
+    () => [...fixtures.sort((a, b) => a.date.localeCompare(b.date))],
+    [fixtures]
+  );
+
+  const rowsComponent = fixturesSorted.map((fixture, index) => (
     <PredictionLeagueTableRow key={index} points={fixture.points}>
       <LeagueTableCell isName={true} paddingRight={40}>
         {fixture.fixture}
