@@ -2,6 +2,7 @@ import {
   addPlayer,
   addPlayers,
   deletePlayer,
+  editPlayer,
   getAllPlayers,
   searchPlayers,
 } from "../services";
@@ -86,4 +87,21 @@ export const searchController = async (
   const { players } = await searchPlayers(name);
 
   return { status: 200, response: players };
+};
+
+export const editController = async (
+  name: string,
+  body: IPlayer
+): Promise<controllerResponse> => {
+  if (!isValidPlayer(body)) {
+    return { status: 400, error: "Invalid parameters" };
+  }
+
+  const { error, player } = await editPlayer(name, body);
+
+  if (!error) {
+    return { status: 200, response: player };
+  }
+
+  return handleError(error);
 };

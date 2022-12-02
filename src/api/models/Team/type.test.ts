@@ -5,6 +5,7 @@ describe("Test isValidteam", () => {
     const validTeam = isValidTeam({
       name: "test",
       groupLetter: "a",
+      wins: 2,
     });
     expect(validTeam).toBe(true);
     done();

@@ -3,6 +3,7 @@ import { validateType } from "../../lib";
 export default interface IPlayer {
   name: string;
   teamName: string;
+  goals?: number;
 }
 
 export const isValidPlayer = (data: any): data is IPlayer => {
@@ -10,9 +11,11 @@ export const isValidPlayer = (data: any): data is IPlayer => {
     return false;
   }
 
-  const { name, teamName } = data;
+  const { name, teamName, goals } = data;
 
   return (
-    validateType(name, "string", true) && validateType(teamName, "string", true)
+    validateType(name, "string", true) &&
+    validateType(teamName, "string", true) &&
+    validateType(goals, "number", false)
   );
 };

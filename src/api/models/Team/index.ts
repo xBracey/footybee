@@ -40,4 +40,8 @@ export class Team extends Model {
 
   @BelongsTo(() => Round)
   round: Round;
+
+  @Default(0)
+  @Column(DataType.SMALLINT)
+  wins: number;
 }

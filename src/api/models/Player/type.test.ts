@@ -5,6 +5,7 @@ describe("Test isValidplayer", () => {
     const validPlayer = isValidPlayer({
       name: "test",
       teamName: "test team",
+      goals: 2,
     });
     expect(validPlayer).toBe(true);
     done();

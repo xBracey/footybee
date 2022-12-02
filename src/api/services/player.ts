@@ -84,9 +84,28 @@ export const searchPlayers = async (
   return { players };
 };
 
+const editPlayer = async (
+  name,
+  playerData: IPlayer
+): Promise<IPlayerResponse> => {
+  try {
+    const player = await models.Player.findOne({
+      where: {
+        name,
+      },
+    });
+
+    player.update(playerData);
+    return { player };
+  } catch (error) {
+    return { error: new StatusError(error), player: null };
+  }
+};
+
 export {
   addPlayer,
   addPlayers,
+  editPlayer,
   getPlayer,
   getPlayers,
   getAllPlayers,
