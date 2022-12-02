@@ -7,6 +7,7 @@ import { IRootState } from "redux/reducers";
 import { useLoggedIn } from "lib";
 import { colours } from "theme";
 import { Message } from "../Message";
+import { knockoutStart } from "src/site/lib/predictionLock";
 
 interface IPage {
   children: ReactNode;
@@ -38,12 +39,16 @@ export const Page = ({
 
   const footerComponent = auth.token ? <Footer {...footerData} /> : null;
 
-  let menu = headerData(user.admin, user.username);
+  let menu = headerData(
+    user.admin,
+    user.username,
+    knockoutStart(user.username)
+  );
 
   if (aboutPages) {
     menu = aboutHeaderData;
   } else if (adminPages) {
-    menu = adminHeaderData;
+    menu = adminHeaderData(knockoutStart(user.username));
   }
 
   return isLoggedIn && !auth.token ? (

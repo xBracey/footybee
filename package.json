@@ -20,7 +20,8 @@
     "clean": "gatsby clean",
     "deploy": "docker-compose down && git pull && yarn && yarn build:site && yarn start -d",
     "deploy:soft": "docker-compose stop && git pull && yarn && yarn build:site && yarn start -d",
-    "ssh-server": "ssh root@195.201.222.97"
+    "ssh-server": "ssh root@195.201.222.97",
+    "ssh-tunnel": "ssh -N -L 3307:localhost:33060 root@195.201.222.97"
   },
   "dependencies": {
     "@storybook/addon-actions": "^6.1.14",

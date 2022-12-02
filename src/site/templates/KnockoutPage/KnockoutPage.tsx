@@ -31,6 +31,7 @@ import {
 } from "./KnockoutReducer";
 import { ITeamPrediction } from "src/site/redux/reducers/teamPredictions";
 import { usePredictions } from "./helpers";
+import { teamPredictionLock } from "src/site/lib/predictionLock";
 
 export const KnockoutPage = () => {
   const reduxDispatch: AppDispatch = useDispatch();
@@ -190,6 +191,7 @@ export const KnockoutPage = () => {
             buttonType="green"
             onClick={onSubmit}
             isDisabled={!isNotDisabled}
+            isLocked={teamPredictionLock(user.username)}
           />
         </FinalPredictionsContainer>
       </KnockoutPageContainer>
