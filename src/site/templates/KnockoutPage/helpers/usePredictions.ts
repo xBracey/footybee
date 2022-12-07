@@ -42,6 +42,7 @@ export const usePredictions = (
       );
 
       const teamsSorted = {
+        "Group Stage": [],
         "Round of 16": [],
         "Quarter finals": [],
         "Semi finals": [],

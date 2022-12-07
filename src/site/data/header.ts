@@ -3,21 +3,25 @@ import { icons } from "../assets/icons";
 
 export const headerData = (
   isAdmin: boolean,
-  username: string
+  username: string,
+  showKnockouts = false
 ): IHeader["menu"] => {
+  const knockoutOrPredictions = showKnockouts
+    ? {
+        text: "Knockout",
+        link: "/knockout",
+      }
+    : {
+        text: "Predictions",
+        link: "/predictions",
+      };
+
   const menu: IHeader["menu"] = [
     {
       text: "How To Play",
       link: "/howtoplay",
     },
-    // {
-    //   text: "Knockout",
-    //   link: "/knockout",
-    // },
-    {
-      text: "Predictions",
-      link: "/predictions",
-    },
+    knockoutOrPredictions,
     {
       text: "Results",
       link: "/results",
@@ -39,24 +43,31 @@ export const headerData = (
     : menu;
 };
 
-export const adminHeaderData: IHeader["menu"] = [
-  // {
-  //   text: "Rounds",
-  //   link: "/admin/rounds",
-  // },
-  {
-    text: "Groups",
-    link: "/admin/groups",
-  },
-  {
-    text: "Teams",
-    link: "/admin/teams",
-  },
-  {
-    text: "Players",
-    link: "/admin/players",
-  },
-];
+export const adminHeaderData: (showRounds?: boolean) => IHeader["menu"] = (
+  showRounds = false
+) => {
+  const roundOrGroups = showRounds
+    ? {
+        text: "Rounds",
+        link: "/admin/rounds",
+      }
+    : {
+        text: "Groups",
+        link: "/admin/groups",
+      };
+
+  return [
+    roundOrGroups,
+    {
+      text: "Teams",
+      link: "/admin/teams",
+    },
+    {
+      text: "Players",
+      link: "/admin/players",
+    },
+  ];
+};
 
 export const aboutHeaderData: IHeader["menu"] = [
   {
