@@ -11,6 +11,7 @@ describe("Test create team endpoint", () => {
       .send({
         name: "Test New 1",
         groupLetter: "Test Group 1",
+        wins: 0,
       })
       .set("Accept", "application/json");
 
@@ -25,6 +26,7 @@ describe("Test create team endpoint", () => {
       .send({
         name: "Test Team 1",
         groupLetter: "Test Group 1",
+        wins: 0,
       })
       .set("Accept", "application/json");
 

@@ -6,6 +6,7 @@ import {
   PrimaryKey,
   BelongsTo,
   ForeignKey,
+  Default,
 } from "sequelize-typescript";
 import { Team } from "..";
 
@@ -21,4 +22,8 @@ export class Player extends Model {
 
   @BelongsTo(() => Team)
   team: Team;
+
+  @Default(0)
+  @Column(DataType.SMALLINT)
+  goals: number;
 }

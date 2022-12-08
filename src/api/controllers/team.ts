@@ -87,7 +87,7 @@ export const bulkGetController = async (
     );
 
     return {
-      ..._.pick(team, ["groupLetter", "groupPosition", "name"]),
+      ..._.pick(team, ["groupLetter", "groupPosition", "name", "wins"]),
       userPrediction: userPrediction?.TeamPrediction?.groupPosition,
     };
   });

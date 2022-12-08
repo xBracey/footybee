@@ -28,7 +28,10 @@ export const putPlayer = async (
   name: string,
   player: IPlayerReducer
 ): Promise<IAPIResponse> =>
-  authorisedRequest(state, `/player/${name}`, { data: player, method: "PUT" });
+  authorisedRequest(state, `/player/${name}`, {
+    data: { ...player, goals: parseInt(player.goals) ?? 0 },
+    method: "PUT",
+  });
 
 export const postPlayers = async (
   state: IRootState,

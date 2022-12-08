@@ -5,6 +5,7 @@ export default interface ITeam {
   groupLetter: string;
   groupPosition?: number;
   roundName?: string;
+  wins?: number;
 }
 
 export const isValidTeam = (data: any): data is ITeam => {
@@ -12,12 +13,13 @@ export const isValidTeam = (data: any): data is ITeam => {
     return false;
   }
 
-  const { name, groupLetter, groupPosition, roundName } = data;
+  const { name, groupLetter, groupPosition, roundName, wins } = data;
 
   return (
     validateType(name, "string", true) &&
     validateType(groupLetter, "string", true) &&
     validateType(groupPosition, "number", false) &&
+    validateType(wins, "number", false) &&
     validateType(roundName, "string", false)
   );
 };

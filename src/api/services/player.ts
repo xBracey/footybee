@@ -1,6 +1,6 @@
 import { models } from "../config";
 import IPlayer from "../models/Player/type";
-import { StatusError } from "../lib";
+import { StatusError, updatePoints } from "../lib";
 import { Player } from "../models";
 import { Op, ValidationError } from "sequelize";
 
@@ -84,9 +84,31 @@ export const searchPlayers = async (
   return { players };
 };
 
+const editPlayer = async (
+  name,
+  playerData: IPlayer
+): Promise<IPlayerResponse> => {
+  try {
+    const player = await models.Player.findOne({
+      where: {
+        name,
+      },
+    });
+
+    player.update(playerData);
+
+    await updatePoints();
+
+    return { player };
+  } catch (error) {
+    return { error: new StatusError(error), player: null };
+  }
+};
+
 export {
   addPlayer,
   addPlayers,
+  editPlayer,
   getPlayer,
   getPlayers,
   getAllPlayers,

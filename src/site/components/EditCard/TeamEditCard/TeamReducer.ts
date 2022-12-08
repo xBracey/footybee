@@ -6,6 +6,7 @@ export interface ITeamReducer {
     value: string;
     label: string;
   };
+  wins: string;
 }
 
 export const reducer = (state: ITeamReducer, action) => {

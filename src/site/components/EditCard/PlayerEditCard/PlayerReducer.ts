@@ -1,6 +1,7 @@
 export interface IPlayerReducer {
   teamName: string;
   name: string;
+  goals: string;
 }
 
 export const reducer = (state: IPlayerReducer, action) => {

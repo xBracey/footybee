@@ -139,6 +139,12 @@ export const getUserPoints = async (
   let points = 0;
   let pointsToday = 0;
 
+  const user = await models.User.findOne({
+    where: {
+      username,
+    },
+  });
+
   const matchPredictions = await models.GroupMatchPrediction.findAll({
     where: {
       username,
@@ -150,6 +156,22 @@ export const getUserPoints = async (
       username,
     },
   });
+
+  const favouritePlayer = await models.Player.findOne({
+    where: {
+      name: user.goldenBootPrediction,
+    },
+  });
+
+  const favouriteTeam = await models.Team.findOne({
+    where: {
+      name: user.winnerPrediction,
+    },
+  });
+
+  points +=
+    (favouritePlayer ? favouritePlayer.goals * 10 : 0) +
+    (favouriteTeam ? favouriteTeam.wins * 10 : 0);
 
   for (let index = 0; index < matchPredictions.length; index++) {
     const matchPrediction = matchPredictions[index];

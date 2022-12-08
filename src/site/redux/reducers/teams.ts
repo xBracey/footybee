@@ -6,6 +6,7 @@ interface ITeam {
   roundName: string;
   name: string;
   groupPosition: string;
+  wins: number;
   userPrediction?: number;
 }
 

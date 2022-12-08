@@ -4,6 +4,7 @@ import { IAction, IReducers } from "../types";
 export interface IPlayer {
   name: string;
   teamName: string;
+  goals: number;
 }
 
 export interface IPlayers {
