@@ -14,6 +14,7 @@ story.add("TeamEditCard Component", () => (
       name: "England",
       groupPosition: "0",
       roundName: null,
+      wins: "0",
     }}
     onSave={action("Save")}
     onDelete={action("Delete")}

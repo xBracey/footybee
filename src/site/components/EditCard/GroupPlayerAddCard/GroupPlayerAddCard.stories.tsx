@@ -9,9 +9,9 @@ story.add("GroupPlayerAddCard Component", () => (
   <GroupPlayerAddCard
     onSave={action("Save")}
     teamPlayers={[
-      { name: "Harry Kane", teamName: "England" },
-      { name: "Raheem Sterling", teamName: "England" },
-      { name: "Neymar", teamName: "Brazil" },
+      { name: "Harry Kane", teamName: "England", goals: 0 },
+      { name: "Raheem Sterling", teamName: "England", goals: 0 },
+      { name: "Neymar", teamName: "Brazil", goals: 0 },
     ]}
   />
 ));
