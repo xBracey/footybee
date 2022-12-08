@@ -1,6 +1,6 @@
 import { models } from "../config";
 import IPlayer from "../models/Player/type";
-import { StatusError } from "../lib";
+import { StatusError, updatePoints } from "../lib";
 import { Player } from "../models";
 import { Op, ValidationError } from "sequelize";
 
@@ -96,6 +96,9 @@ const editPlayer = async (
     });
 
     player.update(playerData);
+
+    await updatePoints();
+
     return { player };
   } catch (error) {
     return { error: new StatusError(error), player: null };

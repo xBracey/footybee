@@ -21,7 +21,8 @@
     "deploy": "docker-compose down && git pull && yarn && yarn build:site && yarn start -d",
     "deploy:soft": "docker-compose stop && git pull && yarn && yarn build:site && yarn start -d",
     "ssh-server": "ssh root@195.201.222.97",
-    "ssh-tunnel": "ssh -N -L 3307:localhost:33060 root@195.201.222.97"
+    "ssh-tunnel": "ssh -N -L 3307:localhost:33060 root@195.201.222.97",
+    "mysqldump": "mysqldump --column-statistics=0 -h 127.0.0.1 -P 3307 -u root -p footybee > mysqldump.sql"
   },
   "dependencies": {
     "@storybook/addon-actions": "^6.1.14",

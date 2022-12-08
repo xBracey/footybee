@@ -5,6 +5,7 @@ import {
   createController,
   deleteController,
   editController,
+  getController,
   searchController,
 } from "../../controllers/player";
 
@@ -36,6 +37,14 @@ Player.delete("/:name", async (req, res) => {
 
 Player.get("/", async (req, res) => {
   const { status, error, response } = await bulkGetController();
+
+  return error
+    ? res.status(status).send({ error })
+    : res.status(status).send(response);
+});
+
+Player.get("/:name", async (req, res) => {
+  const { status, error, response } = await getController(req.params.name);
 
   return error
     ? res.status(status).send({ error })

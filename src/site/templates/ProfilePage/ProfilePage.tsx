@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeDisplayName,
   getGroupMatches,
+  getPlayers,
   getTeamPredictions,
   getTeams,
   getUser,
@@ -49,10 +50,17 @@ export const ProfilePage = ({ username }: IProfilePage) => {
   const loggedInUser = useSelector((state: IRootState) => state.user);
   const users = useSelector((state: IRootState) => state.users);
   const teams = useSelector((state: IRootState) => state.teams);
+  const players = useSelector((state: IRootState) => state.players);
   const teamPredictions = useSelector(
     (state: IRootState) => state.teamPredictions
   );
   const user = users.users[username];
+  const userPlayer = players.players.find(
+    player => player.name === user.goldenBootPrediction
+  );
+  const userTeam = teams.teams.find(
+    team => team.name === user.winnerPrediction
+  );
 
   useEffect(() => {
     dispatch(getUser());
@@ -61,6 +69,7 @@ export const ProfilePage = ({ username }: IProfilePage) => {
       dispatch(getProfilePredictions(username));
     });
     dispatch(getTeams());
+    dispatch(getPlayers());
     dispatch(getTeamPredictions(username));
   }, []);
 
@@ -148,10 +157,12 @@ export const ProfilePage = ({ username }: IProfilePage) => {
   const pointsBreakdownComponent = (
     <>
       <ProfileExtraPrediction>{`Bonus Team Prediction - ${
-        user?.winnerPrediction ?? "N/A"
+        userTeam ? `${userTeam.name} - ${userTeam.wins * 10} points` : "N/A"
       }`}</ProfileExtraPrediction>
       <ProfileExtraPrediction>{`Bonus Goalscorer Prediction - ${
-        user?.goldenBootPrediction ?? "N/A"
+        userPlayer
+          ? `${userPlayer.name} - ${userPlayer.goals * 10} points`
+          : "N/A"
       }`}</ProfileExtraPrediction>
       <PredictionsBreakdown fixtures={fixtures} />
       <KnockoutBreakdown predictions={knockoutPredictions} />

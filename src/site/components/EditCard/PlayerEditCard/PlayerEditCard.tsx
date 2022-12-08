@@ -1,6 +1,11 @@
 import React, { useReducer, useState } from "react";
 import Select from "react-select";
-import { isMandatory, validateInputs } from "lib";
+import {
+  isMandatory,
+  numberValidation,
+  scoreValidation,
+  validateInputs,
+} from "lib";
 import { IPlayerReducer, reducer } from "./PlayerReducer";
 import { EditCard } from "../EditCard";
 import { TextInput } from "../../Input/TextInput";
@@ -26,46 +31,43 @@ export const PlayerEditCard = ({
   const [state, dispatch]: [IPlayerReducer, any] = useReducer(reducer, {
     teamName: player.teamName,
     name: player.name,
+    goals: player.goals,
   });
 
-  const { teamName, name } = state;
+  const { teamName, name, goals } = state;
 
   const options = teamNames.map(letter => ({
     value: letter,
     label: letter,
   }));
 
+  const inputValidation = [
+    {
+      value: teamName,
+      hasBlurred: hasBlurred[0],
+      validation: [isMandatory],
+    },
+    {
+      value: name,
+      hasBlurred: hasBlurred[1],
+      validation: [isMandatory],
+    },
+    {
+      value: goals,
+      hasBlurred: hasBlurred[2],
+      validation: [scoreValidation],
+    },
+  ];
+
   const [validation, setValidation] = useState({
-    errorMessages: ["", ""],
-    isDisabled: validateInputs([
-      {
-        value: teamName,
-        hasBlurred: hasBlurred[0],
-        validation: [isMandatory],
-      },
-      {
-        value: name,
-        hasBlurred: hasBlurred[1],
-        validation: [isMandatory],
-      },
-    ]).isDisabled,
+    errorMessages: ["", "", ""],
+    isDisabled: validateInputs(inputValidation).isDisabled,
   });
 
   const onBlurHandler = (index: number) => {
     hasBlurred[index] = true;
 
-    const newValidation = validateInputs([
-      {
-        value: teamName,
-        hasBlurred: hasBlurred[0],
-        validation: [isMandatory],
-      },
-      {
-        value: name,
-        hasBlurred: hasBlurred[1],
-        validation: [isMandatory],
-      },
-    ]);
+    const newValidation = validateInputs(inputValidation);
 
     setValidation(newValidation);
   };
@@ -112,6 +114,18 @@ export const PlayerEditCard = ({
         placeholder="Player Name"
         error={validation.errorMessages[1]}
         isDisabled={isEdit}
+      />
+      <InputLabel>Goals</InputLabel>
+      <TextInput
+        text={goals}
+        setText={goals => {
+          if (numberValidation.validation(goals)) {
+            dispatch({ type: "edit", data: { goals } });
+          }
+        }}
+        onBlurHandler={() => onBlurHandler(2)}
+        placeholder="Goals"
+        error={validation.errorMessages[2]}
       />
     </EditCard>
   );

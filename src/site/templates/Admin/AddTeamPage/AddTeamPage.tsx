@@ -39,7 +39,7 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
   const teams = useSelector((state: IRootState) => state.teams);
   const team = name
     ? teams.teams.find(singleTeam => singleTeam.name === name)
-    : { groupLetter: "", name: "", groupPosition: "", roundName: "" };
+    : { groupLetter: "", name: "", groupPosition: "", roundName: "", wins: 0 };
 
   const groups = useSelector((state: IRootState) => state.groups);
   const groupLetters = groups.groups.map(group => group.letter);
@@ -97,6 +97,7 @@ export const AddTeamPage = ({ name }: IAddTeamPage) => {
               groupLetters={groupLetters}
               team={{
                 ...team,
+                wins: team.wins.toString(),
                 roundName: team.roundName
                   ? {
                       value: team.roundName,

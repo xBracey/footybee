@@ -36,6 +36,10 @@ export const validateInputs = (
   const validateArray = [];
   let isDisabled = false;
 
+  console.log("====================================");
+  console.log({ validation });
+  console.log("====================================");
+
   validation.forEach((singleValidation, index) => {
     validateArray[index] = findErrorMessage(
       singleValidation.value,

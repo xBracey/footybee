@@ -1,6 +1,11 @@
 import React, { useReducer, useState } from "react";
 import Select from "react-select";
-import { isMandatory, validateInputs } from "lib";
+import {
+  isMandatory,
+  numberValidation,
+  scoreValidation,
+  validateInputs,
+} from "lib";
 import { ITeamReducer, reducer } from "./TeamReducer";
 import { EditCard } from "../EditCard";
 import { TextInput } from "../../Input/TextInput";
@@ -30,9 +35,10 @@ export const TeamEditCard = ({
     groupLetter: team.groupLetter,
     name: team.name,
     roundName: team.roundName,
+    wins: team.wins,
   });
 
-  const { groupLetter, name, roundName } = state;
+  const { groupLetter, name, roundName, wins } = state;
 
   const options = groupLetters.map(letter => ({
     value: letter,
@@ -40,7 +46,7 @@ export const TeamEditCard = ({
   }));
 
   const [validation, setValidation] = useState({
-    errorMessages: ["", ""],
+    errorMessages: ["", "", ""],
     isDisabled: validateInputs([
       {
         value: groupLetter,
@@ -51,6 +57,11 @@ export const TeamEditCard = ({
         value: name,
         hasBlurred: hasBlurred[1],
         validation: [isMandatory],
+      },
+      {
+        value: wins,
+        hasBlurred: hasBlurred[2],
+        validation: [scoreValidation],
       },
     ]).isDisabled,
   });
@@ -68,6 +79,11 @@ export const TeamEditCard = ({
         value: name,
         hasBlurred: hasBlurred[1],
         validation: [isMandatory],
+      },
+      {
+        value: wins,
+        hasBlurred: hasBlurred[2],
+        validation: [scoreValidation],
       },
     ]);
 
@@ -126,6 +142,18 @@ export const TeamEditCard = ({
         }))}
         setOption={roundName => dispatch({ type: "edit", data: { roundName } })}
         placeholder="Tournament Position"
+      />
+      <InputLabel>Wins</InputLabel>
+      <TextInput
+        text={wins}
+        setText={wins => {
+          if (numberValidation.validation(wins)) {
+            dispatch({ type: "edit", data: { wins } });
+          }
+        }}
+        onBlurHandler={() => onBlurHandler(2)}
+        placeholder="Wins"
+        error={validation.errorMessages[2]}
       />
     </EditCard>
   );

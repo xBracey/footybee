@@ -47,6 +47,7 @@ export const putTeam = async (
       ...team,
       groupPosition: parseInt(team.groupPosition, 10),
       roundName: team?.roundName?.value,
+      wins: parseInt(team.wins) ?? 0,
     },
     method: "PUT",
   });

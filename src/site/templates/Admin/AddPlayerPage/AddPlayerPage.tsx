@@ -34,7 +34,7 @@ export const AddPlayerPage = ({ name }: IAddPlayerPage) => {
   const players = useSelector((state: IRootState) => state.players);
   const player = name
     ? players.players.find(singlePlayer => singlePlayer.name === name)
-    : { name: "", teamName: "" };
+    : { name: "", teamName: "", goals: 0 };
   const teams = useSelector((state: IRootState) => state.teams);
   const teamNames = teams.teams.map(group => group.name);
 
@@ -66,7 +66,7 @@ export const AddPlayerPage = ({ name }: IAddPlayerPage) => {
         {player && teamNames.length ? (
           <PlayerEditCard
             teamNames={teamNames}
-            player={player}
+            player={{ ...player, goals: player.goals.toString() }}
             onSave={onSave}
             onDelete={onDelete}
             isEdit={!!name}

@@ -1,7 +1,7 @@
 import { models } from "../config";
 import IKnockoutMatch from "../models/KnockoutMatch/type";
 import { StatusError } from "../lib";
-import { updateTeamPoints } from "../lib/updateTeamPoints";
+import { updatePoints } from "../lib";
 import { KnockoutMatch } from "../models";
 import { ValidationError } from "sequelize";
 import { calculateTeamsPoints } from "../lib/calculatePoints/calculateTeamPoints";
@@ -127,7 +127,7 @@ const editKnockoutMatch = async (
       }
     });
 
-    await updateTeamPoints();
+    await updatePoints();
     await updateRanks();
 
     return { knockoutMatch };

@@ -1,6 +1,6 @@
 import { models } from "../config";
 import IGroupMatch from "../models/GroupMatch/type";
-import { StatusError, updateMatchPoints } from "../lib";
+import { StatusError, updatePoints } from "../lib";
 import { GroupMatch } from "../models";
 import { ValidationError } from "sequelize";
 import { calculateMatchesPoints } from "../lib/calculatePoints/calculateMatchesPoints";
@@ -115,7 +115,7 @@ const editGroupMatch = async (
       await prediction.update({ points: newPoints[index] });
     }
 
-    await updateMatchPoints();
+    await updatePoints();
     await updateRanks();
 
     return { groupMatch };

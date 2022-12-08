@@ -1,6 +1,6 @@
 import { models } from "../config";
 import ITeam from "../models/Team/type";
-import { StatusError } from "../lib";
+import { StatusError, updatePoints } from "../lib";
 import { Team, User } from "../models";
 import { ValidationError } from "sequelize";
 
@@ -104,6 +104,9 @@ const editTeam = async (name, teamData: ITeam): Promise<ITeamResponse> => {
     });
 
     team.update(teamData);
+
+    await updatePoints();
+
     return { team };
   } catch (error) {
     return { error: new StatusError(error), team: null };
